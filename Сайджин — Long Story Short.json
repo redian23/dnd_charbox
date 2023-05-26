@@ -1,0 +1,748 @@
+{
+  "jsonType": "character",
+  "template": "default",
+  "name": {
+    "value": "Сайджин"
+  },
+  "hiddenName": "Тяжкий Врач_437694862",
+  "info": {
+    "charClass": {
+      "name": "charClass",
+      "label": "класс и уровень",
+      "value": "Друид"
+    },
+    "level": {
+      "name": "level",
+      "label": "уровень",
+      "value": 1
+    },
+    "background": {
+      "name": "background",
+      "label": "предыстория",
+      "value": "Отшельник"
+    },
+    "playerName": {
+      "name": "playerName",
+      "label": "имя игрока",
+      "value": "Василий"
+    },
+    "race": {
+      "name": "race",
+      "label": "раса",
+      "value": "ЛЕСНОЙ ЭЛЬФ"
+    },
+    "alignment": {
+      "name": "alignment",
+      "label": "мировоззрение",
+      "value": "Нейтрально-добрый"
+    },
+    "experience": {
+      "name": "experience",
+      "label": "опыт",
+      "value": 0
+    }
+  },
+  "subInfo": {
+    "age": {
+      "name": "age",
+      "label": "возраст",
+      "value": 33
+    },
+    "height": {
+      "name": "height",
+      "label": "рост",
+      "value": "176"
+    },
+    "weight": {
+      "name": "weight",
+      "label": "вес",
+      "value": "65кг"
+    },
+    "eyes": {
+      "name": "eyes",
+      "label": "глаза",
+      "value": "Зеленые"
+    },
+    "skin": {
+      "name": "skin",
+      "label": "кожа",
+      "value": "Белая"
+    },
+    "hair": {
+      "name": "hair",
+      "label": "волосы",
+      "value": "По плече"
+    }
+  },
+  "spellsInfo": {
+    "base": {
+      "name": "base",
+      "label": "Базовая характеристика заклинаний",
+      "value": ""
+    },
+    "save": {
+      "name": "save",
+      "label": "Сложность спасброска",
+      "value": ""
+    },
+    "mod": {
+      "name": "mod",
+      "label": "Бонус атаки заклинанием",
+      "value": ""
+    }
+  },
+  "spells": { },
+  "proficiency": 2,
+  "stats": {
+    "str": {
+      "name": "str",
+      "label": "Сила",
+      "score": 8,
+      "modifier": 0
+    },
+    "dex": {
+      "name": "dex",
+      "label": "Ловкость",
+      "score": 14,
+      "modifier": 2
+    },
+    "con": {
+      "name": "con",
+      "label": "Телосложение",
+      "score": 14,
+      "modifier": 1
+    },
+    "int": {
+      "name": "int",
+      "label": "Интеллект",
+      "score": 14,
+      "modifier": 1
+    },
+    "wis": {
+      "name": "wis",
+      "label": "Мудрость",
+      "score": 17,
+      "modifier": 3
+    },
+    "cha": {
+      "name": "cha",
+      "label": "Харизма",
+      "score": 10,
+      "modifier": 0
+    }
+  },
+  "saves": {
+    "str": {
+      "name": "str",
+      "isProf": false
+    },
+    "dex": {
+      "name": "dex",
+      "isProf": false
+    },
+    "con": {
+      "name": "con",
+      "isProf": false
+    },
+    "int": {
+      "name": "int",
+      "isProf": true
+    },
+    "wis": {
+      "name": "wis",
+      "isProf": true
+    },
+    "cha": {
+      "name": "cha",
+      "isProf": false
+    }
+  },
+  "skills": {
+    "acrobatics": {
+      "baseStat": "dex",
+      "name": "acrobatics",
+      "label": "Акробатика"
+    },
+    "investigation": {
+      "baseStat": "int",
+      "name": "investigation",
+      "label": "Анализ"
+    },
+    "athletics": {
+      "baseStat": "str",
+      "name": "athletics",
+      "label": "Атлетика",
+      "isProf": 0
+    },
+    "perception": {
+      "baseStat": "wis",
+      "name": "perception",
+      "label": "Восприятие"
+    },
+    "survival": {
+      "baseStat": "wis",
+      "name": "survival",
+      "label": "Выживание"
+    },
+    "performance": {
+      "baseStat": "cha",
+      "name": "performance",
+      "label": "Выступление"
+    },
+    "intimidation": {
+      "baseStat": "cha",
+      "name": "intimidation",
+      "label": "Запугивание"
+    },
+    "history": {
+      "baseStat": "int",
+      "name": "history",
+      "label": "История"
+    },
+    "sleight of hand": {
+      "baseStat": "dex",
+      "name": "sleight of hand",
+      "label": "Ловкость рук"
+    },
+    "arcana": {
+      "baseStat": "int",
+      "name": "arcana",
+      "label": "Магия"
+    },
+    "medicine": {
+      "baseStat": "wis",
+      "name": "medicine",
+      "label": "Медицина",
+      "isProf": 2
+    },
+    "deception": {
+      "baseStat": "cha",
+      "name": "deception",
+      "label": "Обман"
+    },
+    "nature": {
+      "baseStat": "int",
+      "name": "nature",
+      "label": "Природа",
+      "isProf": 1
+    },
+    "insight": {
+      "baseStat": "wis",
+      "name": "insight",
+      "label": "Проницательность",
+      "isProf": 1
+    },
+    "religion": {
+      "baseStat": "int",
+      "name": "religion",
+      "label": "Религия",
+      "isProf": 0
+    },
+    "stealth": {
+      "baseStat": "dex",
+      "name": "stealth",
+      "label": "Скрытность"
+    },
+    "persuasion": {
+      "baseStat": "cha",
+      "name": "persuasion",
+      "label": "Убеждение"
+    },
+    "animal handling": {
+      "baseStat": "wis",
+      "name": "animal handling",
+      "label": "Уход за животными"
+    }
+  },
+  "vitality": {
+    "hp-dice-current": {
+      "value": 1
+    },
+    "hp-dice-multi": { },
+    "initiative": {
+      "value": null
+    },
+    "speed": {
+      "value": "35"
+    },
+    "ac": {
+      "value": 13
+    },
+    "hp-max": {
+      "value": 9
+    },
+    "hp-current": {
+      "value": 0
+    },
+    "isDying": true,
+    "deathFails": 0,
+    "deathSuccesses": 0,
+    "hp-temp": {
+      "value": 0
+    }
+  },
+  "weaponsList": [
+    {
+      "id": "weapon-1677098589274",
+      "name": {
+        "value": "Боевой посох"
+      },
+      "mod": {
+        "value": "+0"
+      },
+      "dmg": {
+        "value": "1к6 дробящий"
+      },
+      "ability": "dex",
+      "modBonus": {
+        "value": 0
+      }
+    }
+  ],
+  "weapons": { },
+  "text": {
+    "traits": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://dnd.su/spells/374-control_flames/",
+                        "target": "_blank",
+                        "class": "item-link"
+                      }
+                    },
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Власть над огнём"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://dnd.su/spells/25-thunderwave/",
+                        "target": "_blank",
+                        "class": "item-link"
+                      }
+                    },
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Волна грома"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://dnd.su/spells/378-magic_stone/",
+                        "target": "_blank",
+                        "class": "item-link"
+                      }
+                    },
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Волшебный камень"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://dnd.su/spells/72-animal_friendship/",
+                        "target": "_blank",
+                        "class": "item-link"
+                      }
+                    },
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Дружба с животными"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "equipment": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Контейнер для свитков битком набитый вашими изысканиями"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "тёплое одеяло,"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Кожаный доспех, "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "набор путешественника "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "и фокусировка друидов"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "набор травника"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "prof": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Друидический язык"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Эльфийский"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Общем "
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "attacks": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "                "
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "size": 9
+    },
+    "allies": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Изумрудный Анклав"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "background": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Сайджин родился в маленькой эльфийской деревушке на краю леса в семье знахарки и охотника. Будучи еще маленьким, мальчик активно помогал матери собирать травы. Отец настаивал чтобы сын пошел по его стопам, пытался учить его охотится и свежевать дичь но юный Сайджин не понимал как можно быть на столько жестоким к животным. Собирая лекарственные травы для матери, мальчик подолгу засиживался на полянах и наблюдал за птицами.  Однако счастливая и беззаботная жизнь не могла продлиться вечно. Бывшие неподалеку разбойники подкравшись ночью к деревне и  подожгли её. Родители погибли при набеге, мальчику чудом удалось спастись спрятавшись в знакомом только ему лесном укрытии. Когда все стихло - мальчик вернулся на пепелище. Сломленный и подавленный он был настолько шокирован произошедшим, что он не мог даже плакать. Так он просидел целые сутки.   Утром его обнаружила пожилая-эльфийка которая пришла на место бывшей деревушки в поисках целых и пригодных в хозяйстве вещей, оказалась друидом, она то и обучала мальчика искусству друидизма в небольшой общине друидов в глубокой чаще леса, куда обычный человек не мог и добраться."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "size": 7
+    },
+    "features": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Умениие"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "size": 7
+    },
+    "quests": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Найти и наказать разбойников, которые убили родителей и сожгли деревню. Движимый местью он готов на все чтобы найти и поквитаться за смерть родных."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "flaws": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Жажда победить в споре становиться сильнее дружбы и гармонии."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "size": 9
+    },
+    "personality": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Я ужасно сопереживаю всем, кто страдает."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Я часто погружаюсь в свои мысли, отвлекаясь от окружения."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "bonds": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Самое важное для меня — это другие отшельники, жившие рядом, или мой орден."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "ideals": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ],
+                  "text": "Всеобщее благо"
+                },
+                {
+                  "type": "text",
+                  "text": ". Мои дары предназначены для всех, я не должен использовать их в одиночку. (Добрый)"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "items": {
+      "value": {
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Сундук"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "coins": {
+    "gp": {
+      "value": 5
+    }
+  },
+  "resources": { },
+  "bonusesSkills": { },
+  "bonusesStats": { },
+  "conditions": [ ],
+  "id": "63f63bc907455375cc32b286",
+  "avatar": {
+    "jpeg": "https://lss-s3-files.s3.eu-north-1.amazonaws.com/avatar/63f63bc907455375cc32b286.jpeg?mod=1677095967423",
+    "webp": "https://lss-s3-files.s3.eu-north-1.amazonaws.com/avatar/63f63bc907455375cc32b286.webp?mod=1677095967432"
+  },
+  "inspiration": false
+}
