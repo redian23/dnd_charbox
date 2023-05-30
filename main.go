@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
@@ -46,6 +47,7 @@ func main() {
 		"upper": strings.ToUpper,
 	})
 	router.Static(assetsSitePath, assetsSiteRootPath)
+	fmt.Println(htmlSitePath)
 	router.LoadHTMLGlob(htmlSitePath)
 
 	//router.GET("/", func(c *gin.Context) {
