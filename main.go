@@ -19,7 +19,7 @@ func InitServerPathVars(status bool) {
 	if status == true {
 		assetsSitePath = "/usr/share/nginx/html/assets"
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
-		htmlSitePath = "/usr/share/nginx/html/*.html"
+		htmlSitePath = "usr/share/nginx/html/*.html"
 	} else {
 		assetsSitePath = "web/assets"
 		assetsSiteRootPath = "./web/assets"
