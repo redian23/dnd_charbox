@@ -56,7 +56,7 @@ func main() {
 	//	})
 	//})
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/usr/share/nginx/html/dices.html", gin.H{
+		c.HTML(http.StatusOK, htmlSitePath+"dices.html", gin.H{
 			"title": "PreGeneraTOR",
 		})
 	})
@@ -66,5 +66,6 @@ func main() {
 		})
 	})
 
-	router.RunTLS(":443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem")
+	router.RunTLS(":443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
+		"/etc/letsencrypt/live/diceroll.swn.by/privkey.pem")
 }
