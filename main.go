@@ -12,7 +12,7 @@ var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
-	InitServerPathVars(true)
+	InitServerPathVars(false)
 }
 
 func InitServerPathVars(status bool) {
@@ -23,7 +23,7 @@ func InitServerPathVars(status bool) {
 	} else {
 		assetsSitePath = "web/assets"
 		assetsSiteRootPath = "./web/assets"
-		htmlSitePath = ".web/html/*.html"
+		htmlSitePath = "web/html/*.html"
 	}
 }
 
