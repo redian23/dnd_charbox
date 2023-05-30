@@ -8,6 +8,25 @@ import (
 	"strings"
 )
 
+var htmlSitePath string
+var assetsSitePath, assetsSiteRootPath string
+
+func init() {
+	InitServerPathVars(true)
+}
+
+func InitServerPathVars(status bool) {
+	if status == true {
+		assetsSitePath = "/usr/share/nginx/html/assets"
+		assetsSiteRootPath = "./usr/share/nginx/html/assets"
+		htmlSitePath = "/usr/share/nginx/html"
+	} else {
+		assetsSitePath = "web/assets"
+		assetsSiteRootPath = "./web/assets"
+		htmlSitePath = ".web/html"
+	}
+}
+
 func main() {
 	router := gin.Default()
 	// api method
@@ -26,16 +45,15 @@ func main() {
 	router.SetFuncMap(template.FuncMap{
 		"upper": strings.ToUpper,
 	})
+	router.Static(assetsSitePath, assetsSiteRootPath)
+	router.LoadHTMLGlob(htmlSitePath)
 
-	router.Static("/assets", "./assets")
-	router.LoadHTMLGlob("html/*.html")
-
+	//router.GET("/", func(c *gin.Context) {
+	//	c.HTML(http.StatusOK, "index.html", gin.H{
+	//		"title": "PreGeneraTOR",
+	//	})
+	//})
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": "PreGeneraTOR",
-		})
-	})
-	router.GET("/dices", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
 			"title": "PreGeneraTOR",
 		})
@@ -46,6 +64,5 @@ func main() {
 		})
 	})
 
-	router.RunTLS(":443", "./cert/certificate.pem", "./cert/key.pem")
-
+	router.RunTLS(":443", "./web/cert/certificate.pem", "./web/cert/key.pem")
 }

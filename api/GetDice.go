@@ -10,18 +10,15 @@ type multiDiceRoll struct {
 	DiceName string `form:"dice_name"`
 	Count    int    `form:"count"`
 }
+
 type diceRoll struct {
 	RollNumber int `json:"roll_number"`
 	Result     int `json:"result"`
 }
 
 type rollAnswer struct {
-	DiceName     string `json:"dice_name"`
-	Total        int    `json:"total"`
-	Min          int    `json:"min"`
-	Max          int    `json:"max"`
-	CritMinCount int    `json:"crit_min_count"`
-	CritMaxCount int    `json:"crit_max_count"`
+	DiceName string `json:"dice_name"`
+	Total    int    `json:"total"`
 }
 
 func roll(name string) diceRoll {
@@ -80,24 +77,22 @@ func GetMultiRoll(c *gin.Context) {
 
 		rillHistory = append(rillHistory, tmpDice)
 	}
-
-	answ.Min, answ.Max, answ.CritMinCount, answ.CritMaxCount = findMinAndMax(rillHistory)
 	c.JSONP(http.StatusOK, answ)
 }
 
-func findMinAndMax(a []diceRoll) (min int, max int, minCount int, maxCount int) {
-	min = 1
-	max = 20
-
-	for _, value := range a {
-		if value.Result == min {
-			min = value.Result
-			minCount++
-		}
-		if value.Result == max {
-			max = value.Result
-			maxCount++
-		}
-	}
-	return min, max, minCount, maxCount
-}
+//func findMinAndMax(a []diceRoll) (min int, max int, minCount int, maxCount int) {
+//	min = 1
+//	max = 20
+//
+//	for _, value := range a {
+//		if value.Result == min {
+//			min = value.Result
+//			minCount++
+//		}
+//		if value.Result == max {
+//			max = value.Result
+//			maxCount++
+//		}
+//	}
+//	return min, max, minCount, maxCount
+//}

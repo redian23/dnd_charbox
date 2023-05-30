@@ -27,7 +27,9 @@
     }
     input{
         font-size: 150%;
-        width: 25%;
+        width: 20%;
+        border-color: #2ecc71;
+        border-radius: 5px;
     }
     .diceRequest{
         padding: 20px;
@@ -43,12 +45,33 @@
         color: #00b89c;
     }
 
+    .tabs .tab a {
+        color: rgba(18, 171, 157, 0.7);
+        /*Custom Text Color*/
+    }
+
+    .tabs .tab a:hover {
+        color: #26a697;
+        /*Custom Color On Hover*/
+    }
+
+    .tabs .tab a:focus.active {
+        color: #1eab9e;
+        /*Custom Text Color While Active*/
+        background-color: rgba(38, 166, 154, 0.2);
+        /*Custom Background Color While Active*/
+    }
+
+    .tabs .indicator {
+        background-color: #30aba0;
+        /*Custom Color Of Indicator*/
+    }
 
 </style>
-    <nav class="tabs is-boxed is-fullwidth is-medium" style="max-width: 1280px;width: auto;">
+    <nav class="tabs is-boxed is-fullwidth is-medium">
         <div class="container">
             <ul>
-                <li class="tab is-active" onclick="openTab(event,'rollPage')"><a >One Dice Roll</a></li>
+                <li class="tab" onclick="openTab(event,'rollPage')"><a >One Dice Roll</a></li>
                 <li class="tab" onclick="openTab(event,'multiRollPage')"><a >Many Dice Roll</a></li>
                 <li class="tab" onclick="openTab(event,'historyPage')"><a >History</a></li>
             </ul>
