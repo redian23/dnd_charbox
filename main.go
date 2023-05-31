@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-var htmlSitePath string
+var htmlSitePath, htmlSiteRootPath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
@@ -21,6 +21,7 @@ func InitServerPathVars(status bool) {
 		assetsSitePath = "/usr/share/nginx/html/assets"
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
+		htmlSiteRootPath = "/usr/share/nginx/html/"
 	} else {
 		assetsSitePath = "web/assets"
 		assetsSiteRootPath = "./web/assets"
@@ -56,12 +57,12 @@ func main() {
 	//	})
 	//})
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, htmlSitePath+"dices.html", gin.H{
+		c.HTML(http.StatusOK, htmlSiteRootPath+"dices.html", gin.H{
 			"title": "PreGeneraTOR",
 		})
 	})
 	router.GET("/about", func(c *gin.Context) {
-		c.HTML(http.StatusOK, htmlSitePath+"about.html", gin.H{
+		c.HTML(http.StatusOK, htmlSiteRootPath+"about.html", gin.H{
 			"content": "This is an about page...",
 		})
 	})
