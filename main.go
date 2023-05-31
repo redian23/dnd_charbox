@@ -66,6 +66,6 @@ func main() {
 		})
 	})
 
-	router.RunTLS("127.0.0.1:443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
+	router.RunTLS(":443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
 		"/etc/letsencrypt/live/diceroll.swn.by/privkey.pem")
 }
