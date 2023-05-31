@@ -65,6 +65,9 @@ func main() {
 			"content": "This is an about page...",
 		})
 	})
+	router.GET("/version", func(c *gin.Context) {
+		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte("Dice don't exist."+"\n"))
+	})
 
 	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
 		"/etc/letsencrypt/live/diceroll.swn.by/privkey.pem")
