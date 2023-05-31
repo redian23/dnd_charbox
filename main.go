@@ -59,19 +59,13 @@ func main() {
 		c.HTML(http.StatusOK, htmlSitePath+"dices.html", gin.H{
 			"title": "PreGeneraTOR",
 		})
-		c.HTML(200, "https", gin.H{
-			"status": "success",
-		})
 	})
 	router.GET("/about", func(c *gin.Context) {
 		c.HTML(http.StatusOK, htmlSitePath+"about.html", gin.H{
 			"content": "This is an about page...",
 		})
-		c.HTML(200, "https", gin.H{
-			"status": "success",
-		})
 	})
 
-	router.RunTLS(":443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
+	router.RunTLS("127.0.0.1:443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
 		"/etc/letsencrypt/live/diceroll.swn.by/privkey.pem")
 }
