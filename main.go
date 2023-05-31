@@ -57,12 +57,12 @@ func main() {
 	//	})
 	//})
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, htmlSiteRootPath+"dices.html", gin.H{
+		c.HTML(http.StatusOK, "dices.html", gin.H{
 			"title": "PreGeneraTOR",
 		})
 	})
 	router.GET("/about", func(c *gin.Context) {
-		c.HTML(http.StatusOK, htmlSiteRootPath+"about.html", gin.H{
+		c.HTML(http.StatusOK, "about.html", gin.H{
 			"content": "This is an about page...",
 		})
 	})
