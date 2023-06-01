@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-var htmlSitePath, htmlSiteRootPath string
+var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
@@ -21,7 +21,6 @@ func InitServerPathVars(status bool) {
 		assetsSitePath = "/usr/share/nginx/html/assets"
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
-		htmlSiteRootPath = "/usr/share/nginx/html/"
 	} else {
 		assetsSitePath = "web/assets"
 		assetsSiteRootPath = "./web/assets"
@@ -70,6 +69,6 @@ func main() {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte("Dice don't exist."+"\n"))
 	})
 
-	router.RunTLS(":443", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem",
-		"/etc/letsencrypt/live/diceroll.swn.by/privkey.pem")
+	//router.Run(":848") //debug
+	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
