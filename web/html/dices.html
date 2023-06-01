@@ -38,11 +38,12 @@
     }
     .diceResult{
         color: #00b89c;
-        font-size: 1000%;
+        font-size: 750%;
     }
     .historyListStyle{
         font-size: 200%;
         color: #00b89c;
+        text-align: center;
     }
 
     .tabs .tab a {
@@ -80,6 +81,7 @@
     <div class="container section" >
         <div id="rollPage" class="content-tab" >
             <center>
+                <label class="historyListStyle">Dice Type: </label>
                 <div class="select">
                     <label>
                         <select name="diceID1" class="is-focused">
@@ -101,7 +103,7 @@
                     <label class="diceRequest" id="diceRequest1"></label>
                 </div>
                 <div>
-                    <label class="diceResult" id="diceResult1"></label>
+                    <label class="diceResult" id="diceResult1">Result</label>
                 </div>
 
                 <script>
@@ -114,7 +116,7 @@
                     var count = 1;
                     function getDiceResult1() {
                         const xhr = new XMLHttpRequest();
-                        xhr.open("GET", `${window.location.protocol}//${window.location.hostname}/api/v1/roll?dice_name=${selectDice1()}&count=1`);
+                        xhr.open("GET", `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/roll?dice_name=${selectDice1()}&count=1`);
                         xhr.onload = () => {
                             if (xhr.readyState === 4 && xhr.status === 200) {
                                 let data = JSON.stringify(JSON.parse(xhr.response));
@@ -135,6 +137,7 @@
         </div>
         <div id="multiRollPage" class="content-tab" style="display:none">
             <center>
+                <label class="historyListStyle">Dice Count: </label>
                 <div class="countButtons">
                     <button class="button is-primary" onclick="plus(1000)">+1000</button>
                     <button class="button is-primary" onclick="plus(100)">+100</button>
@@ -147,7 +150,7 @@
                     <button class="button is-primary" onclick="minus(1000)">-1000</button>
 
                 </div>
-
+                <label class="historyListStyle">Dice Type: </label>
                 <div class="select">
                     <label>
                         <select name="diceID" class="is-focused">
@@ -169,7 +172,7 @@
                     <label class="diceRequest" id="diceRequest"></label>
                 </div>
                 <div>
-                    <label class="diceResult" id="diceResult"></label>
+                    <label class="diceResult" id="diceResult">Result</label>
                 </div>
                 <script>
                     document.getElementById('number').readOnly = true;
@@ -204,7 +207,7 @@
                     var count = 1;
                     function getDiceResult() {
                         const xhr = new XMLHttpRequest();
-                        xhr.open("GET", `${window.location.protocol}//${window.location.hostname}/api/v1/roll?dice_name=${selectDice()}&count=${diceCount()}`);
+                        xhr.open("GET", `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/roll?dice_name=${selectDice()}&count=${diceCount()}`);
                         xhr.onload = () => {
                             if (xhr.readyState === 4 && xhr.status === 200) {
                                 let data = JSON.stringify(JSON.parse(xhr.response));
@@ -244,9 +247,7 @@
             </center>
         </div>
         <div id="historyPage" class="content-tab" style="display:none">
-            <p class ="historyEmptyStyle" id="historyEmpty">
-                Empty
-            </p>
+            <p class ="historyListStyle" id="historyEmpty" > You haven't rolled the dice yet.</p>
             <p class ="historyListStyle" id="historyList"></p>
         </div>
     </div>
