@@ -27,7 +27,7 @@
     }
     input{
         font-size: 150%;
-        width: 25%;
+        width: 30%;
         border-color: #2ecc71;
         border-radius: 5px;
     }
@@ -40,10 +40,16 @@
         color: #00b89c;
         font-size: 750%;
     }
-    .historyListStyle{
+
+    .historyListEmpty{
         font-size: 200%;
         color: #00b89c;
         text-align: center;
+    }
+
+    .historyListStyle{
+        font-size: 200%;
+        color: #00b89c;
     }
 
     .tabs .tab a {
@@ -247,7 +253,7 @@
             </center>
         </div>
         <div id="historyPage" class="content-tab" style="display:none">
-            <p class ="historyListStyle" id="historyEmpty" > You haven't rolled the dice yet.</p>
+            <p class ="historyListEmpty" id="historyEmpty" > You haven't rolled the dice yet.</p>
             <p class ="historyListStyle" id="historyList"></p>
         </div>
     </div>
