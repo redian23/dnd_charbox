@@ -21,16 +21,23 @@
     .select{
         position: center;
     }
+    .section{
+        padding: 1rem;
+    }
     .countButtons{
         padding: 25px;
         position: center;
     }
-    input{
-        font-size: 150%;
-        width: 30%;
+    .input{
+        width: 275px;
         border-color: #2ecc71;
         border-radius: 5px;
     }
+
+    .button.is-large {
+        font-size: 2rem;
+    }
+
     .diceRequest{
         padding: 20px;
         color: #048aa9;
@@ -53,12 +60,12 @@
     }
 
     .tabs .tab a {
-        color: rgba(18, 171, 157, 0.7);
-        /*Custom Text Color*/
+        color: whitesmoke;
+        font-size: 110%;
     }
 
     .tabs .tab a:hover {
-        color: #26a697;
+        color: #2c2b2b;
         /*Custom Color On Hover*/
     }
 
@@ -68,14 +75,19 @@
         background-color: rgba(38, 166, 154, 0.2);
         /*Custom Background Color While Active*/
     }
+    .tabs li.is-active a {
+        border-bottom-color: #1eab9e;
+        color: #2c2b2b;
+    }
 
     .tabs .indicator {
+        color: #2c2b2b;
         background-color: #30aba0;
         /*Custom Color Of Indicator*/
     }
 
 </style>
-    <nav class="tabs is-boxed is-fullwidth is-medium">
+    <nav class="tabs has-background-primary is-centered">
         <div class="container">
             <ul>
                 <li class="tab" onclick="openTab(event,'rollPage')"><a >One Dice Roll</a></li>
@@ -88,7 +100,7 @@
         <div id="rollPage" class="content-tab" >
             <center>
                 <label class="historyListStyle">Dice Type: </label>
-                <div class="select">
+                <div class="select is-primary">
                     <label>
                         <select name="diceID1" class="is-focused">
                             <option>D4</option>
@@ -103,7 +115,7 @@
                 </div>
 
                 <div>
-                    <button class="button is-large" id="rollOne" onclick="getDiceResult1()">Roll</button>
+                    <button class="button is-primary is-large" id="rollOne" onclick="getDiceResult1()">Roll</button>
                 </div>
                 <div>
                     <label class="diceRequest" id="diceRequest1"></label>
@@ -149,15 +161,14 @@
                     <button class="button is-primary" onclick="plus(100)">+100</button>
                     <button class="button is-primary" onclick="plus(10)">+10</button>
                     <button class="button is-primary" onclick="plus(1)">+1</button>
-                    <label for="number"></label><input type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
+                    <label for="number"></label><input class="input is-primary" type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
                     <button class="button is-primary" onclick="minus(1)">-1</button>
                     <button class="button is-primary" onclick="minus(10)">-10</button>
                     <button class="button is-primary" onclick="minus(100)">-100</button>
                     <button class="button is-primary" onclick="minus(1000)">-1000</button>
-
                 </div>
                 <label class="historyListStyle">Dice Type: </label>
-                <div class="select">
+                <div class="select is-primary">
                     <label>
                         <select name="diceID" class="is-focused">
                             <option>D4</option>
@@ -172,7 +183,7 @@
                 </div>
 
                 <div>
-                    <button class="button is-large" onclick="getDiceResult()" >Roll</button>
+                    <button class="button is-primary is-large" onclick="getDiceResult()" >Roll</button>
                 </div>
                 <div>
                     <label class="diceRequest" id="diceRequest"></label>
