@@ -141,6 +141,8 @@
                             if (xhr.readyState === 4 && xhr.status === 200) {
                                 let data = JSON.stringify(JSON.parse(xhr.response));
                                 console.log(data)
+
+                                document.getElementById("clearHistoryButton").style.display = "block";
                                 document.getElementById("historyEmpty").innerHTML = "";
                                 document.getElementById("historyList").innerHTML =count++ +". "+"1x"+ selectDice1()
                                     + " Result: " + JSON.parse(data)["total"] + "<br>" + document.getElementById("historyList").innerHTML;
