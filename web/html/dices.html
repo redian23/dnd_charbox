@@ -120,7 +120,7 @@
                     <button class="button is-primary is-large" id="rollOne" onclick="getDiceResult1()">Roll</button>
                 </div>
                 <div>
-                    <label class="diceRequest" id="diceRequest1"></label>
+                    <label class="diceRequest" id="diceRequest1">Roll Info</label>
                 </div>
                 <div>
                     <label class="diceResult" id="diceResult1">Result</label>
@@ -193,7 +193,7 @@
                     <button class="button is-primary is-large" onclick="getDiceResult()" >Roll</button>
                 </div>
                 <div>
-                    <label class="diceRequest" id="diceRequest"></label>
+                    <label class="diceRequest" id="diceRequest">Roll Info</label>
                 </div>
                 <div>
                     <label class="diceResult" id="diceResult">Result</label>
@@ -238,6 +238,7 @@
                                 console.log(data)
                                 textSizing()
                                 document.getElementById("historyEmpty").innerHTML = "";
+                                document.getElementById("clearHistoryButton").style.display = "block";
                                 document.getElementById("historyList").innerHTML =count++ +". "+ diceCount()+"x"+ selectDice()
                                     + " Result: " + JSON.parse(data)["total"] + "<br>" + document.getElementById("historyList").innerHTML;
                                 document.getElementById("diceRequest").innerHTML = diceCount() +"x"+ selectDice();
@@ -272,8 +273,16 @@
         </div>
         <div id="historyPage" class="content-tab" style="display:none">
             <p class ="historyListEmpty" id="historyEmpty" > You haven't rolled the dice yet.</p>
+            <div style="padding-bottom: 20px">
+                <button class="button is-primary" id="clearHistoryButton" style="display: none" onclick="clearHistoryList()">Clear</button>
+            </div>
             <p class ="historyListStyle" id="historyList"></p>
         </div>
+        <script>
+            function clearHistoryList() {
+                document.getElementById("historyList").innerHTML = "";
+            }
+        </script>
     </div>
 </body>
 <script>
