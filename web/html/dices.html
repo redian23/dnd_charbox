@@ -25,13 +25,14 @@
         padding: 1rem;
     }
     .countButtons{
-        padding: 25px;
+        padding: 15px;
         position: center;
     }
     .input{
-        width: 275px;
+        width: 300px;
+        font-size: 120%;
         border-color: #2ecc71;
-        border-radius: 5px;
+        border-radius: 10px;
     }
 
     .button.is-large {
@@ -65,7 +66,8 @@
     }
 
     .tabs .tab a:hover {
-        color: #2c2b2b;
+        color: #00b89c;
+        background-color: whitesmoke;
         /*Custom Color On Hover*/
     }
 
@@ -76,8 +78,8 @@
         /*Custom Background Color While Active*/
     }
     .tabs li.is-active a {
-        border-bottom-color: #1eab9e;
-        color: #2c2b2b;
+        color: #1eab9e;
+        background-color: whitesmoke;
     }
 
     .tabs .indicator {
@@ -87,17 +89,17 @@
     }
 
 </style>
-    <nav class="tabs has-background-primary is-centered">
+    <nav class="tabs is-boxed has-background-primary is-centered">
         <div class="container">
             <ul>
-                <li class="tab" onclick="openTab(event,'rollPage')"><a >One Dice Roll</a></li>
+                <li class="tab is-active" onclick="openTab(event,'rollPage')"><a >One Dice Roll</a></li>
                 <li class="tab" onclick="openTab(event,'multiRollPage')"><a >Multi Dice Roll</a></li>
                 <li class="tab" onclick="openTab(event,'historyPage')"><a >History</a></li>
             </ul>
         </div>
     </nav>
     <div class="container section" >
-        <div id="rollPage" class="content-tab" >
+        <div id="rollPage" class="content-tab">
             <center>
                 <label class="historyListStyle">Dice Type: </label>
                 <div class="select is-primary">
@@ -114,7 +116,7 @@
                     </label>
                 </div>
 
-                <div>
+                <div style="padding: 1rem">
                     <button class="button is-primary is-large" id="rollOne" onclick="getDiceResult1()">Roll</button>
                 </div>
                 <div>
@@ -157,15 +159,21 @@
             <center>
                 <label class="historyListStyle">Dice Count: </label>
                 <div class="countButtons">
-                    <button class="button is-primary" onclick="plus(1000)">+1000</button>
-                    <button class="button is-primary" onclick="plus(100)">+100</button>
-                    <button class="button is-primary" onclick="plus(10)">+10</button>
-                    <button class="button is-primary" onclick="plus(1)">+1</button>
-                    <label for="number"></label><input class="input is-primary" type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
-                    <button class="button is-primary" onclick="minus(1)">-1</button>
-                    <button class="button is-primary" onclick="minus(10)">-10</button>
-                    <button class="button is-primary" onclick="minus(100)">-100</button>
-                    <button class="button is-primary" onclick="minus(1000)">-1000</button>
+                    <div>
+                        <button class="button is-primary" onclick="plus(1)">+1</button>
+                        <button class="button is-primary" onclick="plus(10)">+10</button>
+                        <button class="button is-primary" onclick="plus(100)">+100</button>
+                        <button class="button is-primary" onclick="plus(1000)">+1000</button>
+                    </div>
+                    <div>
+                        <label for="number"></label><input class="input is-primary" type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
+                    </div>
+                    <div>
+                        <button class="button is-primary" onclick="minus(1)">-1</button>
+                        <button class="button is-primary" onclick="minus(10)">-10</button>
+                        <button class="button is-primary" onclick="minus(100)">-100</button>
+                        <button class="button is-primary" onclick="minus(1000)">-1000</button>
+                    </div>
                 </div>
                 <label class="historyListStyle">Dice Type: </label>
                 <div class="select is-primary">
@@ -181,8 +189,7 @@
                         </select>
                     </label>
                 </div>
-
-                <div>
+                <div style="padding: 1rem">
                     <button class="button is-primary is-large" onclick="getDiceResult()" >Roll</button>
                 </div>
                 <div>
