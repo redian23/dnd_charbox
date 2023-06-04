@@ -17,8 +17,9 @@ type diceRoll struct {
 }
 
 type rollAnswer struct {
-	DiceName string `json:"dice_name"`
-	Total    int    `json:"total"`
+	DiceName  string     `json:"dice_name"`
+	RollSteps []diceRoll `json:"roll_steps"`
+	Total     int        `json:"total"`
 }
 
 func roll(name string) diceRoll {
@@ -61,12 +62,12 @@ func GetMultiRoll(c *gin.Context) {
 		return
 	}
 	//max count
-	if d.Count > 40000 {
-		d.Count = 40000
+	if d.Count > 100 {
+		d.Count = 100
 	}
 
 	var answ rollAnswer
-	var rillHistory []diceRoll
+	var rollStepsArray []diceRoll
 
 	answ.DiceName = d.DiceName
 
@@ -75,8 +76,9 @@ func GetMultiRoll(c *gin.Context) {
 		tmpDice.RollNumber = i + 1
 		answ.Total = answ.Total + tmpDice.Result
 
-		rillHistory = append(rillHistory, tmpDice)
+		rollStepsArray = append(rollStepsArray, tmpDice)
 	}
+	answ.RollSteps = rollStepsArray
 	c.JSONP(http.StatusOK, answ)
 }
 

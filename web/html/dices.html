@@ -29,8 +29,8 @@
         position: center;
     }
     .input{
-        width: 300px;
-        font-size: 120%;
+        width: 100px;
+        text-align-all: center;
         border-color: #2ecc71;
         border-radius: 10px;
     }
@@ -47,6 +47,18 @@
     .diceResult{
         color: #00b89c;
         font-size: 750%;
+    }
+
+    .rollSpoiler{
+        padding: 20px;
+        color: #048aa9;
+        font-size: 250%;
+    }
+
+    .rollSumTable{
+        padding: 20px;
+        color: #048aa9;
+        font-size: 250%;
     }
 
     .historyListEmpty{
@@ -92,89 +104,22 @@
     <nav class="tabs is-boxed has-background-primary is-centered">
         <div class="container">
             <ul>
-                <li class="tab is-active" onclick="openTab(event,'rollPage')"><a >One Dice Roll</a></li>
-                <li class="tab" onclick="openTab(event,'multiRollPage')"><a >Multi Dice Roll</a></li>
+                <li class="tab is-active" onclick="openTab(event,'multiRollPage')"><a >Multi Dice Roll</a></li>
                 <li class="tab" onclick="openTab(event,'historyPage')"><a >History</a></li>
             </ul>
         </div>
     </nav>
     <div class="container section" >
-        <div id="rollPage" class="content-tab">
-            <center>
-                <label class="historyListStyle">Dice Type: </label>
-                <div class="select is-primary">
-                    <label>
-                        <select name="diceID1" class="is-focused">
-                            <option>D4</option>
-                            <option>D6</option>
-                            <option>D8</option>
-                            <option>D10</option>
-                            <option>D12</option>
-                            <option>D20</option>
-                            <option>D100</option>
-                        </select>
-                    </label>
-                </div>
-
-                <div style="padding: 1rem">
-                    <button class="button is-primary is-large" id="rollOne" onclick="getDiceResult1()">Roll</button>
-                </div>
-                <div>
-                    <label class="diceRequest" id="diceRequest1">Roll Info</label>
-                </div>
-                <div>
-                    <label class="diceResult" id="diceResult1">Result</label>
-                </div>
-
-                <script>
-                    function selectDice1(){
-                        var s = document.getElementsByName('diceID1')[0];
-                        s.addEventListener("change", selectDice);
-                        return s.options[s.selectedIndex].value
-                    }
-
-                    var count = 1;
-                    function getDiceResult1() {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open("GET", `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/roll?dice_name=${selectDice1()}&count=1`);
-                        xhr.onload = () => {
-                            if (xhr.readyState === 4 && xhr.status === 200) {
-                                let data = JSON.stringify(JSON.parse(xhr.response));
-                                console.log(data)
-
-                                document.getElementById("clearHistoryButton").style.display = "block";
-                                document.getElementById("historyEmpty").innerHTML = "";
-                                document.getElementById("historyList").innerHTML =count++ +". "+"1x"+ selectDice1()
-                                    + " Result: " + JSON.parse(data)["total"] + "<br>" + document.getElementById("historyList").innerHTML;
-                                document.getElementById("diceRequest1").innerHTML ="1x"+ selectDice1();
-                                document.getElementById("diceResult1").innerHTML = JSON.parse(data)["total"];
-                            } else {
-                                console.log(`Error: ${xhr.status}`);
-                            }
-                        };
-                        xhr.send();
-                    }
-                </script>
-            </center>
-        </div>
-        <div id="multiRollPage" class="content-tab" style="display:none">
+        <div id="multiRollPage" class="content-tab">
             <center>
                 <label class="historyListStyle">Dice Count: </label>
                 <div class="countButtons">
                     <div>
                         <button class="button is-primary" onclick="plus(1)">+1</button>
                         <button class="button is-primary" onclick="plus(10)">+10</button>
-                        <button class="button is-primary" onclick="plus(100)">+100</button>
-                        <button class="button is-primary" onclick="plus(1000)">+1000</button>
-                    </div>
-                    <div>
                         <label for="number"></label><input class="input is-primary" type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
-                    </div>
-                    <div>
                         <button class="button is-primary" onclick="minus(1)">-1</button>
                         <button class="button is-primary" onclick="minus(10)">-10</button>
-                        <button class="button is-primary" onclick="minus(100)">-100</button>
-                        <button class="button is-primary" onclick="minus(1000)">-1000</button>
                     </div>
                 </div>
                 <label class="historyListStyle">Dice Type: </label>
@@ -200,6 +145,13 @@
                 <div>
                     <label class="diceResult" id="diceResult">Result</label>
                 </div>
+                <details>
+                    <summary class="rollSpoiler" id="rollSpoiler">How I get this result?</summary>
+                    <p>
+                        <label class="rollSumTable" id="rollSumTable">Roll + Roll + ...... + Roll</label>
+                    </p>
+                </details>
+
                 <script>
                     document.getElementById('number').readOnly = true;
                     function selectDice(){
@@ -239,29 +191,53 @@
                                 let data = JSON.stringify(JSON.parse(xhr.response));
                                 console.log(data)
                                 textSizing()
-                                document.getElementById("historyEmpty").innerHTML = "";
-                                document.getElementById("clearHistoryButton").style.display = "block";
-                                document.getElementById("historyList").innerHTML =count++ +". "+ diceCount()+"x"+ selectDice()
-                                    + " Result: " + JSON.parse(data)["total"] + "<br>" + document.getElementById("historyList").innerHTML;
-                                document.getElementById("diceRequest").innerHTML = diceCount() +"x"+ selectDice();
-                                document.getElementById("diceResult").innerHTML = JSON.parse(data)["total"];
+                                showElements()
+
+                                getRollSumStepsList(data);
+
+                                writeToHistory(data);
+                                writeResultInLabel(data)
                             } else {
                                 console.log(`Error: ${xhr.status}`);
                             }
                         };
                         xhr.send();
                     }
+                    function showElements() {
+                        document.getElementById("historyEmpty").innerHTML = "";
+                        document.getElementById("clearHistoryButton").style.display = "block";
+                    }
 
+                    function writeResultInLabel(data) {
+                        document.getElementById("diceRequest").innerHTML = diceCount() +"x"+ selectDice();
+                        document.getElementById("diceResult").innerHTML = JSON.parse(data)["total"];
+                    }
+
+                    function writeToHistory(data) {
+                        document.getElementById("historyList").innerHTML =count++ +". "+ diceCount()+"x"+ selectDice()
+                            + " Result: " + JSON.parse(data)["total"] + "<br>" + document.getElementById("historyList").innerHTML;
+                    }
+
+                    function getRollSumStepsList(data) {
+                        document.getElementById("rollSumTable").innerHTML = "Step:  Result:"+ "<br>" ;
+                        arr = JSON.parse(data)["roll_steps"];
+                        for(let i = 0; i < arr.length; i++){
+                            document.getElementById("rollSumTable").innerHTML += JSON.stringify(arr[i]["roll_number"]) +". -> "+ JSON.stringify(arr[i]["result"]) + "<br>" ;
+                        }
+                    }
                     function plus(count){
                         let value = parseInt(document.getElementById('number').value, 10);
                         value = isNaN(value) ? 0 : value;
                         value += count ;
-                        if (value >= 40000) {
-                            value = 40000
+                        if (value >= 100) {
+                            value = 100
                         }
                         document.getElementById('number').value = value;
                     }
                     function minus(count){
+                        if (count === 1){
+                            count = 0
+                        }
                         let value = parseInt(document.getElementById('number').value, 10);
                         value = isNaN(value) ? 0 : value;
                         value -= count ;

@@ -69,6 +69,6 @@ func main() {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte("Dice don't exist."+"\n"))
 	})
 
-	//router.Run(":848") //debug
+	//router.Run(":848") //local
 	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
