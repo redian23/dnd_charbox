@@ -235,9 +235,6 @@
                         document.getElementById('number').value = value;
                     }
                     function minus(count){
-                        if (count === 1){
-                            count = 0
-                        }
                         let value = parseInt(document.getElementById('number').value, 10);
                         value = isNaN(value) ? 0 : value;
                         value -= count ;
