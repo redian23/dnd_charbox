@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Dices</title>
-    <section class="hero is-primary">
+    <section class="hero is-small is-primary">
         <div class="hero-body">
             <p class="title">
                 Dice Roller
@@ -22,25 +22,23 @@
         position: center;
     }
     .section{
-        padding: 1rem;
+        padding: 0 1rem 1rem;
     }
     .countButtons{
         padding: 15px;
         position: center;
     }
     .input{
-        width: 100px;
+        width: 75px;
         text-align-all: center;
         border-color: #2ecc71;
         border-radius: 10px;
     }
-
     .button.is-large {
         font-size: 2rem;
     }
-
     .diceRequest{
-        padding: 20px;
+        padding-top: 20px;
         color: #048aa9;
         font-size: 250%;
     }
@@ -48,41 +46,33 @@
         color: #00b89c;
         font-size: 750%;
     }
-
     .rollSpoiler{
-        padding: 20px;
         color: #048aa9;
-        font-size: 250%;
+        font-size: 200%;
     }
-
     .rollSumTable{
         padding: 20px;
         color: #048aa9;
-        font-size: 250%;
+        font-size: 200%;
     }
-
     .historyListEmpty{
         font-size: 200%;
         color: #00b89c;
         text-align: center;
     }
-
     .historyListStyle{
         font-size: 200%;
         color: #00b89c;
     }
-
     .tabs .tab a {
         color: whitesmoke;
         font-size: 110%;
     }
-
     .tabs .tab a:hover {
         color: #00b89c;
         background-color: whitesmoke;
         /*Custom Color On Hover*/
     }
-
     .tabs .tab a:focus.active {
         color: #1eab9e;
         /*Custom Text Color While Active*/
@@ -93,18 +83,16 @@
         color: #1eab9e;
         background-color: whitesmoke;
     }
-
     .tabs .indicator {
         color: #2c2b2b;
         background-color: #30aba0;
         /*Custom Color Of Indicator*/
     }
-
 </style>
     <nav class="tabs is-boxed has-background-primary is-centered">
         <div class="container">
             <ul>
-                <li class="tab is-active" onclick="openTab(event,'multiRollPage')"><a >Multi Dice Roll</a></li>
+                <li class="tab is-active" onclick="openTab(event,'multiRollPage')"><a >Rolling</a></li>
                 <li class="tab" onclick="openTab(event,'historyPage')"><a >History</a></li>
             </ul>
         </div>
@@ -112,47 +100,60 @@
     <div class="container section" >
         <div id="multiRollPage" class="content-tab">
             <center>
-                <label class="historyListStyle">Dice Count: </label>
-                <div class="countButtons">
+                <div id="main_place">
+                    <label class="historyListStyle">Dice Count: </label>
+                    <div class="countButtons">
+                        <div>
+                            <button class="button is-primary" onclick="plus(1)">+1</button>
+                            <button class="button is-primary" onclick="plus(10)">+10</button>
+                            <label for="number"></label><input class="input is-primary" type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
+                            <button class="button is-primary" onclick="minus(1)">-1</button>
+                            <button class="button is-primary" onclick="minus(10)">-10</button>
+                        </div>
+                    </div>
+                    <label class="historyListStyle">Dice Type: </label>
+                    <div class="select is-primary">
+                        <label>
+                            <select name="diceID" class="is-focused">
+                                <option>D4</option>
+                                <option>D6</option>
+                                <option>D8</option>
+                                <option>D10</option>
+                                <option>D12</option>
+                                <option>D20</option>
+                                <option>D100</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div style="padding: 1rem">
+                        <button class="button is-primary is-large" onclick="getDiceResult()" >Roll</button>
+                    </div>
                     <div>
-                        <button class="button is-primary" onclick="plus(1)">+1</button>
-                        <button class="button is-primary" onclick="plus(10)">+10</button>
-                        <label for="number"></label><input class="input is-primary" type="number" id="number" maxlength="3"  min="1" value="1" style="text-align:center"/>
-                        <button class="button is-primary" onclick="minus(1)">-1</button>
-                        <button class="button is-primary" onclick="minus(10)">-10</button>
+                        <label class="diceRequest" id="diceRequest">Roll Info</label>
+                    </div>
+                    <div>
+                        <label class="diceResult" id="diceResult">Result</label>
                     </div>
                 </div>
-                <label class="historyListStyle">Dice Type: </label>
-                <div class="select is-primary">
-                    <label>
-                        <select name="diceID" class="is-focused">
-                            <option>D4</option>
-                            <option>D6</option>
-                            <option>D8</option>
-                            <option>D10</option>
-                            <option>D12</option>
-                            <option>D20</option>
-                            <option>D100</option>
-                        </select>
-                    </label>
+                <div id="second_place">
+                    <details>
+                        <summary class="rollSpoiler" id="rollSpoiler" onclick="switchPlaces()">How I get this result?</summary>
+                        <p>
+                            <label class="rollSumTable" id="rollSumTable">Roll + Roll + ...... + Roll</label>
+                        </p>
+                    </details>
                 </div>
-                <div style="padding: 1rem">
-                    <button class="button is-primary is-large" onclick="getDiceResult()" >Roll</button>
-                </div>
-                <div>
-                    <label class="diceRequest" id="diceRequest">Roll Info</label>
-                </div>
-                <div>
-                    <label class="diceResult" id="diceResult">Result</label>
-                </div>
-                <details>
-                    <summary class="rollSpoiler" id="rollSpoiler">How I get this result?</summary>
-                    <p>
-                        <label class="rollSumTable" id="rollSumTable">Roll + Roll + ...... + Roll</label>
-                    </p>
-                </details>
-
                 <script>
+                    var counter = 1;
+                    function switchPlaces() {
+                        counter++
+                        if (counter %2){
+                            document.getElementById('main_place').style.display = "block";
+                        }else {
+                            document.getElementById('main_place').style.display = "none";
+                        }
+                    }
+
                     document.getElementById('number').readOnly = true;
                     function selectDice(){
                         var s = document.getElementsByName('diceID')[0];
