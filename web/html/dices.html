@@ -47,11 +47,19 @@
         font-size: 750%;
     }
     .rollSpoiler{
+        text-align: center;
         color: #048aa9;
         font-size: 200%;
     }
+
+    .rollSumHeader{
+        color: #048aa9;
+        font-size: 200%;
+        display: none;
+        padding-left: 50px
+    }
     .rollSumTable{
-        padding: 20px;
+        padding-left: 50px;
         color: #048aa9;
         font-size: 200%;
     }
@@ -135,12 +143,14 @@
                         <label class="diceResult" id="diceResult">Result</label>
                     </div>
                 </div>
-                <div id="second_place">
+            </center>
+            <div id="second_place">
                     <details>
                         <summary class="rollSpoiler" id="rollSpoiler" onclick="switchPlaces()">How I get this result?</summary>
                         <p>
-                            <label class="rollSumTable" id="rollSumTable">Roll + Roll + ...... + Roll</label>
+                            <label class="rollSumHeader" id="rollSumHeader" >Step:  Result:</label>
                         </p>
+                        <p class="rollSumTable" id="rollSumTable">Roll + Roll + ...... + Roll</p>
                     </details>
                 </div>
                 <script>
@@ -220,10 +230,11 @@
                     }
 
                     function getRollSumStepsList(data) {
-                        document.getElementById("rollSumTable").innerHTML = "Step:  Result:"+ "<br>" ;
+                        document.getElementById("rollSumHeader").style.display = "block";
+                        document.getElementById("rollSumTable").innerHTML = "";
                         arr = JSON.parse(data)["roll_steps"];
                         for(let i = 0; i < arr.length; i++){
-                            document.getElementById("rollSumTable").innerHTML += JSON.stringify(arr[i]["roll_number"]) +". -> "+ JSON.stringify(arr[i]["result"]) + "<br>" ;
+                            document.getElementById("rollSumTable").innerHTML += JSON.stringify(arr[i]["roll_number"]) +". --> "+ JSON.stringify(arr[i]["result"]) + "<br>" ;
                         }
                     }
                     function plus(count){
@@ -245,7 +256,6 @@
                         document.getElementById('number').value = value;
                     }
                 </script>
-            </center>
         </div>
         <div id="historyPage" class="content-tab" style="display:none">
             <p class ="historyListEmpty" id="historyEmpty" > You haven't rolled the dice yet.</p>
