@@ -1,10 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>{{.title}}</title>
+    <section class="hero is-small is-info">
+        <div class="hero-body">
+            <p class="title">
+                Info hero
+            </p>
+            <p class="subtitle">
+                Info subtitle
+            </p>
+        </div>
+    </section>
 </head>
 <body>
+    <style>
+    .button-get-class{
 
+    }
+
+    .div_chat{
+        padding-top: 1rem;
+        padding-left: 1rem;
+    }
+
+    .button-get-class {
+        padding-left: 1rem;
+    }
+    </style>
+
+    <div class="select is-info" style="display: none"> #hide
+        <label>
+            <select name="select_class" class="is-focused">
+                <option>Random Class</option>
+                <option>Mage</option>
+                <option>Knight</option>
+                <option>Thief</option>
+                <option>Warrior</option>
+                <option>Lucky</option>
+            </select>
+        </label>
+    </div>
+    <div class="div_chat" id="char_div" >
+        <p> Class Name:  <label id="lbl_className_info"></label></p>
+        <p> Description:  <label id="lbl_description_info"></label></p>
+        <p> Strength: <label id="lbl_strength_info"></label></p>
+        <p> Dexterity: <label id="lbl_dexterity_info"></label></p>
+        <p> Body Difficulty: <label id="lbl_bodyDifficulty_info"></label></p>
+        <p> Intelligence: <label id="lbl_intelligence_info"></label></p>
+        <p> Wisdom: <label id="lbl_wisdom_info"> </label></p>
+        <p> Charisma: <label id="lbl_charisma_info"> </label></p>
+    </div>
+    <div class="button-get-class">
+        <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Bulka</button>
+    </div>
+
+    <script>
+        function selectClass(){
+            var s = document.getElementsByName('select_class')[0];
+            s.addEventListener("change", selectClass);
+            return s.options[s.selectedIndex].value
+        }
+
+        function getCurrentClass() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-class`); //test-name
+            xhr.onload = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let data = JSON.stringify(JSON.parse(xhr.response));
+                    console.log(data)
+                    writeToLabels(data)
+                } else {
+                    console.log(`Error: ${xhr.status}`);
+                }
+            };
+            xhr.send();
+        }
+
+        function writeToLabels(data) {
+            document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class_name"];
+            document.getElementById("lbl_description_info").innerHTML = JSON.parse(data)["description"];
+            document.getElementById("lbl_strength_info").innerHTML = JSON.parse(data)["strength"];
+            document.getElementById("lbl_dexterity_info").innerHTML = JSON.parse(data)["dexterity"];
+            document.getElementById("lbl_bodyDifficulty_info").innerHTML = JSON.parse(data)["body_difficulty"];
+            document.getElementById("lbl_intelligence_info").innerHTML = JSON.parse(data)["intelligence"];
+            document.getElementById("lbl_wisdom_info").innerHTML = JSON.parse(data)["wisdom"];
+            document.getElementById("lbl_charisma_info").innerHTML = JSON.parse(data)["charisma"];
+        }
+    </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
 	"pregen/api"
+	"pregen/core"
 	"strings"
 )
 
@@ -13,7 +13,7 @@ var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
-	InitServerPathVars(true)
+	InitServerPathVars(false)
 }
 
 func InitServerPathVars(status bool) {
@@ -40,6 +40,11 @@ func main() {
 		v1.GET("/roll", func(c *gin.Context) {
 			api.GetMultiRoll(c)
 		})
+
+		v1.GET("/get-class", func(c *gin.Context) {
+			api.GetRandomClass(c)
+		})
+
 	}
 
 	//site pages
@@ -47,7 +52,6 @@ func main() {
 		"upper": strings.ToUpper,
 	})
 	router.Static(assetsSitePath, assetsSiteRootPath)
-	fmt.Println(htmlSitePath)
 	router.LoadHTMLGlob(htmlSitePath)
 
 	//router.GET("/", func(c *gin.Context) {
@@ -55,8 +59,15 @@ func main() {
 	//		"title": "PreGeneraTOR",
 	//	})
 	//})
+
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
+			"title": "PreGeneraTOR",
+		})
+	})
+
+	router.GET("/test", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "test_pregen.html", gin.H{
 			"title": "PreGeneraTOR",
 		})
 	})
@@ -66,9 +77,9 @@ func main() {
 		})
 	})
 	router.GET("/version", func(c *gin.Context) {
-		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte("Dice don't exist."+"\n"))
+		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(core.Version+" VK_RED23"+"\n"))
 	})
 
-	//router.Run(":848") //local
-	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	router.Run(":848") //local
+	//router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
