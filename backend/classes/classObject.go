@@ -4,31 +4,45 @@ type ClassJson struct {
 	Classes []Class `json:"classes"`
 }
 type Class struct {
-	ClassName      string `json:"class_name"`
-	Description    string `json:"description"`
-	Strength       int    `json:"strength"`
-	Dexterity      int    `json:"dexterity"`
-	BodyDifficulty int    `json:"body_difficulty"`
-	Intelligence   int    `json:"intelligence"`
-	Wisdom         int    `json:"wisdom"`
-	Charisma       int    `json:"charisma"`
+	ClassName   string   `json:"class_name"`
+	Description string   `json:"description"`
+	Ability     Ability  `json:"ability"`
+	Modifier    Modifier `json:"modifier"`
 }
 
-func (c *Class) ModifyDexterity(value int) {
-	c.Dexterity = value
+type Ability struct {
+	Strength       int `json:"strength"`
+	Dexterity      int `json:"dexterity"`
+	BodyDifficulty int `json:"body_difficulty"`
+	Intelligence   int `json:"intelligence"`
+	Wisdom         int `json:"wisdom"`
+	Charisma       int `json:"charisma"`
 }
-func (c *Class) ModifyBodyDifficulty(value int) {
-	c.BodyDifficulty = value
+
+type Modifier struct {
+	Strength       int `json:"strength"`
+	Dexterity      int `json:"dexterity"`
+	BodyDifficulty int `json:"body_difficulty"`
+	Intelligence   int `json:"intelligence"`
+	Wisdom         int `json:"wisdom"`
+	Charisma       int `json:"charisma"`
 }
-func (c *Class) ModifyIntelligence(value int) {
-	c.Intelligence = value
+
+func (a *Ability) ModifyDexterity(value int) {
+	a.Dexterity = value
 }
-func (c *Class) ModifyWisdom(value int) {
-	c.Wisdom = value
+func (a *Ability) ModifyBodyDifficulty(value int) {
+	a.BodyDifficulty = value
 }
-func (c *Class) ModifyCharisma(value int) {
-	c.Charisma = value
+func (a *Ability) ModifyIntelligence(value int) {
+	a.Intelligence = value
 }
-func (c *Class) ModifyStrength(value int) {
-	c.Strength = value
+func (a *Ability) ModifyWisdom(value int) {
+	a.Wisdom = value
+}
+func (a *Ability) ModifyCharisma(value int) {
+	a.Charisma = value
+}
+func (a *Ability) ModifyStrength(value int) {
+	a.Strength = value
 }

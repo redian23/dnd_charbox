@@ -47,12 +47,12 @@
     <div class="div_chat" id="char_div" >
         <p> Class Name:  <label id="lbl_className_info"></label></p>
         <p> Description:  <label id="lbl_description_info"></label></p>
-        <p> Strength: <label id="lbl_strength_info"></label></p>
-        <p> Dexterity: <label id="lbl_dexterity_info"></label></p>
-        <p> Body Difficulty: <label id="lbl_bodyDifficulty_info"></label></p>
-        <p> Intelligence: <label id="lbl_intelligence_info"></label></p>
-        <p> Wisdom: <label id="lbl_wisdom_info"> </label></p>
-        <p> Charisma: <label id="lbl_charisma_info"> </label></p>
+        <p> Strength: <label id="lbl_ability_strength_info"></label> <label id="lbl_modifier_strength_info"></label></p>
+        <p> Dexterity: <label id="lbl_ability_dexterity_info"></label> <label id="lbl_modifier_dexterity_info"></label></p>
+        <p> Body Difficulty: <label id="lbl_ability_bodyDifficulty_info"> </label><label id="lbl_modifier_bodyDifficulty_info"></label></p>
+        <p> Intelligence: <label id="lbl_ability_intelligence_info"></label> <label id="lbl_modifier_intelligence_info"></label></p>
+        <p> Wisdom: <label id="lbl_ability_wisdom_info"></label> <label id="lbl_modifier_wisdom_info">  </label></p>
+        <p> Charisma: <label id="lbl_ability_charisma_info"></label> <label id="lbl_modifier_charisma_info"> </label></p>
     </div>
     <div class="button-get-class">
         <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Bulka</button>
@@ -83,12 +83,25 @@
         function writeToLabels(data) {
             document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class_name"];
             document.getElementById("lbl_description_info").innerHTML = JSON.parse(data)["description"];
-            document.getElementById("lbl_strength_info").innerHTML = JSON.parse(data)["strength"];
-            document.getElementById("lbl_dexterity_info").innerHTML = JSON.parse(data)["dexterity"];
-            document.getElementById("lbl_bodyDifficulty_info").innerHTML = JSON.parse(data)["body_difficulty"];
-            document.getElementById("lbl_intelligence_info").innerHTML = JSON.parse(data)["intelligence"];
-            document.getElementById("lbl_wisdom_info").innerHTML = JSON.parse(data)["wisdom"];
-            document.getElementById("lbl_charisma_info").innerHTML = JSON.parse(data)["charisma"];
+
+            let abilities = JSON.stringify(JSON.parse(data)["ability"]);
+            console.log(abilities)
+
+            document.getElementById("lbl_ability_strength_info").innerHTML = JSON.parse(abilities)["strength"];
+            document.getElementById("lbl_ability_dexterity_info").innerHTML = JSON.parse(abilities)["dexterity"];
+            document.getElementById("lbl_ability_bodyDifficulty_info").innerHTML = JSON.parse(abilities)["body_difficulty"];
+            document.getElementById("lbl_ability_intelligence_info").innerHTML = JSON.parse(abilities)["intelligence"];
+            document.getElementById("lbl_ability_wisdom_info").innerHTML = JSON.parse(abilities)["wisdom"];
+            document.getElementById("lbl_ability_charisma_info").innerHTML = JSON.parse(abilities)["charisma"];
+
+            let modifier = JSON.stringify(JSON.parse(data)["modifier"]);
+            document.getElementById("lbl_modifier_strength_info").innerHTML = "("+JSON.parse(modifier)["strength"]+")";
+            document.getElementById("lbl_modifier_dexterity_info").innerHTML = "("+ JSON.parse(modifier)["dexterity"]+")";
+            document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = "("+JSON.parse(modifier)["body_difficulty"]+")";
+            document.getElementById("lbl_modifier_intelligence_info").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
+            document.getElementById("lbl_modifier_wisdom_info").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
+            document.getElementById("lbl_modifier_charisma_info").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
+
         }
     </script>
 </body>
