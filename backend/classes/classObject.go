@@ -4,10 +4,14 @@ type ClassJson struct {
 	Classes []Class `json:"classes"`
 }
 type Class struct {
-	ClassName   string   `json:"class_name"`
-	Description string   `json:"description"`
-	Ability     Ability  `json:"ability"`
-	Modifier    Modifier `json:"modifier"`
+	ClassName        string       `json:"class_name"`
+	Description      string       `json:"description"`
+	Ability          Ability      `json:"ability"`
+	Modifier         Modifier     `json:"modifier"`
+	Inspiration      bool         `json:"inspiration"`
+	ProficiencyBonus int          `json:"proficiency_bonus"`
+	Skills           Skills       `json:"skills"`
+	SavingThrows     SavingThrows `json:"saving_throws"`
 }
 
 type Ability struct {
@@ -26,6 +30,45 @@ type Modifier struct {
 	Intelligence   int `json:"intelligence"`
 	Wisdom         int `json:"wisdom"`
 	Charisma       int `json:"charisma"`
+}
+type Skills struct {
+	Acrobatics     skill `json:"acrobatics"`
+	AnimalHandling skill `json:"animal_handling"`
+	Arcana         skill `json:"arcana"`
+	Athletics      skill `json:"athletics"`
+	Deception      skill `json:"deception"`
+	History        skill `json:"history"`
+	Insight        skill `json:"insight"`
+	Intimidation   skill `json:"intimidation"`
+	Investigation  skill `json:"investigation"`
+	Medicine       skill `json:"medicine"`
+	Nature         skill `json:"nature"`
+	Perception     skill `json:"perception"`
+	Performance    skill `json:"performance"`
+	Persuasion     skill `json:"persuasion"`
+	Religion       skill `json:"religion"`
+	SleightOfHand  skill `json:"sleight_of_hand"`
+	Stealth        skill `json:"stealth"`
+	Survival       skill `json:"survival"`
+}
+
+type skill struct {
+	ModifierValue int  `json:"modifier_value"`
+	Proficiency   bool `json:"proficiency"`
+}
+
+type SavingThrows struct {
+	Strength       savingThrows
+	Dexterity      savingThrows
+	BodyDifficulty savingThrows
+	Intelligence   savingThrows
+	Wisdom         savingThrows
+	Charisma       savingThrows
+}
+
+type savingThrows struct {
+	Point   int
+	Mastery bool
 }
 
 func (a *Ability) ModifyDexterity(value int) {
