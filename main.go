@@ -14,8 +14,8 @@ var assetsSitePath, assetsSiteRootPath string
 
 func init() {
 	InitServerPathVars(false)
-	db.InitPostgresENV("local")
-	//db.InitPostgresENV("server")
+	//db.InitPostgresENV("local")
+	db.InitPostgresENV("server")
 	db.CheckPostgresDB()
 }
 
