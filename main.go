@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"pregen/api"
-	"pregen/core"
+	"pregen/db"
 	"strings"
 )
 
@@ -14,6 +14,9 @@ var assetsSitePath, assetsSiteRootPath string
 
 func init() {
 	InitServerPathVars(false)
+	db.InitPostgresENV("local")
+	//db.InitPostgresENV("server")
+	db.CheckPostgresDB()
 }
 
 func InitServerPathVars(status bool) {
@@ -22,9 +25,9 @@ func InitServerPathVars(status bool) {
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
 	} else {
-		assetsSitePath = "web/assets"
-		assetsSiteRootPath = "./web/assets"
-		htmlSitePath = "web/html/*.html"
+		assetsSitePath = "frontend/assets"
+		assetsSiteRootPath = "./frontend/assets"
+		htmlSitePath = "frontend/html/*.html"
 	}
 }
 
@@ -77,7 +80,7 @@ func main() {
 		})
 	})
 	router.GET("/version", func(c *gin.Context) {
-		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(core.Version+" VK_RED23"+"\n"))
+		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
 
 	router.Run(":848") //local

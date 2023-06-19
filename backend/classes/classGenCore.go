@@ -45,9 +45,6 @@ func GetNewClass() Class {
 
 	class.ClassName = statAnalyze(statsForClass, class)
 	class.Modifier = getModifiersForClass(class.Ability)
-	class.Skills = getSkillsForClass(class.Modifier)
-	class.SavingThrows = getSaveThrowsForClass(class.Modifier)
-
 	return class
 }
 
@@ -180,98 +177,97 @@ func getModifiersForClass(ab Ability) Modifier {
 
 	return modifier
 }
-func getSaveThrowsForClass(modifier Modifier) SavingThrows {
-	var modifierMap = map[string]int{
-		"Strength":       modifier.Strength,
-		"Dexterity":      modifier.Dexterity,
-		"Intelligence":   modifier.Intelligence,
-		"BodyDifficulty": modifier.BodyDifficulty,
-		"Wisdom":         modifier.Wisdom,
-		"Charisma":       modifier.Charisma,
-	}
 
-	var saveTh SavingThrows
-	keys, statMap := sortMapCustom(modifierMap)
-	statsForSV := []string{} //для анализа класса
+//func getSaveThrowsForClass(modifier Modifier) SavingThrows {
+//	var modifierMap = map[string]int{
+//		"Strength":       modifier.Strength,
+//		"Dexterity":      modifier.Dexterity,
+//		"Intelligence":   modifier.Intelligence,
+//		"BodyDifficulty": modifier.BodyDifficulty,
+//		"Wisdom":         modifier.Wisdom,
+//		"Charisma":       modifier.Charisma,
+//	}
+//
+//	var saveTh SavingThrows
+//	keys, statMap := sortMapCustom(modifierMap)
+//	statsForSV := []string{} //для анализа класса
+//
+//	for k, value := range modifierMap { //первичное заполнение
+//		switch k {
+//		case "Strength":
+//			saveTh.Strength.Point = value
+//		case "Dexterity":
+//			saveTh.Dexterity.Point = value
+//		case "BodyDifficulty":
+//			saveTh.BodyDifficulty.Point = value
+//		case "Intelligence":
+//			saveTh.Intelligence.Point = value
+//		case "Wisdom":
+//			saveTh.Wisdom.Point = value
+//		case "Charisma":
+//			saveTh.Charisma.Point = value
+//		}
+//	}
+//
+//	for i, k := range keys { //поиск 2х наивысших стат
+//		if i == 0 || i == 1 { //первые 2 значения
+//			statsForSV = append(statsForSV, k)
+//			fmt.Println(k, statMap[k])
+//		}
+//	}
+//
+//	fmt.Println("2 - ", saveTh)
+//	//updatedStats := map[string]int{}
+//
+//	return saveTh
+//}
+//
+//func getSkillsForClass(modifier Modifier) Skills {
+//
+//	var sk Skills
+//	var prof = false
+//	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
+//		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
+//
+//	for i, _ := range mobifierArray {
+//		switch {
+//		case modifier.Strength == mobifierArray[i]:
+//			sk.Athletics = skill{modifier.Strength, prof}
+//		case modifier.Dexterity == mobifierArray[i]:
+//			sk.Acrobatics = skill{modifier.Dexterity, prof}
+//			sk.SleightOfHand = skill{modifier.Dexterity, prof}
+//			sk.Stealth = skill{modifier.Dexterity, prof}
+//		case modifier.Intelligence == mobifierArray[i]:
+//			sk.Arcana = skill{modifier.Intelligence, prof}
+//			sk.History = skill{modifier.Intelligence, prof}
+//			sk.Investigation = skill{modifier.Intelligence, prof}
+//			sk.Nature = skill{modifier.Intelligence, prof}
+//			sk.Religion = skill{modifier.Intelligence, prof}
+//		case modifier.Wisdom == mobifierArray[i]:
+//			sk.AnimalHandling = skill{modifier.Wisdom, prof}
+//			sk.Insight = skill{modifier.Wisdom, prof}
+//			sk.Medicine = skill{modifier.Wisdom, prof}
+//			sk.Perception = skill{modifier.Wisdom, prof}
+//			sk.Survival = skill{modifier.Wisdom, prof}
+//		case modifier.Charisma == mobifierArray[i]:
+//			sk.Deception = skill{modifier.Charisma, prof}
+//			sk.Intimidation = skill{modifier.Charisma, prof}
+//			sk.Performance = skill{modifier.Charisma, prof}
+//			sk.Persuasion = skill{modifier.Charisma, prof}
+//		}
+//	}
+//	return sk
+//}
 
-	for k, value := range modifierMap { //первичное заполнение
-		switch k {
-		case "Strength":
-			saveTh.Strength.Point = value
-		case "Dexterity":
-			saveTh.Dexterity.Point = value
-		case "BodyDifficulty":
-			saveTh.BodyDifficulty.Point = value
-		case "Intelligence":
-			saveTh.Intelligence.Point = value
-		case "Wisdom":
-			saveTh.Wisdom.Point = value
-		case "Charisma":
-			saveTh.Charisma.Point = value
-		}
-	}
-
-	for i, k := range keys { //поиск 2х наивысших стат
-		if i == 0 || i == 1 { //первые 2 значения
-			statsForSV = append(statsForSV, k)
-			fmt.Println(k, statMap[k])
-		}
-	}
-
-	fmt.Println("2 - ", saveTh)
-	//updatedStats := map[string]int{}
-
-	return saveTh
-}
-
-func getSkillsForClass(modifier Modifier) Skills {
-
-	var sk Skills
-	var prof = false
-	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
-		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
-
-	for i, _ := range mobifierArray {
-		switch {
-		case modifier.Strength == mobifierArray[i]:
-			sk.Athletics = skill{modifier.Strength, prof}
-		case modifier.Dexterity == mobifierArray[i]:
-			sk.Acrobatics = skill{modifier.Dexterity, prof}
-			sk.SleightOfHand = skill{modifier.Dexterity, prof}
-			sk.Stealth = skill{modifier.Dexterity, prof}
-		case modifier.Intelligence == mobifierArray[i]:
-			sk.Arcana = skill{modifier.Intelligence, prof}
-			sk.History = skill{modifier.Intelligence, prof}
-			sk.Investigation = skill{modifier.Intelligence, prof}
-			sk.Nature = skill{modifier.Intelligence, prof}
-			sk.Religion = skill{modifier.Intelligence, prof}
-		case modifier.Wisdom == mobifierArray[i]:
-			sk.AnimalHandling = skill{modifier.Wisdom, prof}
-			sk.Insight = skill{modifier.Wisdom, prof}
-			sk.Medicine = skill{modifier.Wisdom, prof}
-			sk.Perception = skill{modifier.Wisdom, prof}
-			sk.Survival = skill{modifier.Wisdom, prof}
-		case modifier.Charisma == mobifierArray[i]:
-			sk.Deception = skill{modifier.Charisma, prof}
-			sk.Intimidation = skill{modifier.Charisma, prof}
-			sk.Performance = skill{modifier.Charisma, prof}
-			sk.Persuasion = skill{modifier.Charisma, prof}
-		}
-	}
-	return sk
-}
-
-// make for other classes metrics for generation
 //func classAnalyzer(class Class) Class {
 //	var sum int
-//	sum = class.BodyDifficulty + class.Dexterity + class.Intelligence +
-//		class.Charisma + class.Strength + class.Wisdom
+//	sum = class.Ability.BodyDifficulty + class.Ability.Dexterity + class.Ability.Intelligence +
+//		class.Ability.Charisma + class.Ability.Strength + class.Ability.Wisdom
 //	//balancer
-//	if sum < 67 || sum > 78 {
-//		class = RerollClassStats()
-//		sum = class.BodyDifficulty + class.Dexterity + class.Intelligence +
-//			class.Charisma + class.Strength + class.Wisdom
-//		//fmt.Println("Перерол на", sum)
+//	if sum < 67 {
+//		fmt.Println("Chat have less power then average char")
+//	} else if sum > 78 {
+//		fmt.Println("Chat have more power then average char")
 //	}
 //	return class
 //}
