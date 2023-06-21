@@ -12,11 +12,11 @@ var (
 	user, passwd, address, dbname string
 )
 
-func InitPostgresENV(location string) {
+func InitPostgresENV(server bool) {
 	// Set the file name of the configurations file
 	viper.SetConfigName(".env")
 	// Set the path to look for the configurations file
-	if location == "server" {
+	if server == true {
 		viper.AddConfigPath("/root/")
 		address = "172.20.0.2" //static ip
 	} else {

@@ -13,14 +13,16 @@ var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
-	InitServerPathVars(false)
+	InitServerPathVars(true)
 	//db.InitPostgresENV("local")
-	db.InitPostgresENV("server")
+
 	db.CheckPostgresDB()
 }
 
 func InitServerPathVars(status bool) {
 	if status == true {
+		db.InitPostgresENV(status)
+
 		assetsSitePath = "/usr/share/nginx/html/assets"
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
