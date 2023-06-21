@@ -14,8 +14,8 @@ var assetsSitePath, assetsSiteRootPath string
 
 func init() {
 	InitServerPathVars(false)
-	//db.InitPostgresENV("local")
-	db.InitPostgresENV("server")
+	db.InitPostgresENV("local")
+	//db.InitPostgresENV("server")
 	db.CheckPostgresDB()
 }
 
@@ -33,6 +33,7 @@ func InitServerPathVars(status bool) {
 
 func main() {
 	router := gin.Default()
+
 	// api method
 	v1 := router.Group("api/v1/")
 	{
@@ -57,15 +58,9 @@ func main() {
 	router.Static(assetsSitePath, assetsSiteRootPath)
 	router.LoadHTMLGlob(htmlSitePath)
 
-	//router.GET("/", func(c *gin.Context) {
-	//	c.HTML(http.StatusOK, "index.html", gin.H{
-	//		"title": "PreGeneraTOR",
-	//	})
-	//})
-
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
-			"title": "PreGeneraTOR",
+			"title": "Dice Roller",
 		})
 	})
 

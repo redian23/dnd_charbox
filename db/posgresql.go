@@ -18,6 +18,7 @@ func InitPostgresENV(location string) {
 	// Set the path to look for the configurations file
 	if location == "server" {
 		viper.AddConfigPath("./root/.env")
+		address = "172.20.0.2" //static ip
 	} else {
 		viper.AddConfigPath("CICD/")
 		address = "172.17.0.2"
@@ -32,7 +33,6 @@ func InitPostgresENV(location string) {
 	user = viper.Get("POSTGRES_USER").(string)
 	passwd = viper.Get("POSTGRES_PASSWORD").(string)
 	dbname = viper.Get("POSTGRES_DB").(string)
-	address = viper.Get("POSTGRES_IP").(string)
 }
 
 func connectToDB() (*sql.DB, error) {
@@ -56,10 +56,10 @@ func CheckPostgresDB() {
 	fmt.Println("[DB] [Connect to Postgres]: ok")
 }
 
-func insertToTable(tableName string, table Table) {
+func insertToTable(tableName string, table interface{}) {
 	db, err := connectToDB()
 
-	_, err = db.Exec("INSERT INTO "+tableName+" (data) VALUES($1)", table.Data)
+	_, err = db.Exec("INSERT INTO "+tableName+" (data) VALUES($1)", table)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -71,35 +71,21 @@ func insertToTable(tableName string, table Table) {
 		}
 	}(db)
 }
-func TestPG() {
-	db, err := connectToDB()
+func SelectJsonFromRaceTable() {
+	db, _ := connectToDB()
 
-	type raceSQL struct {
-		RaceAbilID  int    `db:"race_abil_id"`
-		AbilityName string `db:"ability_name"`
-		RaceName    string `db:"race_name"`
-		Description string `db:"description"`
-	}
-	var table raceSQL
-
-	rows, err := db.Query("SELECT t.* FROM public.race_stat_up t ORDER BY race_id LIMIT 501")
-	if err = rows.Err(); err != nil {
+	var table RacePostgresTable
+	rows, err := db.Query("SELECT * FROM races_json;")
+	if err != nil {
 		log.Fatal(err)
 	}
 	defer rows.Close()
 
-	var tab2 Table
 	for rows.Next() {
-		if err = rows.Scan(&table.RaceAbilID, &table.AbilityName, &table.RaceName, &table.Description); err != nil {
+		if err = rows.Scan(&table.ID, &table.Data); err != nil {
 			log.Fatal(err)
 		}
-		tab2 = Table{ID: "<default>",
-			Data: Data{
-				"race_ability": table.AbilityName,
-				"race_name":    table.RaceName,
-				"description":  table.Description,
-			}}
-		insertToTable("race_abilities_json", tab2)
+		fmt.Println(table.Data.RaceAbility)
 	}
 
 }

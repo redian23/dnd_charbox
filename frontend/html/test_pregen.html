@@ -18,39 +18,56 @@
 </head>
 <body>
     <style>
-    .button-get-class{
-
-    }
-
     .div_chat{
         padding-top: 1rem;
         padding-left: 1rem;
     }
 
     .button-get-class {
-        padding-left: 1rem;
+        padding: 1rem;
     }
     </style>
     <div class="button-get-class">
-        <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Bulka</button>
-    </div>
-    <div class="select is-info" style="display: none"> #hide
+    <div class="select is-info">
         <label>
-            <select name="select_class" class="is-focused">
-                <option>Random Class</option>
-                <option>Mage</option>
-                <option>Knight</option>
-                <option>Thief</option>
-                <option>Warrior</option>
-                <option>Lucky</option>
+            <select name="select_race" class="is-focused" >
+                <option>-Select Race-</option>
+                <option>Human</option>
+                <option>Elf</option>
+                <option>Dwarf</option>
+                <option>Orc</option>
+                <option>Dragonborn</option>
+                <option>Racist</option>
             </select>
         </label>
     </div>
-
+        <div class="select is-info">
+            <label>
+                <select name="select_class" class="is-focused">
+                    <option>-Select Class-</option>
+                    <option>Mage</option>
+                    <option>Knight</option>
+                    <option>Thief</option>
+                    <option>Warrior</option>
+                    <option>Lucky</option>
+                </select>
+            </label>
+        </div>
+        <div class="select is-info">
+            <label>
+                <select name="select_gender" class="is-focused">
+                    <option>-Select Gender-</option>
+                    <option>Men</option>
+                    <option>Women</option>
+                </select>
+            </label>
+        </div>
+        <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Bulka</button>
+    </div>
     <div class="tile is-ancestor">
         <div class="tile is-vertical">
             <div class="tile">
-                <div class="tile is-parent is-vertical is-5">
+                <div class="tile is-parent is-vertical is-2">
                     <article class="tile is-child box">
                         <div class="div_chat" id="char_div" >
                             <p class="title"> Points</p>
@@ -74,7 +91,7 @@
                         <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_charisma_info"> </label> Charisma</label></p>
                     </article>
                 </div>
-                <div class="tile is-parent is-vertical">
+                <div class="tile is-parent is-vertical is-3">
                     <article class="tile is-child box">
                         <p><label class="title"><label> ( * ) </label> Inspiration</label> </p>
                     </article>

@@ -1,5 +1,11 @@
 package db
 
+import (
+	"database/sql/driver"
+	"encoding/json"
+	"errors"
+)
+
 type RaceStruct struct {
 	RaceID         int             `json:"race_id"`
 	RaceName       string          `json:"race_name"`
@@ -27,4 +33,24 @@ type raceStatsUp struct {
 	BodyDifficulty int    `json:"bodydifficulty"`
 	Wisdom         int    `json:"wisdom"`
 	Charisma       int    `json:"charisma"`
+}
+
+type RacePostgresTable struct {
+	ID   string
+	Data Data
+}
+
+type Data RaceStruct
+
+func (d Data) Value() (driver.Value, error) {
+	return json.Marshal(d)
+}
+
+func (d *Data) Scan(value interface{}) error {
+	b, ok := value.([]byte)
+	if !ok {
+		return errors.New("type assertion to []byte failed")
+	}
+
+	return json.Unmarshal(b, &d)
 }
