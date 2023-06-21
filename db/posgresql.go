@@ -17,7 +17,7 @@ func InitPostgresENV(location string) {
 	viper.SetConfigName(".env")
 	// Set the path to look for the configurations file
 	if location == "server" {
-		viper.AddConfigPath("./root/.env")
+		viper.AddConfigPath("/root/")
 		address = "172.20.0.2" //static ip
 	} else {
 		viper.AddConfigPath("CICD/")
