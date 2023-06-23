@@ -276,16 +276,3 @@ func getSaveThrowsForClass(modifier Modifier) SavingThrows {
 //	}
 //	return sk
 //}
-
-//func classAnalyzer(class Class) Class {
-//	var sum int
-//	sum = class.Ability.BodyDifficulty + class.Ability.Dexterity + class.Ability.Intelligence +
-//		class.Ability.Charisma + class.Ability.Strength + class.Ability.Wisdom
-//	//balancer
-//	if sum < 67 {
-//		fmt.Println("Chat have less power then average char")
-//	} else if sum > 78 {
-//		fmt.Println("Chat have more power then average char")
-//	}
-//	return class
-//}

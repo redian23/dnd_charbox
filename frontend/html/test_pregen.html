@@ -27,9 +27,9 @@
     }
     </style>
     <div class="button-get-class">
-    <div class="select is-info">
+        <div class="select is-info">
         <label>
-            <select name="select_race" class="is-focused" >
+            <select name="select_race" class="is-focused" style="display: none" >
                 <option>-Select Race-</option>
                 <option>Racist</option>
                 <option>Elf</option>
@@ -41,7 +41,7 @@
     </div>
         <div class="select is-info">
             <label>
-                <select name="select_class" class="is-focused">
+                <select name="select_class" class="is-focused" style="display: none" >
                     <option>-Select Class-</option>
                     <option>Mage</option>
                     <option>Knight</option>
@@ -53,7 +53,7 @@
         </div>
         <div class="select is-info">
             <label>
-                <select name="select_gender" class="is-focused">
+                <select name="select_gender" class="is-focused" style="display: none" >
                     <option>-Select Gender-</option>
                     <option>Man</option>
                     <option>Women</option>
@@ -91,10 +91,53 @@
                 </div>
                 <div class="tile is-parent is-vertical is-3 is-size-4-mobile">
                     <article class="tile is-child box">
-                        <p><label class="title"><label> ( * ) </label> Inspiration</label> </p>
+                        <p><label class="title">[<label id="lbl_inspiration"> </label>] Inspiration</label> </p>
                     </article>
                     <article class="tile is-child box">
-                        <p><label class="title"><label> (+2) </label> Proficiency Bonus</label> </p>
+                        <p><label class="title"> [ +<label id="lbl_proficiency_bonus"> </label> ] Proficiency Bonus</label> </p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="title">Skills</p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_dexterity_info-1"> </label>  Acrobatics (Dex)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-1"> </label> Animal Handling (Wis)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-1"> </label> Arcana (Int)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_strength_info"></label> Athletics (Str)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-1"> </label> Deception (Cha)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-2"> </label> History (Int)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-2"> </label>  Insight (Wis)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-2"> </label> Intimidation (Cha)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-3"> </label> Investigation (Int)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-3"> </label>  Medicine (Wis)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-4"> </label> Nature (Int)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-4"> </label>  Perception (Wis)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-3"> </label> Performance (Cha)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-4"> </label> Persuasion (Cha)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-5"> </label> Religion (Int)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_dexterity_info-2"> </label>  Sleight of Hand (Dex)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_dexterity_info-3"> </label>  Stealth (Dex)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-5"> </label>  Survival (Wis)</label></p>
+                    </article>
+                </div>
+                <div class="tile is-parent is-vertical is-3 is-size-4-mobile">
+                    <article class="tile is-child box">
+                        <p class="title">Loading...</p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p>Loading...</p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p>Loading...</p>
+                    </article>
+                </div>
+                <div class="tile is-parent is-vertical is-3 is-size-4-mobile">
+                    <article class="tile is-child box">
+                        <p class="title">Loading...</p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p>Loading...</p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p>Loading...</p>
                     </article>
                 </div>
             </div>
@@ -102,6 +145,9 @@
     </div>
 
     <script>
+
+        window.onload = getCurrentClass();
+
         function selectClass(){
             var s = document.getElementsByName('select_class')[0];
             s.addEventListener("change", selectClass);
@@ -114,9 +160,16 @@
             xhr.onload = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let data = JSON.stringify(JSON.parse(xhr.response));
-                    //console.log(data)
+                    console.log(data)
                     writeToAbilitiesLabels(data)
                     writeToSaveThrowsLabels(data)
+
+                    //вынести в функцию
+                    document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
+                    if (JSON.parse(data)["inspiration"] === true) {
+                        document.getElementById("lbl_inspiration").innerHTML = "*" ;
+                    }
+
                 } else {
                     console.log(`Error: ${xhr.status}`);
                 }
@@ -147,16 +200,15 @@
 
         function writeToSaveThrowsLabels(data) {
             let saving_throws = JSON.stringify(JSON.parse(data)["saving_throws"]);
-            console.log(saving_throws)
 
             //обнуление радио
-            document.getElementById("rd_modifier_ST_strength_info").checked=false;
-            document.getElementById("rd_modifier_ST_dexterity_info").checked=false;
-            document.getElementById("rd_modifier_ST_bodyDifficulty_info").checked=false;
-            document.getElementById("rd_modifier_ST_intelligence_info").checked=false;
-            document.getElementById("rd_modifier_ST_wisdom_info").checked=false;
-            document.getElementById("rd_modifier_ST_charisma_info").checked=false;
+            var radios = ["rd_modifier_ST_strength_info", "rd_modifier_ST_dexterity_info",
+                "rd_modifier_ST_bodyDifficulty_info", "rd_modifier_ST_intelligence_info",
+                "rd_modifier_ST_wisdom_info", "rd_modifier_ST_charisma_info"];
 
+            for (var i = 0; i < radios.length; i++) {
+                document.getElementById(radios[i]).checked=false;
+            }
 
             document.getElementById("lbl_modifier_ST_strength_info").innerHTML = "[ "+JSON.parse(saving_throws)["strength"]["point"]+" ]";
             document.getElementById("lbl_modifier_ST_dexterity_info").innerHTML = "[ "+ JSON.parse(saving_throws)["dexterity"]["point"]+" ]";
@@ -184,10 +236,6 @@
                 document.getElementById("rd_modifier_ST_charisma_info").checked=true;
             }
         }
-
-
-
-
     </script>
 </body>
 </html>
