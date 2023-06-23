@@ -58,17 +58,18 @@ type skill struct {
 }
 
 type SavingThrows struct {
-	Strength       savingThrows
-	Dexterity      savingThrows
-	BodyDifficulty savingThrows
-	Intelligence   savingThrows
-	Wisdom         savingThrows
-	Charisma       savingThrows
+	Strength       savingThrows `json:"strength"`
+	Dexterity      savingThrows `json:"dexterity"`
+	BodyDifficulty savingThrows `json:"body_difficulty"`
+	Intelligence   savingThrows `json:"intelligence"`
+	Wisdom         savingThrows `json:"wisdom"`
+	Charisma       savingThrows `json:"charisma"`
 }
 
 type savingThrows struct {
-	Point   int
-	Mastery bool
+	Name    string `json:"name"`
+	Point   int    `json:"point"`
+	Mastery bool   `json:"mastery"`
 }
 
 func (a *Ability) ModifyDexterity(value int) {

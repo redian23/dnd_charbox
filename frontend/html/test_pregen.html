@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>{{.title}}</title>
-    <section class="hero is-small is-info">
+    <section class="hero is-info">
         <div class="hero-body">
             <p class="title">
                 Info hero
@@ -19,7 +19,6 @@
 <body>
     <style>
     .div_chat{
-        padding-top: 1rem;
         padding-left: 1rem;
     }
 
@@ -66,57 +65,36 @@
     <div class="tile is-ancestor">
         <div class="tile is-vertical">
             <div class="tile">
-                <div class="tile is-parent is-vertical is-2">
+                <div class="tile is-parent is-vertical is-3 is-size-4-mobile">
                     <article class="tile is-child box">
                         <div class="div_chat" id="char_div" >
                             <p class="title"> Points</p>
                             <p> Class Name:  <label id="lbl_className_info"></label></p>
                             <p> Description:  <label id="lbl_description_info"></label></p>
-                            <p> Strength: <label id="lbl_ability_strength_info"></label> <label id="lbl_modifier_strength_info"></label></p>
-                            <p> Dexterity: <label id="lbl_ability_dexterity_info"></label> <label id="lbl_modifier_dexterity_info"></label></p>
-                            <p> Body Difficulty: <label id="lbl_ability_bodyDifficulty_info"> </label><label id="lbl_modifier_bodyDifficulty_info"></label></p>
-                            <p> Intelligence: <label id="lbl_ability_intelligence_info"></label> <label id="lbl_modifier_intelligence_info"></label></p>
-                            <p> Wisdom: <label id="lbl_ability_wisdom_info"></label> <label id="lbl_modifier_wisdom_info">  </label></p>
-                            <p> Charisma: <label id="lbl_ability_charisma_info"></label> <label id="lbl_modifier_charisma_info"> </label></p>
+                            <p> Strength: <label id="lbl_ability_strength_info"></label>  <label id="lbl_modifier_strength_info"></label></p>
+                            <p> Dexterity: <label id="lbl_ability_dexterity_info"></label>  <label id="lbl_modifier_dexterity_info"></label></p>
+                            <p> Body Difficulty: <label id="lbl_ability_bodyDifficulty_info"></label>  <label id="lbl_modifier_bodyDifficulty_info"></label></p>
+                            <p> Intelligence: <label id="lbl_ability_intelligence_info"></label>  <label id="lbl_modifier_intelligence_info"></label></p>
+                            <p> Wisdom: <label id="lbl_ability_wisdom_info"></label>  <label id="lbl_modifier_wisdom_info"></label></p>
+                            <p> Charisma: <label id="lbl_ability_charisma_info"></label>  <label id="lbl_modifier_charisma_info"></label></p>
                         </div>
                     </article>
                     <article class="tile is-child box">
                         <p class="title">Saving Throws</p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_strength_info"> </label> Strength</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_dexterity_info"> </label> Dexterity</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_bodyDifficulty_info"> </label> Body Difficulty</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_intelligence_info"> </label> Intelligence</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_wisdom_info"> </label> Wisdom</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_ST_charisma_info"> </label> Charisma</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled><label id="lbl_modifier_ST_strength_info"> </label> Strength</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_dexterity_info" disabled><label id="lbl_modifier_ST_dexterity_info"> </label> Dexterity</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_bodyDifficulty_info" disabled><label id="lbl_modifier_ST_bodyDifficulty_info"> </label> Body Difficulty</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_intelligence_info" disabled><label id="lbl_modifier_ST_intelligence_info"> </label> Intelligence</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_wisdom_info" disabled><label id="lbl_modifier_ST_wisdom_info"> </label> Wisdom</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_charisma_info" disabled><label id="lbl_modifier_ST_charisma_info"> </label> Charisma</label></p>
                     </article>
                 </div>
-                <div class="tile is-parent is-vertical is-3">
+                <div class="tile is-parent is-vertical is-3 is-size-4-mobile">
                     <article class="tile is-child box">
                         <p><label class="title"><label> ( * ) </label> Inspiration</label> </p>
                     </article>
                     <article class="tile is-child box">
                         <p><label class="title"><label> (+2) </label> Proficiency Bonus</label> </p>
-                    </article>
-                    <article class="tile is-child box">
-                        <p class="title">Skills</p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_dexterity_info-1"> </label>  Acrobatics (Dex)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-1"> </label> Animal Handling (Wis)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-1"> </label> Arcana (Int)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_strength_info"></label> Athletics (Str)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-1"> </label> Deception (Cha)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-2"> </label> History (Int)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-2"> </label>  Insight (Wis)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-2"> </label> Intimidation (Cha)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-3"> </label> Investigation (Int)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-3"> </label>  Medicine (Wis)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-4"> </label> Nature (Int)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-4"> </label>  Perception (Wis)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-3"> </label> Performance (Cha)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_charisma_info-4"> </label> Persuasion (Cha)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_intelligence_info-5"> </label> Religion (Int)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_dexterity_info-2"> </label>  Sleight of Hand (Dex)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_dexterity_info-3"> </label>  Stealth (Dex)</label></p>
-                        <p><label class="radio"><input type="radio" name="answer" disabled><label id="lbl_modifier_SK_wisdom_info-5"> </label>  Survival (Wis)</label></p>
                     </article>
                 </div>
             </div>
@@ -136,10 +114,9 @@
             xhr.onload = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let data = JSON.stringify(JSON.parse(xhr.response));
-                    console.log(data)
+                    //console.log(data)
                     writeToAbilitiesLabels(data)
                     writeToSaveThrowsLabels(data)
-                    writeToSkillsLabels(data)
                 } else {
                     console.log(`Error: ${xhr.status}`);
                 }
@@ -147,47 +124,11 @@
             xhr.send();
         }
 
-        function writeToSaveThrowsLabels(data) {
-            let modifier = JSON.stringify(JSON.parse(data)["modifier"]);
-
-            document.getElementById("lbl_modifier_SK_strength_info").innerHTML = "("+JSON.parse(modifier)["strength"]+")";
-            document.getElementById("lbl_modifier_SK_dexterity_info-1").innerHTML = "("+ JSON.parse(modifier)["dexterity"]+")";
-            document.getElementById("lbl_modifier_SK_dexterity_info-2").innerHTML = "("+ JSON.parse(modifier)["dexterity"]+")";
-            document.getElementById("lbl_modifier_SK_dexterity_info-3").innerHTML = "("+ JSON.parse(modifier)["dexterity"]+")";
-            document.getElementById("lbl_modifier_SK_intelligence_info-1").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_SK_intelligence_info-2").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_SK_intelligence_info-3").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_SK_intelligence_info-4").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_SK_intelligence_info-5").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_SK_wisdom_info-1").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_SK_wisdom_info-2").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_SK_wisdom_info-3").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_SK_wisdom_info-4").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_SK_wisdom_info-5").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_SK_charisma_info-1").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
-            document.getElementById("lbl_modifier_SK_charisma_info-2").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
-            document.getElementById("lbl_modifier_SK_charisma_info-3").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
-            document.getElementById("lbl_modifier_SK_charisma_info-4").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
-        }
-
-        function writeToSkillsLabels(data) {
-            let modifier = JSON.stringify(JSON.parse(data)["modifier"]);
-
-            document.getElementById("lbl_modifier_ST_strength_info").innerHTML = "("+JSON.parse(modifier)["strength"]+")";
-            document.getElementById("lbl_modifier_ST_dexterity_info").innerHTML = "("+ JSON.parse(modifier)["dexterity"]+")";
-            document.getElementById("lbl_modifier_ST_bodyDifficulty_info").innerHTML = "("+JSON.parse(modifier)["body_difficulty"]+")";
-            document.getElementById("lbl_modifier_ST_intelligence_info").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_ST_wisdom_info").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_ST_charisma_info").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
-        }
-
         function writeToAbilitiesLabels(data) {
             document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class_name"];
             document.getElementById("lbl_description_info").innerHTML = JSON.parse(data)["description"];
 
             let abilities = JSON.stringify(JSON.parse(data)["ability"]);
-            console.log(abilities)
-
             document.getElementById("lbl_ability_strength_info").innerHTML = JSON.parse(abilities)["strength"];
             document.getElementById("lbl_ability_dexterity_info").innerHTML = JSON.parse(abilities)["dexterity"];
             document.getElementById("lbl_ability_bodyDifficulty_info").innerHTML = JSON.parse(abilities)["body_difficulty"];
@@ -196,13 +137,57 @@
             document.getElementById("lbl_ability_charisma_info").innerHTML = JSON.parse(abilities)["charisma"];
 
             let modifier = JSON.stringify(JSON.parse(data)["modifier"]);
-            document.getElementById("lbl_modifier_strength_info").innerHTML = "("+JSON.parse(modifier)["strength"]+")";
-            document.getElementById("lbl_modifier_dexterity_info").innerHTML = "("+ JSON.parse(modifier)["dexterity"]+")";
-            document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = "("+JSON.parse(modifier)["body_difficulty"]+")";
-            document.getElementById("lbl_modifier_intelligence_info").innerHTML = "("+ JSON.parse(modifier)["intelligence"]+")";
-            document.getElementById("lbl_modifier_wisdom_info").innerHTML = "("+JSON.parse(modifier)["wisdom"]+")";
-            document.getElementById("lbl_modifier_charisma_info").innerHTML = "("+JSON.parse(modifier)["charisma"]+")";
+            document.getElementById("lbl_modifier_strength_info").innerHTML = "[ "+JSON.parse(modifier)["strength"]+" ]";
+            document.getElementById("lbl_modifier_dexterity_info").innerHTML = "[ "+ JSON.parse(modifier)["dexterity"]+" ]";
+            document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = "[ "+JSON.parse(modifier)["body_difficulty"]+" ]";
+            document.getElementById("lbl_modifier_intelligence_info").innerHTML = "[ "+ JSON.parse(modifier)["intelligence"]+" ]";
+            document.getElementById("lbl_modifier_wisdom_info").innerHTML = "[ "+JSON.parse(modifier)["wisdom"]+" ]";
+            document.getElementById("lbl_modifier_charisma_info").innerHTML = "[ "+JSON.parse(modifier)["charisma"]+" ]";
         }
+
+        function writeToSaveThrowsLabels(data) {
+            let saving_throws = JSON.stringify(JSON.parse(data)["saving_throws"]);
+            console.log(saving_throws)
+
+            //обнуление радио
+            document.getElementById("rd_modifier_ST_strength_info").checked=false;
+            document.getElementById("rd_modifier_ST_dexterity_info").checked=false;
+            document.getElementById("rd_modifier_ST_bodyDifficulty_info").checked=false;
+            document.getElementById("rd_modifier_ST_intelligence_info").checked=false;
+            document.getElementById("rd_modifier_ST_wisdom_info").checked=false;
+            document.getElementById("rd_modifier_ST_charisma_info").checked=false;
+
+
+            document.getElementById("lbl_modifier_ST_strength_info").innerHTML = "[ "+JSON.parse(saving_throws)["strength"]["point"]+" ]";
+            document.getElementById("lbl_modifier_ST_dexterity_info").innerHTML = "[ "+ JSON.parse(saving_throws)["dexterity"]["point"]+" ]";
+            document.getElementById("lbl_modifier_ST_bodyDifficulty_info").innerHTML = "[ "+JSON.parse(saving_throws)["body_difficulty"]["point"]+" ]";
+            document.getElementById("lbl_modifier_ST_intelligence_info").innerHTML = "[ "+ JSON.parse(saving_throws)["intelligence"]["point"]+" ]";
+            document.getElementById("lbl_modifier_ST_wisdom_info").innerHTML = "[ "+JSON.parse(saving_throws)["wisdom"]["point"]+" ]";
+            document.getElementById("lbl_modifier_ST_charisma_info").innerHTML = "[ "+JSON.parse(saving_throws)["charisma"]["point"]+" ]";
+
+            if (JSON.parse(saving_throws)["strength"]["mastery"] === true){
+                document.getElementById("rd_modifier_ST_strength_info").checked=true;
+            }
+            if (JSON.parse(saving_throws)["dexterity"]["mastery"] === true){
+                document.getElementById("rd_modifier_ST_dexterity_info").checked=true;
+            }
+            if (JSON.parse(saving_throws)["body_difficulty"]["mastery"]=== true){
+                document.getElementById("rd_modifier_ST_bodyDifficulty_info").checked=true;
+            }
+            if (JSON.parse(saving_throws)["intelligence"]["mastery"]=== true){
+                document.getElementById("rd_modifier_ST_intelligence_info").checked=true;
+            }
+            if (JSON.parse(saving_throws)["wisdom"]["mastery"]=== true){
+                document.getElementById("rd_modifier_ST_wisdom_info").checked=true;
+            }
+            if (JSON.parse(saving_throws)["charisma"]["mastery"]=== true){
+                document.getElementById("rd_modifier_ST_charisma_info").checked=true;
+            }
+        }
+
+
+
+
     </script>
 </body>
 </html>

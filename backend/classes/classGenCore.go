@@ -1,7 +1,6 @@
 package classes
 
 import (
-	"fmt"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -45,6 +44,7 @@ func GetNewClass() Class {
 
 	class.ClassName = statAnalyze(statsForClass, class)
 	class.Modifier = getModifiersForClass(class.Ability)
+	class.SavingThrows = getSaveThrowsForClass(class.Modifier)
 	return class
 }
 
@@ -101,7 +101,7 @@ func sortStats(abil Ability) []string {
 			//fmt.Println(k, statsMap[k])
 		}
 	}
-	fmt.Println("1 - ", statsForFindClassSpec)
+	//fmt.Println("1 - ", statsForFindClassSpec)
 	return statsForFindClassSpec
 }
 func statAnalyze(stats []string, cl Class) string {
@@ -174,54 +174,72 @@ func getModifiersForClass(ab Ability) Modifier {
 		modifier.Charisma = modifierArray[5]
 	}
 	//fmt.Println(modifier)
-
 	return modifier
 }
 
-//func getSaveThrowsForClass(modifier Modifier) SavingThrows {
-//	var modifierMap = map[string]int{
-//		"Strength":       modifier.Strength,
-//		"Dexterity":      modifier.Dexterity,
-//		"Intelligence":   modifier.Intelligence,
-//		"BodyDifficulty": modifier.BodyDifficulty,
-//		"Wisdom":         modifier.Wisdom,
-//		"Charisma":       modifier.Charisma,
-//	}
-//
-//	var saveTh SavingThrows
-//	keys, statMap := sortMapCustom(modifierMap)
-//	statsForSV := []string{} //для анализа класса
-//
-//	for k, value := range modifierMap { //первичное заполнение
-//		switch k {
-//		case "Strength":
-//			saveTh.Strength.Point = value
-//		case "Dexterity":
-//			saveTh.Dexterity.Point = value
-//		case "BodyDifficulty":
-//			saveTh.BodyDifficulty.Point = value
-//		case "Intelligence":
-//			saveTh.Intelligence.Point = value
-//		case "Wisdom":
-//			saveTh.Wisdom.Point = value
-//		case "Charisma":
-//			saveTh.Charisma.Point = value
-//		}
-//	}
-//
-//	for i, k := range keys { //поиск 2х наивысших стат
-//		if i == 0 || i == 1 { //первые 2 значения
-//			statsForSV = append(statsForSV, k)
-//			fmt.Println(k, statMap[k])
-//		}
-//	}
-//
-//	fmt.Println("2 - ", saveTh)
-//	//updatedStats := map[string]int{}
-//
-//	return saveTh
-//}
-//
+func getSaveThrowsForClass(modifier Modifier) SavingThrows {
+	var modifierMap = map[string]int{
+		"Strength":       modifier.Strength,
+		"Dexterity":      modifier.Dexterity,
+		"Intelligence":   modifier.Intelligence,
+		"BodyDifficulty": modifier.BodyDifficulty,
+		"Wisdom":         modifier.Wisdom,
+		"Charisma":       modifier.Charisma,
+	}
+
+	var saveTh SavingThrows
+	keys, _ := sortMapCustom(modifierMap)
+	statsForSV := []string{} //для анализа класса
+
+	for k, value := range modifierMap { //первичное заполнение
+		switch k {
+		case "Strength":
+			saveTh.Strength.Name = "Strength"
+			saveTh.Strength.Point = value
+		case "Dexterity":
+			saveTh.Dexterity.Name = "Dexterity"
+			saveTh.Dexterity.Point = value
+		case "BodyDifficulty":
+			saveTh.BodyDifficulty.Name = "BodyDifficulty"
+			saveTh.BodyDifficulty.Point = value
+		case "Intelligence":
+			saveTh.Intelligence.Name = "Intelligence"
+			saveTh.Intelligence.Point = value
+		case "Wisdom":
+			saveTh.Wisdom.Name = "Wisdom"
+			saveTh.Wisdom.Point = value
+		case "Charisma":
+			saveTh.Charisma.Name = "Charisma"
+			saveTh.Charisma.Point = value
+		}
+	}
+
+	for i, k := range keys { //поиск 2х наивысших стат
+		if i == 0 || i == 1 { //первые 2 значения
+			statsForSV = append(statsForSV, k)
+			//fmt.Println(k, statMap[k])
+		}
+	}
+	for _, stat := range statsForSV {
+		switch stat {
+		case saveTh.Strength.Name:
+			saveTh.Strength.Mastery = true
+		case saveTh.Dexterity.Name:
+			saveTh.Dexterity.Mastery = true
+		case saveTh.BodyDifficulty.Name:
+			saveTh.BodyDifficulty.Mastery = true
+		case saveTh.Intelligence.Name:
+			saveTh.Intelligence.Mastery = true
+		case saveTh.Wisdom.Name:
+			saveTh.Wisdom.Mastery = true
+		case saveTh.Charisma.Name:
+			saveTh.Charisma.Mastery = true
+		}
+	}
+	//fmt.Println("2 - ", saveTh)
+	return saveTh
+}
+
 //func getSkillsForClass(modifier Modifier) Skills {
 //
 //	var sk Skills
