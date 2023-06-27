@@ -1,6 +1,10 @@
 package classes
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -36,7 +40,7 @@ func GetNewClass() Class {
 	//Default Values
 	var class Class
 	class.ClassName = "HomeBrew"
-	class.Inspiration = false
+	class.Inspiration = true
 	class.ProficiencyBonus = 2
 	class.Ability = rerollClassAbilitiesStats()
 
@@ -45,6 +49,7 @@ func GetNewClass() Class {
 	class.ClassName = statAnalyze(statsForClass, class)
 	class.Modifier = getModifiersForClass(class.Ability)
 	class.SavingThrows = getSaveThrowsForClass(class.Modifier)
+	class.Skills = getSkillsForClass(class.Modifier)
 	return class
 }
 
@@ -70,6 +75,10 @@ func rerollClassAbilitiesStats() Ability {
 		Wisdom:         RandomRollPoints(),
 		Charisma:       RandomRollPoints(),
 	}
+	TargetClassAbilities.Total = TargetClassAbilities.Strength + TargetClassAbilities.Dexterity +
+		TargetClassAbilities.BodyDifficulty + TargetClassAbilities.Wisdom + TargetClassAbilities.Charisma +
+		TargetClassAbilities.Intelligence
+
 	return TargetClassAbilities
 }
 
@@ -105,53 +114,24 @@ func sortStats(abil Ability) []string {
 	return statsForFindClassSpec
 }
 func statAnalyze(stats []string, cl Class) string {
-	var (
-		statMap = map[string][]string{ //залить в базу
-			"Classic Wizard": {"Intelligence", "BodyDifficulty", "Charisma"},
-			"Snake Wizard":   {"Intelligence", "Dexterity", "Charisma"},
-			"Charm Wizard":   {"Intelligence", "Wisdom", "Charisma"},
+	jsonFile, err := os.Open("stat.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer jsonFile.Close()
+	byteValue, _ := ioutil.ReadAll(jsonFile)
 
-			"Classic Fighter": {"Strength", "Dexterity", "Intelligence"},
-			"Bag Fighter":     {"Strength", "Dexterity", "BodyDifficulty"},
+	var chars CharacteristicsForClass
+	json.Unmarshal(byteValue, &chars)
 
-			"Wisdom Barbarian": {"Strength", "BodyDifficulty", "Wisdom"},
-			"Charm Barbarian":  {"Strength", "BodyDifficulty", "Charisma"},
-
-			"Big Paladin":     {"Strength", "Charisma", "BodyDifficulty"},
-			"Wisdom Paladin2": {"Strength", "Charisma", "Wisdom"},
-
-			"Classic Monk": {"Dexterity", "Wisdom", "Strength"},
-			"Charm Monk":   {"Dexterity", "Wisdom", "Charisma"},
-
-			"Classic Rogue": {"Dexterity", "Intelligence", "Charisma"},
-			"Wisdom Rogue":  {"Dexterity", "Intelligence", "Wisdom"},
-
-			"Classic Ranger": {"Dexterity", "Wisdom", "Charisma"}, //stock
-			"Strong Ranger":  {"Strength", "Wisdom", "Dexterity"}, // 2th weapon
-
-			"Classic Druid": {"Wisdom", "BodyDifficulty", "Dexterity"},
-
-			"Big Cleric":    {"Wisdom", "BodyDifficulty", "Strength"},
-			"Strong Cleric": {"Wisdom", "Strength", "BodyDifficulty"},
-
-			"Classic Warlock": {"Charisma", "BodyDifficulty", "Wisdom"},
-
-			"Classic Sorcerer": {"Charisma", "BodyDifficulty", "Wisdom"},
-			"Smart Sorcerer":   {"Charisma", "BodyDifficulty", "Intelligence"},
-
-			"Classic Bard": {"Charisma", "Dexterity", "Wisdom"},
-			"Big Bard":     {"Charisma", "Dexterity", "BodyDifficulty"},
-			"Smart Bard":   {"Charisma", "Dexterity", "Intelligence"},
-		}
-	)
-
-	for name, statsArray := range statMap {
-		switch {
-		case reflect.DeepEqual(stats, statsArray):
-			cl.ClassName = name
+	for _, char := range chars.Data {
+		for _, cla := range char.CharReq {
+			if reflect.DeepEqual(stats, cla) {
+				cl.ClassName = char.ClassName
+			}
 		}
 	}
-	//fmt.Println(cl.ClassName)
+
 	return cl.ClassName
 }
 
@@ -240,39 +220,39 @@ func getSaveThrowsForClass(modifier Modifier) SavingThrows {
 	return saveTh
 }
 
-//func getSkillsForClass(modifier Modifier) Skills {
-//
-//	var sk Skills
-//	var prof = false
-//	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
-//		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
-//
-//	for i, _ := range mobifierArray {
-//		switch {
-//		case modifier.Strength == mobifierArray[i]:
-//			sk.Athletics = skill{modifier.Strength, prof}
-//		case modifier.Dexterity == mobifierArray[i]:
-//			sk.Acrobatics = skill{modifier.Dexterity, prof}
-//			sk.SleightOfHand = skill{modifier.Dexterity, prof}
-//			sk.Stealth = skill{modifier.Dexterity, prof}
-//		case modifier.Intelligence == mobifierArray[i]:
-//			sk.Arcana = skill{modifier.Intelligence, prof}
-//			sk.History = skill{modifier.Intelligence, prof}
-//			sk.Investigation = skill{modifier.Intelligence, prof}
-//			sk.Nature = skill{modifier.Intelligence, prof}
-//			sk.Religion = skill{modifier.Intelligence, prof}
-//		case modifier.Wisdom == mobifierArray[i]:
-//			sk.AnimalHandling = skill{modifier.Wisdom, prof}
-//			sk.Insight = skill{modifier.Wisdom, prof}
-//			sk.Medicine = skill{modifier.Wisdom, prof}
-//			sk.Perception = skill{modifier.Wisdom, prof}
-//			sk.Survival = skill{modifier.Wisdom, prof}
-//		case modifier.Charisma == mobifierArray[i]:
-//			sk.Deception = skill{modifier.Charisma, prof}
-//			sk.Intimidation = skill{modifier.Charisma, prof}
-//			sk.Performance = skill{modifier.Charisma, prof}
-//			sk.Persuasion = skill{modifier.Charisma, prof}
-//		}
-//	}
-//	return sk
-//}
+func getSkillsForClass(modifier Modifier) Skills {
+
+	var sk Skills
+	var prof = false
+	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
+		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
+
+	for i, _ := range mobifierArray {
+		switch {
+		case modifier.Strength == mobifierArray[i]:
+			sk.Athletics = skill{"Athletics", modifier.Strength, prof}
+		case modifier.Dexterity == mobifierArray[i]:
+			sk.Acrobatics = skill{"Acrobatics", modifier.Dexterity, prof}
+			sk.SleightOfHand = skill{"SleightOfHand", modifier.Dexterity, prof}
+			sk.Stealth = skill{"Stealth", modifier.Dexterity, prof}
+		case modifier.Intelligence == mobifierArray[i]:
+			sk.Arcana = skill{"Arcana", modifier.Intelligence, prof}
+			sk.History = skill{"History", modifier.Intelligence, prof}
+			sk.Investigation = skill{"Investigation", modifier.Intelligence, prof}
+			sk.Nature = skill{"Nature", modifier.Intelligence, prof}
+			sk.Religion = skill{"Religion", modifier.Intelligence, prof}
+		case modifier.Wisdom == mobifierArray[i]:
+			sk.AnimalHandling = skill{"AnimalHandling", modifier.Wisdom, prof}
+			sk.Insight = skill{"Insight", modifier.Wisdom, prof}
+			sk.Medicine = skill{"Medicine", modifier.Wisdom, prof}
+			sk.Perception = skill{"Perception", modifier.Wisdom, prof}
+			sk.Survival = skill{"Survival", modifier.Wisdom, prof}
+		case modifier.Charisma == mobifierArray[i]:
+			sk.Deception = skill{"Deception", modifier.Charisma, prof}
+			sk.Intimidation = skill{"Intimidation", modifier.Charisma, prof}
+			sk.Performance = skill{"Performance", modifier.Charisma, prof}
+			sk.Persuasion = skill{"Persuasion", modifier.Charisma, prof}
+		}
+	}
+	return sk
+}

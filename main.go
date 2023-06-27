@@ -65,8 +65,8 @@ func main() {
 	})
 
 	router.GET("/test", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "test_pregen.html", gin.H{
-			"title": "PreGeneraTOR",
+		c.HTML(http.StatusOK, "character_box.html", gin.H{
+			"title": "Character Box",
 		})
 	})
 	router.GET("/about", func(c *gin.Context) {

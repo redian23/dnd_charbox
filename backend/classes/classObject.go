@@ -21,6 +21,7 @@ type Ability struct {
 	Intelligence   int `json:"intelligence"`
 	Wisdom         int `json:"wisdom"`
 	Charisma       int `json:"charisma"`
+	Total          int `json:"total"`
 }
 
 type Modifier struct {
@@ -53,8 +54,9 @@ type Skills struct {
 }
 
 type skill struct {
-	ModifierValue int  `json:"modifier_value"`
-	Proficiency   bool `json:"proficiency"`
+	SkillName     string `json:"skill_name"`
+	ModifierValue int    `json:"modifier_value"`
+	Proficiency   bool   `json:"proficiency"`
 }
 
 type SavingThrows struct {
@@ -89,4 +91,11 @@ func (a *Ability) ModifyCharisma(value int) {
 }
 func (a *Ability) ModifyStrength(value int) {
 	a.Strength = value
+}
+
+type CharacteristicsForClass struct {
+	Data []struct {
+		ClassName string     `json:"className"`
+		CharReq   [][]string `json:"charReq"`
+	} `json:"data"`
 }
