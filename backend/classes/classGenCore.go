@@ -35,24 +35,6 @@ func summa(a []int) int {
 	return sum
 }
 
-func GetNewClass() Class {
-	//Start To Generate
-	//Default Values
-	var class Class
-	class.ClassName = "HomeBrew"
-	class.Inspiration = true
-	class.ProficiencyBonus = 2
-	class.Ability = rerollClassAbilitiesStats()
-
-	var statsForClass = sortStats(class.Ability)
-
-	class.ClassName = statAnalyze(statsForClass, class)
-	class.Modifier = getModifiersForClass(class.Ability)
-	class.SavingThrows = getSaveThrowsForClass(class.Modifier)
-	class.Skills = getSkillsForClass(class.Modifier)
-	return class
-}
-
 func RandomRollPoints() int {
 	dice := dice.D6
 	firstTry := dice.RollDice()
@@ -110,10 +92,13 @@ func sortStats(abil Ability) []string {
 			//fmt.Println(k, statsMap[k])
 		}
 	}
-	//fmt.Println("1 - ", statsForFindClassSpec)
+	fmt.Println("1 - ", statsForFindClassSpec)
 	return statsForFindClassSpec
 }
-func statAnalyze(stats []string, cl Class) string {
+func statAnalyze(cl Class) string {
+START:
+	var stats = sortStats(cl.Ability)
+
 	jsonFile, err := os.Open("stat.json")
 	if err != nil {
 		fmt.Println(err)
@@ -132,10 +117,15 @@ func statAnalyze(stats []string, cl Class) string {
 		}
 	}
 
+	if cl.ClassName == "HomeBrew" {
+		cl.Ability = rerollClassAbilitiesStats()
+		goto START
+	}
+	fmt.Println(cl.ClassName)
 	return cl.ClassName
 }
 
-func getModifiersForClass(ab Ability) Modifier {
+func setModifiersForClass(ab Ability) Modifier {
 	abilitiesArray := []int{ab.Strength, ab.Dexterity, ab.BodyDifficulty,
 		ab.Intelligence, ab.Wisdom, ab.Charisma}
 	var modifier Modifier
@@ -157,7 +147,7 @@ func getModifiersForClass(ab Ability) Modifier {
 	return modifier
 }
 
-func getSaveThrowsForClass(modifier Modifier) SavingThrows {
+func setSaveThrowsForClass(modifier Modifier) SavingThrows {
 	var modifierMap = map[string]int{
 		"Strength":       modifier.Strength,
 		"Dexterity":      modifier.Dexterity,
@@ -200,6 +190,7 @@ func getSaveThrowsForClass(modifier Modifier) SavingThrows {
 			//fmt.Println(k, statMap[k])
 		}
 	}
+
 	for _, stat := range statsForSV {
 		switch stat {
 		case saveTh.Strength.Name:
@@ -220,7 +211,7 @@ func getSaveThrowsForClass(modifier Modifier) SavingThrows {
 	return saveTh
 }
 
-func getSkillsForClass(modifier Modifier) Skills {
+func setSkillsForClass(profSkills []string, modifier Modifier) Skills {
 
 	var sk Skills
 	var prof = false

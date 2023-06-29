@@ -233,22 +233,25 @@
                     <article class="tile is-child">
                         <p class="title">Character Name: {NAME}</p>
                     </article>
-                </article>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
                     <article class="tile is-child">
-                        <p class="title">Age: 23</p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Eyes: Blue</p>
+                        <p class="title">Gender: <label id="lbl_gender"></label></p>
                     </article>
                 </article>
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child box">
                     <article class="tile is-child">
-                        <p class="title">Height: 5ft</p>
+                        <p class="title">Age: <label id="lbl_age"></label></p>
+                    </article>
+                    <article class="tile is-child">
+                        <p class="title">Eyes: <label id="lbl_eyesColor"></label></p>
+                    </article>
+                </article>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <article class="tile is-child">
+                        <p class="title">Height: <label id="lbl_height"></label> sm</p>
                     </article>
                     <article class="tile is-child">
                         <p class="title">Skin: White</p>
@@ -258,10 +261,10 @@
             <div class="tile is-parent">
                 <article class="tile is-child box">
                     <article class="tile is-child">
-                        <p class="title">Weight: 72kg</p>
+                        <p class="title">Weight: <label id="lbl_weight"></label>kg</p>
                     </article>
                     <article class="tile is-child">
-                        <p class="title">Hair: Brown</p>
+                        <p class="title">Hair: <label id="lbl_hairColor"></label></p>
                     </article>
                 </article>
             </div>
@@ -289,12 +292,9 @@
                     writeToAbilitiesLabels(data)
                     writeToSaveThrowsLabels(data)
                     writeToSkillsLabels(data)
-                    //вынести в функцию
-                    document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
-                    if (JSON.parse(data)["inspiration"] === true) {
-                        document.getElementById("lbl_inspiration").innerHTML = "*" ;
-                    }
+                    writeOtherLabels(data)
 
+                    writeAppearanceLabels(data)
                 } else {
                     console.log(`Error: ${xhr.status}`);
                 }
@@ -415,6 +415,23 @@
         //         document.getElementById("rd_modifier_ST_charisma_info").checked=true;
         //     }
         }
+
+        function writeOtherLabels(data) {
+            document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
+            if (JSON.parse(data)["inspiration"] === true) {
+                document.getElementById("lbl_inspiration").innerHTML = "*" ;
+            }
+        }
+
+        function writeAppearanceLabels(data) {
+            document.getElementById("lbl_gender").innerHTML = JSON.parse(data)["appearance"]["gender"];
+            document.getElementById("lbl_age").innerHTML = JSON.parse(data)["appearance"]["age"];
+            document.getElementById("lbl_eyesColor").innerHTML = JSON.parse(data)["appearance"]["eyes"];
+            document.getElementById("lbl_height").innerHTML = JSON.parse(data)["appearance"]["height"];
+            document.getElementById("lbl_weight").innerHTML = JSON.parse(data)["appearance"]["weight"];
+            document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["appearance"]["hair"];
+        }
+
 
     </script>
 </body>

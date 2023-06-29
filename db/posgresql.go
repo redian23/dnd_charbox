@@ -87,5 +87,4 @@ func SelectJsonFromRaceTable() {
 		}
 		fmt.Println(table.Data.RaceAbility)
 	}
-
 }
