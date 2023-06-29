@@ -3,8 +3,6 @@ package classes
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"os"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -98,16 +96,311 @@ func sortStats(abil Ability) []string {
 func statAnalyze(cl Class) string {
 START:
 	var stats = sortStats(cl.Ability)
+	jsonFile := []byte(`{
+    "data":[
+        {
+            "className":"Wizard",
+            "background":[
 
-	jsonFile, err := os.Open("stat.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer jsonFile.Close()
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+            ],
+            "charReq":[
+                [
+                    "Intelligence",
+                    "BodyDifficulty",
+                    "Charisma"
+                ],
+                [
+                    "Intelligence",
+                    "Dexterity",
+                    "Charisma"
+                ],
+                [
+                    "Intelligence",
+                    "Wisdom",
+                    "Charisma"
+                ]
+            ]
+        },
+        {
+            "className":"Alchemist",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Intelligence",
+                    "Dexterity",
+                    "BodyDifficulty"
+                ],
+                [
+                    "Intelligence",
+                    "Dexterity",
+                    "Wisdom"
+                ]
+            ]
+        },
+        {
+            "className":"Runekeeper",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Intelligence",
+                    "BodyDifficulty",
+                    "Dexterity"
+                ]
+            ]
+        },
+        {
+            "className":"Fighter",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Strength",
+                    "Dexterity",
+                    "Intelligence"
+                ],
+                [
+                    "Strength",
+                    "Dexterity",
+                    "BodyDifficulty"
+                ],
+                [
+                    "Strength",
+                    "Dexterity",
+                    "Charisma"
+                ]
+            ]
+        },
+        {
+            "className":"Barbarian",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Strength",
+                    "BodyDifficulty",
+                    "Wisdom"
+                ],
+                [
+                    "Strength",
+                    "BodyDifficulty",
+                    "Charisma"
+                ],
+                [
+                    "Strength",
+                    "BodyDifficulty",
+                    "Intelligence"
+                ]
+            ]
+        },
+        {
+            "className":"Paladin",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Strength",
+                    "Charisma",
+                    "BodyDifficulty"
+                ],
+                [
+                    "Strength",
+                    "Charisma",
+                    "Wisdom"
+                ]
+            ]
+        },
+        {
+            "className":"Monk",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Dexterity",
+                    "Wisdom",
+                    "Strength"
+                ],
+                [
+                    "Dexterity",
+                    "Wisdom",
+                    "Charisma"
+                ]
+            ]
+        },
+        {
+            "className":"Alternative Monk",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Dexterity",
+                    "Wisdom",
+                    "Strength"
+                ],
+                [
+                    "Dexterity",
+                    "BodyDifficulty",
+                    "Charisma"
+                ],
+                [
+                    "Dexterity",
+                    "BodyDifficulty",
+                    "Wisdom"
+                ]
+            ]
+        },
+        {
+            "className":"Rogue",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Dexterity",
+                    "Intelligence",
+                    "Charisma"
+                ],
+                [
+                    "Dexterity",
+                    "Intelligence",
+                    "Wisdom"
+                ]
+            ]
+        },
+        {
+            "className":"Ranger",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Dexterity",
+                    "Wisdom",
+                    "Charisma"
+                ],
+                [
+                    "Strength",
+                    "Wisdom",
+                    "Dexterity"
+                ]
+            ]
+        },
+        {
+            "className":"Druid",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Wisdom",
+                    "BodyDifficulty",
+                    "Dexterity"
+                ]
+            ]
+        },
+        {
+            "className":"Shaman",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Wisdom",
+                    "BodyDifficulty",
+                    "Strength"
+                ],
+                [
+                    "Wisdom",
+                    "BodyDifficulty",
+                    "Intelligence"
+                ]
+            ]
+        },
+        {
+            "className":"Cleric",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Wisdom",
+                    "BodyDifficulty",
+                    "Strength"
+                ],
+                [
+                    "Wisdom",
+                    "Strength",
+                    "BodyDifficulty"
+                ]
+            ]
+        },
+        {
+            "className":"Warlock",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Charisma",
+                    "BodyDifficulty",
+                    "Wisdom"
+                ]
+            ]
+        },
+        {
+            "className":"Sorcerer",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Charisma",
+                    "BodyDifficulty",
+                    "Wisdom"
+                ],
+                [
+                    "Charisma",
+                    "BodyDifficulty",
+                    "Intelligence"
+                ]
+            ]
+        },
+        {
+            "className":"Bard",
+            "background":[
+
+            ],
+            "charReq":[
+                [
+                    "Charisma",
+                    "Dexterity",
+                    "Wisdom"
+                ],
+                [
+                    "Charisma",
+                    "Dexterity",
+                    "BodyDifficulty"
+                ],
+                [
+                    "Charisma",
+                    "Dexterity",
+                    "Intelligence"
+                ]
+            ]
+        }
+    ]
+}`)
 
 	var chars CharacteristicsForClass
-	json.Unmarshal(byteValue, &chars)
+	json.Unmarshal(jsonFile, &chars)
 
 	for _, char := range chars.Data {
 		for _, cla := range char.CharReq {
