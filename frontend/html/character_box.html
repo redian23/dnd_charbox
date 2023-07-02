@@ -125,7 +125,7 @@
         <article class="tile is-child">
             <p class="title">Exp Points: [ 0 ]</p>
         </article>
-    </article>
+        </article>
             </div>
         </div>
         <div name="Main Page" class="tile is-vertical is-child">
@@ -158,7 +158,7 @@
                         <p><label class="title">Bonuses</label></p>
                         <p><label class="subtitle">[ <label id="lbl_inspiration"> </label> ] Inspiration</label> </p>
                         <p><label class="subtitle">[ +<label id="lbl_proficiency_bonus"> </label> ] Proficiency Bonus</label> </p>
-                        <p><label class="subtitle">[ _<label id="lbl_passive_wisdom"> </label> ] Passive Wisdom (Perception)</label> </p>
+                        <p><label class="subtitle">[ <label id="lbl_passive_wisdom"> </label> ] Passive Wisdom (Perception)</label> </p>
                     </article>
                     <article class="tile is-child box">
                         <p class="title">Skills (temporally without Prof bonus) </p>
@@ -171,6 +171,7 @@
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Insight"> </label> ] Insight (Wis)</label></p>
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Intimidation"> </label> ] Intimidation (Cha)</label></p>
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Investigation"> </label> ] Investigation (Int)</label></p>
+                        <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Magic"> </label> ] Magic (Int)</label></p>
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Medicine"> </label> ] Medicine (Wis)</label></p>
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Nature"> </label> ] Nature (Int)</label></p>
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Perception"> </label> ] Perception (Wis)</label></p>
@@ -186,8 +187,8 @@
                     <article class="tile is-child box">
                         <p class="title">Loading...</p>
                     </article>
-                    <article class="tile is-child box">
-                        <p>Loading...</p>
+                    <article class="tile is-child  box">
+                        <p class="title">Loading... </p>
                     </article>
                     <article class="tile is-child box">
                         <p>Loading...</p>
@@ -204,9 +205,6 @@
                 </div>
                 <div class="tile is-parent is-vertical">
                     <article class="tile is-child box">
-                        <p class="title">Loading...</p>
-                    </article>
-                    <article class="tile is-child box">
                         <p>Loading...</p>
                     </article>
                     <article class="tile is-child box">
@@ -221,6 +219,23 @@
                     <article class="tile is-child box">
                         <p>Loading...</p>
                     </article>
+                    <div class="tile is-parent box">
+                        <article class="tile is-child box">
+                            <p>MM</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p>CM</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p>ЗM</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p>ЭM</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p>ПM</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </div>
@@ -284,7 +299,7 @@
 
         function getCurrentClass() {
             const xhr = new XMLHttpRequest();
-            xhr.open("GET", `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-class`); //test-name
+            xhr.open("GET", `${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
             xhr.onload = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let data = JSON.stringify(JSON.parse(xhr.response));
@@ -303,9 +318,9 @@
         }
 
         function writeToAbilitiesLabels(data) {
-            document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class_name"];
+            document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class"]["class_name"];
 
-            let abilities = JSON.stringify(JSON.parse(data)["ability"]);
+            let abilities = JSON.stringify(JSON.parse(data)["class"]["ability"]);
             document.getElementById("lbl_ability_total_info").innerHTML = JSON.parse(abilities)["total"];
             document.getElementById("lbl_ability_strength_info").innerHTML = JSON.parse(abilities)["strength"];
             document.getElementById("lbl_ability_dexterity_info").innerHTML = JSON.parse(abilities)["dexterity"];
@@ -314,7 +329,7 @@
             document.getElementById("lbl_ability_wisdom_info").innerHTML = JSON.parse(abilities)["wisdom"];
             document.getElementById("lbl_ability_charisma_info").innerHTML = JSON.parse(abilities)["charisma"];
 
-            let modifier = JSON.stringify(JSON.parse(data)["modifier"]);
+            let modifier = JSON.stringify(JSON.parse(data)["class"]["modifier"]);
             document.getElementById("lbl_modifier_strength_info").innerHTML = JSON.parse(modifier)["strength"];
             document.getElementById("lbl_modifier_dexterity_info").innerHTML =  JSON.parse(modifier)["dexterity"];
             document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = JSON.parse(modifier)["body_difficulty"];
@@ -324,7 +339,7 @@
         }
 
         function writeToSaveThrowsLabels(data) {
-            let saving_throws = JSON.stringify(JSON.parse(data)["saving_throws"]);
+            let saving_throws = JSON.stringify(JSON.parse(data)["class"]["saving_throws"]);
 
             //обнуление радио
             var radios = ["rd_modifier_ST_strength_info", "rd_modifier_ST_dexterity_info",
@@ -363,7 +378,7 @@
         }
 
         function writeToSkillsLabels(data) {
-            let skills = JSON.stringify(JSON.parse(data)["skills"]);
+            let skills = JSON.stringify(JSON.parse(data)["class"]["skills"]);
 
             //обнуление радио
             var radios = ["lbl_Acrobatics", "lbl_Animal_Handling","lbl_Arcana","lbl_Athletics",
@@ -385,6 +400,7 @@
             document.getElementById("lbl_Insight").innerHTML = JSON.parse(skills)["insight"]["modifier_value"];
             document.getElementById("lbl_Intimidation").innerHTML = JSON.parse(skills)["intimidation"]["modifier_value"];
             document.getElementById("lbl_Investigation").innerHTML = JSON.parse(skills)["investigation"]["modifier_value"];
+            document.getElementById("lbl_Magic").innerHTML = JSON.parse(skills)["magic"]["modifier_value"];
             document.getElementById("lbl_Medicine").innerHTML = JSON.parse(skills)["medicine"]["modifier_value"];
             document.getElementById("lbl_Nature").innerHTML = JSON.parse(skills)["nature"]["modifier_value"]
             document.getElementById("lbl_Perception").innerHTML = JSON.parse(skills)["perception"]["modifier_value"];
@@ -417,8 +433,9 @@
         }
 
         function writeOtherLabels(data) {
-            document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
-            if (JSON.parse(data)["inspiration"] === true) {
+            document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["class"]["proficiency_bonus"];
+            document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["class"]["passive_wisdom"];
+            if (JSON.parse(data)["class"]["inspiration"] === true) {
                 document.getElementById("lbl_inspiration").innerHTML = "*" ;
             }
         }
