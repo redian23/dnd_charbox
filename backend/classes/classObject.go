@@ -1,8 +1,5 @@
 package classes
 
-type ClassJson struct {
-	Classes []Class `json:"classes"`
-}
 type Class struct {
 	ClassName        string       `json:"class_name"`
 	Description      string       `json:"description"`
@@ -10,20 +7,11 @@ type Class struct {
 	Modifier         Modifier     `json:"modifier"`
 	Inspiration      bool         `json:"inspiration"`
 	ProficiencyBonus int          `json:"proficiency_bonus"`
+	PassiveWisdom    int          `json:"passive_wisdom"`
 	Skills           Skills       `json:"skills"`
 	SavingThrows     SavingThrows `json:"saving_throws"`
-	Appearance       Appearance   `json:"appearance"`
 }
 
-type Appearance struct {
-	Gender string `json:"gender"`
-	Age    int    `json:"age"`
-	Eyes   string `json:"eyes"`
-	Height int    `json:"height"`
-	Skin   string `json:"skin"`
-	Weight int    `json:"weight"`
-	Hair   string `json:"hair"`
-}
 type Ability struct {
 	Strength       int `json:"strength"`
 	Dexterity      int `json:"dexterity"`
@@ -52,6 +40,7 @@ type Skills struct {
 	Insight        skill `json:"insight"`
 	Intimidation   skill `json:"intimidation"`
 	Investigation  skill `json:"investigation"`
+	Magic          skill `json:"magic"`
 	Medicine       skill `json:"medicine"`
 	Nature         skill `json:"nature"`
 	Perception     skill `json:"perception"`

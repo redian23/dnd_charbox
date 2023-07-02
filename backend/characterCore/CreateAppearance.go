@@ -1,9 +1,22 @@
-package classes
+package characterCore
 
 import (
 	"fmt"
 	"github.com/mazen160/go-random"
 )
+
+func GenerateAppearance() Appearance {
+	var appearance Appearance
+
+	appearance.Gender = setGender()
+	appearance.Age = setAge()
+	appearance.Eyes = setEyesColor()
+	appearance.Height = setHeight()
+	appearance.Weight = setWeight(appearance.Height)
+	appearance.Hair = setHairColor()
+
+	return appearance
+}
 
 func setGender() string {
 	var gender string
@@ -45,7 +58,7 @@ func setHairColor() string {
 
 // Высчитывать от значений BodyDifficulty
 func setHeight() int {
-	height, _ := random.IntRange(140, 210)
+	height, _ := random.IntRange(150, 210)
 	return height
 }
 

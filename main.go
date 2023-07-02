@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"pregen/api"
+	"pregen/backend/backgr"
 	"pregen/db"
 	"strings"
 )
@@ -15,6 +16,7 @@ var assetsSitePath, assetsSiteRootPath string
 func init() {
 	InitServerPathVars(true)
 	db.CheckPostgresDB()
+	backgr.GenerateBackground("")
 }
 
 func InitServerPathVars(status bool) {
@@ -45,8 +47,8 @@ func main() {
 			api.GetMultiRoll(c)
 		})
 
-		v1.GET("/get-class", func(c *gin.Context) {
-			api.GetRandomClass(c)
+		v1.GET("/get-character", func(c *gin.Context) {
+			api.GetRandomCharacter(c)
 		})
 
 	}

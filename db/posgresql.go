@@ -71,11 +71,15 @@ func insertToTable(tableName string, table interface{}) {
 		}
 	}(db)
 }
-func SelectJsonFromRaceTable() {
+
+//	rows, err := db.Query("SELECT * FROM races_json;")
+
+func SelectJsonFromPgTable(queryText string) []byte {
 	db, _ := connectToDB()
 
-	var table RacePostgresTable
-	rows, err := db.Query("SELECT * FROM races_json;")
+	var byteJsonData []byte
+	var table PostgresTable
+	rows, err := db.Query(queryText)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -85,6 +89,8 @@ func SelectJsonFromRaceTable() {
 		if err = rows.Scan(&table.ID, &table.Data); err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(table.Data.RaceAbility)
 	}
+
+	byteJsonData = table.Data
+	return byteJsonData
 }
