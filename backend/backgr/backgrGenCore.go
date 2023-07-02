@@ -1,12 +1,31 @@
 package backgr
 
 import (
+	"encoding/json"
 	"github.com/mazen160/go-random"
+	"pregen/backend/classes"
 )
 
-func setRandomBackgroundName(backData BackgroundJsonStruct) (string, string) {
-	randElem, _ := random.IntRange(0, len(backData.Backgrounds))
-	return backData.Backgrounds[randElem].BackgroundName, backData.Backgrounds[randElem].BackgroundNameRu
+func backgroundAnalyze(className string) string {
+	var chars classes.CharacteristicsForClass
+	json.Unmarshal(classes.RaceCharactsJsonData, &chars)
+
+	for _, char := range chars.Data {
+		if className == char.ClassName {
+			var rollNum int
+			rollNum, _ = random.IntRange(0, len(char.Background)-1)
+			return char.Background[rollNum]
+		}
+	}
+	return ""
+}
+func setBackgroundNameRU(bgName string, backData BackgroundJsonStruct) string {
+	for _, background := range backData.Backgrounds {
+		if background.BackgroundName == bgName {
+			return background.BackgroundNameRu
+		}
+	}
+	return ""
 }
 
 func setBackgroundType(bgName string, backData BackgroundJsonStruct) string {
@@ -55,9 +74,9 @@ func setDescription(bgName string, backData BackgroundJsonStruct) string {
 func setCharacterTrait(bgName string, backData BackgroundJsonStruct) string {
 	for _, background := range backData.Backgrounds {
 		if background.BackgroundName == bgName {
-			var rollNumOfType int
-			rollNumOfType, _ = random.IntRange(0, 7)
-			return background.CharacterTrait.Value[rollNumOfType]
+			var rollNum int
+			rollNum, _ = random.IntRange(0, 7)
+			return background.CharacterTrait.Value[rollNum]
 		}
 	}
 	return ""
@@ -69,9 +88,9 @@ func setIdeal(bgName string, backData BackgroundJsonStruct) string {
 			background.Ideal.Evil, background.Ideal.Neutral, background.Ideal.Chaotic}
 
 		if background.BackgroundName == bgName {
-			var rollNumOfType int
-			rollNumOfType, _ = random.IntRange(0, 5)
-			return wvArray[rollNumOfType]
+			var rollNum int
+			rollNum, _ = random.IntRange(0, 5)
+			return wvArray[rollNum]
 		}
 	}
 	return ""
@@ -80,9 +99,9 @@ func setIdeal(bgName string, backData BackgroundJsonStruct) string {
 func setAffection(bgName string, backData BackgroundJsonStruct) string {
 	for _, background := range backData.Backgrounds {
 		if background.BackgroundName == bgName {
-			var rollNumOfType int
-			rollNumOfType, _ = random.IntRange(0, 5)
-			return background.Affection.Value[rollNumOfType]
+			var rollNum int
+			rollNum, _ = random.IntRange(0, 5)
+			return background.Affection.Value[rollNum]
 		}
 	}
 	return ""
@@ -90,9 +109,9 @@ func setAffection(bgName string, backData BackgroundJsonStruct) string {
 func setWeakness(bgName string, backData BackgroundJsonStruct) string {
 	for _, background := range backData.Backgrounds {
 		if background.BackgroundName == bgName {
-			var rollNumOfType int
-			rollNumOfType, _ = random.IntRange(0, 5)
-			return background.Weakness.Value[rollNumOfType]
+			var rollNum int
+			rollNum, _ = random.IntRange(0, 5)
+			return background.Weakness.Value[rollNum]
 		}
 	}
 	return ""
