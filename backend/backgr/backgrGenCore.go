@@ -1,7 +1,6 @@
 package backgr
 
 import (
-	"fmt"
 	"github.com/mazen160/go-random"
 )
 
@@ -14,7 +13,6 @@ func setBackgroundType(bgName string, backData BackgroundJsonStruct) string {
 	var bgText string
 
 	for _, background := range backData.Backgrounds {
-		fmt.Println(background.BackgroundName)
 		if background.BackgroundName == bgName && background.Type.Value != nil {
 			var rollNumOfType int
 
@@ -98,4 +96,13 @@ func setWeakness(bgName string, backData BackgroundJsonStruct) string {
 		}
 	}
 	return ""
+}
+
+func setSkillMastery(bgName string, backData BackgroundJsonStruct) []string {
+	for _, background := range backData.Backgrounds {
+		if background.BackgroundName == bgName {
+			return background.SkillMastery
+		}
+	}
+	return nil
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>{{.title}}</title>
@@ -15,9 +16,10 @@
             </p>
             <p>
                 <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Bulka Generator</button>
-                <button class="button is-dark">Export to LongStoryShort</button>
-
+                <button class="button is-warning" onclick="downloadObjectAsJson()" style="margin-right: 1rem; margin-left: 1rem;" >Download JSON</button>
+                <button class="button is-dark" >Export to LongStoryShort</button>
             </p>
+            <p><label id="block_button_warning"></label></p>
         </div>
     </section>
 </head>
@@ -110,22 +112,20 @@
             <div class="tile is-parent">
                 <article class="tile is-child box">
             <article class="tile is-child">
-                <p class="title">Background: {Story}</p>
-            </article>
-            <article class="tile is-child">
-                <p class="title">Alignment: {Neutral}</p>
+                <p class="title">Background: <label id="lbl_background_name"></label>
+                    <br>Type: <label id="lbl_background_type"></label> </p>
             </article>
         </article>
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child box">
-        <article class="tile is-child">
-            <p class="title">Level: [ 1 ]</p>
-        </article>
-        <article class="tile is-child">
-            <p class="title">Exp Points: [ 0 ]</p>
-        </article>
-        </article>
+                    <article class="tile is-child">
+                        <p class="title">Alignment: {Neutral}</p>
+                    </article>
+                    <article class="tile is-child">
+                         <p class="title">Level: [ 1 ] Exp Points: [ 0 ]</p>
+                    </article>
+                </article>
             </div>
         </div>
         <div name="Main Page" class="tile is-vertical is-child">
@@ -183,25 +183,26 @@
                         <p><label class="radio"><input type="radio" name="answer" disabled> [ <label id="lbl_Survival"> </label> ] Survival (Wis)</label></p>
                     </article>
                 </div>
-                <div class="tile is-parent is-vertical">
-                    <article class="tile is-child box">
-                        <p class="title">Loading...</p>
-                    </article>
+                <div name="Background INFO" class="tile is-parent is-vertical">
                     <article class="tile is-child  box">
-                        <p class="title">Loading... </p>
+                        <p class="subtitle">Description: <label id="lbl_background_description"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Loading...</p>
+                        <p>Personalization: <label id="lbl_personalization"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="title">Loading...</p>
+                        <p>Character Trait: <label id="lbl_characterTrait"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Loading...</p>
+                        <p>Ideal: <label id="lbl_ideal"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Loading...</p>
+                        <p>Affection: <label id="lbl_affection"></label></p>
                     </article>
+                    <article class="tile is-child box">
+                        <p>Weakness: <label id="lbl_weakness"></label></p>
+                    </article>
+
                 </div>
                 <div class="tile is-parent is-vertical">
                     <article class="tile is-child box">
@@ -290,12 +291,8 @@
     <script>
 
         window.onload = getCurrentClass();
+        var charData
 
-        function selectClass(){
-            var s = document.getElementsByName('select_class')[0];
-            s.addEventListener("change", selectClass);
-            return s.options[s.selectedIndex].value
-        }
 
         function getCurrentClass() {
             const xhr = new XMLHttpRequest();
@@ -304,10 +301,12 @@
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let data = JSON.stringify(JSON.parse(xhr.response));
                     console.log(data)
+                    charData = data
                     writeToAbilitiesLabels(data)
                     writeToSaveThrowsLabels(data)
                     writeToSkillsLabels(data)
                     writeOtherLabels(data)
+                    writeBackgroundLabels(data)
 
                     writeAppearanceLabels(data)
                 } else {
@@ -440,6 +439,18 @@
             }
         }
 
+        function writeBackgroundLabels(data) {
+            document.getElementById("lbl_background_name").innerHTML = JSON.parse(data)["background"]["background_name_ru"];
+            document.getElementById("lbl_background_type").innerHTML = JSON.parse(data)["background"]["type"];
+            document.getElementById("lbl_background_description").innerHTML = JSON.parse(data)["background"]["description"];
+            document.getElementById("lbl_personalization").innerHTML = JSON.parse(data)["background"]["personalization"];
+            document.getElementById("lbl_characterTrait").innerHTML = JSON.parse(data)["background"]["character_trait"];
+            document.getElementById("lbl_ideal").innerHTML = JSON.parse(data)["background"]["ideal"];
+            document.getElementById("lbl_affection").innerHTML = JSON.parse(data)["background"]["affection"];
+            document.getElementById("lbl_weakness").innerHTML = JSON.parse(data)["background"]["weakness"];
+
+        }
+
         function writeAppearanceLabels(data) {
             document.getElementById("lbl_gender").innerHTML = JSON.parse(data)["appearance"]["gender"];
             document.getElementById("lbl_age").innerHTML = JSON.parse(data)["appearance"]["age"];
@@ -449,7 +460,15 @@
             document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["appearance"]["hair"];
         }
 
-
+        function downloadObjectAsJson(){
+            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(charData), null, 2));
+            var downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href",     dataStr);
+            downloadAnchorNode.setAttribute("download","file.json");
+            document.body.appendChild(downloadAnchorNode); // required for firefox
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
     </script>
 </body>
 </html>

@@ -99,7 +99,7 @@ START:
 	var stats = sortStats(cl.Ability)
 	//var jsonData = db.SelectJsonFromPgTable("SELECT * FROM race_characteristic_json;")
 	var chars CharacteristicsForClass
-	json.Unmarshal(raceCharactsJsonData, &chars)
+	json.Unmarshal(RaceCharactsJsonData, &chars)
 
 	for _, char := range chars.Data {
 		for _, cla := range char.CharReq {

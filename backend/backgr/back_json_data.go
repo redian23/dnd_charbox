@@ -11,7 +11,7 @@ var backJsonData = []byte(`{
             "Acrobatics",
             "Performance"
          ],
-         "amplua":{
+         "type":{
             "dice":"D10",
             "value":[
                "Акробат",
@@ -80,7 +80,7 @@ var backJsonData = []byte(`{
             "Stealth",
             "SleightOfHand"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -137,7 +137,7 @@ var backJsonData = []byte(`{
             "History",
             "Persuasion"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -194,7 +194,7 @@ var backJsonData = []byte(`{
             "Insight",
             "Persuasion"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -251,7 +251,7 @@ var backJsonData = []byte(`{
             "Athletics",
             "Perception"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -308,7 +308,7 @@ var backJsonData = []byte(`{
             "History",
             "Arcana"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -365,7 +365,7 @@ var backJsonData = []byte(`{
             "Survival",
             "Animal Handling"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -422,7 +422,7 @@ var backJsonData = []byte(`{
             "Medicine",
             "Religion"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -479,7 +479,7 @@ var backJsonData = []byte(`{
             "Athletics",
             "Perception"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -536,7 +536,7 @@ var backJsonData = []byte(`{
             "Deception",
             "Stealth"
          ],
-         "amplua":{
+         "type":{
             "dice":"D8",
             "value":[
                "Взломщик",
@@ -603,7 +603,7 @@ var backJsonData = []byte(`{
             "Insight",
             "Religion"
          ],
-         "amplua":{
+         "type":{
             
          },
          "character_trait":{
@@ -660,7 +660,7 @@ var backJsonData = []byte(`{
             "Athletics",
             "Intimidation"
          ],
-         "amplua":{
+         "type":{
             "dice":"D8",
             "value":[
                "Офицер",
@@ -727,7 +727,7 @@ var backJsonData = []byte(`{
             "Athletics",
             "Survival"
          ],
-         "amplua":{
+         "type":{
             "dice":"D10",
             "value":[
                "Лесник",
@@ -796,7 +796,7 @@ var backJsonData = []byte(`{
             "Deception",
             "Sleight Of Hand"
          ],
-         "amplua":{
+         "type":{
             "dice":"D6",
             "value":[
                "Я мухлюю в азартных играх.",

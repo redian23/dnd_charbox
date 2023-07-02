@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"net/http"
 	"pregen/api"
-	"pregen/backend/backgr"
 	"pregen/db"
 	"strings"
 )
@@ -14,9 +13,8 @@ var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
-	InitServerPathVars(true)
+	InitServerPathVars(false)
 	db.CheckPostgresDB()
-	backgr.GenerateBackground("")
 }
 
 func InitServerPathVars(status bool) {
@@ -80,6 +78,6 @@ func main() {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
 
-	//router.Run(":848") //local
-	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	router.Run(":848") //local
+	//router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
