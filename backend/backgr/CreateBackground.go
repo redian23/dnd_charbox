@@ -4,16 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"pregen/db"
 )
 
 func GenerateBackground(className string) Background {
 
 	var bg Background
 	var backData BackgroundJsonStruct
-	var jsonData = db.SelectJsonFromPgTable("SELECT * FROM backgrounds_json;")
+	//var jsonData = db.SelectJsonFromPgTable("SELECT * FROM backgrounds_json;")
 
-	err := json.Unmarshal(jsonData, &backData)
+	err := json.Unmarshal(backJsonData, &backData)
 	if err != nil {
 		log.Println(err)
 	}

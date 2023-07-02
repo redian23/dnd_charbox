@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"pregen/backend/dice"
-	"pregen/db"
 	"reflect"
 	"sort"
 )
@@ -98,9 +97,9 @@ func statAnalyze(cl Class) (string, Ability) {
 START:
 	cl.Ability = rerollClassAbilitiesStats()
 	var stats = sortStats(cl.Ability)
-	var jsonData = db.SelectJsonFromPgTable("SELECT * FROM race_characteristic_json;")
+	//var jsonData = db.SelectJsonFromPgTable("SELECT * FROM race_characteristic_json;")
 	var chars CharacteristicsForClass
-	json.Unmarshal(jsonData, &chars)
+	json.Unmarshal(raceCharactsJsonData, &chars)
 
 	for _, char := range chars.Data {
 		for _, cla := range char.CharReq {

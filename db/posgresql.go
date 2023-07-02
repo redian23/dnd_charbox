@@ -59,7 +59,7 @@ func CheckPostgresDB() {
 func insertToTable(tableName string, table interface{}) {
 	db, err := connectToDB()
 
-	_, err = db.Exec("INSERT INTO "+tableName+" (data) VALUES($1)", table)
+	_, err = db.Exec("INSERT INTO"+tableName+" (data) VALUES($1)", table)
 	if err != nil {
 		log.Fatal(err)
 	}
