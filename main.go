@@ -16,6 +16,7 @@ var assetsSitePath, assetsSiteRootPath string
 func init() {
 	InitServerPathVars(true)
 	db.CheckPostgresDB()
+
 	backgr.GenerateBackground("")
 }
 
