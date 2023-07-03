@@ -13,13 +13,12 @@ var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
 
 func init() {
-	InitServerPathVars(true)
-	db.CheckPostgresDB()
+	InitServerPathVars(false)
+	db.PingMongoDB()
+	db.ReadFromDB("", "")
 }
 
 func InitServerPathVars(status bool) {
-	db.InitPostgresENV(status)
-
 	if status == true {
 		assetsSitePath = "/usr/share/nginx/html/assets"
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
@@ -65,7 +64,7 @@ func main() {
 	})
 
 	router.GET("/test", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "character_box.html", gin.H{
+		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
 			"title": "Character Box",
 		})
 	})
@@ -78,6 +77,6 @@ func main() {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
 
-	//router.Run(":848") //local
-	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	router.Run(":848") //local
+	//router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }

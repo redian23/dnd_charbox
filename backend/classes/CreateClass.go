@@ -8,7 +8,7 @@ func GenerateClass() Class {
 	class.Inspiration = true
 	class.ProficiencyBonus = 2
 
-	class.ClassName, class.Ability = statAnalyze(class)
+	class.ClassName, class.ClassNameRU, class.Ability = statAnalyze(class)
 	class.Modifier = setModifiersForClass(class.Ability)
 	class.SavingThrows = setSaveThrowsForClass(class.Modifier)
 	class.Skills = setSkillsForClass(nil, class.Modifier)

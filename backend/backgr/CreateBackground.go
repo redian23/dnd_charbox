@@ -11,7 +11,7 @@ func GenerateBackground(className string) Background {
 	var backData BackgroundJsonStruct
 	//var jsonData = db.SelectJsonFromPgTable("SELECT * FROM backgrounds_json;")
 
-	err := json.Unmarshal(backJsonData, &backData)
+	err := json.Unmarshal(BackJsonData, &backData)
 	if err != nil {
 		log.Println(err)
 	}

@@ -1,357 +1,370 @@
 package classes
 
-var RaceCharactsJsonData = []byte(`{
-   "data":[
-      {
-         "charReq":[
-            [
-               "Intelligence",
-               "BodyDifficulty",
-               "Charisma"
-            ],
-            [
-               "Intelligence",
-               "Dexterity",
-               "Charisma"
-            ],
-            [
-               "Intelligence",
-               "Wisdom",
-               "Charisma"
-            ]
+var RaceCharactsJsonData = []byte(`[
+   {
+      "charReq":[
+         [
+            "Intelligence",
+            "BodyDifficulty",
+            "Charisma"
          ],
-         "className":"Wizard",
-         "background":[
-            "Guild artisan",
-            "Sage",
-            "Soldier",
-            "Folk hero"
-         ]
-      },
-      {
-         "charReq":[
-            [
-               "Intelligence",
-               "Dexterity",
-               "BodyDifficulty"
-            ],
-            [
-               "Intelligence",
-               "Dexterity",
-               "Wisdom"
-            ]
+         [
+            "Intelligence",
+            "Dexterity",
+            "Charisma"
          ],
-         "className":"Alchemist",
-         "background":[
-            "Noble",
-            "Guild artisan",
-            "Soldier"
+         [
+            "Intelligence",
+            "Wisdom",
+            "Charisma"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Strength",
-               "Dexterity",
-               "Intelligence"
-            ],
-            [
-               "Strength",
-               "Dexterity",
-               "BodyDifficulty"
-            ],
-            [
-               "Strength",
-               "Dexterity",
-               "Charisma"
-            ]
+      ],
+      "className":"Wizard",
+      "classNameRU":"Волшебник",
+      "background":[
+         "Guild artisan",
+         "Sage",
+         "Soldier",
+         "Folk hero"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Intelligence",
+            "Dexterity",
+            "BodyDifficulty"
          ],
-         "className":"Fighter",
-         "background":[
-            "Urchin",
-            "Noble",
-            "Sailor",
-            "Knight",
-            "Folk hero",
-            "Soldier",
-            "Outlander"
+         [
+            "Intelligence",
+            "Dexterity",
+            "Wisdom"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Strength",
-               "BodyDifficulty",
-               "Wisdom"
-            ],
-            [
-               "Strength",
-               "BodyDifficulty",
-               "Charisma"
-            ],
-            [
-               "Strength",
-               "BodyDifficulty",
-               "Intelligence"
-            ]
+      ],
+      "className":"Alchemist",
+      "classNameRU":"Алхимик",
+      "background":[
+         "Noble",
+         "Guild artisan",
+         "Soldier"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Strength",
+            "Dexterity",
+            "Intelligence"
          ],
-         "className":"Barbarian",
-         "background":[
-            "Sailor",
-            "Folk hero",
-            "Pirate",
-            "Soldier",
-            "Outlander"
-         ]
-      },
-      {
-         "charReq":[
-            [
-               "Strength",
-               "Charisma",
-               "BodyDifficulty"
-            ],
-            [
-               "Strength",
-               "Charisma",
-               "Wisdom"
-            ]
+         [
+            "Strength",
+            "Dexterity",
+            "BodyDifficulty"
          ],
-         "className":"Paladin",
-         "background":[
-            "Noble",
-            "Hermit",
-            "Soldier"
+         [
+            "Strength",
+            "Dexterity",
+            "Charisma"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Dexterity",
-               "Wisdom",
-               "Strength"
-            ]
+      ],
+      "className":"Fighter",
+      "classNameRU":"Воин",
+      "background":[
+         "Urchin",
+         "Noble",
+         "Sailor",
+         "Knight",
+         "Folk hero",
+         "Soldier",
+         "Outlander"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Strength",
+            "BodyDifficulty",
+            "Wisdom"
          ],
-         "className":"Monk",
-         "background":[
-            "Folk hero",
-            "Hermit",
-            "Acolyte"
-         ]
-      },
-      {
-         "charReq":[
-            [
-               "Dexterity",
-               "BodyDifficulty",
-               "Charisma"
-            ],
-            [
-               "Dexterity",
-               "BodyDifficulty",
-               "Wisdom"
-            ]
+         [
+            "Strength",
+            "BodyDifficulty",
+            "Charisma"
          ],
-         "className":"Alternative Monk",
-         "background":[
-            "Sage",
-            "Hermit",
-            "Criminal",
-            "Acolyte",
-            "Soldier",
-            "Outlander",
-            "Charlatan"
+         [
+            "Strength",
+            "BodyDifficulty",
+            "Intelligence"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Dexterity",
-               "Intelligence",
-               "Charisma"
-            ],
-            [
-               "Dexterity",
-               "Intelligence",
-               "Wisdom"
-            ]
+      ],
+      "className":"Barbarian",
+      "classNameRU":"Варвар",
+      "background":[
+         "Sailor",
+         "Folk hero",
+         "Pirate",
+         "Soldier",
+         "Outlander"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Strength",
+            "Charisma",
+            "BodyDifficulty"
          ],
-         "className":"Rogue",
-         "background":[
-            "Urchin",
-            "Pirate",
-            "Criminal",
-            "Charlatan",
-            "Outlander"
+         [
+            "Strength",
+            "Charisma",
+            "Wisdom"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Dexterity",
-               "Wisdom",
-               "Charisma"
-            ],
-            [
-               "Strength",
-               "Wisdom",
-               "Dexterity"
-            ]
+      ],
+      "className":"Paladin",
+      "classNameRU":"Паладин",
+      "background":[
+         "Noble",
+         "Hermit",
+         "Soldier"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Dexterity",
+            "Wisdom",
+            "Strength"
+         ]
+      ],
+      "className":"Monk",
+      "classNameRU":"Монах",
+      "background":[
+         "Folk hero",
+         "Hermit",
+         "Acolyte"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Dexterity",
+            "BodyDifficulty",
+            "Charisma"
          ],
-         "className":"Ranger",
-         "background":[
-            "Guild artisan",
-            "Folk hero",
-            "Criminal",
-            "Outlander"
+         [
+            "Dexterity",
+            "BodyDifficulty",
+            "Wisdom"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Wisdom",
-               "BodyDifficulty",
-               "Dexterity"
-            ]
+      ],
+      "className":"Alternative Monk",
+      "classNameRU":"Другой Монах",
+      "background":[
+         "Sage",
+         "Hermit",
+         "Criminal",
+         "Acolyte",
+         "Soldier",
+         "Outlander",
+         "Charlatan"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Dexterity",
+            "Intelligence",
+            "Charisma"
          ],
-         "className":"Druid",
-         "background":[
-            "Guild artisan",
-            "Folk hero",
-            "Hermit",
-            "Acolyte",
-            "Outlander"
+         [
+            "Dexterity",
+            "Intelligence",
+            "Wisdom"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Wisdom",
-               "BodyDifficulty",
-               "Strength"
-            ],
-            [
-               "Wisdom",
-               "BodyDifficulty",
-               "Intelligence"
-            ]
+      ],
+      "className":"Rogue",
+      "classNameRU":"Разбойник",
+      "background":[
+         "Urchin",
+         "Pirate",
+         "Criminal",
+         "Charlatan",
+         "Outlander"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Dexterity",
+            "Wisdom",
+            "Charisma"
          ],
-         "className":"Shaman",
-         "background":[
-            "Urchin",
-            "Noble",
-            "Guild artisan",
-            "Sailor",
-            "Sage",
-            "Folk hero",
-            "Hermit",
-            "Pirate",
-            "Criminal",
-            "Acolyte",
-            "Soldier",
-            "Outlander",
-            "Charlatan"
+         [
+            "Strength",
+            "Wisdom",
+            "Dexterity"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Wisdom",
-               "BodyDifficulty",
-               "Charisma"
-            ],
-            [
-               "Wisdom",
-               "Strength",
-               "Charisma"
-            ]
+      ],
+      "className":"Ranger",
+      "classNameRU":"Лучник",
+      "background":[
+         "Guild artisan",
+         "Folk hero",
+         "Criminal",
+         "Outlander"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Wisdom",
+            "BodyDifficulty",
+            "Dexterity"
+         ]
+      ],
+      "className":"Druid",
+      "classNameRU":"Друид",
+      "background":[
+         "Guild artisan",
+         "Folk hero",
+         "Hermit",
+         "Acolyte",
+         "Outlander"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Wisdom",
+            "BodyDifficulty",
+            "Strength"
          ],
-         "className":"Cleric",
-         "background":[
-            "Sage",
-            "Folk hero",
-            "Hermit",
-            "Acolyte",
-            "Charlatan"
+         [
+            "Wisdom",
+            "BodyDifficulty",
+            "Intelligence"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Charisma",
-               "BodyDifficulty",
-               "Wisdom"
-            ]
+      ],
+      "className":"Shaman",
+      "classNameRU":"Шаман",
+      "background":[
+         "Urchin",
+         "Noble",
+         "Guild artisan",
+         "Sailor",
+         "Sage",
+         "Folk hero",
+         "Hermit",
+         "Pirate",
+         "Criminal",
+         "Acolyte",
+         "Soldier",
+         "Outlander",
+         "Charlatan"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Wisdom",
+            "BodyDifficulty",
+            "Charisma"
          ],
-         "className":"Warlock",
-         "background":[
-            "Hermit",
-            "Sage",
-            "Charlatan"
+         [
+            "Wisdom",
+            "Strength",
+            "Charisma"
          ]
-      },
-      {
-         "charReq":[
-            [
-               "Charisma",
-               "BodyDifficulty",
-               "Intelligence"
-            ]
+      ],
+      "className":"Cleric",
+      "classNameRU":"Клирик",
+      "background":[
+         "Sage",
+         "Folk hero",
+         "Hermit",
+         "Acolyte",
+         "Charlatan"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Charisma",
+            "BodyDifficulty",
+            "Wisdom"
+         ]
+      ],
+      "className":"Warlock",
+      "classNameRU":"Чернокнижник",
+      "background":[
+         "Hermit",
+         "Sage",
+         "Charlatan"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Charisma",
+            "BodyDifficulty",
+            "Intelligence"
+         ]
+      ],
+      "className":"Sorcerer",
+      "classNameRU":"Заклинатель",
+      "background":[
+         "Guild artisan",
+         "Sage",
+         "Folk hero",
+         "Hermit"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Charisma",
+            "Dexterity",
+            "Wisdom"
          ],
-         "className":"Sorcerer",
-         "background":[
-            "Guild artisan",
-            "Sage",
-            "Folk hero",
-            "Hermit"
-         ]
-      },
-      {
-         "charReq":[
-            [
-               "Charisma",
-               "Dexterity",
-               "Wisdom"
-            ],
-            [
-               "Charisma",
-               "Dexterity",
-               "BodyDifficulty"
-            ],
-            [
-               "Charisma",
-               "Dexterity",
-               "Intelligence"
-            ]
+         [
+            "Charisma",
+            "Dexterity",
+            "BodyDifficulty"
          ],
-         "className":"Bard",
-         "background":[
-            "Artist",
-            "Noble",
-            "Urchin",
-            "Charlatan"
+         [
+            "Charisma",
+            "Dexterity",
+            "Intelligence"
          ]
-      }
-   ,
-      {
-         "charReq":[
-            [
-               "Intelligence",
-               "BodyDifficulty",
-               "Wisdom"
-            ],
-            [
-               "Intelligence",
-               "BodyDifficulty",
-               "Dexterity"
-            ]
+      ],
+      "className":"Bard",
+      "classNameRU":"Бард",
+      "background":[
+         "Artist",
+         "Noble",
+         "Urchin",
+         "Charlatan"
+      ]
+   },
+   {
+      "charReq":[
+         [
+            "Intelligence",
+            "BodyDifficulty",
+            "Wisdom"
          ],
-         "className":"Artificer",
-         "background":[
-            "Guild artisan",
-            "Sage",
-            "Folk hero"
+         [
+            "Intelligence",
+            "BodyDifficulty",
+            "Dexterity"
          ]
-      }
-   ]
-}`)
+      ],
+      "className":"Artificer",
+      "classNameRU":"Изобретатель",
+      "background":[
+         "Guild artisan",
+         "Sage",
+         "Folk hero"
+      ]
+   }
+]`)

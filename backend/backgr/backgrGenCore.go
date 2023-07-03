@@ -10,7 +10,7 @@ func backgroundAnalyze(className string) string {
 	var chars classes.CharacteristicsForClass
 	json.Unmarshal(classes.RaceCharactsJsonData, &chars)
 
-	for _, char := range chars.Data {
+	for _, char := range chars {
 		if className == char.ClassName {
 			var rollNum int
 			rollNum, _ = random.IntRange(0, len(char.Background)-1)
@@ -49,7 +49,7 @@ func setBackgroundType(bgName string, backData BackgroundJsonStruct) string {
 		}
 	}
 	if bgText == "" { // В свиче дефаутл не работает, если к верхнему ифу кинуть елсе то он затирает переменную. Да так надо.
-		bgText = "Default"
+		bgText = "Стандартный"
 	}
 	return bgText
 }

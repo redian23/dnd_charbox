@@ -1,6 +1,6 @@
 package backgr
 
-var backJsonData = []byte(`{
+var BackJsonData = []byte(`{
    "backgrounds":[
       {
          "background_name":"Artist",

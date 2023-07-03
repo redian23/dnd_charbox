@@ -22,9 +22,9 @@ func setGender() string {
 	var gender string
 	count, _ := random.IntRange(0, 10)
 	if count%2 == 0 {
-		gender = "Man"
+		gender = "Мужской"
 	} else {
-		gender = "Woman"
+		gender = "Женский"
 	}
 	return gender
 }
@@ -35,7 +35,7 @@ func setAge() int {
 }
 
 func setEyesColor() string {
-	var colors = []string{"Yellow", "Blue", "Red", "Green", "Brown", "Azure"}
+	var colors = []string{"Желтый", "Синий", "Красный", "Зеленый", "Карий", "Морская волна"}
 
 	color, err := random.Choice(colors)
 	if err != nil {
@@ -46,7 +46,7 @@ func setEyesColor() string {
 }
 
 func setHairColor() string {
-	var colors = []string{"Yellow", "Blond", "Black", "Blue", "Red", "Green", "Brown", "Azure"}
+	var colors = []string{"Желтые", "Белые", "Черные", "Синие", "Красные", "Зеленые", "Каштановые", "Бирюзовые", "Рыжие"}
 
 	color, err := random.Choice(colors)
 	if err != nil {

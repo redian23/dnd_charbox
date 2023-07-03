@@ -2,7 +2,6 @@ package classes
 
 import (
 	"encoding/json"
-	"fmt"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -90,10 +89,9 @@ func sortStats(abil Ability) []string {
 			//fmt.Println(k, statsMap[k])
 		}
 	}
-	fmt.Println("1 - ", statsForFindClassSpec)
 	return statsForFindClassSpec
 }
-func statAnalyze(cl Class) (string, Ability) {
+func statAnalyze(cl Class) (string, string, Ability) {
 START:
 	cl.Ability = rerollClassAbilitiesStats()
 	var stats = sortStats(cl.Ability)
@@ -101,10 +99,11 @@ START:
 	var chars CharacteristicsForClass
 	json.Unmarshal(RaceCharactsJsonData, &chars)
 
-	for _, char := range chars.Data {
+	for _, char := range chars {
 		for _, cla := range char.CharReq {
 			if reflect.DeepEqual(stats, cla) {
 				cl.ClassName = char.ClassName
+				cl.ClassNameRU = char.ClassNameRU
 			}
 		}
 	}
@@ -115,7 +114,7 @@ START:
 	}
 	//fmt.Println(cl.ClassName)
 	//fmt.Println(cl.Ability)
-	return cl.ClassName, cl.Ability
+	return cl.ClassName, cl.ClassNameRU, cl.Ability
 }
 
 func setModifiersForClass(ab Ability) Modifier {
@@ -223,7 +222,6 @@ func setSkillsForClass(profSkills []string, modifier Modifier) Skills {
 			sk.Arcana = skill{"Arcana", modifier.Intelligence, prof}
 			sk.History = skill{"History", modifier.Intelligence, prof}
 			sk.Investigation = skill{"Investigation", modifier.Intelligence, prof}
-			sk.Magic = skill{"Magic", modifier.Intelligence, prof}
 			sk.Nature = skill{"Nature", modifier.Intelligence, prof}
 			sk.Religion = skill{"Religion", modifier.Intelligence, prof}
 		case modifier.Wisdom == mobifierArray[i]:

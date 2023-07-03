@@ -2,6 +2,7 @@ package classes
 
 type Class struct {
 	ClassName        string       `json:"class_name"`
+	ClassNameRU      string       `json:"class_name_ru"`
 	Description      string       `json:"description"`
 	Ability          Ability      `json:"ability"`
 	Modifier         Modifier     `json:"modifier"`

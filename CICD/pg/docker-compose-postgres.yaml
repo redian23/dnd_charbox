@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  db:
+    image: postgres
+    container_name: psgr-master
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: on-failure
+    networks:
+      network:
+        ipv4_address: 172.20.0.2
+volumes:
+  pgdata:
+
+networks:
+   network:
+     driver: bridge
+     ipam:
+       config:
+         - subnet: 172.20.0.0/16
+           gateway: 172.20.0.1
