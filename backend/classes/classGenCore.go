@@ -2,6 +2,7 @@ package classes
 
 import (
 	"encoding/json"
+	"fmt"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -203,38 +204,116 @@ func setSaveThrowsForClass(modifier Modifier) SavingThrows {
 	return saveTh
 }
 
-func setSkillsForClass(profSkills []string, modifier Modifier) Skills {
+func SetSkillsForClass(profSkills []string, modifier Modifier) Skills {
 
+	fmt.Println("KURWA", profSkills)
 	var sk Skills
-	var prof = false
 	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
 		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
+
+	sk.Athletics.SkillName = "Athletics"
+	sk.Acrobatics.SkillName = "Acrobatics"
+	sk.SleightOfHand.SkillName = "Sleight Of Hand"
+	sk.Stealth.SkillName = "Stealth"
+	sk.Arcana.SkillName = "Arcana"
+	sk.History.SkillName = "History"
+	sk.Investigation.SkillName = "Investigation"
+	sk.Nature.SkillName = "Nature"
+	sk.Religion.SkillName = "Religion"
+	sk.AnimalHandling.SkillName = "Animal Handling"
+	sk.Insight.SkillName = "Insight"
+	sk.Medicine.SkillName = "Medicine"
+	sk.Perception.SkillName = "Perception"
+	sk.Survival.SkillName = "Survival"
+	sk.Deception.SkillName = "Deception"
+	sk.Intimidation.SkillName = "Intimidation"
+	sk.Performance.SkillName = "Performance"
+	sk.Persuasion.SkillName = "Persuasion"
 
 	for i, _ := range mobifierArray {
 		switch {
 		case modifier.Strength == mobifierArray[i]:
-			sk.Athletics = skill{"Athletics", modifier.Strength, prof}
+			sk.Athletics.ModifierValue = modifier.Strength
 		case modifier.Dexterity == mobifierArray[i]:
-			sk.Acrobatics = skill{"Acrobatics", modifier.Dexterity, prof}
-			sk.SleightOfHand = skill{"SleightOfHand", modifier.Dexterity, prof}
-			sk.Stealth = skill{"Stealth", modifier.Dexterity, prof}
+			sk.Acrobatics.ModifierValue = modifier.Dexterity
+			sk.SleightOfHand.ModifierValue = modifier.Dexterity
+			sk.Stealth.ModifierValue = modifier.Dexterity
 		case modifier.Intelligence == mobifierArray[i]:
-			sk.Arcana = skill{"Arcana", modifier.Intelligence, prof}
-			sk.History = skill{"History", modifier.Intelligence, prof}
-			sk.Investigation = skill{"Investigation", modifier.Intelligence, prof}
-			sk.Nature = skill{"Nature", modifier.Intelligence, prof}
-			sk.Religion = skill{"Religion", modifier.Intelligence, prof}
+			sk.Arcana.ModifierValue = modifier.Intelligence
+			sk.History.ModifierValue = modifier.Intelligence
+			sk.Investigation.ModifierValue = modifier.Intelligence
+			sk.Nature.ModifierValue = modifier.Intelligence
+			sk.Religion.ModifierValue = modifier.Intelligence
 		case modifier.Wisdom == mobifierArray[i]:
-			sk.AnimalHandling = skill{"AnimalHandling", modifier.Wisdom, prof}
-			sk.Insight = skill{"Insight", modifier.Wisdom, prof}
-			sk.Medicine = skill{"Medicine", modifier.Wisdom, prof}
-			sk.Perception = skill{"Perception", modifier.Wisdom, prof}
-			sk.Survival = skill{"Survival", modifier.Wisdom, prof}
+			sk.AnimalHandling.ModifierValue = modifier.Wisdom
+			sk.Insight.ModifierValue = modifier.Wisdom
+			sk.Medicine.ModifierValue = modifier.Wisdom
+			sk.Perception.ModifierValue = modifier.Wisdom
+			sk.Survival.ModifierValue = modifier.Wisdom
 		case modifier.Charisma == mobifierArray[i]:
-			sk.Deception = skill{"Deception", modifier.Charisma, prof}
-			sk.Intimidation = skill{"Intimidation", modifier.Charisma, prof}
-			sk.Performance = skill{"Performance", modifier.Charisma, prof}
-			sk.Persuasion = skill{"Persuasion", modifier.Charisma, prof}
+			sk.Deception.ModifierValue = modifier.Charisma
+			sk.Intimidation.ModifierValue = modifier.Charisma
+			sk.Performance.ModifierValue = modifier.Charisma
+			sk.Persuasion.ModifierValue = modifier.Charisma
+		}
+	}
+
+	for _, profSkill := range profSkills {
+		switch profSkill {
+		case sk.Athletics.SkillName:
+			sk.Athletics.Proficiency = true
+			sk.Athletics.ModifierValue = sk.Athletics.ModifierValue + ProficiencyBonus
+		case sk.Acrobatics.SkillName:
+			sk.Acrobatics.Proficiency = true
+			sk.Acrobatics.ModifierValue = sk.Acrobatics.ModifierValue + ProficiencyBonus
+		case sk.SleightOfHand.SkillName:
+			sk.SleightOfHand.Proficiency = true
+			sk.SleightOfHand.ModifierValue = sk.SleightOfHand.ModifierValue + ProficiencyBonus
+		case sk.Stealth.SkillName:
+			sk.Stealth.Proficiency = true
+			sk.Stealth.ModifierValue = sk.Stealth.ModifierValue + ProficiencyBonus
+		case sk.Arcana.SkillName:
+			sk.Arcana.Proficiency = true
+			sk.Arcana.ModifierValue = sk.Arcana.ModifierValue + ProficiencyBonus
+		case sk.History.SkillName:
+			sk.History.Proficiency = true
+			sk.History.ModifierValue = sk.History.ModifierValue + ProficiencyBonus
+		case sk.Investigation.SkillName:
+			sk.Investigation.Proficiency = true
+			sk.Investigation.ModifierValue = sk.Investigation.ModifierValue + ProficiencyBonus
+		case sk.Nature.SkillName:
+			sk.Nature.Proficiency = true
+			sk.Nature.ModifierValue = sk.Nature.ModifierValue + ProficiencyBonus
+		case sk.Religion.SkillName:
+			sk.Religion.Proficiency = true
+			sk.Religion.ModifierValue = sk.Religion.ModifierValue + ProficiencyBonus
+		case sk.AnimalHandling.SkillName:
+			sk.AnimalHandling.Proficiency = true
+			sk.AnimalHandling.ModifierValue = sk.AnimalHandling.ModifierValue + ProficiencyBonus
+		case sk.Insight.SkillName:
+			sk.Insight.Proficiency = true
+			sk.Insight.ModifierValue = sk.Insight.ModifierValue + ProficiencyBonus
+		case sk.Medicine.SkillName:
+			sk.Medicine.Proficiency = true
+			sk.Medicine.ModifierValue = sk.Medicine.ModifierValue + ProficiencyBonus
+		case sk.Perception.SkillName:
+			sk.Perception.Proficiency = true
+			sk.Perception.ModifierValue = sk.Perception.ModifierValue + ProficiencyBonus
+		case sk.Survival.SkillName:
+			sk.Survival.Proficiency = true
+			sk.Survival.ModifierValue = sk.Survival.ModifierValue + ProficiencyBonus
+		case sk.Deception.SkillName:
+			sk.Deception.Proficiency = true
+			sk.Deception.ModifierValue = sk.Deception.ModifierValue + ProficiencyBonus
+		case sk.Intimidation.SkillName:
+			sk.Intimidation.Proficiency = true
+			sk.Intimidation.ModifierValue = sk.Intimidation.ModifierValue + ProficiencyBonus
+		case sk.Performance.SkillName:
+			sk.Performance.Proficiency = true
+			sk.Performance.ModifierValue = sk.Performance.ModifierValue + ProficiencyBonus
+		case sk.Persuasion.SkillName:
+			sk.Persuasion.Proficiency = true
+			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + ProficiencyBonus
 		}
 	}
 	return sk

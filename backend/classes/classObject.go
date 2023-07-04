@@ -41,7 +41,6 @@ type Skills struct {
 	Insight        skill `json:"insight"`
 	Intimidation   skill `json:"intimidation"`
 	Investigation  skill `json:"investigation"`
-	Magic          skill `json:"magic"`
 	Medicine       skill `json:"medicine"`
 	Nature         skill `json:"nature"`
 	Perception     skill `json:"perception"`

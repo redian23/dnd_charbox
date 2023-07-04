@@ -13,6 +13,6 @@ func StartCharacterGenerate() Character {
 	char.Class = classes.GenerateClass()
 	char.Appearance = GenerateAppearance()
 	char.Background = backgr.GenerateBackground(char.Class.ClassName)
-
+	char.Class.Skills = classes.SetSkillsForClass(char.Background.SkillMastery, char.Class.Modifier)
 	return char
 }

@@ -2,7 +2,6 @@ package backgr
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -26,6 +25,5 @@ func GenerateBackground(className string) Background {
 	bg.Ideal = setIdeal(bg.BackgroundName, backData)
 	bg.Affection = setAffection(bg.BackgroundName, backData)
 	bg.Weakness = setWeakness(bg.BackgroundName, backData)
-	fmt.Println(bg)
 	return bg
 }
