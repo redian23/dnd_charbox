@@ -1,19 +1,20 @@
 package backgr
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 )
 
 func GenerateBackground(className string) Background {
 
 	var bg Background
 	var backData BackgroundJsonStruct
-	//var jsonData = db.SelectJsonFromPgTable("SELECT * FROM backgrounds_json;")
 
-	//err := bson.Unmarshal(data, &backData)
-	//if err != nil {
-	//	log.Println(err)
-	//}
+	err := json.Unmarshal(BackJsonData, &backData)
+	if err != nil {
+		log.Println(err)
+	}
 
 	bg.BackgroundName = backgroundAnalyze(className)
 	bg.BackgroundNameRu = setBackgroundNameRU(bg.BackgroundName, backData)

@@ -45,6 +45,9 @@ func setBackgroundType(bgName string, backData BackgroundJsonStruct) string {
 			case "D10":
 				rollNumOfType, _ = random.IntRange(0, 9)
 				bgText = background.Type.Value[rollNumOfType]
+			case "D20":
+				rollNumOfType, _ = random.IntRange(0, 19)
+				bgText = background.Type.Value[rollNumOfType]
 			}
 		}
 	}

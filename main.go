@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"net/http"
 	"pregen/api"
-	"pregen/db"
 	"strings"
 )
 
@@ -14,8 +13,6 @@ var assetsSitePath, assetsSiteRootPath string
 
 func init() {
 	InitServerPathVars(true)
-	db.PingMongoDB()
-	//db.ReadFromDB("", "")
 }
 
 func InitServerPathVars(status bool) {
