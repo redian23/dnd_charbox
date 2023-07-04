@@ -7,11 +7,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
+	"pregen/backend/backgr"
 	"pregen/backend/races"
+	"time"
 )
 
-// Replace the placeholder with your Atlas connection string
 var (
 	cred options.Credential
 )
@@ -22,9 +22,7 @@ const (
 )
 
 func connectToDB() *mongo.Client {
-	cred.AuthSource = "data"
-	cred.Username = "admin"
-	cred.Password = "f2h2f342g"
+
 	// Use the SetServerAPIOptions() method to set the Stable API version to 1
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
 	opts := options.Client().ApplyURI("mongodb://" + address + "/" + dbname).SetServerAPIOptions(serverAPI).SetAuth(cred)
@@ -79,23 +77,32 @@ func TestInsert() {
 	}
 }
 
-func ReadFromDB(dbname, collectionName string) {
+func ReadFromDB(collectionName string) {
 	client := connectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 
 	// begin findOne
-	coll := client.Database("data").Collection("races")
+	coll := client.Database(dbname).Collection(collectionName)
 
-	cursor, err := coll.Find(context.TODO(), bson.D{})
+	var likes []bson.D
+
+	defer client.Disconnect(ctx)
+
+	cursor, err := coll.Find(context.Background(), bson.D{{}})
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	defer cursor.Close(context.TODO())
+	if err = cursor.All(ctx, &likes); err != nil {
+		panic(err)
+	}
+	//fmt.Println(likes)
+	var doc []byte
+	for _, like := range likes {
+		doc, _ = bson.Marshal(like)
 
-	for cursor.Next(context.TODO()) {
-		var data bson.D
-		if err = cursor.Decode(&data); err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(data)
 	}
+	var test backgr.BackBSON
+	err = bson.Unmarshal(doc, &test)
+
+	fmt.Println(test)
 }

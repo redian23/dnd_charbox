@@ -1,8 +1,7 @@
 package backgr
 
 import (
-	"encoding/json"
-	"log"
+	"fmt"
 )
 
 func GenerateBackground(className string) Background {
@@ -11,10 +10,10 @@ func GenerateBackground(className string) Background {
 	var backData BackgroundJsonStruct
 	//var jsonData = db.SelectJsonFromPgTable("SELECT * FROM backgrounds_json;")
 
-	err := json.Unmarshal(BackJsonData, &backData)
-	if err != nil {
-		log.Println(err)
-	}
+	//err := bson.Unmarshal(data, &backData)
+	//if err != nil {
+	//	log.Println(err)
+	//}
 
 	bg.BackgroundName = backgroundAnalyze(className)
 	bg.BackgroundNameRu = setBackgroundNameRU(bg.BackgroundName, backData)
@@ -26,6 +25,6 @@ func GenerateBackground(className string) Background {
 	bg.Ideal = setIdeal(bg.BackgroundName, backData)
 	bg.Affection = setAffection(bg.BackgroundName, backData)
 	bg.Weakness = setWeakness(bg.BackgroundName, backData)
-
+	fmt.Println(bg)
 	return bg
 }
