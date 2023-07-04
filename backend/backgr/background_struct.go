@@ -35,6 +35,7 @@ type BackgroundJsonData struct {
 	BackgroundNameRu string         `json:"background_name_ru"`
 	Description      string         `json:"description"`
 	Personalization  string         `json:"personalization"`
+	Advice           string         `json:"advice"`
 	SkillMastery     []string       `json:"skill_mastery"`
 	Type             Type           `json:"type,omitempty"`
 	CharacterTrait   CharacterTrait `json:"character_trait"`
@@ -43,7 +44,7 @@ type BackgroundJsonData struct {
 	Weakness         Weakness       `json:"weakness"`
 }
 
-type Background struct {
+type BackgroundAnswer struct {
 	BackgroundName   string   `json:"background_name"`
 	BackgroundNameRu string   `json:"background_name_ru"`
 	Description      string   `json:"description"`

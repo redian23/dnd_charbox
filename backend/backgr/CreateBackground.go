@@ -5,9 +5,9 @@ import (
 	"log"
 )
 
-func GenerateBackground(className string) Background {
+func GenerateBackground(className string) BackgroundAnswer {
 
-	var bg Background
+	var bg BackgroundAnswer
 	var backData BackgroundJsonStruct
 
 	err := json.Unmarshal(BackJsonData, &backData)
@@ -19,6 +19,7 @@ func GenerateBackground(className string) Background {
 	bg.BackgroundNameRu = setBackgroundNameRU(bg.BackgroundName, backData)
 	bg.Type = setBackgroundType(bg.BackgroundName, backData)
 	bg.Description = setDescription(bg.BackgroundName, backData)
+	bg.Advice = setAdvice(bg.BackgroundName, backData)
 	bg.SkillMastery = setSkillMastery(bg.BackgroundName, backData)
 	bg.Personalization = setPersonalization(bg.BackgroundName, backData)
 	bg.CharacterTrait = setCharacterTrait(bg.BackgroundName, backData)

@@ -6,12 +6,12 @@ import (
 )
 
 type Character struct {
-	CharacterName string            `json:"character_name"`
-	Level         int               `json:"level"`
-	Experience    int               `json:"experience"`
-	Background    backgr.Background `json:"background"`
-	Class         classes.Class     `json:"class"`
-	Appearance    Appearance        `json:"appearance"`
+	CharacterName string                  `json:"character_name"`
+	Level         int                     `json:"level"`
+	Experience    int                     `json:"experience"`
+	Background    backgr.BackgroundAnswer `json:"background"`
+	Class         classes.Class           `json:"class"`
+	Appearance    Appearance              `json:"appearance"`
 }
 
 type Appearance struct {

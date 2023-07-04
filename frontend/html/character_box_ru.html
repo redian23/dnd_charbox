@@ -155,6 +155,9 @@
                         <p>Персонализация: <label id="lbl_personalization"></label></p>
                     </article>
                     <article class="tile is-child box">
+                        <p>Совет: <label id="lbl_advice"></label></p>
+                    </article>
+                    <article class="tile is-child box">
                         <p>Черта характера: <label id="lbl_characterTrait"></label></p>
                     </article>
                     <article class="tile is-child box">
@@ -407,6 +410,7 @@
             document.getElementById("lbl_background_name").innerHTML = JSON.parse(data)["background"]["background_name_ru"];
             document.getElementById("lbl_background_type").innerHTML = JSON.parse(data)["background"]["type"];
             document.getElementById("lbl_background_description").innerHTML = JSON.parse(data)["background"]["description"];
+            document.getElementById("lbl_advice").innerHTML = JSON.parse(data)["background"]["advice"];
             document.getElementById("lbl_personalization").innerHTML = JSON.parse(data)["background"]["personalization"];
             document.getElementById("lbl_characterTrait").innerHTML = JSON.parse(data)["background"]["character_trait"];
             document.getElementById("lbl_ideal").innerHTML = JSON.parse(data)["background"]["ideal"];

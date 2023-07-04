@@ -56,6 +56,19 @@ func setBackgroundType(bgName string, backData BackgroundJsonStruct) string {
 	}
 	return bgText
 }
+
+func setAdvice(bgName string, backData BackgroundJsonStruct) string {
+	for _, background := range backData.Backgrounds {
+		if background.BackgroundName == bgName {
+			return background.Advice
+		} else {
+			background.Advice = "Смотрите в книге игрока."
+			return background.Advice
+		}
+	}
+	return ""
+}
+
 func setPersonalization(bgName string, backData BackgroundJsonStruct) string {
 	for _, background := range backData.Backgrounds {
 		if background.BackgroundName == bgName {
