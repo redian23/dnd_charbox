@@ -2,7 +2,6 @@ package classes
 
 import (
 	"encoding/json"
-	"fmt"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -205,8 +204,6 @@ func setSaveThrowsForClass(modifier Modifier) SavingThrows {
 }
 
 func SetSkillsForClass(profSkills []string, modifier Modifier) Skills {
-
-	fmt.Println("KURWA", profSkills)
 	var sk Skills
 	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
 		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
