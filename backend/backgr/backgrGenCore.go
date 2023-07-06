@@ -98,18 +98,15 @@ func setCharacterTrait(bgName string, backData BackgroundJsonStruct) string {
 	return ""
 }
 
-func setIdeal(bgName string, backData BackgroundJsonStruct) string {
+func setIdeal(bgName string, backData BackgroundJsonStruct) (string, string) {
 	for _, background := range backData.Backgrounds {
-		var wvArray = []string{background.Ideal.Any, background.Ideal.Good, background.Ideal.Lawful,
-			background.Ideal.Evil, background.Ideal.Neutral, background.Ideal.Chaotic}
-
 		if background.BackgroundName == bgName {
 			var rollNum int
 			rollNum, _ = random.IntRange(0, 5)
-			return wvArray[rollNum]
+			return background.Ideal.Value[rollNum].Text, background.Ideal.Value[rollNum].WorldviewRu
 		}
 	}
-	return ""
+	return "", ""
 }
 
 func setAffection(bgName string, backData BackgroundJsonStruct) string {

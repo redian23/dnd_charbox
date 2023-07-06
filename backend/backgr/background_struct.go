@@ -12,14 +12,14 @@ type CharacterTrait struct {
 	Dice  string   `json:"dice"`
 	Value []string `json:"value"`
 }
+type Value struct {
+	Worldview   string `json:"worldview"`
+	WorldviewRu string `json:"worldview_ru"`
+	Text        string `json:"text"`
+}
 type Ideal struct {
-	Dice    string `json:"dice"`
-	Good    string `json:"Good"`
-	Lawful  string `json:"Lawful"`
-	Chaotic string `json:"chaotic"`
-	Evil    string `json:"Evil"`
-	Neutral string `json:"Neutral"`
-	Any     string `json:"Any"`
+	Dice  string  `json:"dice"`
+	Value []Value `json:"value"`
 }
 type Affection struct {
 	Dice  string   `json:"dice"`
@@ -53,6 +53,7 @@ type BackgroundAnswer struct {
 	SkillMastery     []string `json:"skill_mastery"`
 	Type             string   `json:"type"`
 	CharacterTrait   string   `json:"character_trait"`
+	Worldview        string   `json:"worldview"`
 	Ideal            string   `json:"ideal"`
 	Affection        string   `json:"affection"`
 	Weakness         string   `json:"weakness"`

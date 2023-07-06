@@ -14,24 +14,33 @@
             <p class="subtitle">
                 Желаю удачи в поисках идеального Днд персонажа.
             </p>
-            <p>
-                <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Тыкнуть и Сгенерировать</button>
-                <button class="button is-warning" onclick="downloadObjectAsJson()" style="margin-right: 1rem; margin-left: 1rem;" >Скачать JSON</button>
-                <button class="button is-dark" >Экспортировать в LongStoryShort</button>
-            </p>
+            <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Тыкнуть и Сгенерировать</button>
+            <button class="button is-warning" onclick="downloadObjectAsJson()" >Скачать JSON</button>
+            <button class="button is-dark">Экспортировать в LongStoryShort</button>
             <p><label id="block_button_warning"></label></p>
         </div>
     </section>
 </head>
 <body>
     <style>
-    .div_chat{
-        padding-left: 1rem;
-        font-size: 125%;
+    .subtitle{
+        font-size: 25px;
+        font-weight: bold;
     }
 
+    .subtitle-text{
+        font-size: 20px;
+        font-weight: normal;
+    }
+    .button {
+        margin: 5px;
+    }
+    .div_chat{
+        padding-left: 0.5rem;
+        font-size: 20px;
+    }
     .radio{
-        font-size: 125%;
+        font-size: 20px;
     }
     .tile.is-parent {
         padding: 0.5rem;
@@ -48,6 +57,7 @@
         border-radius: 0;
         margin-bottom: 0;
     }
+
     </style>
 <!--------------------------------------------------------------------------------------------------------------------->
 
@@ -78,17 +88,17 @@
                 <article class="tile is-child box">
             <article class="tile is-child">
                 <p class="title">Предыстория: <label id="lbl_background_name"></label>
-                    <br>Типаж: <label id="lbl_background_type"></label> </p>
+                    <br>Типаж: <label id="lbl_background_type"></label></p>
             </article>
         </article>
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child box">
                     <article class="tile is-child">
-                        <p class="title">Мировоззрение: {Нейтральный}</p>
+                        <p class="title">Мировоззрение: <label id="lbl_worldview"></label></p>
                     </article>
                     <article class="tile is-child">
-                         <p class="title">Уровень: [ 1 ] Опыт: [ 0 ]</p>
+                         <p class="title">Уровень: [ 1 ]<br>Опыт: [ 0 ]</p>
                     </article>
                 </article>
             </div>
@@ -96,16 +106,16 @@
         <div name="Main Page" class="tile is-vertical is-child">
             <div class="tile">
                 <div name="CHAR_POINTS" class="tile is-2 is-parent is-vertical">
-                    <article class="tile is-child box">
-                        <div class="div_chat" id="char_div" >
+                        <article class="tile is-child box">
                             <p class="title"> Значения Характеристик</p>
                             <p class="subtitle"> Всего: <label id="lbl_ability_total_info"></label></p>
-                            <p> Сила: [ <label id="lbl_modifier_strength_info"></label> ] ( <label id="lbl_ability_strength_info"></label> )</p>
-                            <p> Ловкость: [ <label id="lbl_modifier_dexterity_info"></label> ] ( <label id="lbl_ability_dexterity_info"></label> )</p>
-                            <p> Телосложение: [ <label id="lbl_modifier_bodyDifficulty_info"></label> ] ( <label id="lbl_ability_bodyDifficulty_info"></label> )</p>
-                            <p> Интеллект: [ <label id="lbl_modifier_intelligence_info"></label> ] ( <label id="lbl_ability_intelligence_info"></label> )</p>
-                            <p> Мудрость: [ <label id="lbl_modifier_wisdom_info"></label> ] ( <label id="lbl_ability_wisdom_info"></label> )</p>
-                            <p> Харизма: [ <label id="lbl_modifier_charisma_info"></label> ] ( <label id="lbl_ability_charisma_info"></label> )</p>
+                            <div class="div_chat" id="char_div" >
+                            <p>Сила: [ <label id="lbl_modifier_strength_info"></label> ] ( <label id="lbl_ability_strength_info"></label> )</p>
+                            <p>Ловкость: [ <label id="lbl_modifier_dexterity_info"></label> ] ( <label id="lbl_ability_dexterity_info"></label> )</p>
+                            <p>Телосложение: [ <label id="lbl_modifier_bodyDifficulty_info"></label> ] ( <label id="lbl_ability_bodyDifficulty_info"></label> )</p>
+                            <p>Интеллект: [ <label id="lbl_modifier_intelligence_info"></label> ] ( <label id="lbl_ability_intelligence_info"></label> )</p>
+                            <p>Мудрость: [ <label id="lbl_modifier_wisdom_info"></label> ] ( <label id="lbl_ability_wisdom_info"></label> )</p>
+                            <p>Харизма: [ <label id="lbl_modifier_charisma_info"></label> ] ( <label id="lbl_ability_charisma_info"></label> )</p>
                         </div>
                     </article>
                     <article class="tile is-child box">
@@ -116,6 +126,9 @@
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_intelligence_info" disabled> [ <label id="lbl_modifier_ST_intelligence_info"> </label> ] Интеллект</label></p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_wisdom_info" disabled> [ <label id="lbl_modifier_ST_wisdom_info"> </label> ] Мудрость</label></p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_charisma_info" disabled> [ <label id="lbl_modifier_ST_charisma_info"> </label> ] Харизма</label></p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p> Loading...</p>
                     </article>
                 </div>
                 <div name="Skills page" class="tile is-3 is-parent is-vertical">
@@ -149,25 +162,25 @@
                 </div>
                 <div name="Background INFO" class="tile is-parent is-vertical">
                     <article class="tile is-child  box">
-                        <p class="subtitle">Описание предыстории: <label id="lbl_background_description"></label></p>
+                        <p class="subtitle">Описание предыстории: <label class="subtitle-text" id="lbl_background_description"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Персонализация: <label id="lbl_personalization"></label></p>
+                        <p class="subtitle">Персонализация: <label class="subtitle-text" id="lbl_personalization"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Совет: <label id="lbl_advice"></label></p>
+                        <p class="subtitle">Совет: <label class="subtitle-text" id="lbl_advice"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Черта характера: <label id="lbl_characterTrait"></label></p>
+                        <p class="subtitle">Черта характера: <label class="subtitle-text" id="lbl_characterTrait"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Идеал: <label id="lbl_ideal"></label></p>
+                        <p class="subtitle">Идеал: <label class="subtitle-text" id="lbl_ideal"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Привязанность: <label id="lbl_affection"></label></p>
+                        <p class="subtitle">Привязанность: <label class="subtitle-text" id="lbl_affection"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p>Слабость: <label id="lbl_weakness"></label></p>
+                        <p class="subtitle">Слабость: <label class="subtitle-text" id="lbl_weakness"></label></p>
                     </article>
                 </div>
             </div>
@@ -414,9 +427,9 @@
             document.getElementById("lbl_personalization").innerHTML = JSON.parse(data)["background"]["personalization"];
             document.getElementById("lbl_characterTrait").innerHTML = JSON.parse(data)["background"]["character_trait"];
             document.getElementById("lbl_ideal").innerHTML = JSON.parse(data)["background"]["ideal"];
+            document.getElementById("lbl_worldview").innerHTML = JSON.parse(data)["background"]["worldview"];
             document.getElementById("lbl_affection").innerHTML = JSON.parse(data)["background"]["affection"];
             document.getElementById("lbl_weakness").innerHTML = JSON.parse(data)["background"]["weakness"];
-
         }
 
         function writeAppearanceLabels(data) {

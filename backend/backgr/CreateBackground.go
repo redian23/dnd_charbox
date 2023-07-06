@@ -23,7 +23,7 @@ func GenerateBackground(className string) BackgroundAnswer {
 	bg.SkillMastery = setSkillMastery(bg.BackgroundName, backData)
 	bg.Personalization = setPersonalization(bg.BackgroundName, backData)
 	bg.CharacterTrait = setCharacterTrait(bg.BackgroundName, backData)
-	bg.Ideal = setIdeal(bg.BackgroundName, backData)
+	bg.Ideal, bg.Worldview = setIdeal(bg.BackgroundName, backData)
 	bg.Affection = setAffection(bg.BackgroundName, backData)
 	bg.Weakness = setWeakness(bg.BackgroundName, backData)
 	return bg
