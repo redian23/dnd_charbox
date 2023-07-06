@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Dices</title>
     <section class="hero is-small is-primary">
@@ -18,6 +18,7 @@
 </head>
 <body>
 <style>
+
     body{
         line-height: 1.2;
     }
@@ -53,43 +54,41 @@
         font-size: 2rem;
     }
     .diceRequest{
-        padding-top: 20px;
+        padding-top: 25px;
         color: #048aa9;
-        font-size: 250%;
+        font-size: 30px;
     }
     .diceResult{
         color: #00b89c;
-        font-size: 750%;
+        font-size: 80px;
     }
     .rollSpoiler{
         text-align: center;
         color: #048aa9;
-        font-size: 200%;
+        font-size: 25px;
     }
 
     .rollSumHeader{
         color: #048aa9;
-        font-size: 200%;
+        font-size: 25px;
         display: none;
-        padding-left: 50px
     }
     .rollSumTable{
-        padding-left: 50px;
+        font-size: 25px;
         color: #048aa9;
-        font-size: 200%;
     }
     .historyListEmpty{
-        font-size: 200%;
+        font-size: 25px;
         color: #00b89c;
         text-align: center;
     }
     .historyListStyle{
-        font-size: 200%;
+        font-size: 25px;
         color: #00b89c;
     }
     .tabs .tab a {
+        font-size: 20px;
         color: whitesmoke;
-        font-size: 110%;
     }
     .tabs .tab a:hover {
         color: #00b89c;
@@ -188,24 +187,6 @@
                         return count
                     }
 
-                    function textSizing() {
-                        if ( document.getElementById('number').value >= 1000){
-                            if (selectDice() === "D20" || selectDice() === "D100"){
-                                document.getElementById("diceResult").style.fontSize = "750%";
-                            }else {
-                                document.getElementById("diceResult").style.fontSize = "900%";
-                            }
-                        }
-                        if ( document.getElementById('number').value >= 3000){
-                            if (selectDice() === "D20" || selectDice() === "D100"){
-                                document.getElementById("diceResult").style.fontSize = "550%";
-                            }else {
-                                document.getElementById("diceResult").style.fontSize = "700%";
-                            }        }
-                        if ( document.getElementById('number').value >= 40000){
-                            document.getElementById("diceResult").style.fontSize = "550%";
-                        }
-                    }
                     var count = 1;
                     function getDiceResult() {
                         const xhr = new XMLHttpRequest();
@@ -214,9 +195,7 @@
                             if (xhr.readyState === 4 && xhr.status === 200) {
                                 let data = JSON.stringify(JSON.parse(xhr.response));
                                 console.log(data)
-                                textSizing()
                                 showElements()
-
                                 getRollSumStepsList(data);
 
                                 writeToHistory(data);
