@@ -100,7 +100,7 @@ func setIdeal(bgName string, backData []BackgroundBson) (string, string) {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 5)
+			rollNum, _ = random.IntRange(0, 9)
 			return background.Ideal.Value[rollNum].Text, background.Ideal.Value[rollNum].WorldviewRu
 		}
 	}
