@@ -11,7 +11,7 @@ func backgroundAnalyze(className string) string {
 	for _, char := range chars {
 		if className == char.ClassName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, len(char.Background)-1)
+			rollNum, _ = random.IntRange(0, len(char.Background))
 			return char.Background[rollNum]
 		}
 	}
@@ -32,21 +32,8 @@ func setBackgroundType(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName && background.Type.Value != nil {
 			var rollNumOfType int
-
-			switch background.Type.Dice {
-			case "D6":
-				rollNumOfType, _ = random.IntRange(0, 5)
-				bgText = background.Type.Value[rollNumOfType]
-			case "D8":
-				rollNumOfType, _ = random.IntRange(0, 7)
-				bgText = background.Type.Value[rollNumOfType]
-			case "D10":
-				rollNumOfType, _ = random.IntRange(0, 9)
-				bgText = background.Type.Value[rollNumOfType]
-			case "D20":
-				rollNumOfType, _ = random.IntRange(0, 19)
-				bgText = background.Type.Value[rollNumOfType]
-			}
+			rollNumOfType, _ = random.IntRange(0, len(background.Type.Value))
+			bgText = background.Type.Value[rollNumOfType]
 		}
 	}
 	if bgText == "" { // В свиче дефаутл не работает, если к верхнему ифу кинуть елсе то он затирает переменную. Да так надо.
@@ -89,7 +76,7 @@ func setCharacterTrait(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 8)
+			rollNum, _ = random.IntRange(0, len(background.CharacterTrait.Value))
 			return background.CharacterTrait.Value[rollNum]
 		}
 	}
@@ -100,7 +87,7 @@ func setIdeal(bgName string, backData []BackgroundBson) (string, string) {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 10)
+			rollNum, _ = random.IntRange(0, len(background.Ideal.Value))
 			return background.Ideal.Value[rollNum].Text, background.Ideal.Value[rollNum].WorldviewRu
 		}
 	}
@@ -111,7 +98,7 @@ func setAffection(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 6)
+			rollNum, _ = random.IntRange(0, len(background.Affection.Value))
 			return background.Affection.Value[rollNum]
 		}
 	}
@@ -121,7 +108,7 @@ func setWeakness(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 6)
+			rollNum, _ = random.IntRange(0, len(background.Weakness.Value))
 			return background.Weakness.Value[rollNum]
 		}
 	}

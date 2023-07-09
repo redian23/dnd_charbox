@@ -1,6 +1,8 @@
 package classes
 
-type Class struct {
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+type ClassAnswer struct {
 	ClassName        string       `json:"class_name"`
 	ClassNameRU      string       `json:"class_name_ru"`
 	Description      string       `json:"description"`
@@ -11,6 +13,9 @@ type Class struct {
 	PassiveWisdom    int          `json:"passive_wisdom"`
 	Skills           Skills       `json:"skills"`
 	SavingThrows     SavingThrows `json:"saving_throws"`
+	Hits             hits         `json:"hits"`
+	Armor            string       `json:"armor"`
+	Instruments      []string     `json:"instruments"`
 }
 
 type Ability struct {
@@ -73,21 +78,31 @@ type savingThrows struct {
 	Mastery bool   `json:"mastery"`
 }
 
-func (a *Ability) ModifyDexterity(value int) {
-	a.Dexterity = value
+type ClassesBSON []struct {
+	ID           primitive.ObjectID `bson:"_id"`
+	ClassName    string             `json:"className"`
+	ClassNameRU  string             `json:"classNameRU"`
+	CharReq      [][]string         `json:"charReq"`
+	Background   []string           `json:"background"`
+	Armor        []string           `json:"armor"`
+	Hits         hits               `json:"hits"`
+	Instruments  []string           `json:"instruments"`
+	Skills       skillsInDB         `json:"skills"`
+	SavingThrows []string           `json:"saving_throws"`
+	Weapon       weapon             `json:"weapon"`
 }
-func (a *Ability) ModifyBodyDifficulty(value int) {
-	a.BodyDifficulty = value
+
+type hits struct {
+	HitDice  string
+	HitCount int
 }
-func (a *Ability) ModifyIntelligence(value int) {
-	a.Intelligence = value
+
+type skillsInDB struct {
+	RandomCount int      `json:"random_count"`
+	Skills      []string `json:"skills"`
 }
-func (a *Ability) ModifyWisdom(value int) {
-	a.Wisdom = value
-}
-func (a *Ability) ModifyCharisma(value int) {
-	a.Charisma = value
-}
-func (a *Ability) ModifyStrength(value int) {
-	a.Strength = value
+
+type weapon struct {
+	WeaponType string `json:"weapon_type"`
+	WeaponName string `json:"weapon_name"`
 }

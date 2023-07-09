@@ -7,10 +7,10 @@ import (
 
 var ProficiencyBonus = 2
 
-func GenerateClass() Class {
+func GenerateClass() ClassAnswer {
 	//Start To Generate
 	//Default Values
-	var class Class
+	var class ClassAnswer
 
 	class.ClassName = "HomeBrew"
 	class.Inspiration = true
@@ -24,10 +24,9 @@ func GenerateClass() Class {
 	return class
 }
 
-func GetRaceCharactsFormDB() RaceCharacteristicsBSON {
-	var results RaceCharacteristicsBSON
-	var cursor = db.ReadFromDB("race_characteristics")
-
+func GetRaceCharactsFormDB() ClassesBSON {
+	var results ClassesBSON
+	var cursor = db.ReadFromDB("classes")
 	if err := cursor.All(context.TODO(), &results); err != nil {
 		panic(err)
 	}

@@ -90,7 +90,7 @@ func sortStats(abil Ability) []string {
 	}
 	return statsForFindClassSpec
 }
-func statAnalyze(cl Class) (string, string, Ability) {
+func statAnalyze(cl ClassAnswer) (string, string, Ability) {
 START:
 	cl.Ability = rerollClassAbilitiesStats()
 	var stats = sortStats(cl.Ability)

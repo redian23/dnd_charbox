@@ -10,7 +10,7 @@ type Character struct {
 	Level         int                     `json:"level"`
 	Experience    int                     `json:"experience"`
 	Background    backgr.BackgroundAnswer `json:"background"`
-	Class         classes.Class           `json:"class"`
+	Class         classes.ClassAnswer     `json:"class"`
 	Appearance    Appearance              `json:"appearance"`
 }
 
