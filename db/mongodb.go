@@ -1,11 +1,13 @@
 package db
 
 import (
+	"context"
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-)
-
-var (
-	cred options.Credential
+	"log"
+	"time"
 )
 
 const (
@@ -13,89 +15,81 @@ const (
 	dbname  = "data"
 )
 
-//
-//func connectToDB() *mongo.Client {
-//
-//	// Use the SetServerAPIOptions() method to set the Stable API version to 1
-//	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-//	opts := options.Client().ApplyURI("mongodb://" + address + "/" + dbname).SetServerAPIOptions(serverAPI).SetAuth(cred)
-//
-//	// Create a new client and connect to the server
-//	client, err := mongo.Connect(context.TODO(), opts)
-//	if err != nil {
-//		panic(err)
-//	}
-//	return client
-//}
-//
-//func PingMongoDB() {
-//	var client = connectToDB()
-//	// Send a ping to confirm a successful connection
-//	var result bson.M
-//	if err := client.Database(dbname).RunCommand(context.TODO(), bson.D{{"ping", 1}}).Decode(&result); err != nil {
-//		panic(err)
-//	}
-//	client.Disconnect(context.TODO())
-//
-//	fmt.Println("[MongoDB] [INFO] Connected: OK")
-//}
-//
-//type Book struct {
-//	Title  string
-//	Author string
-//}
-//
-//func TestInsert() {
-//	client := connectToDB()
-//	coll := client.Database(dbname).Collection("races")
-//
-//	var race races.RaceStruct
-//	json.Unmarshal(races.RaceHumanJson, &race)
-//
-//	docs := []interface{}{}
-//
-//	for _, char := range race {
-//		fmt.Println(char)
-//		docs = append(docs, char)
-//	}
-//
-//	result, err := coll.InsertMany(context.TODO(), docs)
-//	if err != nil {
-//		panic(err)
-//	}
-//
-//	fmt.Printf("Documents inserted: %v\n", len(result.InsertedIDs))
-//	for _, id := range result.InsertedIDs {
-//		fmt.Printf("Inserted document with _id: %v\n", id)
-//	}
-//}
-//
-//func ReadFromDB(collectionName string) {
-//	client := connectToDB()
-//	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
-//
-//	// begin findOne
-//	coll := client.Database(dbname).Collection(collectionName)
-//
-//	var likes []bson.D
-//
-//	defer client.Disconnect(ctx)
-//
-//	cursor, err := coll.Find(context.Background(), bson.D{{}})
-//	if err != nil {
-//		panic(err)
-//	}
-//	if err = cursor.All(ctx, &likes); err != nil {
-//		panic(err)
-//	}
-//	//fmt.Println(likes)
-//	var doc []byte
-//	for _, like := range likes {
-//		doc, _ = bson.Marshal(like)
-//
-//	}
-//	var test backgr.BackBSON
-//	err = bson.Unmarshal(doc, &test)
-//
-//	fmt.Println(test)
-//}
+func ConnectToDB() *mongo.Client {
+
+	//переделать чтобы всасывало через вайпер
+	cred := options.Credential{
+		Username: "admin",
+		Password: "f2h2f342g",
+	}
+	// Use the SetServerAPIOptions() method to set the Stable API version to 1
+	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
+	opts := options.Client().ApplyURI("mongodb://" + address + "/" + dbname).SetServerAPIOptions(serverAPI).SetAuth(cred)
+
+	// Create a new client and connect to the server
+	client, err := mongo.Connect(context.TODO(), opts)
+	if err != nil {
+		panic(err)
+	}
+	return client
+}
+
+func PingMongoDB() {
+	var client = ConnectToDB()
+	// Send a ping to confirm a successful connection
+	var result bson.M
+	if err := client.Database(dbname).RunCommand(context.TODO(), bson.D{{"ping", 1}}).Decode(&result); err != nil {
+		panic(err)
+	}
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err := client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
+
+	fmt.Println("[MongoDB] [INFO] Connected: OK")
+}
+
+func StatusMongoDB() {
+	var client = ConnectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err := client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
+	var commandResult bson.M
+	command := bson.D{{"serverStatus", 1}}
+	err := client.Database("data").RunCommand(context.TODO(), command).Decode(&commandResult)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Db version: %+v\n", commandResult["connections"])
+}
+
+func ReadFromDB(collectionName string) *mongo.Cursor {
+	client := ConnectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	coll := client.Database(dbname).Collection(collectionName)
+
+	cursor, err := coll.Find(context.TODO(), bson.D{})
+	if err != nil {
+		panic(err)
+	}
+	defer func(client *mongo.Client, ctx context.Context) {
+		err := client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
+
+	return cursor
+}

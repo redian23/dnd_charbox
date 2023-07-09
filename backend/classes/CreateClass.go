@@ -1,5 +1,10 @@
 package classes
 
+import (
+	"context"
+	"pregen/db"
+)
+
 var ProficiencyBonus = 2
 
 func GenerateClass() Class {
@@ -17,4 +22,15 @@ func GenerateClass() Class {
 	class.PassiveWisdom = setPassiveWisdom(class.Modifier.Wisdom)
 
 	return class
+}
+
+func GetRaceCharactsFormDB() RaceCharacteristicsBSON {
+	var results RaceCharacteristicsBSON
+	var cursor = db.ReadFromDB("race_characteristics")
+
+	if err := cursor.All(context.TODO(), &results); err != nil {
+		panic(err)
+	}
+
+	return results
 }

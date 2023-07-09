@@ -1,19 +1,14 @@
 package backgr
 
 import (
-	"encoding/json"
-	"log"
+	"context"
+	"pregen/db"
 )
 
 func GenerateBackground(className string) BackgroundAnswer {
 
 	var bg BackgroundAnswer
-	var backData BackgroundJsonStruct
-
-	err := json.Unmarshal(BackJsonData, &backData)
-	if err != nil {
-		log.Println(err)
-	}
+	var backData = GetBackgroundsFormDB()
 
 	bg.BackgroundName = backgroundAnalyze(className)
 	bg.BackgroundNameRu = setBackgroundNameRU(bg.BackgroundName, backData)
@@ -27,4 +22,14 @@ func GenerateBackground(className string) BackgroundAnswer {
 	bg.Affection = setAffection(bg.BackgroundName, backData)
 	bg.Weakness = setWeakness(bg.BackgroundName, backData)
 	return bg
+}
+
+func GetBackgroundsFormDB() []BackgroundBson {
+	var results []BackgroundBson
+	var cursor = db.ReadFromDB("backgrounds")
+
+	if err := cursor.All(context.TODO(), &results); err != nil {
+		panic(err)
+	}
+	return results
 }
