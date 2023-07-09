@@ -60,7 +60,7 @@ func setAdvice(bgName string, backData []BackgroundBson) string {
 		if background.BackgroundName == bgName {
 			return background.Advice
 		} else {
-			background.Advice = "Смотрите в книге игрока."
+			background.Advice = "Смотрите в книге игрока или спросите у мастера."
 			return background.Advice
 		}
 	}
@@ -89,7 +89,7 @@ func setCharacterTrait(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 7)
+			rollNum, _ = random.IntRange(0, 8)
 			return background.CharacterTrait.Value[rollNum]
 		}
 	}
@@ -100,7 +100,7 @@ func setIdeal(bgName string, backData []BackgroundBson) (string, string) {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 9)
+			rollNum, _ = random.IntRange(0, 10)
 			return background.Ideal.Value[rollNum].Text, background.Ideal.Value[rollNum].WorldviewRu
 		}
 	}
@@ -111,7 +111,7 @@ func setAffection(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 5)
+			rollNum, _ = random.IntRange(0, 6)
 			return background.Affection.Value[rollNum]
 		}
 	}
@@ -121,7 +121,7 @@ func setWeakness(bgName string, backData []BackgroundBson) string {
 	for _, background := range backData {
 		if background.BackgroundName == bgName {
 			var rollNum int
-			rollNum, _ = random.IntRange(0, 5)
+			rollNum, _ = random.IntRange(0, 6)
 			return background.Weakness.Value[rollNum]
 		}
 	}
