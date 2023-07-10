@@ -1,6 +1,7 @@
 package classes
 
 import (
+	"fmt"
 	"github.com/mazen160/go-random"
 	"pregen/backend/dice"
 	"reflect"
@@ -273,6 +274,8 @@ func SetSkillsForClass(profSkills, classSkills []string, modifier Modifier) Skil
 	}
 
 	var skillsSlice = append(profSkills, classSkills...)
+	fmt.Println(profSkills)
+	fmt.Println(classSkills)
 	for _, profSkill := range skillsSlice {
 		switch profSkill {
 		case sk.Athletics.SkillName:
@@ -371,7 +374,7 @@ func setClassSkills(className string) []string {
 	}
 
 	for i, _ := range skillsArray {
-		if i >= randSkillCount {
+		if i < randSkillCount {
 			rollNum, _ := random.IntRange(0, len(skillsArray))
 			skills = append(skills, skillsArray[rollNum])
 		}
