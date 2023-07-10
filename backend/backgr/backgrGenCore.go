@@ -6,7 +6,7 @@ import (
 )
 
 func backgroundAnalyze(className string) string {
-	var chars = classes.GetRaceCharactsFormDB()
+	var chars = classes.GetClassCharactsFormDB()
 
 	for _, char := range chars {
 		if className == char.ClassName {

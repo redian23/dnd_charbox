@@ -1,6 +1,7 @@
 package classes
 
 import (
+	"github.com/mazen160/go-random"
 	"pregen/backend/dice"
 	"reflect"
 	"sort"
@@ -90,11 +91,13 @@ func sortStats(abil Ability) []string {
 	}
 	return statsForFindClassSpec
 }
+
+var chars = GetClassCharactsFormDB()
+
 func statAnalyze(cl ClassAnswer) (string, string, Ability) {
 START:
 	cl.Ability = rerollClassAbilitiesStats()
 	var stats = sortStats(cl.Ability)
-	var chars = GetRaceCharactsFormDB()
 
 	for _, char := range chars {
 		for _, cla := range char.CharReq {
@@ -136,7 +139,7 @@ func setModifiersForClass(ab Ability) Modifier {
 	return modifier
 }
 
-func setSaveThrowsForClass(modifier Modifier) SavingThrows {
+func setSaveThrowsForClass(className string, modifier Modifier) SavingThrows {
 	var modifierMap = map[string]int{
 		"Strength":       modifier.Strength,
 		"Dexterity":      modifier.Dexterity,
@@ -147,8 +150,13 @@ func setSaveThrowsForClass(modifier Modifier) SavingThrows {
 	}
 
 	var saveTh SavingThrows
-	keys, _ := sortMapCustom(modifierMap)
-	statsForSV := []string{} //для анализа класса
+	var saveThrArray []string
+
+	for _, char := range chars {
+		if char.ClassName == className {
+			saveThrArray = char.SavingThrows
+		}
+	}
 
 	for k, value := range modifierMap { //первичное заполнение
 		switch k {
@@ -173,14 +181,7 @@ func setSaveThrowsForClass(modifier Modifier) SavingThrows {
 		}
 	}
 
-	for i, k := range keys { //поиск 2х наивысших стат
-		if i == 0 || i == 1 { //первые 2 значения
-			statsForSV = append(statsForSV, k)
-			//fmt.Println(k, statMap[k])
-		}
-	}
-
-	for _, stat := range statsForSV {
+	for _, stat := range saveThrArray {
 		switch stat {
 		case saveTh.Strength.Name:
 			saveTh.Strength.Mastery = true
@@ -200,7 +201,7 @@ func setSaveThrowsForClass(modifier Modifier) SavingThrows {
 	return saveTh
 }
 
-func SetSkillsForClass(profSkills []string, modifier Modifier) Skills {
+func SetSkillsForClass(profSkills, classSkills []string, modifier Modifier) Skills {
 	var sk Skills
 	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
 		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
@@ -223,6 +224,25 @@ func SetSkillsForClass(profSkills []string, modifier Modifier) Skills {
 	sk.Intimidation.SkillName = "Intimidation"
 	sk.Performance.SkillName = "Performance"
 	sk.Persuasion.SkillName = "Persuasion"
+
+	sk.Athletics.SkillNameRu = "Атлетика"
+	sk.Acrobatics.SkillNameRu = "Акробатика"
+	sk.SleightOfHand.SkillNameRu = "Ловкость рук"
+	sk.Stealth.SkillNameRu = "Скрытность"
+	sk.Arcana.SkillNameRu = "Магия"
+	sk.History.SkillNameRu = "История"
+	sk.Investigation.SkillNameRu = "Анализ"
+	sk.Nature.SkillNameRu = "Природа"
+	sk.Religion.SkillNameRu = "Религия"
+	sk.AnimalHandling.SkillNameRu = "Уход за животными"
+	sk.Insight.SkillNameRu = "Восприятие"
+	sk.Medicine.SkillNameRu = "Медицина"
+	sk.Perception.SkillNameRu = "Проницательность"
+	sk.Survival.SkillNameRu = "Выживание"
+	sk.Deception.SkillNameRu = "Обман"
+	sk.Intimidation.SkillNameRu = "Запугивание"
+	sk.Performance.SkillNameRu = "Выступление"
+	sk.Persuasion.SkillNameRu = "Убеждение"
 
 	for i, _ := range mobifierArray {
 		switch {
@@ -252,7 +272,8 @@ func SetSkillsForClass(profSkills []string, modifier Modifier) Skills {
 		}
 	}
 
-	for _, profSkill := range profSkills {
+	var skillsSlice = append(profSkills, classSkills...)
+	for _, profSkill := range skillsSlice {
 		switch profSkill {
 		case sk.Athletics.SkillName:
 			sk.Athletics.Proficiency = true
@@ -314,7 +335,46 @@ func SetSkillsForClass(profSkills []string, modifier Modifier) Skills {
 }
 
 func setPassiveWisdom(modWisdom int) int {
-	var passWisdom int
-	passWisdom = 10 + modWisdom
+	passWisdom := 10 + modWisdom
 	return passWisdom
+}
+
+func setHitDice(clasName string) string {
+	var hitDice string
+	for _, char := range chars {
+		if char.ClassName == clasName {
+			hitDice = char.Hits.HitDice
+		}
+	}
+	return hitDice
+}
+func setHitCount(clasName string, modBodyDif int) int {
+	var hitCount int
+	for _, char := range chars {
+		if char.ClassName == clasName {
+			hitCount = char.Hits.HitCount + modBodyDif
+		}
+	}
+	return hitCount
+}
+
+func setClassSkills(className string) []string {
+	var skillsArray []string
+	var randSkillCount int
+	var skills []string
+
+	for _, char := range chars {
+		if char.ClassName == className {
+			skillsArray = char.SkillsInDB.SkillsList
+			randSkillCount = char.SkillsInDB.RandomCount
+		}
+	}
+
+	for i, _ := range skillsArray {
+		if i >= randSkillCount {
+			rollNum, _ := random.IntRange(0, len(skillsArray))
+			skills = append(skills, skillsArray[rollNum])
+		}
+	}
+	return skills
 }

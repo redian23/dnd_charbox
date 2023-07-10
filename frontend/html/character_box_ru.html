@@ -44,6 +44,20 @@
     .radio{
         font-size: 20px;
     }
+    input[type="radio"]:disabled {
+        -webkit-appearance: none;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        padding: 0px;
+        background-clip: content-box;
+        border: 2px solid #bbbbbb;
+        background-color: white;
+        border-radius: 50%;
+    }
+    input[type="radio"]:checked {
+        background-color: #888888;
+    }
     .tile.is-parent {
         padding: 0.5rem;
     }
@@ -63,7 +77,7 @@
     </style>
 <!--------------------------------------------------------------------------------------------------------------------->
 
-    <div name="Character_list_header" class="tile is-parent is-vertical box head">
+    <div name="Character_list_header" class="tile  is-parent is-vertical box head">
         <div style="text-align: center"><label class="title">Основной раздел</label></div>
         <div class="tile">
             <div class="tile is-parent">
@@ -127,10 +141,11 @@
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_charisma_info" disabled> [ <label id="lbl_modifier_ST_charisma_info"> </label> ] Харизма</label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p> Loading...</p>
+                        <p class="title">Хиты: <label id="lbl_hitsCount"></label></p>
+                        <p class="subtitle">Кость Хитов: <label id="lbl_hitsDice"></label></p>
                     </article>
                 </div>
-                <div name="Skills page" class="tile is-3 is-parent is-vertical">
+                <div name="Skills page" class="tile is-2 is-parent is-vertical">
                     <article class="tile is-child box">
                         <p><label class="title">Бонусы</label></p>
                         <p><label class="subtitle">[ <label id="lbl_inspiration"> </label> ] Вдохновение</label> </p>
@@ -411,6 +426,9 @@
         }
 
         function writeOtherLabels(data) {
+            document.getElementById("lbl_hitsDice").innerHTML = JSON.parse(data)["class"]["hits"]["hit_dice"];
+            document.getElementById("lbl_hitsCount").innerHTML = JSON.parse(data)["class"]["hits"]["hit_count"];
+
             document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["class"]["proficiency_bonus"];
             document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["class"]["passive_wisdom"];
             if (JSON.parse(data)["class"]["inspiration"] === true) {

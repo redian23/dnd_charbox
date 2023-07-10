@@ -12,6 +12,7 @@ type ClassAnswer struct {
 	ProficiencyBonus int          `json:"proficiency_bonus"`
 	PassiveWisdom    int          `json:"passive_wisdom"`
 	Skills           Skills       `json:"skills"`
+	SkillsOfClass    []string     `json:"skills_of_class"`
 	SavingThrows     SavingThrows `json:"saving_throws"`
 	Hits             hits         `json:"hits"`
 	Armor            string       `json:"armor"`
@@ -36,6 +37,7 @@ type Modifier struct {
 	Wisdom         int `json:"wisdom"`
 	Charisma       int `json:"charisma"`
 }
+
 type Skills struct {
 	Acrobatics     skill `json:"acrobatics"`
 	AnimalHandling skill `json:"animal_handling"`
@@ -59,6 +61,7 @@ type Skills struct {
 
 type skill struct {
 	SkillName     string `json:"skill_name"`
+	SkillNameRu   string `json:"skill_name_ru"`
 	ModifierValue int    `json:"modifier_value"`
 	Proficiency   bool   `json:"proficiency"`
 }
@@ -84,25 +87,33 @@ type ClassesBSON []struct {
 	ClassNameRU  string             `json:"classNameRU"`
 	CharReq      [][]string         `json:"charReq"`
 	Background   []string           `json:"background"`
-	Armor        []string           `json:"armor"`
 	Hits         hits               `json:"hits"`
-	Instruments  []string           `json:"instruments"`
-	Skills       skillsInDB         `json:"skills"`
+	SkillsInDB   skillsInDB         `bson:"skills"`
 	SavingThrows []string           `json:"saving_throws"`
-	Weapon       weapon             `json:"weapon"`
 }
 
 type hits struct {
-	HitDice  string
-	HitCount int
+	HitDice  string `json:"hit_dice"`
+	HitCount int    `json:"hit_count"`
 }
 
 type skillsInDB struct {
 	RandomCount int      `json:"random_count"`
-	Skills      []string `json:"skills"`
+	SkillsList  []string `bson:"skilllist"`
 }
 
-type weapon struct {
-	WeaponType string `json:"weapon_type"`
-	WeaponName string `json:"weapon_name"`
+type ClassWriteToBD []struct {
+	CharReq [][]string `json:"charReq"`
+	Hits    struct {
+		HitDice  string `json:"hit_dice"`
+		HitCount int    `json:"hit_count"`
+	} `json:"hits"`
+	SavingThrows []string `json:"saving_throws"`
+	Skills       struct {
+		RandomCount int      `json:"random_count"`
+		SkillList   []string `json:"skill_list"`
+	} `json:"skills"`
+	ClassName   string   `json:"className"`
+	ClassNameRU string   `json:"classNameRU"`
+	Background  []string `json:"background"`
 }
