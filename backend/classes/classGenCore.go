@@ -10,11 +10,11 @@ import (
 )
 
 var (
-	proficiencyBonus       = 2
-	chars                  = GetClassCharactsFormDB()
-	className, classNameRu string
-	classAbilities         Ability
-	classMod               Modifier
+	proficiencyBonus = 2
+	chars            = GetClassCharactsFormDB()
+	classAbilities   Ability
+	classMod         Modifier
+	className        string
 )
 
 func GetClassCharactsFormDB() ClassesBSON {
@@ -91,7 +91,7 @@ func statAnalyze() (string, string, Ability) {
 START:
 	classAbilities = rerollClassAbilitiesStats()
 	var stats = extractStats(classAbilities)
-
+	var className, classNameRu string
 	for _, char := range chars {
 		for _, cla := range char.CharReq {
 			if reflect.DeepEqual(stats, cla) {
