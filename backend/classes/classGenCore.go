@@ -1,44 +1,38 @@
 package classes
 
 import (
-	"fmt"
+	"context"
 	"github.com/mazen160/go-random"
 	"pregen/backend/dice"
+	"pregen/db"
 	"reflect"
 	"sort"
 )
 
-func remove(s []int, i int) []int {
-	s[i] = s[len(s)-1]
-	return s[:len(s)-1]
-}
+var (
+	proficiencyBonus       = 2
+	chars                  = GetClassCharactsFormDB()
+	className, classNameRu string
+	classAbilities         Ability
+	classMod               Modifier
+)
 
-func minimum(a []int) (int, int) {
-	min := a[0]
-	var index int
-	for i, v := range a {
-		if v < min {
-			min = v
-			index = i
-		}
+func GetClassCharactsFormDB() ClassesBSON {
+	var results ClassesBSON
+	var cursor = db.ReadFromDB("classes")
+	if err := cursor.All(context.TODO(), &results); err != nil {
+		panic(err)
 	}
-	return min, index
-}
 
-func summa(a []int) int {
-	var sum int
-	for _, v := range a {
-		sum = sum + v
-	}
-	return sum
+	return results
 }
 
 func RandomRollPoints() int {
-	dice := dice.D6
-	firstTry := dice.RollDice()
-	secondTry := dice.RollDice()
-	thirdTry := dice.RollDice()
-	fourthTry := dice.RollDice()
+	d6 := dice.D6
+	firstTry := d6.RollDice()
+	secondTry := d6.RollDice()
+	thirdTry := d6.RollDice()
+	fourthTry := d6.RollDice()
 	arrayTry := []int{firstTry, secondTry, thirdTry, fourthTry}
 	_, index := minimum(arrayTry)
 	resultArray := remove(arrayTry, index)
@@ -73,7 +67,7 @@ func sortMapCustom(statMap map[string]int) ([]string, map[string]int) {
 	})
 	return keys, statMap
 }
-func sortStats(abil Ability) []string {
+func extractStats(abil Ability) []string {
 	var statsMap = map[string]int{
 		"Strength":       abil.Strength,
 		"Dexterity":      abil.Dexterity,
@@ -83,7 +77,7 @@ func sortStats(abil Ability) []string {
 		"Charisma":       abil.Charisma,
 	}
 	keys, _ := sortMapCustom(statsMap)
-	statsForFindClassSpec := []string{} //для анализа класса
+	var statsForFindClassSpec []string //для анализа класса
 	for i, k := range keys {
 		if i == 0 || i == 1 || i == 2 { //первые 3 значения
 			statsForFindClassSpec = append(statsForFindClassSpec, k)
@@ -93,36 +87,33 @@ func sortStats(abil Ability) []string {
 	return statsForFindClassSpec
 }
 
-var chars = GetClassCharactsFormDB()
-
-func statAnalyze(cl ClassAnswer) (string, string, Ability) {
+func statAnalyze() (string, string, Ability) {
 START:
-	cl.Ability = rerollClassAbilitiesStats()
-	var stats = sortStats(cl.Ability)
+	classAbilities = rerollClassAbilitiesStats()
+	var stats = extractStats(classAbilities)
 
 	for _, char := range chars {
 		for _, cla := range char.CharReq {
 			if reflect.DeepEqual(stats, cla) {
-				cl.ClassName = char.ClassName
-				cl.ClassNameRU = char.ClassNameRU
+				className = char.ClassName
+				classNameRu = char.ClassNameRU
 			}
 		}
 	}
 
-	if cl.ClassName == "HomeBrew" {
-		cl.Ability = rerollClassAbilitiesStats()
+	if className == "" {
 		goto START
 	}
-	//fmt.Println(cl.ClassName)
-	//fmt.Println(cl.Ability)
-	return cl.ClassName, cl.ClassNameRU, cl.Ability
+
+	return className, classNameRu, classAbilities
 }
 
-func setModifiersForClass(ab Ability) Modifier {
-	abilitiesArray := []int{ab.Strength, ab.Dexterity, ab.BodyDifficulty,
-		ab.Intelligence, ab.Wisdom, ab.Charisma}
+func setModifiersForClass() Modifier {
+	abilitiesArray := []int{classAbilities.Strength, classAbilities.Dexterity, classAbilities.BodyDifficulty,
+		classAbilities.Intelligence, classAbilities.Wisdom, classAbilities.Charisma}
 	var modifier Modifier
-	modifierArray := []int{}
+	var modifierArray []int
+
 	for _, ability := range abilitiesArray {
 		mod := (ability - 10) / 2
 		modifierArray = append(modifierArray, mod)
@@ -140,14 +131,14 @@ func setModifiersForClass(ab Ability) Modifier {
 	return modifier
 }
 
-func setSaveThrowsForClass(className string, modifier Modifier) SavingThrows {
+func setSaveThrowsForClass() SavingThrows {
 	var modifierMap = map[string]int{
-		"Strength":       modifier.Strength,
-		"Dexterity":      modifier.Dexterity,
-		"Intelligence":   modifier.Intelligence,
-		"BodyDifficulty": modifier.BodyDifficulty,
-		"Wisdom":         modifier.Wisdom,
-		"Charisma":       modifier.Charisma,
+		"Strength":       classMod.Strength,
+		"Dexterity":      classMod.Dexterity,
+		"Intelligence":   classMod.Intelligence,
+		"BodyDifficulty": classMod.BodyDifficulty,
+		"Wisdom":         classMod.Wisdom,
+		"Charisma":       classMod.Charisma,
 	}
 
 	var saveTh SavingThrows
@@ -202,10 +193,10 @@ func setSaveThrowsForClass(className string, modifier Modifier) SavingThrows {
 	return saveTh
 }
 
-func SetSkillsForClass(profSkills, classSkills []string, modifier Modifier) Skills {
+func SetSkillsForClass(profSkills, classSkills []string) Skills {
 	var sk Skills
-	mobifierArray := []int{modifier.Strength, modifier.Dexterity,
-		modifier.Intelligence, modifier.Wisdom, modifier.Charisma}
+	modifierArray := []int{classMod.Strength, classMod.Dexterity,
+		classMod.Intelligence, classMod.Wisdom, classMod.Charisma}
 
 	sk.Athletics.SkillName = "Athletics"
 	sk.Acrobatics.SkillName = "Acrobatics"
@@ -245,123 +236,122 @@ func SetSkillsForClass(profSkills, classSkills []string, modifier Modifier) Skil
 	sk.Performance.SkillNameRu = "Выступление"
 	sk.Persuasion.SkillNameRu = "Убеждение"
 
-	for i, _ := range mobifierArray {
+	for i := range modifierArray {
 		switch {
-		case modifier.Strength == mobifierArray[i]:
-			sk.Athletics.ModifierValue = modifier.Strength
-		case modifier.Dexterity == mobifierArray[i]:
-			sk.Acrobatics.ModifierValue = modifier.Dexterity
-			sk.SleightOfHand.ModifierValue = modifier.Dexterity
-			sk.Stealth.ModifierValue = modifier.Dexterity
-		case modifier.Intelligence == mobifierArray[i]:
-			sk.Arcana.ModifierValue = modifier.Intelligence
-			sk.History.ModifierValue = modifier.Intelligence
-			sk.Investigation.ModifierValue = modifier.Intelligence
-			sk.Nature.ModifierValue = modifier.Intelligence
-			sk.Religion.ModifierValue = modifier.Intelligence
-		case modifier.Wisdom == mobifierArray[i]:
-			sk.AnimalHandling.ModifierValue = modifier.Wisdom
-			sk.Insight.ModifierValue = modifier.Wisdom
-			sk.Medicine.ModifierValue = modifier.Wisdom
-			sk.Perception.ModifierValue = modifier.Wisdom
-			sk.Survival.ModifierValue = modifier.Wisdom
-		case modifier.Charisma == mobifierArray[i]:
-			sk.Deception.ModifierValue = modifier.Charisma
-			sk.Intimidation.ModifierValue = modifier.Charisma
-			sk.Performance.ModifierValue = modifier.Charisma
-			sk.Persuasion.ModifierValue = modifier.Charisma
+		case classMod.Strength == modifierArray[i]:
+			sk.Athletics.ModifierValue = classMod.Strength
+		case classMod.Dexterity == modifierArray[i]:
+			sk.Acrobatics.ModifierValue = classMod.Dexterity
+			sk.SleightOfHand.ModifierValue = classMod.Dexterity
+			sk.Stealth.ModifierValue = classMod.Dexterity
+		case classMod.Intelligence == modifierArray[i]:
+			sk.Arcana.ModifierValue = classMod.Intelligence
+			sk.History.ModifierValue = classMod.Intelligence
+			sk.Investigation.ModifierValue = classMod.Intelligence
+			sk.Nature.ModifierValue = classMod.Intelligence
+			sk.Religion.ModifierValue = classMod.Intelligence
+		case classMod.Wisdom == modifierArray[i]:
+			sk.AnimalHandling.ModifierValue = classMod.Wisdom
+			sk.Insight.ModifierValue = classMod.Wisdom
+			sk.Medicine.ModifierValue = classMod.Wisdom
+			sk.Perception.ModifierValue = classMod.Wisdom
+			sk.Survival.ModifierValue = classMod.Wisdom
+		case classMod.Charisma == modifierArray[i]:
+			sk.Deception.ModifierValue = classMod.Charisma
+			sk.Intimidation.ModifierValue = classMod.Charisma
+			sk.Performance.ModifierValue = classMod.Charisma
+			sk.Persuasion.ModifierValue = classMod.Charisma
 		}
 	}
 
 	var skillsSlice = append(profSkills, classSkills...)
-	fmt.Println(profSkills)
-	fmt.Println(classSkills)
+
 	for _, profSkill := range skillsSlice {
 		switch profSkill {
 		case sk.Athletics.SkillName:
 			sk.Athletics.Proficiency = true
-			sk.Athletics.ModifierValue = sk.Athletics.ModifierValue + ProficiencyBonus
+			sk.Athletics.ModifierValue = sk.Athletics.ModifierValue + proficiencyBonus
 		case sk.Acrobatics.SkillName:
 			sk.Acrobatics.Proficiency = true
-			sk.Acrobatics.ModifierValue = sk.Acrobatics.ModifierValue + ProficiencyBonus
+			sk.Acrobatics.ModifierValue = sk.Acrobatics.ModifierValue + proficiencyBonus
 		case sk.SleightOfHand.SkillName:
 			sk.SleightOfHand.Proficiency = true
-			sk.SleightOfHand.ModifierValue = sk.SleightOfHand.ModifierValue + ProficiencyBonus
+			sk.SleightOfHand.ModifierValue = sk.SleightOfHand.ModifierValue + proficiencyBonus
 		case sk.Stealth.SkillName:
 			sk.Stealth.Proficiency = true
-			sk.Stealth.ModifierValue = sk.Stealth.ModifierValue + ProficiencyBonus
+			sk.Stealth.ModifierValue = sk.Stealth.ModifierValue + proficiencyBonus
 		case sk.Arcana.SkillName:
 			sk.Arcana.Proficiency = true
-			sk.Arcana.ModifierValue = sk.Arcana.ModifierValue + ProficiencyBonus
+			sk.Arcana.ModifierValue = sk.Arcana.ModifierValue + proficiencyBonus
 		case sk.History.SkillName:
 			sk.History.Proficiency = true
-			sk.History.ModifierValue = sk.History.ModifierValue + ProficiencyBonus
+			sk.History.ModifierValue = sk.History.ModifierValue + proficiencyBonus
 		case sk.Investigation.SkillName:
 			sk.Investigation.Proficiency = true
-			sk.Investigation.ModifierValue = sk.Investigation.ModifierValue + ProficiencyBonus
+			sk.Investigation.ModifierValue = sk.Investigation.ModifierValue + proficiencyBonus
 		case sk.Nature.SkillName:
 			sk.Nature.Proficiency = true
-			sk.Nature.ModifierValue = sk.Nature.ModifierValue + ProficiencyBonus
+			sk.Nature.ModifierValue = sk.Nature.ModifierValue + proficiencyBonus
 		case sk.Religion.SkillName:
 			sk.Religion.Proficiency = true
-			sk.Religion.ModifierValue = sk.Religion.ModifierValue + ProficiencyBonus
+			sk.Religion.ModifierValue = sk.Religion.ModifierValue + proficiencyBonus
 		case sk.AnimalHandling.SkillName:
 			sk.AnimalHandling.Proficiency = true
-			sk.AnimalHandling.ModifierValue = sk.AnimalHandling.ModifierValue + ProficiencyBonus
+			sk.AnimalHandling.ModifierValue = sk.AnimalHandling.ModifierValue + proficiencyBonus
 		case sk.Insight.SkillName:
 			sk.Insight.Proficiency = true
-			sk.Insight.ModifierValue = sk.Insight.ModifierValue + ProficiencyBonus
+			sk.Insight.ModifierValue = sk.Insight.ModifierValue + proficiencyBonus
 		case sk.Medicine.SkillName:
 			sk.Medicine.Proficiency = true
-			sk.Medicine.ModifierValue = sk.Medicine.ModifierValue + ProficiencyBonus
+			sk.Medicine.ModifierValue = sk.Medicine.ModifierValue + proficiencyBonus
 		case sk.Perception.SkillName:
 			sk.Perception.Proficiency = true
-			sk.Perception.ModifierValue = sk.Perception.ModifierValue + ProficiencyBonus
+			sk.Perception.ModifierValue = sk.Perception.ModifierValue + proficiencyBonus
 		case sk.Survival.SkillName:
 			sk.Survival.Proficiency = true
-			sk.Survival.ModifierValue = sk.Survival.ModifierValue + ProficiencyBonus
+			sk.Survival.ModifierValue = sk.Survival.ModifierValue + proficiencyBonus
 		case sk.Deception.SkillName:
 			sk.Deception.Proficiency = true
-			sk.Deception.ModifierValue = sk.Deception.ModifierValue + ProficiencyBonus
+			sk.Deception.ModifierValue = sk.Deception.ModifierValue + proficiencyBonus
 		case sk.Intimidation.SkillName:
 			sk.Intimidation.Proficiency = true
-			sk.Intimidation.ModifierValue = sk.Intimidation.ModifierValue + ProficiencyBonus
+			sk.Intimidation.ModifierValue = sk.Intimidation.ModifierValue + proficiencyBonus
 		case sk.Performance.SkillName:
 			sk.Performance.Proficiency = true
-			sk.Performance.ModifierValue = sk.Performance.ModifierValue + ProficiencyBonus
+			sk.Performance.ModifierValue = sk.Performance.ModifierValue + proficiencyBonus
 		case sk.Persuasion.SkillName:
 			sk.Persuasion.Proficiency = true
-			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + ProficiencyBonus
+			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + proficiencyBonus
 		}
 	}
 	return sk
 }
 
-func setPassiveWisdom(modWisdom int) int {
-	passWisdom := 10 + modWisdom
+func setPassiveWisdom() int {
+	passWisdom := 10 + classMod.Wisdom
 	return passWisdom
 }
 
-func setHitDice(clasName string) string {
+func setHitDice() string {
 	var hitDice string
 	for _, char := range chars {
-		if char.ClassName == clasName {
+		if char.ClassName == className {
 			hitDice = char.Hits.HitDice
 		}
 	}
 	return hitDice
 }
-func setHitCount(clasName string, modBodyDif int) int {
+func setHitCount() int {
 	var hitCount int
 	for _, char := range chars {
-		if char.ClassName == clasName {
-			hitCount = char.Hits.HitCount + modBodyDif
+		if char.ClassName == className {
+			hitCount = char.Hits.HitCount + classMod.BodyDifficulty
 		}
 	}
 	return hitCount
 }
 
-func setClassSkills(className string) []string {
+func setClassSkills() []string {
 	var skillsArray []string
 	var randSkillCount int
 	var skills []string
@@ -373,11 +363,36 @@ func setClassSkills(className string) []string {
 		}
 	}
 
-	for i, _ := range skillsArray {
+	for i := range skillsArray {
 		if i < randSkillCount {
 			rollNum, _ := random.IntRange(0, len(skillsArray))
 			skills = append(skills, skillsArray[rollNum])
 		}
 	}
 	return skills
+}
+
+func remove(s []int, i int) []int {
+	s[i] = s[len(s)-1]
+	return s[:len(s)-1]
+}
+
+func minimum(a []int) (int, int) {
+	min := a[0]
+	var index int
+	for i, v := range a {
+		if v < min {
+			min = v
+			index = i
+		}
+	}
+	return min, index
+}
+
+func summa(a []int) int {
+	var sum int
+	for _, v := range a {
+		sum = sum + v
+	}
+	return sum
 }
