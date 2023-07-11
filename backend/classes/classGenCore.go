@@ -12,9 +12,6 @@ import (
 var (
 	proficiencyBonus = 2
 	chars            = GetClassCharactsFormDB()
-	classAbilities   Ability
-	classMod         Modifier
-	className        string
 )
 
 func GetClassCharactsFormDB() ClassesBSON {
@@ -89,28 +86,29 @@ func extractStats(abil Ability) []string {
 
 func statAnalyze() (string, string, Ability) {
 START:
-	classAbilities = rerollClassAbilitiesStats()
-	var stats = extractStats(classAbilities)
-	var className, classNameRu string
+	var abilities = rerollClassAbilitiesStats()
+	var stats = extractStats(abilities)
+	var name, nameRu string
+
 	for _, char := range chars {
 		for _, cla := range char.CharReq {
 			if reflect.DeepEqual(stats, cla) {
-				className = char.ClassName
-				classNameRu = char.ClassNameRU
+				name = char.ClassName
+				nameRu = char.ClassNameRU
 			}
 		}
 	}
 
-	if className == "" {
+	if name == "" {
 		goto START
 	}
 
-	return className, classNameRu, classAbilities
+	return name, nameRu, abilities
 }
 
-func setModifiersForClass() Modifier {
-	abilitiesArray := []int{classAbilities.Strength, classAbilities.Dexterity, classAbilities.BodyDifficulty,
-		classAbilities.Intelligence, classAbilities.Wisdom, classAbilities.Charisma}
+func setModifiersForClass(ab Ability) Modifier {
+	abilitiesArray := []int{ab.Strength, ab.Dexterity, ab.BodyDifficulty,
+		ab.Intelligence, ab.Wisdom, ab.Charisma}
 	var modifier Modifier
 	var modifierArray []int
 
@@ -131,21 +129,22 @@ func setModifiersForClass() Modifier {
 	return modifier
 }
 
-func setSaveThrowsForClass() SavingThrows {
+func setSaveThrowsForClass(mod Modifier) SavingThrows {
+
 	var modifierMap = map[string]int{
-		"Strength":       classMod.Strength,
-		"Dexterity":      classMod.Dexterity,
-		"Intelligence":   classMod.Intelligence,
-		"BodyDifficulty": classMod.BodyDifficulty,
-		"Wisdom":         classMod.Wisdom,
-		"Charisma":       classMod.Charisma,
+		"Strength":       mod.Strength,
+		"Dexterity":      mod.Dexterity,
+		"Intelligence":   mod.Intelligence,
+		"BodyDifficulty": mod.BodyDifficulty,
+		"Wisdom":         mod.Wisdom,
+		"Charisma":       mod.Charisma,
 	}
 
 	var saveTh SavingThrows
 	var saveThrArray []string
 
 	for _, char := range chars {
-		if char.ClassName == className {
+		if char.ClassName == ClassNameGlobal {
 			saveThrArray = char.SavingThrows
 		}
 	}
@@ -193,10 +192,10 @@ func setSaveThrowsForClass() SavingThrows {
 	return saveTh
 }
 
-func SetSkillsForClass(profSkills, classSkills []string) Skills {
+func SetSkillsForClass(profSkills, classSkills []string, mod Modifier) Skills {
 	var sk Skills
-	modifierArray := []int{classMod.Strength, classMod.Dexterity,
-		classMod.Intelligence, classMod.Wisdom, classMod.Charisma}
+	modifierArray := []int{mod.Strength, mod.Dexterity,
+		mod.Intelligence, mod.Wisdom, mod.Charisma}
 
 	sk.Athletics.SkillName = "Athletics"
 	sk.Acrobatics.SkillName = "Acrobatics"
@@ -238,29 +237,29 @@ func SetSkillsForClass(profSkills, classSkills []string) Skills {
 
 	for i := range modifierArray {
 		switch {
-		case classMod.Strength == modifierArray[i]:
-			sk.Athletics.ModifierValue = classMod.Strength
-		case classMod.Dexterity == modifierArray[i]:
-			sk.Acrobatics.ModifierValue = classMod.Dexterity
-			sk.SleightOfHand.ModifierValue = classMod.Dexterity
-			sk.Stealth.ModifierValue = classMod.Dexterity
-		case classMod.Intelligence == modifierArray[i]:
-			sk.Arcana.ModifierValue = classMod.Intelligence
-			sk.History.ModifierValue = classMod.Intelligence
-			sk.Investigation.ModifierValue = classMod.Intelligence
-			sk.Nature.ModifierValue = classMod.Intelligence
-			sk.Religion.ModifierValue = classMod.Intelligence
-		case classMod.Wisdom == modifierArray[i]:
-			sk.AnimalHandling.ModifierValue = classMod.Wisdom
-			sk.Insight.ModifierValue = classMod.Wisdom
-			sk.Medicine.ModifierValue = classMod.Wisdom
-			sk.Perception.ModifierValue = classMod.Wisdom
-			sk.Survival.ModifierValue = classMod.Wisdom
-		case classMod.Charisma == modifierArray[i]:
-			sk.Deception.ModifierValue = classMod.Charisma
-			sk.Intimidation.ModifierValue = classMod.Charisma
-			sk.Performance.ModifierValue = classMod.Charisma
-			sk.Persuasion.ModifierValue = classMod.Charisma
+		case mod.Strength == modifierArray[i]:
+			sk.Athletics.ModifierValue = mod.Strength
+		case mod.Dexterity == modifierArray[i]:
+			sk.Acrobatics.ModifierValue = mod.Dexterity
+			sk.SleightOfHand.ModifierValue = mod.Dexterity
+			sk.Stealth.ModifierValue = mod.Dexterity
+		case mod.Intelligence == modifierArray[i]:
+			sk.Arcana.ModifierValue = mod.Intelligence
+			sk.History.ModifierValue = mod.Intelligence
+			sk.Investigation.ModifierValue = mod.Intelligence
+			sk.Nature.ModifierValue = mod.Intelligence
+			sk.Religion.ModifierValue = mod.Intelligence
+		case mod.Wisdom == modifierArray[i]:
+			sk.AnimalHandling.ModifierValue = mod.Wisdom
+			sk.Insight.ModifierValue = mod.Wisdom
+			sk.Medicine.ModifierValue = mod.Wisdom
+			sk.Perception.ModifierValue = mod.Wisdom
+			sk.Survival.ModifierValue = mod.Wisdom
+		case mod.Charisma == modifierArray[i]:
+			sk.Deception.ModifierValue = mod.Charisma
+			sk.Intimidation.ModifierValue = mod.Charisma
+			sk.Performance.ModifierValue = mod.Charisma
+			sk.Persuasion.ModifierValue = mod.Charisma
 		}
 	}
 
@@ -327,25 +326,25 @@ func SetSkillsForClass(profSkills, classSkills []string) Skills {
 	return sk
 }
 
-func setPassiveWisdom() int {
-	passWisdom := 10 + classMod.Wisdom
+func setPassiveWisdom(modWisdom int) int {
+	passWisdom := 10 + modWisdom
 	return passWisdom
 }
 
 func setHitDice() string {
 	var hitDice string
 	for _, char := range chars {
-		if char.ClassName == className {
+		if char.ClassName == ClassNameGlobal {
 			hitDice = char.Hits.HitDice
 		}
 	}
 	return hitDice
 }
-func setHitCount() int {
+func setHitCount(modBody int) int {
 	var hitCount int
 	for _, char := range chars {
-		if char.ClassName == className {
-			hitCount = char.Hits.HitCount + classMod.BodyDifficulty
+		if char.ClassName == ClassNameGlobal {
+			hitCount = char.Hits.HitCount + modBody
 		}
 	}
 	return hitCount
@@ -357,7 +356,7 @@ func setClassSkills() []string {
 	var skills []string
 
 	for _, char := range chars {
-		if char.ClassName == className {
+		if char.ClassName == ClassNameGlobal {
 			skillsArray = char.SkillsInDB.SkillsList
 			randSkillCount = char.SkillsInDB.RandomCount
 		}

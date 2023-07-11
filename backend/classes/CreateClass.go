@@ -1,5 +1,7 @@
 package classes
 
+var ClassNameGlobal string
+
 func GenerateClass() ClassAnswer {
 	//Start To Generate
 	//Default Values
@@ -8,11 +10,13 @@ func GenerateClass() ClassAnswer {
 	class.ProficiencyBonus = 2
 
 	class.ClassName, class.ClassNameRU, class.Ability = statAnalyze()
-	class.Modifier = setModifiersForClass()
-	class.SavingThrows = setSaveThrowsForClass()
-	class.PassiveWisdom = setPassiveWisdom()
+	ClassNameGlobal = class.ClassName
+
+	class.Modifier = setModifiersForClass(class.Ability)
+	class.SavingThrows = setSaveThrowsForClass(class.Modifier)
+	class.PassiveWisdom = setPassiveWisdom(class.Modifier.Wisdom)
 	class.Hits.HitDice = setHitDice()
-	class.Hits.HitCount = setHitCount()
+	class.Hits.HitCount = setHitCount(class.Modifier.BodyDifficulty)
 	class.SkillsOfClass = setClassSkills()
 
 	return class
