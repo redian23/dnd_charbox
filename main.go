@@ -1,12 +1,14 @@
 package main
 
 import (
+	"github.com/JGLTechnologies/gin-rate-limit"
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
 	"pregen/api"
 	"pregen/db"
 	"strings"
+	"time"
 )
 
 var htmlSitePath string
@@ -17,6 +19,32 @@ func init() {
 	db.PingMongoDB()
 }
 
+//	func TestInsert() {
+//		client := db.ConnectToDB()
+//		coll := client.Database("data").Collection("classes")
+//
+//		var class classes.ClassWriteToBD
+//		json.Unmarshal(db.JsonTemp, &class)
+//
+//		docs := []interface{}{}
+//
+//		for _, cl := range class {
+//			fmt.Println(cl)
+//			docs = append(docs, cl)
+//		}
+//
+//		result, err := coll.InsertMany(context.TODO(), docs)
+//		if err != nil {
+//			panic(err)
+//		}
+//
+//		fmt.Printf("Documents inserted: %v\n", len(result.InsertedIDs))
+//		for _, id := range result.InsertedIDs {
+//			fmt.Printf("Inserted document with _id: %v\n", id)
+//		}
+//	}
+//
+// да уберу я
 func InitServerPathVars(status bool) {
 	if status == true {
 		assetsSitePath = "/usr/share/nginx/html/assets"
@@ -32,6 +60,16 @@ func InitServerPathVars(status bool) {
 func main() {
 	router := gin.Default()
 
+	// This makes it so each ip can only make 3 requests per second
+	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
+		Rate:  time.Second,
+		Limit: 3,
+	})
+	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
+		ErrorHandler: errorHandler,
+		KeyFunc:      keyFunc,
+	})
+
 	// api method
 	v1 := router.Group("api/v1/")
 	{
@@ -39,11 +77,11 @@ func main() {
 		//	number := c.Param("number")
 		//	api.GetDice(c, number)
 		//})
-		v1.GET("/roll", func(c *gin.Context) {
+		v1.GET("/roll", mw, func(c *gin.Context) {
 			api.GetMultiRoll(c)
 		})
 
-		v1.GET("/get-character", func(c *gin.Context) {
+		v1.GET("/get-character", mw, func(c *gin.Context) {
 			api.GetRandomCharacter(c)
 		})
 
@@ -77,4 +115,13 @@ func main() {
 	})
 	//router.Run(":848") //local
 	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+}
+
+func keyFunc(c *gin.Context) string {
+	return c.ClientIP()
+}
+
+func errorHandler(c *gin.Context, info ratelimit.Info) {
+	c.String(429, "Too many requests. Try again in "+time.Until(info.ResetTime).String())
+	time.Sleep(1 * time.Second)
 }
