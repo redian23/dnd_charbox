@@ -66,24 +66,31 @@ func setRaceType() (string, string) {
 
 func setAge() int {
 	for _, race := range raceData {
-		age, _ := random.IntRange(race.MinAge, race.MaxAge)
-		return age
+		if race.RaceName == raceName {
+			age, _ := random.IntRange(race.MinAge, race.MaxAge)
+			return age
+		}
 	}
 	return 0
 }
 
 func setHeight() int {
+
 	for _, race := range raceData {
-		height, _ := random.IntRange(race.MinHeight, race.MaxHeight)
-		return height
+		if race.RaceName == raceName {
+			height, _ := random.IntRange(race.MinHeight, race.MaxHeight)
+			return height
+		}
 	}
 	return 0
 }
 
 func setWeight() int {
 	for _, race := range raceData {
-		weight, _ := random.IntRange(race.MinWeight, race.MaxWeight)
-		return weight
+		if race.RaceName == raceName {
+			weight, _ := random.IntRange(race.MinWeight, race.MaxWeight)
+			return weight
+		}
 	}
 	return 0
 }
@@ -94,7 +101,9 @@ func setBodySize() {
 
 func setSpeed() int {
 	for _, race := range raceData {
-		return race.Speed
+		if race.RaceName == raceName {
+			return race.Speed
+		}
 	}
 	return 0
 }
@@ -157,22 +166,27 @@ func setHairColor() string {
 
 func setKnowLanguages() []string {
 	for _, race := range raceData {
-		return race.Langs
+		if race.RaceName == raceName {
+			return race.Langs
+		}
 	}
 	return nil
 }
 
 func setRaceSkills() string {
 	for _, race := range raceData {
-		return race.RaceSkill
+		if race.RaceName == raceName {
+			return race.RaceSkill
+		}
 	}
 	return ""
 }
 
 func setResist() []string {
 	for _, race := range raceData {
-		return race.Resist
+		if race.RaceName == raceName {
+			return race.Resist
+		}
 	}
 	return nil
-
 }
