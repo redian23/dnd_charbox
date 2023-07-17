@@ -64,6 +64,26 @@ func setRaceType() (string, string) {
 	return "", ""
 }
 
+func GetRaceAbilities() StatsUp {
+	for _, race := range raceData {
+		if race.RaceName == raceName {
+			for _, typppe := range race.Type {
+				return typppe.StatsUp
+			}
+		}
+	}
+	return StatsUp{}
+}
+
+func GetRaceSkill() string {
+	for _, race := range raceData {
+		if race.RaceName == raceName {
+			return race.RaceSkill
+		}
+	}
+	return ""
+}
+
 func setAge() int {
 	for _, race := range raceData {
 		if race.RaceName == raceName {

@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/mazen160/go-random"
 	"pregen/backend/dice"
+	"pregen/backend/races"
 	"pregen/db"
 	"reflect"
 	"sort"
@@ -48,10 +49,15 @@ func rerollClassAbilitiesStats() Ability {
 		Wisdom:         RandomRollPoints(),
 		Charisma:       RandomRollPoints(),
 	}
-	TargetClassAbilities.Total = TargetClassAbilities.Strength + TargetClassAbilities.Dexterity +
-		TargetClassAbilities.BodyDifficulty + TargetClassAbilities.Wisdom + TargetClassAbilities.Charisma +
-		TargetClassAbilities.Intelligence
 
+	raceAbilities := races.GetRaceAbilities()
+
+	TargetClassAbilities.Total = (TargetClassAbilities.Strength + raceAbilities.Strength) +
+		(TargetClassAbilities.Dexterity + raceAbilities.Dexterity) +
+		(TargetClassAbilities.BodyDifficulty + raceAbilities.BodyDifficulty) +
+		(TargetClassAbilities.Intelligence + raceAbilities.Intelligence) +
+		(TargetClassAbilities.Wisdom + raceAbilities.Wisdom) +
+		(TargetClassAbilities.Charisma + raceAbilities.Charisma)
 	return TargetClassAbilities
 }
 
@@ -288,7 +294,9 @@ func SetSkillsForCharacter(profSkills []string) Skills {
 		}
 	}
 
-	var skillsSlice = append(profSkills, specialSkills...)
+	var raceSkill = races.GetRaceSkill()
+	var skillsSliceTmp = append(profSkills, specialSkills...)
+	var skillsSlice = append(skillsSliceTmp, raceSkill)
 
 	for _, profSkill := range skillsSlice {
 		switch profSkill {

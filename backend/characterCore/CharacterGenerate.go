@@ -11,8 +11,8 @@ func GenerateFullCharacter() Character {
 
 	char.Level = 1
 	char.Experience = 0
-	char.Class = classes.GenerateClass()
 	char.Race = races.GenerateRace()
+	char.Class = classes.GenerateClass()
 	char.Background = backgr.GenerateBackground(char.Class.ClassName)
 	char.Class.Skills = classes.SetSkillsForCharacter(char.Background.SkillMastery)
 
