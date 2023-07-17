@@ -3,6 +3,7 @@ package characterCore
 import (
 	"pregen/backend/backgr"
 	"pregen/backend/classes"
+	"pregen/backend/races"
 )
 
 type Character struct {
@@ -10,16 +11,6 @@ type Character struct {
 	Level         int                     `json:"level"`
 	Experience    int                     `json:"experience"`
 	Background    backgr.BackgroundAnswer `json:"background"`
+	Race          races.RacesAnswer       `json:"race"`
 	Class         classes.ClassAnswer     `json:"class"`
-	Appearance    Appearance              `json:"appearance"`
-}
-
-type Appearance struct {
-	Gender string `json:"gender"`
-	Age    int    `json:"age"`
-	Eyes   string `json:"eyes"`
-	Height int    `json:"height"`
-	Skin   string `json:"skin"`
-	Weight int    `json:"weight"`
-	Hair   string `json:"hair"`
 }

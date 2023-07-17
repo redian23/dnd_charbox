@@ -12,6 +12,8 @@ import (
 var (
 	proficiencyBonus = 2
 	chars            = GetClassCharactsFormDB()
+	mod              Modifier
+	specialSkills    []string
 )
 
 func GetClassCharactsFormDB() ClassesBSON {
@@ -126,6 +128,7 @@ func setModifiersForClass(ab Ability) Modifier {
 		modifier.Charisma = modifierArray[5]
 	}
 	//fmt.Println(modifier)
+	mod = modifier //присвоение в переменную для всего пакета
 	return modifier
 }
 
@@ -192,7 +195,29 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 	return saveTh
 }
 
-func SetSkillsForClass(profSkills, classSkills []string, mod Modifier) Skills {
+func setClassSkills() []string {
+	var skillsArray []string
+	var randSkillCount int
+	var skills []string
+
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			skillsArray = char.SkillsInDB.SkillsList
+			randSkillCount = char.SkillsInDB.RandomCount
+		}
+	}
+
+	for i := range skillsArray {
+		if i < randSkillCount {
+			rollNum, _ := random.IntRange(0, len(skillsArray))
+			skills = append(skills, skillsArray[rollNum])
+		}
+	}
+	specialSkills = skills
+	return skills
+}
+
+func SetSkillsForCharacter(profSkills []string) Skills {
 	var sk Skills
 	modifierArray := []int{mod.Strength, mod.Dexterity,
 		mod.Intelligence, mod.Wisdom, mod.Charisma}
@@ -263,7 +288,7 @@ func SetSkillsForClass(profSkills, classSkills []string, mod Modifier) Skills {
 		}
 	}
 
-	var skillsSlice = append(profSkills, classSkills...)
+	var skillsSlice = append(profSkills, specialSkills...)
 
 	for _, profSkill := range skillsSlice {
 		switch profSkill {
@@ -348,27 +373,6 @@ func setHitCount(modBody int) int {
 		}
 	}
 	return hitCount
-}
-
-func setClassSkills() []string {
-	var skillsArray []string
-	var randSkillCount int
-	var skills []string
-
-	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
-			skillsArray = char.SkillsInDB.SkillsList
-			randSkillCount = char.SkillsInDB.RandomCount
-		}
-	}
-
-	for i := range skillsArray {
-		if i < randSkillCount {
-			rollNum, _ := random.IntRange(0, len(skillsArray))
-			skills = append(skills, skillsArray[rollNum])
-		}
-	}
-	return skills
 }
 
 func remove(s []int, i int) []int {

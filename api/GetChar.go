@@ -7,5 +7,5 @@ import (
 )
 
 func GetRandomCharacter(c *gin.Context) {
-	c.JSONP(http.StatusOK, characterCore.StartCharacterGenerate())
+	c.JSONP(http.StatusOK, characterCore.GenerateFullCharacter())
 }

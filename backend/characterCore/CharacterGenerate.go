@@ -3,17 +3,18 @@ package characterCore
 import (
 	"pregen/backend/backgr"
 	"pregen/backend/classes"
+	"pregen/backend/races"
 )
 
-func StartCharacterGenerate() Character {
+func GenerateFullCharacter() Character {
 	var char Character
 
 	char.Level = 1
 	char.Experience = 0
 	char.Class = classes.GenerateClass()
-	char.Appearance = GenerateAppearance()
+	char.Race = races.GenerateRace()
 	char.Background = backgr.GenerateBackground(char.Class.ClassName)
-	char.Class.Skills = classes.SetSkillsForClass(char.Background.SkillMastery, char.Class.SkillsOfClass, char.Class.Modifier)
+	char.Class.Skills = classes.SetSkillsForCharacter(char.Background.SkillMastery)
 
 	return char
 }

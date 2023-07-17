@@ -81,20 +81,3 @@ func GetMultiRoll(c *gin.Context) {
 	answ.RollSteps = rollStepsArray
 	c.JSONP(http.StatusOK, answ)
 }
-
-//func findMinAndMax(a []diceRoll) (min int, max int, minCount int, maxCount int) {
-//	min = 1
-//	max = 20
-//
-//	for _, value := range a {
-//		if value.Result == min {
-//			min = value.Result
-//			minCount++
-//		}
-//		if value.Result == max {
-//			max = value.Result
-//			maxCount++
-//		}
-//	}
-//	return min, max, minCount, maxCount
-//}

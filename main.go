@@ -4,7 +4,9 @@ import (
 	"github.com/JGLTechnologies/gin-rate-limit"
 	"github.com/gin-gonic/gin"
 	"html/template"
+	"io"
 	"net/http"
+	"os"
 	"pregen/api"
 	"pregen/db"
 	"strings"
@@ -13,57 +15,37 @@ import (
 
 var htmlSitePath string
 var assetsSitePath, assetsSiteRootPath string
+var logPath string
 
 func init() {
 	InitServerPathVars(true)
 	db.PingMongoDB()
 }
 
-//	func TestInsert() {
-//		client := db.ConnectToDB()
-//		coll := client.Database("data").Collection("classes")
-//
-//		var class classes.ClassWriteToBD
-//		json.Unmarshal(db.JsonTemp, &class)
-//
-//		docs := []interface{}{}
-//
-//		for _, cl := range class {
-//			fmt.Println(cl)
-//			docs = append(docs, cl)
-//		}
-//
-//		result, err := coll.InsertMany(context.TODO(), docs)
-//		if err != nil {
-//			panic(err)
-//		}
-//
-//		fmt.Printf("Documents inserted: %v\n", len(result.InsertedIDs))
-//		for _, id := range result.InsertedIDs {
-//			fmt.Printf("Inserted document with _id: %v\n", id)
-//		}
-//	}
-//
-// да уберу я
 func InitServerPathVars(status bool) {
 	if status == true {
 		assetsSitePath = "/usr/share/nginx/html/assets"
 		assetsSiteRootPath = "./usr/share/nginx/html/assets"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
+		logPath = "/var/logs/"
 	} else {
 		assetsSitePath = "frontend/assets"
 		assetsSiteRootPath = "./frontend/assets"
 		htmlSitePath = "frontend/html/*.html"
+		logPath = ""
 	}
 }
 
 func main() {
+	f, _ := os.Create("gin_errors.log")
+	gin.DefaultErrorWriter = io.MultiWriter(f)
+
 	router := gin.Default()
 
-	// This makes it so each ip can only make 3 requests per second
+	// This makes it so each ip can only make 5 requests per second
 	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
 		Rate:  time.Second,
-		Limit: 3,
+		Limit: 5,
 	})
 	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
 		ErrorHandler: errorHandler,
@@ -106,9 +88,7 @@ func main() {
 		})
 	})
 	router.GET("/about", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "about.html", gin.H{
-			"content": "This is an about page...",
-		})
+		api.GetAbout(c)
 	})
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
@@ -123,5 +103,5 @@ func keyFunc(c *gin.Context) string {
 
 func errorHandler(c *gin.Context, info ratelimit.Info) {
 	c.String(429, "Too many requests. Try again in "+time.Until(info.ResetTime).String())
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 }

@@ -23,7 +23,11 @@
 </head>
 <body>
     <style>
-    @media screen { body { zoom: 90%; } }
+    @media screen {
+        body {
+            zoom: 90%;
+        }
+    }
 
     .subtitle{
         font-size: 25px;
@@ -83,7 +87,7 @@
             <div class="tile is-parent">
                 <article class="tile is-child box">
                 <article class="tile is-child">
-                    <p class="title">Имя персонажа: {Имя}</p>
+                    <p class="title">Имя персонажа: <label id="lbl_charFirstName"></label> <label id="lbl_charLastName"></label></p>
                 </article>
                 <article class="tile is-child">
                     <p class="title">Уровень: [ 1 ] Опыт: [ 0 ]</p>
@@ -96,7 +100,7 @@
                     <p class="title">Класс: <label id="lbl_className_info"></label></p>
                 </article>
                 <article class="tile is-child">
-                    <p class="title">Раса: {Название}</p>
+                    <p class="title">Раса: <label id="lbl_raceName"></label></p>
                 </article>
             </article>
             </div>
@@ -119,6 +123,9 @@
         <div name="Main Page" class="tile is-vertical is-child">
             <div class="tile">
                 <div name="CHAR_POINTS" class="tile is-2 is-parent is-vertical">
+                    <article class="tile is-child box">
+                        <p class="title">Photo: Loading ...</p>
+                    </article>
                         <article class="tile is-child box">
                             <p class="title"> Значения Характеристик</p>
                             <p class="subtitle"> Всего: <label id="lbl_ability_total_info"></label></p>
@@ -137,12 +144,12 @@
                         <p><label class="subtitle">[ +<label id="lbl_proficiency_bonus"> </label> ] Бонус мастерства</label> </p>
                         <p><label class="subtitle">[ <label id="lbl_passive_wisdom"> </label> ] Пассивная мудрость (Проницательность)</label> </p>
                     </article>
+                </div>
+                <div name="Skills page" class="tile is-2 is-parent is-vertical">
                     <article class="tile is-child box">
                         <p class="title">Хиты: [ <label id="lbl_hitsCount"></label> ]</p>
                         <p class="subtitle">Кость Хитов: [ <label id="lbl_hitsDice"></label> ]</p>
                     </article>
-                </div>
-                <div name="Skills page" class="tile is-2 is-parent is-vertical">
                     <article class="tile is-child box">
                         <p class="title">Спас-броски</p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled> [ <label id="lbl_modifier_ST_strength_info"> </label> ] Сила</label></p>
@@ -172,6 +179,22 @@
                         <p><label class="radio"><input type="radio" id="rd_Stealth" disabled> [ <label id="lbl_Stealth"> </label> ] Скрытность (Лов)</label></p>
                         <p><label class="radio"><input type="radio" id="rd_Persuasion" disabled> [ <label id="lbl_Persuasion"> </label> ] Убеждение (Хар)</label></p>
                         <p><label class="radio"><input type="radio" id="rd_Animal_Handling" disabled> [ <label id="lbl_Animal_Handling"> </label> ] Уход за животными (Муд)</label></p>
+                    </article>
+                </div>
+                <div name=" " class="tile is-parent is-vertical">
+                    <article class="tile is-child  box">
+                        <p class="subtitle">Скорость: [ <label id="lbl_speed"></label> ]</p>
+                        <p class="subtitle">Знание языков: [ <label id="lbl_languages"></label> ]</p>
+                        <p class="subtitle">Сопротивляемость к: [ <label id="lbl_resist"></label> ]</p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="subtitle">Loading .. </p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="subtitle">Loading .. </p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="subtitle">Loading .. </p>
                     </article>
                 </div>
                 <div name="Background INFO" class="tile is-parent is-vertical">
@@ -206,7 +229,7 @@
             <div class="tile is-parent">
                 <article class="tile is-child box">
                     <article class="tile is-child">
-                        <p class="title">Имя персонажа: {Имя}</p>
+                        <p class="title">Имя персонажа: <label id="lbl_charFirstName2"></label> <label id="lbl_charLastName2"></label></p>
                     </article>
                     <article class="tile is-child">
                         <p class="title">Пол: <label id="lbl_gender"></label></p>
@@ -229,7 +252,7 @@
                         <p class="title">Рост: <label id="lbl_height"></label> см</p>
                     </article>
                     <article class="tile is-child">
-                        <p class="title">Цвет кожи: Белый</p>
+                        <p class="title">Размер тела: </p>
                     </article>
                 </article>
             </div>
@@ -450,19 +473,30 @@
         }
 
         function writeAppearanceLabels(data) {
-            document.getElementById("lbl_gender").innerHTML = JSON.parse(data)["appearance"]["gender"];
-            document.getElementById("lbl_age").innerHTML = JSON.parse(data)["appearance"]["age"];
-            document.getElementById("lbl_eyesColor").innerHTML = JSON.parse(data)["appearance"]["eyes"];
-            document.getElementById("lbl_height").innerHTML = JSON.parse(data)["appearance"]["height"];
-            document.getElementById("lbl_weight").innerHTML = JSON.parse(data)["appearance"]["weight"];
-            document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["appearance"]["hair"];
+            document.getElementById("lbl_raceName").innerHTML = JSON.parse(data)["race"]["race_type_name_ru"];
+            document.getElementById("lbl_charFirstName").innerHTML = JSON.parse(data)["race"]["first_name"];
+            document.getElementById("lbl_charLastName").innerHTML = JSON.parse(data)["race"]["last_name"];
+
+            document.getElementById("lbl_charFirstName2").innerHTML = JSON.parse(data)["race"]["first_name"];
+            document.getElementById("lbl_charLastName2").innerHTML = JSON.parse(data)["race"]["last_name"];
+            document.getElementById("lbl_resist").innerHTML = JSON.parse(data)["race"]["resist"];
+
+            document.getElementById("lbl_speed").innerHTML = JSON.parse(data)["race"]["speed"];
+            document.getElementById("lbl_languages").innerHTML = JSON.parse(data)["race"]["langs"];
+
+            document.getElementById("lbl_gender").innerHTML = JSON.parse(data)["race"]["gender"];
+            document.getElementById("lbl_age").innerHTML = JSON.parse(data)["race"]["age"];
+            document.getElementById("lbl_eyesColor").innerHTML = JSON.parse(data)["race"]["eyes"];
+            document.getElementById("lbl_height").innerHTML = JSON.parse(data)["race"]["height"];
+            document.getElementById("lbl_weight").innerHTML = JSON.parse(data)["race"]["weight"];
+            document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["race"]["hair"];
         }
 
         function downloadObjectAsJson(){
             var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(charData), null, 2));
             var downloadAnchorNode = document.createElement('a');
             downloadAnchorNode.setAttribute("href",     dataStr);
-            downloadAnchorNode.setAttribute("download","file.json");
+            downloadAnchorNode.setAttribute("download","dnd_character.json");
             document.body.appendChild(downloadAnchorNode); // required for firefox
             downloadAnchorNode.click();
             downloadAnchorNode.remove();

@@ -1,23 +1,77 @@
 package races
 
-type RaceStruct []struct {
-	Lang        []interface{} `json:"lang"`
-	Speed       int           `json:"speed"`
-	MaxAge      int           `json:"max_age"`
-	RaceID      int           `json:"race_id"`
-	RaceName    string        `json:"race_name"`
-	Worldview   string        `json:"worldview"`
-	RaceAbility []interface{} `json:"race_ability"`
-	BodySizeInc int           `json:"body_size_inc"`
-	RaceStatsUp struct {
-		Wisdom         int    `json:"wisdom"`
-		RaceID         int    `json:"race_id"`
-		Charisma       int    `json:"charisma"`
-		Strength       int    `json:"strength"`
-		Dexterity      int    `json:"dexterity"`
-		RaceName       string `json:"race_name"`
-		Intelligence   int    `json:"intelligence"`
-		Bodydifficulty int    `json:"bodydifficulty"`
-	} `json:"race_stats_up"`
-	BodySizeMetric int `json:"body_size_metric"`
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
+type RacesAnswer struct {
+	RaceName   string   `json:"race_name"`
+	RaceNameRu string   `json:"race_name_ru"`
+	Gender     string   `json:"gender"`
+	Type       string   `json:"race_type_name"`
+	TypeRu     string   `json:"race_type_name_ru"`
+	Age        int      `json:"age"`
+	Height     int      `json:"height"`
+	Weight     int      `json:"weight"`
+	BodySize   string   `json:"body_size"`
+	Eyes       string   `json:"eyes"`
+	Hair       string   `json:"hair"`
+	Speed      int      `json:"speed"`
+	Langs      []string `json:"langs"`
+	RaceSkill  string   `json:"race_skill"`
+	FirstName  string   `json:"first_name"`
+	LastName   string   `json:"last_name"`
+	Resist     []string `json:"resist"`
+}
+
+type RacesBSON struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	RaceName   string             `json:"race_name"`
+	RaceNameRu string             `json:"race_name_ru"`
+	Type       []Type             `json:"type"`
+	MinAge     int                `json:"min_age"`
+	MaxAge     int                `json:"max_age"`
+	MinHeight  int                `json:"min_height"`
+	MaxHeight  int                `json:"max_height,omitempty"`
+	MinWeight  int                `json:"min_weight"`
+	MaxWeight  int                `json:"max_weight,omitempty"`
+	Speed      int                `json:"speed"`
+	Langs      []string           `json:"langs"`
+	RaceSkill  string             `json:"race_skill"`
+	Names      Names              `json:"names"`
+	LastNames  []interface{}      `json:"last_names"`
+	Resist     []string           `json:"resist"`
+}
+
+type RacesJsonStruct []struct {
+	RaceName   string        `json:"race_name"`
+	RaceNameRu string        `json:"race_name_ru"`
+	Type       []Type        `json:"type"`
+	MinAge     int           `json:"min_age"`
+	MaxAge     int           `json:"max_age"`
+	MinHeight  int           `json:"min_height"`
+	MaxHeight  int           `json:"max_height,omitempty"`
+	MinWeight  int           `json:"min_weight"`
+	MaxWeight  int           `json:"max_weight,omitempty"`
+	Speed      int           `json:"speed"`
+	Langs      []string      `json:"langs"`
+	RaceSkill  string        `json:"race_skill"`
+	Names      Names         `json:"names"`
+	LastNames  []interface{} `json:"last_names"`
+	Resist     []string      `json:"resist"`
+}
+type StatsUp struct {
+	Strength       int `json:"strength"`
+	Dexterity      int `json:"dexterity"`
+	BodyDifficulty int `json:"body_difficulty"`
+	Intelligence   int `json:"intelligence"`
+	Wisdom         int `json:"wisdom"`
+	Charisma       int `json:"charisma"`
+}
+type Type struct {
+	TypeRaceName   string  `json:"type_race_name,omitempty"`
+	TypeRaceNameRu string  `json:"type_race_name_ru,omitempty"`
+	StatsUp        StatsUp `json:"stats_up"`
+}
+type Names struct {
+	Man   []interface{} `json:"man"`
+	Woman []interface{} `json:"woman"`
 }
