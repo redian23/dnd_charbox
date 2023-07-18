@@ -125,8 +125,13 @@ func setWeight() int {
 	return 0
 }
 
-func setBodySize() {
-	//брать из данных из базы
+func setBodySize() string {
+	for _, race := range raceData {
+		if race.RaceName == raceName {
+			return race.BodySize
+		}
+	}
+	return ""
 }
 
 func setSpeed() int {
@@ -154,11 +159,11 @@ func setFirstName() string {
 	for _, race := range raceData {
 		if race.RaceName == raceName && raceGender == "Мужской" && len(race.Names.Man) != 0 {
 			rollNum, _ := random.IntRange(0, len(race.Names.Man))
-			return race.Names.Man[rollNum].(string)
+			return race.Names.Man[rollNum]
 		}
 		if race.RaceName == raceName && raceGender == "Женский" && len(race.Names.Man) != 0 {
 			rollNum, _ := random.IntRange(0, len(race.Names.Woman))
-			return race.Names.Woman[rollNum].(string)
+			return race.Names.Woman[rollNum]
 		}
 	}
 	return ""

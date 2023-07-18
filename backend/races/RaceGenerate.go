@@ -11,6 +11,7 @@ func GenerateRace() RacesAnswer {
 	rc.Age = setAge()
 	rc.Height = setHeight()
 	rc.Weight = setWeight()
+	rc.BodySize = setBodySize()
 	rc.Speed = setSpeed()
 	rc.FirstName = setFirstName()
 	rc.LastName = setLastName()

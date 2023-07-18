@@ -33,6 +33,7 @@ type RacesBSON struct {
 	MaxHeight  int                `json:"max_height,omitempty"`
 	MinWeight  int                `json:"min_weight"`
 	MaxWeight  int                `json:"max_weight,omitempty"`
+	BodySize   string             `json:"body_size"`
 	Speed      int                `json:"speed"`
 	Langs      []string           `json:"langs"`
 	RaceSkill  []string           `json:"race_skill"`
@@ -53,7 +54,8 @@ type RacesJsonStruct []struct {
 	MaxWeight  int           `json:"max_weight,omitempty"`
 	Speed      int           `json:"speed"`
 	Langs      []string      `json:"langs"`
-	RaceSkill  []string      `json:"race_skill"`
+	RaceSkill  []interface{} `json:"race_skill"`
+	BodySize   string        `json:"body_size"`
 	Names      Names         `json:"names"`
 	LastNames  []interface{} `json:"last_names"`
 	Resist     []string      `json:"resist"`
@@ -67,11 +69,11 @@ type StatsUp struct {
 	Charisma       int `json:"charisma"`
 }
 type Type struct {
-	TypeRaceName   string  `json:"type_race_name,omitempty"`
-	TypeRaceNameRu string  `json:"type_race_name_ru,omitempty"`
+	TypeRaceName   string  `json:"type_race_name"`
+	TypeRaceNameRu string  `json:"type_race_name_ru"`
 	StatsUp        StatsUp `json:"stats_up"`
 }
 type Names struct {
-	Man   []interface{} `json:"man"`
-	Woman []interface{} `json:"woman"`
+	Man   []string `json:"man"`
+	Woman []string `json:"woman"`
 }
