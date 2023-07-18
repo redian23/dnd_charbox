@@ -35,7 +35,7 @@ type RacesBSON struct {
 	MaxWeight  int                `json:"max_weight,omitempty"`
 	Speed      int                `json:"speed"`
 	Langs      []string           `json:"langs"`
-	RaceSkill  string             `json:"race_skill"`
+	RaceSkill  []string           `json:"race_skill"`
 	Names      Names              `json:"names"`
 	LastNames  []interface{}      `json:"last_names"`
 	Resist     []string           `json:"resist"`
@@ -53,7 +53,7 @@ type RacesJsonStruct []struct {
 	MaxWeight  int           `json:"max_weight,omitempty"`
 	Speed      int           `json:"speed"`
 	Langs      []string      `json:"langs"`
-	RaceSkill  string        `json:"race_skill"`
+	RaceSkill  []string      `json:"race_skill"`
 	Names      Names         `json:"names"`
 	LastNames  []interface{} `json:"last_names"`
 	Resist     []string      `json:"resist"`

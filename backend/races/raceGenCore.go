@@ -17,7 +17,7 @@ func InsertRacesToDB() {
 	coll := client.Database("data").Collection("races")
 
 	var race RacesJsonStruct
-	json.Unmarshal(RacesJsonData, &race)
+	json.Unmarshal([]byte{}, &race) //пока что ничего не записывает
 
 	docs := []interface{}{}
 
@@ -75,10 +75,20 @@ func GetRaceAbilities() StatsUp {
 	return StatsUp{}
 }
 
-func GetRaceSkill() string {
+func setRaceSkills() []string {
 	for _, race := range raceData {
 		if race.RaceName == raceName {
 			return race.RaceSkill
+		}
+	}
+	return nil
+}
+
+func GetRaceSkill() string {
+	for _, race := range raceData {
+		if race.RaceName == raceName && len(race.RaceSkill) > 0 {
+			rollNum, _ := random.IntRange(0, len(race.RaceSkill))
+			return race.RaceSkill[rollNum]
 		}
 	}
 	return ""
@@ -191,15 +201,6 @@ func setKnowLanguages() []string {
 		}
 	}
 	return nil
-}
-
-func setRaceSkills() string {
-	for _, race := range raceData {
-		if race.RaceName == raceName {
-			return race.RaceSkill
-		}
-	}
-	return ""
 }
 
 func setResist() []string {

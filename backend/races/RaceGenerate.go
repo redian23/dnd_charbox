@@ -15,7 +15,6 @@ func GenerateRace() RacesAnswer {
 	rc.FirstName = setFirstName()
 	rc.LastName = setLastName()
 	rc.Langs = setKnowLanguages()
-	rc.RaceSkill = setRaceSkills()
 	rc.Resist = setResist()
 
 	return rc
