@@ -252,7 +252,7 @@
                         <p class="title">Рост: <label id="lbl_height"></label> см</p>
                     </article>
                     <article class="tile is-child">
-                        <p class="title">Размер тела: </p>
+                        <p class="title">Размер тела: <label id="lbl_bodySize"></label></p>
                     </article>
                 </article>
             </div>
@@ -480,6 +480,7 @@
             document.getElementById("lbl_charFirstName2").innerHTML = JSON.parse(data)["race"]["first_name"];
             document.getElementById("lbl_charLastName2").innerHTML = JSON.parse(data)["race"]["last_name"];
             document.getElementById("lbl_resist").innerHTML = JSON.parse(data)["race"]["resist"];
+            document.getElementById("lbl_bodySize").innerHTML = JSON.parse(data)["race"]["body_size"];
 
             document.getElementById("lbl_speed").innerHTML = JSON.parse(data)["race"]["speed"];
             document.getElementById("lbl_languages").innerHTML = JSON.parse(data)["race"]["langs"];
