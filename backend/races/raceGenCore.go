@@ -97,32 +97,37 @@ func GetRaceSkill() string {
 func setAge() int {
 	for _, race := range raceData {
 		if race.RaceName == raceName {
-			age, _ := random.IntRange(race.MinAge, race.MaxAge)
+			// Вряд ли кто-то будет играть за глубокого старика
+			// поэтому минус 25% от макс возраста
+			maxAge := (race.MaxAge * 75) / 100
+			age, _ := random.IntRange(race.MinAge, maxAge)
 			return age
 		}
 	}
 	return 0
 }
 
-func setHeight() int {
+func setHeight() (int, string) {
 
 	for _, race := range raceData {
 		if race.RaceName == raceName {
 			height, _ := random.IntRange(race.MinHeight, race.MaxHeight)
-			return height
+			heightFt := fmt.Sprintf("%.1f", float32(height)*0.0328)
+			return height, heightFt
 		}
 	}
-	return 0
+	return 0, ""
 }
 
-func setWeight() int {
+func setWeight() (int, int) {
 	for _, race := range raceData {
 		if race.RaceName == raceName {
 			weight, _ := random.IntRange(race.MinWeight, race.MaxWeight)
-			return weight
+			weightLb := (weight * 220) / 100
+			return weight, weightLb
 		}
 	}
-	return 0
+	return 0, 0
 }
 
 func setBodySize() string {

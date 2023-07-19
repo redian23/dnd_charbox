@@ -13,25 +13,25 @@ import (
 	"time"
 )
 
-var htmlSitePath string
-var imagesSitePath = "/images"
-var imagesSiteRootPath string
-var logPath string
+var (
+	htmlSitePath, filePath string
+	logPath                string
+)
 
 func init() {
-	InitServerPathVars(true)
-	//InitServerPathVars(false)
+	//InitServerPathVars(true)
+	InitServerPathVars(false)
 	db.PingMongoDB()
 }
 
 func InitServerPathVars(status bool) {
 	if status == true {
-		imagesSiteRootPath = "./usr/share/nginx/html/images"
-		htmlSitePath = "/usr/share/nginx/html/*.html"
+		htmlSitePath = "/usr/share/nginx/html/*/*.html"
+		filePath = "/usr/share/nginx/html"
 		logPath = "/var/logs/"
 	} else {
-		imagesSiteRootPath = "./frontend/images"
-		htmlSitePath = "frontend/html/*.html"
+		htmlSitePath = "frontend/*/*.html"
+		filePath = "./frontend"
 		logPath = ""
 	}
 }
@@ -73,17 +73,20 @@ func main() {
 	router.SetFuncMap(template.FuncMap{
 		"upper": strings.ToUpper,
 	})
-	router.Static(imagesSitePath, imagesSiteRootPath)
+
 	router.LoadHTMLGlob(htmlSitePath)
+	router.StaticFS("/f", http.Dir(filePath))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
 			"title": "Dice Roller",
+			"path":  "./f/diceroll",
 		})
 	})
 	router.GET("/test", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
 			"title": "Character Box",
+			"path":  "./f/charbox",
 		})
 	})
 	router.GET("/about", func(c *gin.Context) {
@@ -92,8 +95,8 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	//router.Run(":848") //local
-	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	router.Run(":848") //local
+	//router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
 
 func keyFunc(c *gin.Context) string {

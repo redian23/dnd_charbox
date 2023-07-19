@@ -11,6 +11,8 @@ type RacesAnswer struct {
 	Age        int      `json:"age"`
 	Height     int      `json:"height"`
 	Weight     int      `json:"weight"`
+	HeightFt   string   `json:"height_ft"`
+	WeightLb   int      `json:"weight_lb"`
 	BodySize   string   `json:"body_size"`
 	Eyes       string   `json:"eyes"`
 	Hair       string   `json:"hair"`

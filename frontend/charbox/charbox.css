@@ -1,0 +1,54 @@
+@media screen {
+    body {
+        zoom: 90%;
+    }
+}
+
+.subtitle{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.subtitle-text{
+    font-size: 20px;
+    font-weight: normal;
+}
+.button {
+    margin: 5px;
+}
+.div_chat{
+    padding-left: 0.5rem;
+    font-size: 20px;
+}
+.radio{
+    font-size: 20px;
+}
+input[type="radio"]:disabled {
+    -webkit-appearance: none;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    padding: 0px;
+    background-clip: content-box;
+    border: 2px solid #bbbbbb;
+    background-color: white;
+    border-radius: 50%;
+}
+input[type="radio"]:checked {
+    background-color: #888888;
+}
+.tile.is-parent {
+    padding: 0.5rem;
+}
+.tile.is-parent.is-vertical.box.head{
+    padding: 0.2rem;
+    background: #a4ccf1;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.tile.is-parent.is-vertical.box.middle{
+    padding: 0.2rem;
+    background: #a4f1cb;
+    border-radius: 0;
+    margin-bottom: 0;
+}
