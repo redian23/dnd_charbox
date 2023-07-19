@@ -1,6 +1,6 @@
 
 window.onload = getCurrentClass();
-var charData
+let charData
 
 async function getCurrentClass() {
 
@@ -8,12 +8,12 @@ async function getCurrentClass() {
     const json = await response.json();
     let data = JSON.stringify(json);
 
+    charData = data
     writeToAbilitiesLabels(data)
     writeToSaveThrowsLabels(data)
     writeToSkillsLabels(data)
     writeOtherLabels(data)
     writeBackgroundLabels(data)
-
     writeAppearanceLabels(data)
 }
 
@@ -222,7 +222,7 @@ function writeAppearanceLabels(data) {
 function downloadObjectAsJson(){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(charData), null, 2));
     var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("href", dataStr);
     downloadAnchorNode.setAttribute("download","dnd_character.json");
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
