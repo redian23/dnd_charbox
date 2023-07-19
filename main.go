@@ -14,22 +14,22 @@ import (
 )
 
 var htmlSitePath string
-var imagesSitePath, imagesSiteRootPath string
+var imagesSitePath = "/images"
+var imagesSiteRootPath string
 var logPath string
 
 func init() {
 	InitServerPathVars(true)
+	//InitServerPathVars(false)
 	db.PingMongoDB()
 }
 
 func InitServerPathVars(status bool) {
 	if status == true {
-		imagesSitePath = "/usr/share/nginx/html/images"
 		imagesSiteRootPath = "./usr/share/nginx/html/images"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
 		logPath = "/var/logs/"
 	} else {
-		imagesSitePath = "/images"
 		imagesSiteRootPath = "./frontend/images"
 		htmlSitePath = "frontend/html/*.html"
 		logPath = ""
