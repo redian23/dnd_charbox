@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="images/icons/favicon_charbox.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>{{.title}}</title>
@@ -124,7 +124,7 @@
             <div class="tile">
                 <div name="CHAR_POINTS" class="tile is-2 is-parent is-vertical">
                     <article class="tile is-child box">
-                        <p class="title">Photo: Loading ...</p>
+                        <p class="title">Loading... <img id="img_Character_Preview" src="" alt=""></p>
                     </article>
                         <article class="tile is-child box">
                             <p class="title"> Значения Характеристик</p>
@@ -449,6 +449,9 @@
         }
 
         function writeOtherLabels(data) {
+            //document.getElementById("imageid").src="../template/save.png";
+
+
             document.getElementById("lbl_hitsDice").innerHTML = JSON.parse(data)["class"]["hits"]["hit_dice"];
             document.getElementById("lbl_hitsCount").innerHTML = JSON.parse(data)["class"]["hits"]["hit_count"];
 

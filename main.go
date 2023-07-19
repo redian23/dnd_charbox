@@ -14,7 +14,7 @@ import (
 )
 
 var htmlSitePath string
-var assetsSitePath, assetsSiteRootPath string
+var imagesSitePath, imagesSiteRootPath string
 var logPath string
 
 func init() {
@@ -24,20 +24,20 @@ func init() {
 
 func InitServerPathVars(status bool) {
 	if status == true {
-		assetsSitePath = "/usr/share/nginx/html/assets"
-		assetsSiteRootPath = "./usr/share/nginx/html/assets"
+		imagesSitePath = "/usr/share/nginx/html/images"
+		imagesSiteRootPath = "./usr/share/nginx/html/images"
 		htmlSitePath = "/usr/share/nginx/html/*.html"
 		logPath = "/var/logs/"
 	} else {
-		assetsSitePath = "frontend/assets"
-		assetsSiteRootPath = "./frontend/assets"
+		imagesSitePath = "/images"
+		imagesSiteRootPath = "./frontend/images"
 		htmlSitePath = "frontend/html/*.html"
 		logPath = ""
 	}
 }
 
 func main() {
-	f, _ := os.Create("gin_errors.log")
+	f, _ := os.Create(logPath + "gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 
 	router := gin.Default()
@@ -73,7 +73,7 @@ func main() {
 	router.SetFuncMap(template.FuncMap{
 		"upper": strings.ToUpper,
 	})
-	router.Static(assetsSitePath, assetsSiteRootPath)
+	router.Static(imagesSitePath, imagesSiteRootPath)
 	router.LoadHTMLGlob(htmlSitePath)
 
 	router.GET("/", func(c *gin.Context) {
@@ -81,7 +81,6 @@ func main() {
 			"title": "Dice Roller",
 		})
 	})
-
 	router.GET("/test", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
 			"title": "Character Box",

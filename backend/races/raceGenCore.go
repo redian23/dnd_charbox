@@ -145,7 +145,7 @@ func setSpeed() int {
 
 func setGender() string {
 	var gender string
-	count, _ := random.IntRange(0, 10)
+	count, _ := random.IntRange(1, 10)
 	if count%2 == 0 {
 		gender = "Мужской"
 	} else {
@@ -190,7 +190,8 @@ func setEyesColor() string {
 }
 
 func setHairColor() string {
-	var colors = []string{"Желтые", "Белые", "Черные", "Синие", "Красные", "Зеленые", "Каштановые", "Бирюзовые", "Рыжие"}
+	var colors = []string{"Желтые", "Белые", "Черные", "Синие", "Красные",
+		"Зеленые", "Каштановые", "Бирюзовые", "Рыжие"}
 
 	color, err := random.Choice(colors)
 	if err != nil {
