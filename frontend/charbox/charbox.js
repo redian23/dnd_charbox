@@ -238,7 +238,10 @@ function hideUploadPage() {
 }
 
 function importFile() {
-    var files = document.getElementById('fl_upload_file').files[0];
+    var files = document.getElementById('fl_upload_file').files;
+    if (files.length <= 0) {
+        return false;
+    }
     var fr = new FileReader();
     fr.onload = function(e) {
         var result = JSON.parse(e.target.result);
@@ -250,10 +253,10 @@ function importFile() {
         writeOtherLabels(data)
         writeBackgroundLabels(data)
         writeAppearanceLabels(data)
-    }
+    };
 
     fr.readAsText(files.item(0));
-};
+}
 
 
 function downloadObjectAsJson(){
