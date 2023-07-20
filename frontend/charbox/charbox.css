@@ -23,6 +23,7 @@
 .radio{
     font-size: 20px;
 }
+
 input[type="radio"]:disabled {
     -webkit-appearance: none;
     display: inline-block;

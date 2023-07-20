@@ -3,7 +3,7 @@ window.onload = getCurrentClass();
 let charData
 
 async function getCurrentClass() {
-
+    hideUploadPage()
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
     const json = await response.json();
     let data = JSON.stringify(json);
@@ -218,6 +218,43 @@ function writeAppearanceLabels(data) {
 
     document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["race"]["hair"];
 }
+
+const fileInput = document.querySelector('#file-js input[type=file]');
+fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+        const fileName = document.querySelector('#file-js .file-name');
+        fileName.textContent = fileInput.files[0].name;
+    }
+}
+
+function showUploadPage() {
+    document.getElementById("file-js").style.display = "inline";
+    document.getElementById("btn_show_upload").style.display = "none";
+}
+
+function hideUploadPage() {
+    document.getElementById("file-js").style.display = "none";
+    document.getElementById("btn_show_upload").style.display = "inline";
+}
+
+function importFile() {
+    var files = document.getElementById('fl_upload_file').files[0];
+    var fr = new FileReader();
+    fr.onload = function(e) {
+        var result = JSON.parse(e.target.result);
+        var data = JSON.stringify(result, null, 2);
+
+        writeToAbilitiesLabels(data)
+        writeToSaveThrowsLabels(data)
+        writeToSkillsLabels(data)
+        writeOtherLabels(data)
+        writeBackgroundLabels(data)
+        writeAppearanceLabels(data)
+    }
+
+    fr.readAsText(files.item(0));
+};
+
 
 function downloadObjectAsJson(){
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(charData), null, 2));
