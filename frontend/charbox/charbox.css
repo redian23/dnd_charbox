@@ -1,7 +1,15 @@
 @media screen {
     body {
         zoom: 90%;
+        background: #3e8ed0;
     }
+}
+
+.notification-main {
+    background: #a4ccf1;
+    border-radius: 5px;
+    position: relative;
+    padding: 5px;
 }
 
 .subtitle{

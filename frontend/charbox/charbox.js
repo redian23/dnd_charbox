@@ -15,6 +15,7 @@ async function getCurrentClass() {
     writeOtherLabels(data)
     writeBackgroundLabels(data)
     writeAppearanceLabels(data)
+    writeProficiencies(data)
 }
 
 function writeToAbilitiesLabels(data) {
@@ -219,6 +220,14 @@ function writeAppearanceLabels(data) {
     document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["race"]["hair"];
 }
 
+function writeProficiencies(data) {
+    let prof = JSON.stringify(JSON.parse(data)["class"]["proficiencies"]);
+
+    document.getElementById("lbl_weapon").innerHTML = JSON.parse(prof)["weapons"];
+    document.getElementById("lbl_instruments").innerHTML = JSON.parse(prof)["instruments"];
+    document.getElementById("lbl_armor").innerHTML = JSON.parse(prof)["armor"];
+}
+
 const fileInput = document.querySelector('#file-js input[type=file]');
 fileInput.onchange = () => {
     if (fileInput.files.length > 0) {
@@ -253,6 +262,7 @@ function importFile() {
         writeOtherLabels(data)
         writeBackgroundLabels(data)
         writeAppearanceLabels(data)
+        writeProficiencies(data)
     };
 
     fr.readAsText(files.item(0));

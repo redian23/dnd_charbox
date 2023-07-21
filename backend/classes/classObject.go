@@ -3,20 +3,26 @@ package classes
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type ClassAnswer struct {
-	ClassName        string       `json:"class_name"`
-	ClassNameRU      string       `json:"class_name_ru"`
-	Description      string       `json:"description"`
-	Ability          Ability      `json:"ability"`
-	Modifier         Modifier     `json:"modifier"`
-	Inspiration      bool         `json:"inspiration"`
-	ProficiencyBonus int          `json:"proficiency_bonus"`
-	PassiveWisdom    int          `json:"passive_wisdom"`
-	Skills           Skills       `json:"skills"`
-	SkillsOfClass    []string     `json:"skills_of_class"`
-	SavingThrows     SavingThrows `json:"saving_throws"`
-	Hits             hits         `json:"hits"`
-	Armor            string       `json:"armor"`
-	Instruments      []string     `json:"instruments"`
+	ClassName        string        `json:"class_name"`
+	ClassNameRU      string        `json:"class_name_ru"`
+	Description      string        `json:"description"`
+	Ability          Ability       `json:"ability"`
+	Modifier         Modifier      `json:"modifier"`
+	Inspiration      bool          `json:"inspiration"`
+	Proficiencies    Proficiencies `json:"proficiencies"`
+	ProficiencyBonus int           `json:"proficiency_bonus"`
+	PassiveWisdom    int           `json:"passive_wisdom"`
+	Skills           Skills        `json:"skills"`
+	SkillsOfClass    []string      `json:"skills_of_class"`
+	SavingThrows     SavingThrows  `json:"saving_throws"`
+	Hits             hits          `json:"hits"`
+	Inventory        []interface{} `json:"inventory"`
+}
+
+type Proficiencies struct {
+	Armor       string `json:"armor"`
+	Weapons     string `json:"weapons"`
+	Instruments string `json:"instruments"`
 }
 
 type Ability struct {
@@ -82,14 +88,15 @@ type savingThrows struct {
 }
 
 type ClassesBSON []struct {
-	ID           primitive.ObjectID `bson:"_id"`
-	ClassName    string             `json:"className"`
-	ClassNameRU  string             `json:"classNameRU"`
-	CharReq      [][]string         `json:"charReq"`
-	Background   []string           `json:"background"`
-	Hits         hits               `json:"hits"`
-	SkillsInDB   skillsInDB         `bson:"skills"`
-	SavingThrows []string           `json:"saving_throws"`
+	ID            primitive.ObjectID `bson:"_id"`
+	ClassName     string             `json:"className"`
+	ClassNameRU   string             `json:"classNameRU"`
+	CharReq       [][]string         `json:"charReq"`
+	Background    []string           `json:"background"`
+	Hits          hits               `json:"hits"`
+	SkillsInDB    skillsInDB         `bson:"skills"`
+	SavingThrows  []string           `json:"saving_throws"`
+	Proficiencies Proficiencies      `json:"proficiencies"`
 }
 
 type hits struct {

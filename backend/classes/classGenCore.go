@@ -383,6 +383,15 @@ func setHitCount(modBody int) int {
 	return hitCount
 }
 
+func setProficiencies() Proficiencies {
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			return char.Proficiencies
+		}
+	}
+	return Proficiencies{}
+}
+
 func remove(s []int, i int) []int {
 	s[i] = s[len(s)-1]
 	return s[:len(s)-1]

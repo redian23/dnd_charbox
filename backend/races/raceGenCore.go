@@ -214,11 +214,11 @@ func setKnowLanguages() []string {
 	return nil
 }
 
-func setResist() []string {
+func setResist() string {
 	for _, race := range raceData {
 		if race.RaceName == raceName {
 			return race.Resist
 		}
 	}
-	return nil
+	return ""
 }

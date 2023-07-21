@@ -18,6 +18,7 @@ func GenerateClass() ClassAnswer {
 	class.Hits.HitDice = setHitDice()
 	class.Hits.HitCount = setHitCount(class.Modifier.BodyDifficulty)
 	class.SkillsOfClass = setClassSkills()
+	class.Proficiencies = setProficiencies()
 
 	return class
 }

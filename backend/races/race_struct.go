@@ -21,7 +21,7 @@ type RacesAnswer struct {
 	RaceSkill  string   `json:"race_skill"`
 	FirstName  string   `json:"first_name"`
 	LastName   string   `json:"last_name"`
-	Resist     []string `json:"resist"`
+	Resist     string   `json:"resist"`
 }
 
 type RacesBSON struct {
@@ -41,7 +41,7 @@ type RacesBSON struct {
 	RaceSkill  []string           `json:"race_skill"`
 	Names      Names              `json:"names"`
 	LastNames  []interface{}      `json:"last_names"`
-	Resist     []string           `json:"resist"`
+	Resist     string             `json:"resist"`
 }
 
 type RacesJsonStruct []struct {
