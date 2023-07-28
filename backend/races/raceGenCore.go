@@ -17,7 +17,7 @@ func InsertRacesToDB() {
 	coll := client.Database("data").Collection("races")
 
 	var race RacesJsonStruct
-	json.Unmarshal([]byte{}, &race) //пока что ничего не записывает
+	json.Unmarshal([]byte{}, &race) // пока что ничего не записывает
 
 	docs := []interface{}{}
 
@@ -108,7 +108,6 @@ func setAge() int {
 }
 
 func setHeight() (int, string) {
-
 	for _, race := range raceData {
 		if race.RaceName == raceName {
 			height, _ := random.IntRange(race.MinHeight, race.MaxHeight)
@@ -156,7 +155,7 @@ func setGender() string {
 	} else {
 		gender = "Женский"
 	}
-	raceGender = gender //присвоение для других методов в пакете
+	raceGender = gender // присвоение для других методов в пакете
 	return gender
 }
 
@@ -221,4 +220,26 @@ func setResist() string {
 		}
 	}
 	return ""
+}
+
+func setDarkvision() bool {
+	for _, race := range raceData {
+		if race.RaceName == raceName {
+			return race.Darkvision
+		}
+	}
+	return false
+}
+
+func setRaceAbilities(raceTypename string) []raceAbility {
+	for _, race := range raceData {
+		if race.RaceName == raceName {
+			for _, rType := range race.Type {
+				if raceTypename == rType.TypeRaceNameRu {
+					return rType.RaceAbilities
+				}
+			}
+		}
+	}
+	return nil
 }

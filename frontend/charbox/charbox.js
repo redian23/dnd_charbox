@@ -9,6 +9,8 @@ async function getCurrentClass() {
     let data = JSON.stringify(json);
 
     charData = data
+
+    console.log(data)
     writeToAbilitiesLabels(data)
     writeToSaveThrowsLabels(data)
     writeToSkillsLabels(data)
@@ -196,28 +198,53 @@ function writeBackgroundLabels(data) {
 }
 
 function writeAppearanceLabels(data) {
-    document.getElementById("lbl_raceName").innerHTML = JSON.parse(data)["race"]["race_type_name_ru"];
-    document.getElementById("lbl_charFirstName").innerHTML = JSON.parse(data)["race"]["first_name"];
-    document.getElementById("lbl_charLastName").innerHTML = JSON.parse(data)["race"]["last_name"];
+    let race = JSON.stringify(JSON.parse(data)["race"]);
+    document.getElementById("p_dragon_type").style.display = "none";
+    document.getElementById("div_snake_appearance").style.display = "none";
 
-    document.getElementById("lbl_charFirstName2").innerHTML = JSON.parse(data)["race"]["first_name"];
-    document.getElementById("lbl_charLastName2").innerHTML = JSON.parse(data)["race"]["last_name"];
-    document.getElementById("lbl_resist").innerHTML = JSON.parse(data)["race"]["resist"];
-    document.getElementById("lbl_bodySize").innerHTML = JSON.parse(data)["race"]["body_size"];
 
-    document.getElementById("lbl_speed").innerHTML = JSON.parse(data)["race"]["speed"];
-    document.getElementById("lbl_languages").innerHTML = JSON.parse(data)["race"]["langs"];
+    document.getElementById("lbl_raceName").innerHTML = JSON.parse(race)["race_type_name_ru"];
+    document.getElementById("lbl_charFirstName").innerHTML =  JSON.parse(race)["first_name"];
+    document.getElementById("lbl_charLastName").innerHTML =  JSON.parse(race)["last_name"];
 
-    document.getElementById("lbl_gender").innerHTML = JSON.parse(data)["race"]["gender"];
-    document.getElementById("lbl_age").innerHTML = JSON.parse(data)["race"]["age"];
-    document.getElementById("lbl_eyesColor").innerHTML = JSON.parse(data)["race"]["eyes"];
-    document.getElementById("lbl_height").innerHTML = JSON.parse(data)["race"]["height"];
-    document.getElementById("lbl_weight").innerHTML = JSON.parse(data)["race"]["weight"];
+    document.getElementById("lbl_charFirstName2").innerHTML =  JSON.parse(race)["first_name"];
+    document.getElementById("lbl_charLastName2").innerHTML =  JSON.parse(race)["last_name"];
+    document.getElementById("lbl_resist").innerHTML =  JSON.parse(race)["resist"];
+    document.getElementById("lbl_bodySize").innerHTML =  JSON.parse(race)["body_size"];
 
-    document.getElementById("lbl_height_ft").innerHTML = JSON.parse(data)["race"]["height_ft"];
-    document.getElementById("lbl_weight_lb").innerHTML = JSON.parse(data)["race"]["weight_lb"];
+    document.getElementById("lbl_speed").innerHTML =  JSON.parse(race)["speed"];
+    document.getElementById("lbl_languages").innerHTML =  JSON.parse(race)["langs"];
 
-    document.getElementById("lbl_hairColor").innerHTML = JSON.parse(data)["race"]["hair"];
+    document.getElementById("lbl_gender").innerHTML =  JSON.parse(race)["gender"];
+    document.getElementById("lbl_age").innerHTML =  JSON.parse(race)["age"];
+    document.getElementById("lbl_eyesColor").innerHTML =  JSON.parse(race)["eyes"];
+    document.getElementById("lbl_height").innerHTML =  JSON.parse(race)["height"];
+    document.getElementById("lbl_weight").innerHTML =  JSON.parse(race)["weight"];
+
+    document.getElementById("lbl_height_ft").innerHTML =  JSON.parse(race)["height_ft"];
+    document.getElementById("lbl_weight_lb").innerHTML =  JSON.parse(race)["weight_lb"];
+
+    document.getElementById("lbl_hairColor").innerHTML =  JSON.parse(race)["hair"];
+
+    if (JSON.parse(race)["race_name"] === "Dragonborn"){
+        document.getElementById("p_dragon_type").style.display = "inline";
+        document.getElementById("lbl_dragon_color").innerHTML = JSON.parse(race)["other"]["dragon_type"]["color"];
+    }
+
+    if (JSON.parse(race)["race_name"] === "Yuan-ti"){
+        document.getElementById("div_snake_appearance").style.display = "flex";
+        document.getElementById("lbl_hairColor").innerHTML = "Нет";
+
+        document.getElementById("lbl_typeSnakeBody").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["type_snake_body"];
+        document.getElementById("lbl_humanoidSkinColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["humanoid_skin_color"];
+        document.getElementById("lbl_scaleColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["scale_color"];
+        document.getElementById("lbl_ScalePattern").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["scale_pattern"];
+        document.getElementById("lbl_tongueColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["tongue_color"];
+        document.getElementById("lbl_eyesColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["eye_color"];
+        document.getElementById("lbl_headShape").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["head_shape"];
+        document.getElementById("lbl_purebredsSpecialty").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["purebreds_specialty"];
+
+    }
 }
 
 function writeProficiencies(data) {
@@ -227,6 +254,7 @@ function writeProficiencies(data) {
     document.getElementById("lbl_instruments").innerHTML = JSON.parse(prof)["instruments"];
     document.getElementById("lbl_armor").innerHTML = JSON.parse(prof)["armor"];
 }
+
 
 const fileInput = document.querySelector('#file-js input[type=file]');
 fileInput.onchange = () => {

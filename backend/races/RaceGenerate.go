@@ -17,6 +17,10 @@ func GenerateRace() RacesAnswer {
 	rc.LastName = setLastName()
 	rc.Langs = setKnowLanguages()
 	rc.Resist = setResist()
+	rc.Darkvision = setDarkvision()
+	rc.Other.DragonType = setDragonType(rc.TypeRu)
+	rc.Other.YuantiAppearance = setAppearanceYuanti(rc.TypeRu)
+	rc.RaceAbilities = setRaceAbilities(rc.TypeRu)
 
 	return rc
 }

@@ -1,7 +1,6 @@
 package backgr
 
 func GenerateBackground(className string) BackgroundAnswer {
-
 	var bg BackgroundAnswer
 	bg.BackgroundName = backgroundAnalyze(className)
 	bg.BackgroundNameRu = setBackgroundNameRU()
