@@ -83,7 +83,7 @@ type Type struct {
 	TypeRaceName   string        `json:"type_race_name"`
 	TypeRaceNameRu string        `json:"type_race_name_ru"`
 	StatsUp        StatsUp       `json:"stats_up"`
-	RaceAbilities  []raceAbility `bson:"raceAbility"`
+	RaceAbilities  []raceAbility `bson:"raceAbilities"`
 }
 type names struct {
 	Man   []string `json:"man"`

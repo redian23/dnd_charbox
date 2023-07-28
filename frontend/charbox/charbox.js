@@ -10,7 +10,7 @@ async function getCurrentClass() {
 
     charData = data
 
-    console.log(data)
+    //console.log(data)
     writeToAbilitiesLabels(data)
     writeToSaveThrowsLabels(data)
     writeToSkillsLabels(data)
@@ -18,6 +18,7 @@ async function getCurrentClass() {
     writeBackgroundLabels(data)
     writeAppearanceLabels(data)
     writeProficiencies(data)
+    writeRaceAbilities(data)
 }
 
 function writeToAbilitiesLabels(data) {
@@ -255,6 +256,16 @@ function writeProficiencies(data) {
     document.getElementById("lbl_armor").innerHTML = JSON.parse(prof)["armor"];
 }
 
+function writeRaceAbilities(data) {
+    let race_abil = JSON.parse(data)["race"]["race_abilities"];
+
+    for(let i = 0; i < race_abil.length; i++){
+        console.log(race_abil[i])
+        document.getElementById("lbl_race_abilities").innerHTML += "<strong>"+ JSON.stringify(race_abil[i]["AbilityName"])+"</strong>" +" --> "+ JSON.stringify(race_abil[i]["Description"]) + "<br>" ;
+    }
+}
+
+
 
 const fileInput = document.querySelector('#file-js input[type=file]');
 fileInput.onchange = () => {
@@ -291,6 +302,7 @@ function importFile() {
         writeBackgroundLabels(data)
         writeAppearanceLabels(data)
         writeProficiencies(data)
+        writeRaceAbilities(data)
     };
 
     fr.readAsText(files.item(0));
