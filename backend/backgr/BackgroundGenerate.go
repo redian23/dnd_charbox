@@ -13,5 +13,8 @@ func GenerateBackground(className string) BackgroundAnswer {
 	bg.Ideal, bg.Worldview = setIdeal()
 	bg.Affection = setAffection()
 	bg.Weakness = setWeakness()
+	bg.BackgroundAbility = setBackgroundAbility()
+	bg.MasteryOfTools = setMasteryOfTools()
+	bg.Equipment = setEquipment()
 	return bg
 }

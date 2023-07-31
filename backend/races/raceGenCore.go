@@ -236,7 +236,6 @@ func setRaceAbilities(raceTypename string) []raceAbility {
 		if race.RaceName == raceName {
 			for _, rType := range race.Type {
 				if raceTypename == rType.TypeRaceNameRu {
-					fmt.Println(rType.RaceAbilities)
 					return rType.RaceAbilities
 				}
 			}

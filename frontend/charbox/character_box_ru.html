@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="{{.path}}/favicon.png">
-    <meta name='viewport' content='width=device-width,initial-scale=1'/>
+    <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
     <meta content='true' name='HandheldFriendly'/>
     <meta content='width' name='MobileOptimized'/>
     <meta content='yes' name='apple-mobile-web-app-capable'/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>{{.title}}</title>
-    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
     <style> @import url("{{.path}}/charbox.css");</style>
     <section class="hero is-small is-info">
         <div class="hero-body">
@@ -148,23 +148,29 @@
                     <article class="tile is-child  box">
                         <p class="subtitle">Прочие Владения и Языки: </p>
                         <p class="subtitle-text" id="p_dragon_type" style="display:none;">Вид дракона: [ <label id="lbl_dragon_color"></label> ]</p>
-
                         <p class="subtitle-text">Скорость: [ <label id="lbl_speed"></label> ]</p>
                         <p class="subtitle-text">Знание языков: [ <label id="lbl_languages"></label> ]</p>
                         <p class="subtitle-text">Сопротивляемость к: [ <label id="lbl_resist"></label> ]</p>
                         <p class="subtitle-text">Доспехи: [ <label id="lbl_armor"></label> ]</p>
                         <p class="subtitle-text">Оружие: [ <label id="lbl_weapon"></label> ]</p>
-                        <p class="subtitle-text">Инструменты: [ <label id="lbl_instruments"></label> ]</p>
+                        <p class="subtitle-text">Инструменты от класса: [ <label id="lbl_class_instruments"></label> ]</p>
+                        <p class="subtitle-text">Инструменты от предыстории: [ <label id="lbl_background_instruments"></label> ]</p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Умения и способности: <br> Loading ...</p>
-                        <p><label id="lbl_race_abilities"></label></p>
+                        <p class="subtitle">Умения и способности:<br></p>
+                        <p><label class="subtitle-text" id="lbl_race_abilities"></label></p>
                     </article>
                     <article class="tile is-child box">
                         <p class="subtitle">Оружие: <br> Loading ...</p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Снаряжение: <br> Loading ...</p>
+                        <p class="subtitle">Снаряжение: <br></p>
+                        <p class="subtitle"><strong>Снаряжение от предыстории:</strong>
+                            [ <label class="subtitle-text" id="lbl_list_background_equipment"></label> ]
+                        </p>
+                        <p class="subtitle"><strong>Снаряжение от класса:</strong>
+                            <label class="subtitle-text" id="lbl_list_class_equipment"></label>
+                        </p>
                     </article>
                 </div>
                 <div name="Background INFO" class="tile is-parent is-5 is-vertical">
@@ -173,9 +179,10 @@
                     </article>
                     <article class="tile is-child box">
                         <p class="subtitle">Персонализация: <label class="subtitle-text" id="lbl_personalization"></label></p>
+                        <p class="subtitle">Совет: <label class="subtitle-text" id="lbl_advice"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Совет: <label class="subtitle-text" id="lbl_advice"></label></p>
+                        <p class="subtitle">Умение от предыстории: <label class="subtitle-text" id="lbl_background_ability"></label></p>
                     </article>
                     <article class="tile is-child box">
                         <p class="subtitle">Черта характера: <label class="subtitle-text" id="lbl_characterTrait"></label></p>
@@ -277,5 +284,39 @@
             </div>
         </div>
     </div>
+    <div id name="Character_spells_header" class="tile is-parent is-vertical box bottom">
+        <div style="text-align: center"><label class="title">Заговоры и Заклинания</label></div>
+        <div class="tile">
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <article class="tile is-child">
+                        <p class="title">Заговоры: <label></label></p>
+                    </article>
+                </article>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <article class="tile is-child">
+                        <p class="title">Заклинания: <label></label></p>
+                    </article>
+                </article>
+            </div>
+        </div>
+    </div>
 </body>
+<footer class="footer-distributed">
+    <div class="footer-right">
+        <a href="#"><i class="fa fa-telegram"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+    </div>
+    <div class="footer-left">
+        <p class="footer-links">
+            <a class="link-1" href="#">Home</a>
+            <a href="/about">About</a>
+            <a href="#">Contact</a>
+        </p>
+        <p>CharBox &copy; 2023</p>
+    </div>
+</footer>
 </html>

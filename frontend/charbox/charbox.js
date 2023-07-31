@@ -24,26 +24,26 @@ async function getCurrentClass() {
 function writeToAbilitiesLabels(data) {
     document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
 
-    let abilities = JSON.stringify(JSON.parse(data)["class"]["ability"]);
-    document.getElementById("lbl_ability_total_info").innerHTML = JSON.parse(abilities)["total"];
-    document.getElementById("lbl_ability_strength_info").innerHTML = JSON.parse(abilities)["strength"];
-    document.getElementById("lbl_ability_dexterity_info").innerHTML = JSON.parse(abilities)["dexterity"];
-    document.getElementById("lbl_ability_bodyDifficulty_info").innerHTML = JSON.parse(abilities)["body_difficulty"];
-    document.getElementById("lbl_ability_intelligence_info").innerHTML = JSON.parse(abilities)["intelligence"];
-    document.getElementById("lbl_ability_wisdom_info").innerHTML = JSON.parse(abilities)["wisdom"];
-    document.getElementById("lbl_ability_charisma_info").innerHTML = JSON.parse(abilities)["charisma"];
+    let abilities = JSON.parse(data)["class"]["ability"];
+    document.getElementById("lbl_ability_total_info").innerHTML = abilities["total"];
+    document.getElementById("lbl_ability_strength_info").innerHTML = abilities["strength"];
+    document.getElementById("lbl_ability_dexterity_info").innerHTML = abilities["dexterity"];
+    document.getElementById("lbl_ability_bodyDifficulty_info").innerHTML = abilities["body_difficulty"];
+    document.getElementById("lbl_ability_intelligence_info").innerHTML = abilities["intelligence"];
+    document.getElementById("lbl_ability_wisdom_info").innerHTML = abilities["wisdom"];
+    document.getElementById("lbl_ability_charisma_info").innerHTML = abilities["charisma"];
 
-    let modifier = JSON.stringify(JSON.parse(data)["class"]["modifier"]);
-    document.getElementById("lbl_modifier_strength_info").innerHTML = JSON.parse(modifier)["strength"];
-    document.getElementById("lbl_modifier_dexterity_info").innerHTML =  JSON.parse(modifier)["dexterity"];
-    document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = JSON.parse(modifier)["body_difficulty"];
-    document.getElementById("lbl_modifier_intelligence_info").innerHTML =  JSON.parse(modifier)["intelligence"];
-    document.getElementById("lbl_modifier_wisdom_info").innerHTML = JSON.parse(modifier)["wisdom"];
-    document.getElementById("lbl_modifier_charisma_info").innerHTML = JSON.parse(modifier)["charisma"];
+    let modifier = JSON.parse(data)["class"]["modifier"];
+    document.getElementById("lbl_modifier_strength_info").innerHTML = modifier["strength"];
+    document.getElementById("lbl_modifier_dexterity_info").innerHTML =  modifier["dexterity"];
+    document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = modifier["body_difficulty"];
+    document.getElementById("lbl_modifier_intelligence_info").innerHTML =  modifier["intelligence"];
+    document.getElementById("lbl_modifier_wisdom_info").innerHTML = modifier["wisdom"];
+    document.getElementById("lbl_modifier_charisma_info").innerHTML = modifier["charisma"];
 }
 
 function writeToSaveThrowsLabels(data) {
-    let saving_throws = JSON.stringify(JSON.parse(data)["class"]["saving_throws"]);
+    let saving_throws = JSON.parse(data)["class"]["saving_throws"];
 
     //обнуление радио
     var radios = ["rd_modifier_ST_strength_info", "rd_modifier_ST_dexterity_info",
@@ -54,35 +54,35 @@ function writeToSaveThrowsLabels(data) {
         document.getElementById(radios[i]).checked=false;
     }
 
-    document.getElementById("lbl_modifier_ST_strength_info").innerHTML = JSON.parse(saving_throws)["strength"]["point"];
-    document.getElementById("lbl_modifier_ST_dexterity_info").innerHTML =  JSON.parse(saving_throws)["dexterity"]["point"];
-    document.getElementById("lbl_modifier_ST_bodyDifficulty_info").innerHTML = JSON.parse(saving_throws)["body_difficulty"]["point"];
-    document.getElementById("lbl_modifier_ST_intelligence_info").innerHTML =  JSON.parse(saving_throws)["intelligence"]["point"];
-    document.getElementById("lbl_modifier_ST_wisdom_info").innerHTML = JSON.parse(saving_throws)["wisdom"]["point"];
-    document.getElementById("lbl_modifier_ST_charisma_info").innerHTML = JSON.parse(saving_throws)["charisma"]["point"];
+    document.getElementById("lbl_modifier_ST_strength_info").innerHTML = saving_throws["strength"]["point"];
+    document.getElementById("lbl_modifier_ST_dexterity_info").innerHTML =  saving_throws["dexterity"]["point"];
+    document.getElementById("lbl_modifier_ST_bodyDifficulty_info").innerHTML = saving_throws["body_difficulty"]["point"];
+    document.getElementById("lbl_modifier_ST_intelligence_info").innerHTML =  saving_throws["intelligence"]["point"];
+    document.getElementById("lbl_modifier_ST_wisdom_info").innerHTML = saving_throws["wisdom"]["point"];
+    document.getElementById("lbl_modifier_ST_charisma_info").innerHTML = saving_throws["charisma"]["point"];
 
-    if (JSON.parse(saving_throws)["strength"]["mastery"] === true){
+    if (saving_throws["strength"]["mastery"] === true){
         document.getElementById("rd_modifier_ST_strength_info").checked=true;
     }
-    if (JSON.parse(saving_throws)["dexterity"]["mastery"] === true){
+    if (saving_throws["dexterity"]["mastery"] === true){
         document.getElementById("rd_modifier_ST_dexterity_info").checked=true;
     }
-    if (JSON.parse(saving_throws)["body_difficulty"]["mastery"]=== true){
+    if (saving_throws["body_difficulty"]["mastery"]=== true){
         document.getElementById("rd_modifier_ST_bodyDifficulty_info").checked=true;
     }
-    if (JSON.parse(saving_throws)["intelligence"]["mastery"]=== true){
+    if (saving_throws["intelligence"]["mastery"]=== true){
         document.getElementById("rd_modifier_ST_intelligence_info").checked=true;
     }
-    if (JSON.parse(saving_throws)["wisdom"]["mastery"]=== true){
+    if (saving_throws["wisdom"]["mastery"]=== true){
         document.getElementById("rd_modifier_ST_wisdom_info").checked=true;
     }
-    if (JSON.parse(saving_throws)["charisma"]["mastery"]=== true){
+    if (saving_throws["charisma"]["mastery"]=== true){
         document.getElementById("rd_modifier_ST_charisma_info").checked=true;
     }
 }
 
 function writeToSkillsLabels(data) {
-    let skills = JSON.stringify(JSON.parse(data)["class"]["skills"]);
+    let skills =  JSON.parse(data)["class"]["skills"];
 
     //обнуление радио
     var radios = ["rd_Acrobatics", "rd_Animal_Handling","rd_Arcana","rd_Athletics",
@@ -95,78 +95,78 @@ function writeToSkillsLabels(data) {
         document.getElementById(radios[i]).checked=false;
     }
 
-    document.getElementById("lbl_Acrobatics").innerHTML = JSON.parse(skills)["acrobatics"]["modifier_value"];
-    document.getElementById("lbl_Animal_Handling").innerHTML = JSON.parse(skills)["animal_handling"]["modifier_value"];
-    document.getElementById("lbl_Arcana").innerHTML = JSON.parse(skills)["arcana"]["modifier_value"];
-    document.getElementById("lbl_Athletics").innerHTML = JSON.parse(skills)["athletics"]["modifier_value"];
-    document.getElementById("lbl_Deception").innerHTML = JSON.parse(skills)["deception"]["modifier_value"];
-    document.getElementById("lbl_History").innerHTML = JSON.parse(skills)["history"]["modifier_value"];
-    document.getElementById("lbl_Insight").innerHTML = JSON.parse(skills)["insight"]["modifier_value"];
-    document.getElementById("lbl_Intimidation").innerHTML = JSON.parse(skills)["intimidation"]["modifier_value"];
-    document.getElementById("lbl_Investigation").innerHTML = JSON.parse(skills)["investigation"]["modifier_value"];
-    document.getElementById("lbl_Medicine").innerHTML = JSON.parse(skills)["medicine"]["modifier_value"];
-    document.getElementById("lbl_Nature").innerHTML = JSON.parse(skills)["nature"]["modifier_value"]
-    document.getElementById("lbl_Perception").innerHTML = JSON.parse(skills)["perception"]["modifier_value"];
-    document.getElementById("lbl_Performance").innerHTML = JSON.parse(skills)["performance"]["modifier_value"];
-    document.getElementById("lbl_Persuasion").innerHTML = JSON.parse(skills)["persuasion"]["modifier_value"];
-    document.getElementById("lbl_Religion").innerHTML = JSON.parse(skills)["religion"]["modifier_value"];
-    document.getElementById("lbl_SleightofHand").innerHTML = JSON.parse(skills)["sleight_of_hand"]["modifier_value"];
-    document.getElementById("lbl_Stealth").innerHTML = JSON.parse(skills)["stealth"]["modifier_value"];
-    document.getElementById("lbl_Survival").innerHTML = JSON.parse(skills)["survival"]["modifier_value"];
+    document.getElementById("lbl_Acrobatics").innerHTML = skills["acrobatics"]["modifier_value"];
+    document.getElementById("lbl_Animal_Handling").innerHTML = skills["animal_handling"]["modifier_value"];
+    document.getElementById("lbl_Arcana").innerHTML = skills["arcana"]["modifier_value"];
+    document.getElementById("lbl_Athletics").innerHTML = skills["athletics"]["modifier_value"];
+    document.getElementById("lbl_Deception").innerHTML = skills["deception"]["modifier_value"];
+    document.getElementById("lbl_History").innerHTML = skills["history"]["modifier_value"];
+    document.getElementById("lbl_Insight").innerHTML = skills["insight"]["modifier_value"];
+    document.getElementById("lbl_Intimidation").innerHTML = skills["intimidation"]["modifier_value"];
+    document.getElementById("lbl_Investigation").innerHTML = skills["investigation"]["modifier_value"];
+    document.getElementById("lbl_Medicine").innerHTML = skills["medicine"]["modifier_value"];
+    document.getElementById("lbl_Nature").innerHTML = skills["nature"]["modifier_value"]
+    document.getElementById("lbl_Perception").innerHTML = skills["perception"]["modifier_value"];
+    document.getElementById("lbl_Performance").innerHTML = skills["performance"]["modifier_value"];
+    document.getElementById("lbl_Persuasion").innerHTML = skills["persuasion"]["modifier_value"];
+    document.getElementById("lbl_Religion").innerHTML = skills["religion"]["modifier_value"];
+    document.getElementById("lbl_SleightofHand").innerHTML = skills["sleight_of_hand"]["modifier_value"];
+    document.getElementById("lbl_Stealth").innerHTML = skills["stealth"]["modifier_value"];
+    document.getElementById("lbl_Survival").innerHTML = skills["survival"]["modifier_value"];
 
 
-    if (JSON.parse(skills)["acrobatics"]["proficiency"] === true){
+    if (skills["acrobatics"]["proficiency"] === true){
         document.getElementById("rd_Acrobatics").checked=true;
     }
-    if (JSON.parse(skills)["animal_handling"]["proficiency"] === true){
+    if (skills["animal_handling"]["proficiency"] === true){
         document.getElementById("rd_Animal_Handling").checked=true;
     }
-    if (JSON.parse(skills)["arcana"]["proficiency"] === true){
+    if (skills["arcana"]["proficiency"] === true){
         document.getElementById("rd_Arcana").checked=true;
     }
-    if (JSON.parse(skills)["athletics"]["proficiency"] === true){
+    if (skills["athletics"]["proficiency"] === true){
         document.getElementById("rd_Athletics").checked=true;
     }
-    if (JSON.parse(skills)["deception"]["proficiency"] === true){
+    if (skills["deception"]["proficiency"] === true){
         document.getElementById("rd_Deception").checked=true;
     }
-    if (JSON.parse(skills)["history"]["proficiency"] === true){
+    if (skills["history"]["proficiency"] === true){
         document.getElementById("rd_History").checked=true;
     }
-    if (JSON.parse(skills)["insight"]["proficiency"] === true){
+    if (skills["insight"]["proficiency"] === true){
         document.getElementById("rd_Insight").checked=true;
     }
-    if (JSON.parse(skills)["intimidation"]["proficiency"] === true){
+    if (skills["intimidation"]["proficiency"] === true){
         document.getElementById("rd_Intimidation").checked=true;
     }
-    if (JSON.parse(skills)["investigation"]["proficiency"] === true){
+    if (skills["investigation"]["proficiency"] === true){
         document.getElementById("rd_Investigation").checked=true;
     }
-    if (JSON.parse(skills)["medicine"]["proficiency"] === true){
+    if (skills["medicine"]["proficiency"] === true){
         document.getElementById("rd_Medicine").checked=true;
     }
-    if (JSON.parse(skills)["nature"]["proficiency"] === true){
+    if (skills["nature"]["proficiency"] === true){
         document.getElementById("rd_Nature").checked=true;
     }
-    if (JSON.parse(skills)["perception"]["proficiency"] === true){
+    if (skills["perception"]["proficiency"] === true){
         document.getElementById("rd_Perception").checked=true;
     }
-    if (JSON.parse(skills)["performance"]["proficiency"] === true){
+    if (skills["performance"]["proficiency"] === true){
         document.getElementById("rd_Performance").checked=true;
     }
-    if (JSON.parse(skills)["persuasion"]["proficiency"] === true){
+    if (skills["persuasion"]["proficiency"] === true){
         document.getElementById("rd_Persuasion").checked=true;
     }
-    if (JSON.parse(skills)["religion"]["proficiency"] === true){
+    if (skills["religion"]["proficiency"] === true){
         document.getElementById("rd_Religion").checked=true;
     }
-    if (JSON.parse(skills)["sleight_of_hand"]["proficiency"] === true){
+    if (skills["sleight_of_hand"]["proficiency"] === true){
         document.getElementById("rd_SleightofHand").checked=true;
     }
-    if (JSON.parse(skills)["stealth"]["proficiency"] === true){
+    if (skills["stealth"]["proficiency"] === true){
         document.getElementById("rd_Stealth").checked=true;
     }
-    if (JSON.parse(skills)["survival"]["proficiency"] === true){
+    if (skills["survival"]["proficiency"] === true){
         document.getElementById("rd_Survival").checked=true;
     }
 }
@@ -174,98 +174,111 @@ function writeToSkillsLabels(data) {
 function writeOtherLabels(data) {
     //document.getElementById("imageid").src="../template/save.png";
 
+    let clas = JSON.parse(data)["class"]
+    document.getElementById("lbl_hitsDice").innerHTML = clas["hits"]["hit_dice"];
+    document.getElementById("lbl_hitsCount").innerHTML = clas["hits"]["hit_count"];
 
-    document.getElementById("lbl_hitsDice").innerHTML = JSON.parse(data)["class"]["hits"]["hit_dice"];
-    document.getElementById("lbl_hitsCount").innerHTML = JSON.parse(data)["class"]["hits"]["hit_count"];
-
-    document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["class"]["proficiency_bonus"];
-    document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["class"]["passive_wisdom"];
-    if (JSON.parse(data)["class"]["inspiration"] === true) {
+    document.getElementById("lbl_proficiency_bonus").innerHTML = clas["proficiency_bonus"];
+    document.getElementById("lbl_passive_wisdom").innerHTML = clas["passive_wisdom"];
+    if (clas["inspiration"] === true) {
         document.getElementById("lbl_inspiration").innerHTML = "*" ;
     }
 }
 
 function writeBackgroundLabels(data) {
-    document.getElementById("lbl_background_name").innerHTML = JSON.parse(data)["background"]["background_name_ru"];
-    document.getElementById("lbl_background_type").innerHTML = JSON.parse(data)["background"]["type"];
-    document.getElementById("lbl_background_description").innerHTML = JSON.parse(data)["background"]["description"];
-    document.getElementById("lbl_advice").innerHTML = JSON.parse(data)["background"]["advice"];
-    document.getElementById("lbl_personalization").innerHTML = JSON.parse(data)["background"]["personalization"];
-    document.getElementById("lbl_characterTrait").innerHTML = JSON.parse(data)["background"]["character_trait"];
-    document.getElementById("lbl_ideal").innerHTML = JSON.parse(data)["background"]["ideal"];
-    document.getElementById("lbl_worldview").innerHTML = JSON.parse(data)["background"]["worldview"];
-    document.getElementById("lbl_affection").innerHTML = JSON.parse(data)["background"]["affection"];
-    document.getElementById("lbl_weakness").innerHTML = JSON.parse(data)["background"]["weakness"];
+    console.log(JSON.parse(data)["background"])
+
+    let backgr = JSON.parse(data)["background"]
+    document.getElementById("lbl_background_name").innerHTML = backgr["background_name_ru"];
+    document.getElementById("lbl_background_type").innerHTML = backgr["type"];
+    document.getElementById("lbl_background_description").innerHTML = backgr["description"];
+    document.getElementById("lbl_advice").innerHTML = backgr["advice"];
+    document.getElementById("lbl_personalization").innerHTML = backgr["personalization"];
+    document.getElementById("lbl_characterTrait").innerHTML = backgr["character_trait"];
+    document.getElementById("lbl_ideal").innerHTML = backgr["ideal"];
+    document.getElementById("lbl_worldview").innerHTML = backgr["worldview"];
+    document.getElementById("lbl_affection").innerHTML = backgr["affection"];
+    document.getElementById("lbl_weakness").innerHTML = backgr["weakness"];
+
+    document.getElementById("lbl_background_ability").innerHTML = "<br> <strong>"+ backgr["background_ability"]["AbilityName"]+"</strong>"
+        + " - " + backgr["background_ability"]["Description"];
+
+    document.getElementById("lbl_list_background_equipment").innerHTML = backgr["equipment"]
+    document.getElementById("lbl_background_instruments").innerHTML = backgr["mastery_of_tools"]
+
 }
 
 function writeAppearanceLabels(data) {
-    let race = JSON.stringify(JSON.parse(data)["race"]);
+    let race = JSON.parse(data)["race"];
     document.getElementById("p_dragon_type").style.display = "none";
     document.getElementById("div_snake_appearance").style.display = "none";
 
 
-    document.getElementById("lbl_raceName").innerHTML = JSON.parse(race)["race_type_name_ru"];
-    document.getElementById("lbl_charFirstName").innerHTML =  JSON.parse(race)["first_name"];
-    document.getElementById("lbl_charLastName").innerHTML =  JSON.parse(race)["last_name"];
+    document.getElementById("lbl_raceName").innerHTML = race["race_type_name_ru"];
+    document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
+    document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
 
-    document.getElementById("lbl_charFirstName2").innerHTML =  JSON.parse(race)["first_name"];
-    document.getElementById("lbl_charLastName2").innerHTML =  JSON.parse(race)["last_name"];
-    document.getElementById("lbl_resist").innerHTML =  JSON.parse(race)["resist"];
-    document.getElementById("lbl_bodySize").innerHTML =  JSON.parse(race)["body_size"];
+    document.getElementById("lbl_charFirstName2").innerHTML =  race["first_name"];
+    document.getElementById("lbl_charLastName2").innerHTML =  race["last_name"];
+    document.getElementById("lbl_resist").innerHTML =  race["resist"];
+    document.getElementById("lbl_bodySize").innerHTML =  race["body_size"];
 
-    document.getElementById("lbl_speed").innerHTML =  JSON.parse(race)["speed"];
-    document.getElementById("lbl_languages").innerHTML =  JSON.parse(race)["langs"];
+    document.getElementById("lbl_speed").innerHTML =  race["speed"];
+    document.getElementById("lbl_languages").innerHTML =  race["langs"];
 
-    document.getElementById("lbl_gender").innerHTML =  JSON.parse(race)["gender"];
-    document.getElementById("lbl_age").innerHTML =  JSON.parse(race)["age"];
-    document.getElementById("lbl_eyesColor").innerHTML =  JSON.parse(race)["eyes"];
-    document.getElementById("lbl_height").innerHTML =  JSON.parse(race)["height"];
-    document.getElementById("lbl_weight").innerHTML =  JSON.parse(race)["weight"];
+    document.getElementById("lbl_gender").innerHTML =  race["gender"];
+    document.getElementById("lbl_age").innerHTML =  race["age"];
+    document.getElementById("lbl_eyesColor").innerHTML =  race["eyes"];
+    document.getElementById("lbl_height").innerHTML =  race["height"];
+    document.getElementById("lbl_weight").innerHTML =  race["weight"];
 
-    document.getElementById("lbl_height_ft").innerHTML =  JSON.parse(race)["height_ft"];
-    document.getElementById("lbl_weight_lb").innerHTML =  JSON.parse(race)["weight_lb"];
+    document.getElementById("lbl_height_ft").innerHTML =  race["height_ft"];
+    document.getElementById("lbl_weight_lb").innerHTML =  race["weight_lb"];
 
-    document.getElementById("lbl_hairColor").innerHTML =  JSON.parse(race)["hair"];
+    document.getElementById("lbl_hairColor").innerHTML =  race["hair"];
 
-    if (JSON.parse(race)["race_name"] === "Dragonborn"){
+    if (race["race_name"] === "Dragonborn"){
         document.getElementById("p_dragon_type").style.display = "inline";
-        document.getElementById("lbl_dragon_color").innerHTML = JSON.parse(race)["other"]["dragon_type"]["color"];
+        document.getElementById("lbl_dragon_color").innerHTML = race["other"]["dragon_type"]["color"];
     }
 
-    if (JSON.parse(race)["race_name"] === "Yuan-ti"){
+    if (race["race_name"] === "Yuan-ti"){
         document.getElementById("div_snake_appearance").style.display = "flex";
         document.getElementById("lbl_hairColor").innerHTML = "Нет";
 
-        document.getElementById("lbl_typeSnakeBody").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["type_snake_body"];
-        document.getElementById("lbl_humanoidSkinColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["humanoid_skin_color"];
-        document.getElementById("lbl_scaleColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["scale_color"];
-        document.getElementById("lbl_ScalePattern").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["scale_pattern"];
-        document.getElementById("lbl_tongueColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["tongue_color"];
-        document.getElementById("lbl_eyesColor").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["eye_color"];
-        document.getElementById("lbl_headShape").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["head_shape"];
-        document.getElementById("lbl_purebredsSpecialty").innerHTML =  JSON.parse(race)["other"]["yuanti_appearance"]["purebreds_specialty"];
+        document.getElementById("lbl_typeSnakeBody").innerHTML =  race["other"]["yuanti_appearance"]["type_snake_body"];
+        document.getElementById("lbl_humanoidSkinColor").innerHTML =  race["other"]["yuanti_appearance"]["humanoid_skin_color"];
+        document.getElementById("lbl_scaleColor").innerHTML =  race["other"]["yuanti_appearance"]["scale_color"];
+        document.getElementById("lbl_ScalePattern").innerHTML =  race["other"]["yuanti_appearance"]["scale_pattern"];
+        document.getElementById("lbl_tongueColor").innerHTML =  race["other"]["yuanti_appearance"]["tongue_color"];
+        document.getElementById("lbl_eyesColor").innerHTML =  race["other"]["yuanti_appearance"]["eye_color"];
+        document.getElementById("lbl_headShape").innerHTML =  race["other"]["yuanti_appearance"]["head_shape"];
+        document.getElementById("lbl_purebredsSpecialty").innerHTML =  race["other"]["yuanti_appearance"]["purebreds_specialty"];
 
     }
 }
 
 function writeProficiencies(data) {
-    let prof = JSON.stringify(JSON.parse(data)["class"]["proficiencies"]);
+    let prof = JSON.parse(data)["class"]["proficiencies"];
 
-    document.getElementById("lbl_weapon").innerHTML = JSON.parse(prof)["weapons"];
-    document.getElementById("lbl_instruments").innerHTML = JSON.parse(prof)["instruments"];
-    document.getElementById("lbl_armor").innerHTML = JSON.parse(prof)["armor"];
+    document.getElementById("lbl_weapon").innerHTML = prof["weapons"];
+    document.getElementById("lbl_class_instruments").innerHTML = prof["instruments"];
+    document.getElementById("lbl_armor").innerHTML = prof["armor"];
 }
 
 function writeRaceAbilities(data) {
-    let race_abil = JSON.parse(data)["race"]["race_abilities"];
+    document.getElementById("lbl_race_abilities").innerHTML = ""
+        let race_abil = JSON.parse(data)["race"]["race_abilities"];
 
+    if (race_abil === null){
+        document.getElementById("lbl_race_abilities").innerHTML = "Нету"
+    }
     for(let i = 0; i < race_abil.length; i++){
-        console.log(race_abil[i])
-        document.getElementById("lbl_race_abilities").innerHTML += "<strong>"+ JSON.stringify(race_abil[i]["AbilityName"])+"</strong>" +" --> "+ JSON.stringify(race_abil[i]["Description"]) + "<br>" ;
+        document.getElementById("lbl_race_abilities").innerHTML +=
+            "<strong>"+ JSON.stringify(race_abil[i]["AbilityName"])+"</strong>" +" --> "
+                + JSON.stringify(race_abil[i]["Description"]) + "<br>" ;
     }
 }
-
-
 
 const fileInput = document.querySelector('#file-js input[type=file]');
 fileInput.onchange = () => {

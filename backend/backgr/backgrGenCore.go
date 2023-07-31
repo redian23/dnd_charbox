@@ -140,3 +140,30 @@ func setSkillMastery() []string {
 	}
 	return nil
 }
+
+func setBackgroundAbility() backgroundAbility {
+	for _, background := range backData {
+		if background.BackgroundName == backgroundName {
+			return background.BackgroundAbility
+		}
+	}
+	return backgroundAbility{}
+}
+
+func setMasteryOfTools() []string {
+	for _, background := range backData {
+		if background.BackgroundName == backgroundName {
+			return background.MasteryOfTools
+		}
+	}
+	return nil
+}
+
+func setEquipment() []string {
+	for _, background := range backData {
+		if background.BackgroundName == backgroundName {
+			return background.Equipment
+		}
+	}
+	return nil
+}
