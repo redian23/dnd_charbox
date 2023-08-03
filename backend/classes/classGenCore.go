@@ -13,6 +13,9 @@ import (
 var (
 	proficiencyBonus = 2
 	chars            = GetClassCharactsFormDB()
+	armorData        = GetArmorFormDB()
+	weaponData       = GetWeaponFormDB()
+	equipmentList    []Variants
 	mod              Modifier
 	specialSkills    []string
 )
@@ -20,6 +23,26 @@ var (
 func GetClassCharactsFormDB() ClassesBSON {
 	var results ClassesBSON
 	var cursor = db.ReadFromDB("classes")
+	if err := cursor.All(context.TODO(), &results); err != nil {
+		panic(err)
+	}
+
+	return results
+}
+
+func GetArmorFormDB() []ArmorAnswer {
+	var results []ArmorAnswer
+	var cursor = db.ReadFromDB("armor")
+	if err := cursor.All(context.TODO(), &results); err != nil {
+		panic(err)
+	}
+
+	return results
+}
+
+func GetWeaponFormDB() []WeaponAnswer {
+	var results []WeaponAnswer
+	var cursor = db.ReadFromDB("weapons")
 	if err := cursor.All(context.TODO(), &results); err != nil {
 		panic(err)
 	}
@@ -390,6 +413,127 @@ func setProficiencies() Proficiencies {
 		}
 	}
 	return Proficiencies{}
+}
+
+func setClassEquipmentList() []Variants {
+	var equipP equipPicks
+	var equipB equipBasic
+	var equipList []Variants
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			equipP = char.PicksEquipment
+			equipB = char.BasicEquipment
+		}
+	}
+	for _, item := range equipP {
+		rollNum, _ := random.IntRange(0, len(item.Variants))
+		equipList = append(equipList, item.Variants[rollNum])
+	}
+	for _, item := range equipB {
+		equipList = append(equipList, item)
+	}
+	equipmentList = equipList
+	return equipList
+}
+
+func getArmorList() []ArmorAnswer {
+	var armList []ArmorAnswer
+	for _, item := range equipmentList {
+		if item.Type == "armor" {
+			for _, armor := range armorData {
+				if armor.ArmorName == item.ItemName {
+					armList = append(armList, armor)
+				}
+			}
+		}
+	}
+	return armList
+}
+
+func setArmor(className string) []ArmorAnswer {
+	armorList := getArmorList()
+	var armorAns ArmorAnswer
+	var shield int
+	var armorAnsList []ArmorAnswer
+
+	for _, armor := range armorList {
+		if armor.ArmorName == "Щит" {
+			shield = 2
+		}
+	}
+	for _, armor := range armorList {
+		armorAns.ArmorName = armor.ArmorName
+		armorAns.ArmorType = armor.ArmorType
+		armorAns.Stealth = armor.Stealth
+		switch armor.ArmorType {
+		case "Лёгкий доспех":
+			armorAns.ArmorClassCount = armor.ArmorClassCount + mod.Dexterity + shield
+		case "Средний доспех":
+			if mod.Dexterity > 2 {
+				armorAns.ArmorClassCount = armor.ArmorClassCount + 2 + shield
+			} else {
+				armorAns.ArmorClassCount = armor.ArmorClassCount + mod.Dexterity + shield
+			}
+		case "Тяжёлый доспех":
+			armorAns.ArmorClassCount = armor.ArmorClassCount + shield
+		}
+		armorAnsList = append(armorAnsList, armorAns)
+	}
+
+	if armorAnsList == nil {
+		var noArmor = ArmorAnswer{ArmorName: "Без Доспеха", ArmorType: "Нет", Stealth: true}
+		switch className {
+		case "Монах":
+			noArmor.ArmorClassCount = 10 + mod.Dexterity + mod.Wisdom
+		case "Варвар":
+			noArmor.ArmorClassCount = 10 + mod.Dexterity + mod.BodyDifficulty
+		case "Волшебник":
+			noArmor.ArmorClassCount = 10 + mod.Dexterity + mod.Intelligence
+		}
+		armorAnsList = append(armorAnsList, noArmor)
+	}
+	return armorAnsList
+
+}
+
+func setWeapons() []WeaponAnswer {
+	var weaponList []WeaponAnswer
+	for _, item := range equipmentList {
+		if item.Type == "weapon" {
+			switch item.ItemName {
+			case "Простое оружие":
+				rollNum, _ := random.IntRange(0, 13)
+				weaponList = append(weaponList, weaponData[rollNum])
+				continue
+			case "Простое рукопашное оружие":
+				rollNum, _ := random.IntRange(0, 9)
+				weaponList = append(weaponList, weaponData[rollNum])
+				continue
+			case "Воинское оружие":
+				rollNum, _ := random.IntRange(14, 36)
+				weaponList = append(weaponList, weaponData[rollNum])
+				continue
+			case "Воинское рукопашное оружие":
+				rollNum, _ := random.IntRange(14, 31)
+				weaponList = append(weaponList, weaponData[rollNum])
+				continue
+			}
+		}
+	}
+	for _, item := range equipmentList {
+		if item.Type == "weapon" {
+			for _, weapon := range weaponData {
+				if weapon.WeaponName == item.ItemName {
+					weaponList = append(weaponList, weapon)
+				}
+			}
+		}
+	}
+	return weaponList
+}
+
+func setInitiative() string {
+	return "D20 + мод_ЛОВ"
 }
 
 func remove(s []int, i int) []int {

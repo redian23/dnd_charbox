@@ -114,6 +114,14 @@
                         <p class="subtitle">Всего Костей Хитов: [ 1 ]</p>
                     </article>
                     <article class="tile is-child box">
+                        <p class="subtitle">Доспех: [ <label id="lbl_armor_name"></label> ]</p>
+                        <p class="subtitle">Скрытность: [ <label id="lbl_armor_stealth"></label> ]</p>
+
+                        <p class="subtitle">Класс Доспеха: [ <label id="lbl_armor_class"></label> ]</p>
+                        <p class="subtitle">Инициатива: [ <label id="lbl_initiative"></label> ]</p>
+                        <p class="subtitle">Скорость: [ <label id="lbl_speed"></label> ]</p>
+                    </article>
+                    <article class="tile is-child box">
                         <p class="title">Спас-броски</p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled> [ <label id="lbl_modifier_ST_strength_info"> </label> ] Сила</label></p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_dexterity_info" disabled> [ <label id="lbl_modifier_ST_dexterity_info"> </label> ] Ловкость</label></p>
@@ -148,7 +156,6 @@
                     <article class="tile is-child  box">
                         <p class="subtitle">Прочие Владения и Языки: </p>
                         <p class="subtitle-text" id="p_dragon_type" style="display:none;">Вид дракона: [ <label id="lbl_dragon_color"></label> ]</p>
-                        <p class="subtitle-text">Скорость: [ <label id="lbl_speed"></label> ]</p>
                         <p class="subtitle-text">Знание языков: [ <label id="lbl_languages"></label> ]</p>
                         <p class="subtitle-text">Сопротивляемость к: [ <label id="lbl_resist"></label> ]</p>
                         <p class="subtitle-text">Доспехи: [ <label id="lbl_armor"></label> ]</p>
@@ -166,10 +173,14 @@
                     <article class="tile is-child box">
                         <p class="subtitle">Снаряжение: <br></p>
                         <p class="subtitle"><strong>Снаряжение от предыстории:</strong>
-                            [ <label class="subtitle-text" id="lbl_list_background_equipment"></label> ]
+                            <label class="subtitle-text">
+                               [ <label class="subtitle-text" id="lbl_list_background_equipment"></label> ]
+                            </label>
                         </p>
                         <p class="subtitle"><strong>Снаряжение от класса:</strong>
-                            <label class="subtitle-text" id="lbl_list_class_equipment"></label>
+                            <label class="subtitle-text">
+                                [ <label class="subtitle-text" id="lbl_list_class_equipment"></label> ]
+                            </label>
                         </p>
                     </article>
                 </div>

@@ -19,6 +19,9 @@ func GenerateClass() ClassAnswer {
 	class.Hits.HitCount = setHitCount(class.Modifier.BodyDifficulty)
 	class.SkillsOfClass = setClassSkills()
 	class.Proficiencies = setProficiencies()
-
+	class.ClassEquipment = setClassEquipmentList()
+	class.Armor = setArmor(class.ClassNameRU)
+	class.Weapon = setWeapons()
+	class.Initiative = setInitiative()
 	return class
 }

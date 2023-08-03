@@ -1,4 +1,3 @@
-
 window.onload = getCurrentClass();
 let charData
 
@@ -9,16 +8,17 @@ async function getCurrentClass() {
     let data = JSON.stringify(json);
 
     charData = data
+    await writeToAbilitiesLabels(data)
+    await writeToSaveThrowsLabels(data)
+    await writeToSkillsLabels(data)
+    await writeOtherLabels(data)
+    await writeBackgroundLabels(data)
+    await writeAppearanceLabels(data)
+    await writeProficienciesLabels(data)
+    await writeRaceAbilitiesLabels(data)
+    await writeClassEquipmentLabels(data)
+    await writeArmorLabels(data)
 
-    //console.log(data)
-    writeToAbilitiesLabels(data)
-    writeToSaveThrowsLabels(data)
-    writeToSkillsLabels(data)
-    writeOtherLabels(data)
-    writeBackgroundLabels(data)
-    writeAppearanceLabels(data)
-    writeProficiencies(data)
-    writeRaceAbilities(data)
 }
 
 function writeToAbilitiesLabels(data) {
@@ -175,6 +175,9 @@ function writeOtherLabels(data) {
     //document.getElementById("imageid").src="../template/save.png";
 
     let clas = JSON.parse(data)["class"]
+
+    document.getElementById("lbl_initiative").innerHTML = clas["initiative"];
+
     document.getElementById("lbl_hitsDice").innerHTML = clas["hits"]["hit_dice"];
     document.getElementById("lbl_hitsCount").innerHTML = clas["hits"]["hit_count"];
 
@@ -186,8 +189,6 @@ function writeOtherLabels(data) {
 }
 
 function writeBackgroundLabels(data) {
-    console.log(JSON.parse(data)["background"])
-
     let backgr = JSON.parse(data)["background"]
     document.getElementById("lbl_background_name").innerHTML = backgr["background_name_ru"];
     document.getElementById("lbl_background_type").innerHTML = backgr["type"];
@@ -258,7 +259,7 @@ function writeAppearanceLabels(data) {
     }
 }
 
-function writeProficiencies(data) {
+function writeProficienciesLabels(data) {
     let prof = JSON.parse(data)["class"]["proficiencies"];
 
     document.getElementById("lbl_weapon").innerHTML = prof["weapons"];
@@ -266,18 +267,44 @@ function writeProficiencies(data) {
     document.getElementById("lbl_armor").innerHTML = prof["armor"];
 }
 
-function writeRaceAbilities(data) {
+function writeRaceAbilitiesLabels(data) {
     document.getElementById("lbl_race_abilities").innerHTML = ""
         let race_abil = JSON.parse(data)["race"]["race_abilities"];
 
     if (race_abil === null){
         document.getElementById("lbl_race_abilities").innerHTML = "Нету"
+        return
     }
     for(let i = 0; i < race_abil.length; i++){
         document.getElementById("lbl_race_abilities").innerHTML +=
             "<strong>"+ JSON.stringify(race_abil[i]["AbilityName"])+"</strong>" +" --> "
                 + JSON.stringify(race_abil[i]["Description"]) + "<br>" ;
     }
+}
+
+
+function writeClassEquipmentLabels(data) {
+    let equip = JSON.parse(data)["class"]["class_equipment"];
+
+    for(let i = 0; i < equip.length; i++){
+        document.getElementById("lbl_list_class_equipment").innerHTML +=
+            "<strong>"+ JSON.stringify(equip[i]["itemName"])+"</strong>"
+            + "( "+ JSON.stringify(equip[i]["count"]) + " )"+ ",<br>" ;
+    }
+}
+function writeArmorLabels(data) {
+    let armor = JSON.parse(data)["class"]["armor"];
+console.log(armor)
+    for(let i = 0; i < 1; i++) {
+
+        document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i]["armorName"]);
+        document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
+        document.getElementById("lbl_armor_stealth").innerHTML = JSON.stringify(armor[i]["armorStealth"]);
+    }
+}
+
+function writeWeaponLabels() {
+
 }
 
 const fileInput = document.querySelector('#file-js input[type=file]');
@@ -314,8 +341,10 @@ function importFile() {
         writeOtherLabels(data)
         writeBackgroundLabels(data)
         writeAppearanceLabels(data)
-        writeProficiencies(data)
-        writeRaceAbilities(data)
+        writeProficienciesLabels(data)
+        writeRaceAbilitiesLabels(data)
+        writeClassEquipmentLabels(data)
+        writeArmorLabels(data)
     };
 
     fr.readAsText(files.item(0));
