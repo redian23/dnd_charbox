@@ -277,8 +277,8 @@ function writeRaceAbilitiesLabels(data) {
     }
     for(let i = 0; i < race_abil.length; i++){
         document.getElementById("lbl_race_abilities").innerHTML +=
-            "<strong>"+ JSON.stringify(race_abil[i]["AbilityName"])+"</strong>" +" --> "
-                + JSON.stringify(race_abil[i]["Description"]) + "<br>" ;
+            "<strong>"+ JSON.parse(JSON.stringify(race_abil[i]["AbilityName"]))+"</strong>" +": "
+                + JSON.parse(JSON.stringify(race_abil[i]["Description"])) + "<br>" ;
     }
 }
 
@@ -303,9 +303,8 @@ function writeArmorLabels(data) {
     let armor = JSON.parse(data)["class"]["armor"];
 
     for(let i = 0; i < 1; i++) {
-        document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i]["armorName"]);
+        document.getElementById("lbl_armor_name").innerHTML = JSON.parse(JSON.stringify(armor[i]["armorName"]));
         document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
-        document.getElementById("lbl_armor_stealth").innerHTML = JSON.stringify(armor[i]["armorStealth"]);
     }
 }
 
