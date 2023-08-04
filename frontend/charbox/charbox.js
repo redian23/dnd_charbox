@@ -282,21 +282,27 @@ function writeRaceAbilitiesLabels(data) {
     }
 }
 
-
 function writeClassEquipmentLabels(data) {
+    document.getElementById("lbl_list_class_equipment").innerHTML = ""
     let equip = JSON.parse(data)["class"]["class_equipment"];
 
+    let comma = ", "
     for(let i = 0; i < equip.length; i++){
-        document.getElementById("lbl_list_class_equipment").innerHTML +=
-            "<strong>"+ JSON.stringify(equip[i]["itemName"])+"</strong>"
-            + "( "+ JSON.stringify(equip[i]["count"]) + " )"+ ",<br>" ;
+        if (i === equip.length-1){
+            comma = ""
+        }
+        if (JSON.stringify(equip[i]["count"]) > 1){
+            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) +
+               " (" + JSON.parse(JSON.stringify(equip[i]["count"]))+ ")" + comma;
+        } else {
+            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) + comma;
+        }
     }
 }
 function writeArmorLabels(data) {
     let armor = JSON.parse(data)["class"]["armor"];
-console.log(armor)
-    for(let i = 0; i < 1; i++) {
 
+    for(let i = 0; i < 1; i++) {
         document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i]["armorName"]);
         document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
         document.getElementById("lbl_armor_stealth").innerHTML = JSON.stringify(armor[i]["armorStealth"]);
