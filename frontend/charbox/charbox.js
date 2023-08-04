@@ -18,6 +18,7 @@ async function getCurrentClass() {
     await writeRaceAbilitiesLabels(data)
     await writeClassEquipmentLabels(data)
     await writeArmorLabels(data)
+    await writeWeaponLabels(data)
 
 }
 
@@ -286,6 +287,7 @@ function writeClassEquipmentLabels(data) {
     document.getElementById("lbl_list_class_equipment").innerHTML = ""
     let equip = JSON.parse(data)["class"]["class_equipment"];
 
+    console.log(equip)
     let comma = ", "
     for(let i = 0; i < equip.length; i++){
         if (i === equip.length-1){
@@ -308,8 +310,20 @@ function writeArmorLabels(data) {
     }
 }
 
-function writeWeaponLabels() {
+function writeWeaponLabels(data) {
+    document.getElementById("lbl_weapon_list").innerHTML = ""
 
+    let weapon = JSON.parse(data)["class"]["weapon"];
+    let count = " "
+
+
+    for(let i = 0; i < weapon.length; i++) {
+        if (JSON.stringify(weapon[i]["count"]) > 1){
+            count = " (" + JSON.stringify(weapon[i]["count"]) + ") "
+        }
+        document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"]) + count
+            + JSON.stringify(weapon[i]["damage"]) +" "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
+    }
 }
 
 const fileInput = document.querySelector('#file-js input[type=file]');
@@ -350,6 +364,7 @@ function importFile() {
         writeRaceAbilitiesLabels(data)
         writeClassEquipmentLabels(data)
         writeArmorLabels(data)
+        writeWeaponLabels(data)
     };
 
     fr.readAsText(files.item(0));

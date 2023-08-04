@@ -66,7 +66,6 @@ func main() {
 		v1.GET("/get-character", mw, func(c *gin.Context) {
 			api.GetRandomCharacter(c)
 		})
-
 	}
 
 	//site pages
@@ -89,6 +88,7 @@ func main() {
 			"path":  "./f/charbox",
 		})
 	})
+
 	router.GET("/about", func(c *gin.Context) {
 		api.GetAbout(c)
 	})

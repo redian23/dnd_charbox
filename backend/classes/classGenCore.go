@@ -498,37 +498,54 @@ func setArmor(className string) []ArmorAnswer {
 
 func setWeapons() []WeaponAnswer {
 	var weaponList []WeaponAnswer
+
 	for _, item := range equipmentList {
 		if item.Type == "weapon" {
 			switch item.ItemName {
 			case "Простое оружие":
 				rollNum, _ := random.IntRange(0, 13)
+				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
 				continue
 			case "Простое рукопашное оружие":
 				rollNum, _ := random.IntRange(0, 9)
+				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
 				continue
 			case "Воинское оружие":
 				rollNum, _ := random.IntRange(14, 36)
+				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
 				continue
 			case "Воинское рукопашное оружие":
 				rollNum, _ := random.IntRange(14, 31)
+				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
 				continue
 			}
 		}
 	}
+
 	for _, item := range equipmentList {
 		if item.Type == "weapon" {
 			for _, weapon := range weaponData {
 				if weapon.WeaponName == item.ItemName {
+					weapon.Count = item.Count
 					weaponList = append(weaponList, weapon)
 				}
 			}
 		}
 	}
+
+	for _, item := range equipmentList {
+		if item.ItemName == "Короткий лук" || item.ItemName == "Длинный лук" {
+			weaponList = append(weaponList, WeaponAnswer{"Колчан стрел", "weapon", "", "Боепр.", 20})
+		}
+		if item.ItemName == "Лёгкий арбалет" {
+			weaponList = append(weaponList, WeaponAnswer{"Арбалетные болты", "weapon", "", "Боепр.", 20})
+		}
+	}
+
 	return weaponList
 }
 
