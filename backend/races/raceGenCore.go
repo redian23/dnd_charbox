@@ -10,9 +10,12 @@ import (
 	"pregen/db"
 )
 
-var raceData = getRacesFormDB()
-var raceName string
-var raceGender string
+var (
+	raceData      = getRacesFormDB()
+	raceName      string
+	raceGender    string
+	RacePhotoPath string
+)
 
 func readDirectory(path string) ([]string, []string) {
 	var folderList []string
@@ -34,15 +37,14 @@ func readDirectory(path string) ([]string, []string) {
 
 func setRacePhoto(raceNameRu, gender string) racePhoto {
 	var photo racePhoto
-	var rootPhotoPath = "./Racepics/"
-	var allRacesFolderList, _ = readDirectory(rootPhotoPath)
+	var allRacesFolderList, _ = readDirectory(RacePhotoPath)
 
 	for _, folderName := range allRacesFolderList {
 		if folderName == raceNameRu {
 			if gender == "Мужской" {
 				var manPhotoPath = folderName + "/m/"
 
-				_, racePhotoList := readDirectory(rootPhotoPath + manPhotoPath)
+				_, racePhotoList := readDirectory(RacePhotoPath + manPhotoPath)
 				randNum, _ := random.IntRange(0, len(racePhotoList))
 
 				photo.Path = manPhotoPath
@@ -51,7 +53,7 @@ func setRacePhoto(raceNameRu, gender string) racePhoto {
 			} else {
 				var womanPhotoPath = folderName + "/m/"
 
-				_, racePhotoList := readDirectory(rootPhotoPath + womanPhotoPath)
+				_, racePhotoList := readDirectory(RacePhotoPath + womanPhotoPath)
 				randNum, _ := random.IntRange(0, len(racePhotoList))
 
 				photo.Path = womanPhotoPath

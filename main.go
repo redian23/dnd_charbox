@@ -8,14 +8,15 @@ import (
 	"net/http"
 	"os"
 	"pregen/api"
+	"pregen/backend/races"
 	"pregen/db"
 	"strings"
 	"time"
 )
 
 var (
-	htmlSitePath, filePath, racePhotoPath string
-	logPath                               string
+	htmlSitePath, filePath string
+	logPath                string
 )
 
 func init() {
@@ -27,12 +28,12 @@ func init() {
 func InitServerPathVars(status bool) {
 	if status == true {
 		htmlSitePath = "/usr/share/nginx/html/*/*.html"
-		racePhotoPath = "/usr/share/nginx/html/charbox/Racepics"
+		races.RacePhotoPath = "/usr/share/nginx/html/charbox/Racepics/"
 		filePath = "/usr/share/nginx/html"
 		logPath = "/var/logs/"
 	} else {
 		htmlSitePath = "frontend/*/*.html"
-		racePhotoPath = "./frontend/Racepics"
+		races.RacePhotoPath = "./frontend/Racepics/"
 		filePath = "./frontend"
 		logPath = ""
 	}
@@ -77,7 +78,7 @@ func main() {
 
 	router.LoadHTMLGlob(htmlSitePath)
 	router.StaticFS("/f", http.Dir(filePath))
-	router.StaticFS("/photos", http.Dir(racePhotoPath))
+	router.StaticFS("/photos", http.Dir(races.RacePhotoPath))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
