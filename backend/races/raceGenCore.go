@@ -35,12 +35,12 @@ func readDirectory(path string) ([]string, []string) {
 	return folderList, fileListInFolder
 }
 
-func setRacePhoto(raceNameRu, gender string) racePhoto {
+func setRacePhoto(raceName, gender string) racePhoto {
 	var photo racePhoto
 	var allRacesFolderList, _ = readDirectory(RacePhotoPath)
 
 	for _, folderName := range allRacesFolderList {
-		if folderName == raceNameRu {
+		if folderName == raceName {
 			if gender == "Мужской" {
 				var manPhotoPath = folderName + "/m/"
 
