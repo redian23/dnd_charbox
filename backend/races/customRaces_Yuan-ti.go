@@ -14,7 +14,7 @@ type appearanceYuanti struct {
 }
 
 func setAppearanceYuanti(race string) appearanceYuanti {
-	if race == "Yuan-ti" {
+	if race == "Юань-ти" {
 		var ap appearanceYuanti
 		ap.TypeSnakeBody = setTypeSnakeBody()
 		ap.HumanoidSkinColor = setHumanoidSkinColor()
