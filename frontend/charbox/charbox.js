@@ -8,6 +8,7 @@ async function getCurrentClass() {
     let data = JSON.stringify(json);
 
     charData = data
+    await writeRacePhotoLabels(data)
     await writeToAbilitiesLabels(data)
     await writeToSaveThrowsLabels(data)
     await writeToSkillsLabels(data)
@@ -287,7 +288,6 @@ function writeClassEquipmentLabels(data) {
     document.getElementById("lbl_list_class_equipment").innerHTML = ""
     let equip = JSON.parse(data)["class"]["class_equipment"];
 
-    console.log(equip)
     let comma = ", "
     for(let i = 0; i < equip.length; i++){
         if (i === equip.length-1){
@@ -314,8 +314,7 @@ function writeWeaponLabels(data) {
     document.getElementById("lbl_weapon_list").innerHTML = ""
 
     let weapon = JSON.parse(data)["class"]["weapon"];
-    let count = " "
-
+    let count = " ";
 
     for(let i = 0; i < weapon.length; i++) {
         if (JSON.stringify(weapon[i]["count"]) > 1){
@@ -324,6 +323,15 @@ function writeWeaponLabels(data) {
         document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"]) + count
             + JSON.stringify(weapon[i]["damage"]) +" "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
     }
+}
+
+function writeRacePhotoLabels(data) {
+    document.getElementById("img_Character_Preview").src = "";
+
+    console.log(JSON.parse(data)["race"]["race_photo"]);
+    document.getElementById("img_Character_Preview").src = "photos/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
+        JSON.parse(data)["race"]["race_photo"]["file_name"] ;
+    document.getElementById("img_Character_Preview").alt = "Арт является примерным видом персонажа."
 }
 
 const fileInput = document.querySelector('#file-js input[type=file]');
@@ -365,6 +373,7 @@ function importFile() {
         writeClassEquipmentLabels(data)
         writeArmorLabels(data)
         writeWeaponLabels(data)
+        writeRacePhotoLabels(data)
     };
 
     fr.readAsText(files.item(0));
@@ -385,3 +394,4 @@ function exportToLSS() {
     document.getElementById("btn_export_lss").innerHTML = "{Отсутствует интеграция c LSS}"
     document.getElementById("btn_export_lss").className = "button is-danger";
 }
+

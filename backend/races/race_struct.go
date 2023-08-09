@@ -25,6 +25,7 @@ type RacesAnswer struct {
 	Darkvision    bool          `json:"darkvision"`
 	Other         other         `json:"other"`
 	RaceAbilities []raceAbility `json:"race_abilities"`
+	RacePhoto     racePhoto     `json:"race_photo"`
 }
 
 type RacesBSON struct {
@@ -93,4 +94,9 @@ type names struct {
 type other struct {
 	DragonType       dragonType       `json:"dragon_type"`
 	YuantiAppearance appearanceYuanti `json:"yuanti_appearance"`
+}
+
+type racePhoto struct {
+	Path     string `json:"path"`
+	FileName string `json:"file_name"`
 }

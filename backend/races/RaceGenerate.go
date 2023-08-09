@@ -2,10 +2,10 @@ package races
 
 func GenerateRace() RacesAnswer {
 	var rc RacesAnswer
-
 	rc.RaceName, rc.RaceNameRu = setRaceName()
 	rc.Type, rc.TypeRu = setRaceType()
 	rc.Gender = setGender()
+	rc.RacePhoto = setRacePhoto(rc.RaceNameRu, rc.Gender)
 	rc.Eyes = setEyesColor()
 	rc.Hair = setHairColor()
 	rc.Age = setAge()

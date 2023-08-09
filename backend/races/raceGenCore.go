@@ -5,12 +5,63 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/mazen160/go-random"
+	"io/ioutil"
+	"log"
 	"pregen/db"
 )
 
 var raceData = getRacesFormDB()
 var raceName string
 var raceGender string
+
+func readDirectory(path string) ([]string, []string) {
+	var folderList []string
+	var fileListInFolder []string
+	files, err := ioutil.ReadDir(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		if file.IsDir() == true {
+			folderList = append(folderList, file.Name())
+		} else {
+			fileListInFolder = append(fileListInFolder, file.Name())
+		}
+	}
+	return folderList, fileListInFolder
+}
+
+func setRacePhoto(raceNameRu, gender string) racePhoto {
+	var photo racePhoto
+	var rootPhotoPath = "./Racepics/"
+	var allRacesFolderList, _ = readDirectory(rootPhotoPath)
+
+	for _, folderName := range allRacesFolderList {
+		if folderName == raceNameRu {
+			if gender == "Мужской" {
+				var manPhotoPath = folderName + "/m/"
+
+				_, racePhotoList := readDirectory(rootPhotoPath + manPhotoPath)
+				randNum, _ := random.IntRange(0, len(racePhotoList))
+
+				photo.Path = manPhotoPath
+				photo.FileName = racePhotoList[randNum]
+				return photo
+			} else {
+				var womanPhotoPath = folderName + "/m/"
+
+				_, racePhotoList := readDirectory(rootPhotoPath + womanPhotoPath)
+				randNum, _ := random.IntRange(0, len(racePhotoList))
+
+				photo.Path = womanPhotoPath
+				photo.FileName = racePhotoList[randNum]
+				return photo
+			}
+		}
+	}
+	return racePhoto{}
+}
 
 func InsertRacesToDB() {
 	client := db.ConnectToDB()
