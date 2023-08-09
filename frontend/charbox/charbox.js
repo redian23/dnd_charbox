@@ -4,6 +4,10 @@ let charData
 async function getCurrentClass() {
     hideUploadPage()
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
+    console.log(response.status)
+    if (response.status !== 200) {
+        document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
+    }
     const json = await response.json();
     let data = JSON.stringify(json);
 
