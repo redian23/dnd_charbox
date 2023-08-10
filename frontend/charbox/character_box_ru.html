@@ -86,9 +86,6 @@
         <div name="Main Page" class="tile is-vertical is-child">
             <div class="tile">
                 <div name="CHAR_POINTS" class="tile is-2 is-parent is-vertical">
-                    <article class="tile is-child box">
-                        <p class="title"><img id="img_Character_Preview" src="" alt=""></p>
-                    </article>
                         <article class="tile is-child box">
                             <p class="title"> Значения Характеристик</p>
                             <p class="subtitle"> Всего: <label id="lbl_ability_total_info"></label></p>
@@ -100,6 +97,15 @@
                             <p>Мудрость: [ <label id="lbl_modifier_wisdom_info"></label> ] ( <label id="lbl_ability_wisdom_info"></label> )</p>
                             <p>Харизма: [ <label id="lbl_modifier_charisma_info"></label> ] ( <label id="lbl_ability_charisma_info"></label> )</p>
                         </div>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="title">Спас-броски</p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled> [ <label id="lbl_modifier_ST_strength_info"> </label> ] Сила</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_dexterity_info" disabled> [ <label id="lbl_modifier_ST_dexterity_info"> </label> ] Ловкость</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_bodyDifficulty_info" disabled> [ <label id="lbl_modifier_ST_bodyDifficulty_info"> </label> ] Телосложение</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_intelligence_info" disabled> [ <label id="lbl_modifier_ST_intelligence_info"> </label> ] Интеллект</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_wisdom_info" disabled> [ <label id="lbl_modifier_ST_wisdom_info"> </label> ] Мудрость</label></p>
+                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_charisma_info" disabled> [ <label id="lbl_modifier_ST_charisma_info"> </label> ] Харизма</label></p>
                     </article>
                     <article class="tile is-child box">
                         <p><label class="title">Бонусы</label></p>
@@ -119,15 +125,6 @@
                         <p class="subtitle">Класс Доспеха: [ <label id="lbl_armor_class"></label> ]</p>
                         <p class="subtitle">Инициатива: [ <label id="lbl_initiative"></label> ]</p>
                         <p class="subtitle">Скорость: [ <label id="lbl_speed"></label> ]</p>
-                    </article>
-                    <article class="tile is-child box">
-                        <p class="title">Спас-броски</p>
-                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled> [ <label id="lbl_modifier_ST_strength_info"> </label> ] Сила</label></p>
-                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_dexterity_info" disabled> [ <label id="lbl_modifier_ST_dexterity_info"> </label> ] Ловкость</label></p>
-                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_bodyDifficulty_info" disabled> [ <label id="lbl_modifier_ST_bodyDifficulty_info"> </label> ] Телосложение</label></p>
-                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_intelligence_info" disabled> [ <label id="lbl_modifier_ST_intelligence_info"> </label> ] Интеллект</label></p>
-                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_wisdom_info" disabled> [ <label id="lbl_modifier_ST_wisdom_info"> </label> ] Мудрость</label></p>
-                        <p><label class="radio"><input type="radio" id="rd_modifier_ST_charisma_info" disabled> [ <label id="lbl_modifier_ST_charisma_info"> </label> ] Харизма</label></p>
                     </article>
                     <article class="tile is-child box">
                         <p class="title">Навыки</p>
@@ -214,87 +211,97 @@
     <div id name="Character_appearance_header" class="tile is-parent is-vertical box middle">
         <div style="text-align: center"><label class="title">Внешний Вид</label></div>
         <div class="tile">
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Имя персонажа: <label id="lbl_charFirstName2"></label> <label id="lbl_charLastName2"></label></p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Пол: <label id="lbl_gender"></label></p>
-                    </article>
-                </article>
+            <div class="tile is-2 is-parent">
+                <div class="tile is-child box">
+                    <p class="title"><img id="img_Character_Preview" src="" alt=""></p>
+                </div>
             </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Возраст: <label id="lbl_age"></label></p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Размер тела: <label id="lbl_bodySize"></label></p>
-                    </article>
-                </article>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Рост: [ <label id="lbl_height"></label> см ; <label id="lbl_height_ft"></label> ft. ]</p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Вес: [ <label id="lbl_weight"></label> кг ; <label id="lbl_weight_lb"></label> lb. ]</p>
-                    </article>
-                </article>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Цвет глаз: <label id="lbl_eyesColor"></label></p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Цвет волос: <label id="lbl_hairColor"></label></p>
-                    </article>
-                </article>
-            </div>
-        </div>
-        <div id="div_snake_appearance" class="tile">
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Форма змеиного тела: <label id="lbl_typeSnakeBody"> </label></p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Форма головы: <label id="lbl_headShape"></label></p>
-                    </article>
-                </article>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Узор чешуи: <label id="lbl_ScalePattern"></label></p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Особенность чистокровного: <label id="lbl_purebredsSpecialty"></label></p>
-                    </article>
-                </article>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Цвета кожи гуманоида: <label id="lbl_humanoidSkinColor"></label> </p>
-                    </article>
-                    <article class="tile is-child">
-                        <p class="title">Цвет чешуи: <label id="lbl_scaleColor"></label></p>
-                    </article>
-                </article>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <article class="tile is-child">
-                        <p class="title">Цвет языка: <label id="lbl_tongueColor"></label></p>
-                    </article>
-                </article>
-            </div>
+            <div class="tile is-child is-vertical ">
+                <div class="tile">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Имя персонажа: <label id="lbl_charFirstName2"></label> <label id="lbl_charLastName2"></label></p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Пол: <label id="lbl_gender"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Возраст: <label id="lbl_age"></label></p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Размер тела: <label id="lbl_bodySize"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Рост: [ <label id="lbl_height"></label> см ; <label id="lbl_height_ft"></label> ft. ]</p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Вес: [ <label id="lbl_weight"></label> кг ; <label id="lbl_weight_lb"></label> lb. ]</p>
+                            </article>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Цвет глаз: <label id="lbl_eyesColor"></label></p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Цвет волос: <label id="lbl_hairColor"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                </div>
+                <div id="div_snake_appearance" class="tile">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Форма змеиного тела: <label id="lbl_typeSnakeBody"> </label></p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Форма головы: <label id="lbl_headShape"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Узор чешуи: <label id="lbl_ScalePattern"></label></p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Особенность чистокровного: <label id="lbl_purebredsSpecialty"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Цвета кожи гуманоида: <label id="lbl_humanoidSkinColor"></label> </p>
+                            </article>
+                            <article class="tile is-child">
+                                <p class="title">Цвет чешуи: <label id="lbl_scaleColor"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <article class="tile is-child">
+                                <p class="title">Цвет языка: <label id="lbl_tongueColor"></label></p>
+                            </article>
+                        </article>
+                    </div>
+                </div>
+             </div>
         </div>
     </div>
+
     <div id name="Character_spells_header" class="tile is-parent is-vertical box bottom" style="display: none">
         <div style="text-align: center"><label class="title">Заговоры и Заклинания</label></div>
         <div class="tile">
@@ -313,8 +320,7 @@
                 </article>
             </div>
         </div>
-    </div style
-    >
+    </div>
 </body>
 <footer class="footer-distributed">
 <!--    <div class="footer-right">-->

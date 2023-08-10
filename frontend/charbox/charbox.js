@@ -219,7 +219,7 @@ function writeBackgroundLabels(data) {
 function writeAppearanceLabels(data) {
     let race = JSON.parse(data)["race"];
     document.getElementById("p_dragon_type").style.display = "none";
-    document.getElementById("div_snake_appearance").style.display = "none";
+    document.getElementById("div_snake_appearance").style.visibility= "hidden";
 
 
     document.getElementById("lbl_raceName").innerHTML = race["race_type_name_ru"];
@@ -251,7 +251,7 @@ function writeAppearanceLabels(data) {
     }
 
     if (race["race_name"] === "Yuan-ti"){
-        document.getElementById("div_snake_appearance").style.display = "flex";
+        document.getElementById("div_snake_appearance").style.visibility= "visible";
         document.getElementById("lbl_hairColor").innerHTML = "Нет";
 
         document.getElementById("lbl_typeSnakeBody").innerHTML =  race["other"]["yuanti_appearance"]["type_snake_body"];
