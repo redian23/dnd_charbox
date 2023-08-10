@@ -6,6 +6,8 @@ import (
 	"pregen/backend/races"
 )
 
+var LastCharacter Character
+
 func GenerateFullCharacter() Character {
 	var char Character
 
@@ -16,5 +18,6 @@ func GenerateFullCharacter() Character {
 	char.Background = backgr.GenerateBackground(char.Class.ClassName)
 	char.Class.Skills = classes.SetSkillsForCharacter(char.Background.SkillMastery)
 
+	LastCharacter = char
 	return char
 }

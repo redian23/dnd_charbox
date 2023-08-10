@@ -11,6 +11,7 @@ async function getCurrentClass() {
     const json = await response.json();
     let data = JSON.stringify(json);
 
+    console.log(data)
     charData = data
     await writeRacePhotoLabels(data)
     await writeToAbilitiesLabels(data)

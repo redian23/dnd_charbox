@@ -63,23 +63,21 @@ func RandomRollPoints() int {
 }
 
 func rerollClassAbilitiesStats() Ability {
-	TargetClassAbilities := Ability{
-		Strength:       RandomRollPoints(),
-		Dexterity:      RandomRollPoints(),
-		BodyDifficulty: RandomRollPoints(),
-		Intelligence:   RandomRollPoints(),
-		Wisdom:         RandomRollPoints(),
-		Charisma:       RandomRollPoints(),
-	}
-
 	raceAbilities := races.GetRaceAbilities()
 
-	TargetClassAbilities.Total = (TargetClassAbilities.Strength + raceAbilities.Strength) +
-		(TargetClassAbilities.Dexterity + raceAbilities.Dexterity) +
-		(TargetClassAbilities.BodyDifficulty + raceAbilities.BodyDifficulty) +
-		(TargetClassAbilities.Intelligence + raceAbilities.Intelligence) +
-		(TargetClassAbilities.Wisdom + raceAbilities.Wisdom) +
-		(TargetClassAbilities.Charisma + raceAbilities.Charisma)
+	TargetClassAbilities := Ability{
+		Strength:       RandomRollPoints() + raceAbilities.Strength,
+		Dexterity:      RandomRollPoints() + raceAbilities.Dexterity,
+		BodyDifficulty: RandomRollPoints() + raceAbilities.BodyDifficulty,
+		Intelligence:   RandomRollPoints() + raceAbilities.Intelligence,
+		Wisdom:         RandomRollPoints() + raceAbilities.Wisdom,
+		Charisma:       RandomRollPoints() + raceAbilities.Charisma,
+	}
+
+	TargetClassAbilities.Total = TargetClassAbilities.Strength + TargetClassAbilities.Dexterity +
+		TargetClassAbilities.BodyDifficulty + TargetClassAbilities.Intelligence +
+		TargetClassAbilities.Wisdom + TargetClassAbilities.Charisma
+
 	return TargetClassAbilities
 }
 
@@ -206,16 +204,22 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 	for _, stat := range saveThrArray {
 		switch stat {
 		case saveTh.Strength.Name:
+			saveTh.Strength.Point += proficiencyBonus
 			saveTh.Strength.Mastery = true
 		case saveTh.Dexterity.Name:
+			saveTh.Dexterity.Point += proficiencyBonus
 			saveTh.Dexterity.Mastery = true
 		case saveTh.BodyDifficulty.Name:
+			saveTh.BodyDifficulty.Point += proficiencyBonus
 			saveTh.BodyDifficulty.Mastery = true
 		case saveTh.Intelligence.Name:
+			saveTh.Intelligence.Point += proficiencyBonus
 			saveTh.Intelligence.Mastery = true
 		case saveTh.Wisdom.Name:
+			saveTh.Wisdom.Point += proficiencyBonus
 			saveTh.Wisdom.Mastery = true
 		case saveTh.Charisma.Name:
+			saveTh.Charisma.Point += proficiencyBonus
 			saveTh.Charisma.Mastery = true
 		}
 	}
