@@ -88,7 +88,7 @@ func StatusMongoDB() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Db version: %+v\n", commandResult["connections"])
+	log.Printf("Db version: %+v\n", commandResult["connections"])
 }
 
 func ReadFromDB(collectionName string) *mongo.Cursor {

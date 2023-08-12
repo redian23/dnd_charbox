@@ -37,33 +37,33 @@ func GenerateBackground() *BackgroundAnswer {
 				advice = background.Advice
 			}
 			description = background.Description
+
+			if background.Type.Value != nil {
+				var rollNumOfType int
+				rollNumOfType, _ = random.IntRange(0, len(background.Type.Value))
+				backgroundType = background.Type.Value[rollNumOfType]
+			} else {
+				backgroundType = "Стандартный"
+			}
+
+			rollNum, _ := random.IntRange(0, len(background.CharacterTrait.Value))
+			characterTrait = background.CharacterTrait.Value[rollNum]
+
+			rollNum, _ = random.IntRange(0, len(background.Ideal.Value))
+			ideal = background.Ideal.Value[rollNum].Text
+			worldviewRu = background.Ideal.Value[rollNum].WorldviewRu
+
+			rollNum, _ = random.IntRange(0, len(background.Affection.Value))
+			affection = background.Affection.Value[rollNum]
+
+			rollNum, _ = random.IntRange(0, len(background.Weakness.Value))
+			weakness = background.Weakness.Value[rollNum]
+
+			BackgroundSkillMastery = background.SkillMastery
+			bgAbility = background.BackgroundAbility
+			masteryOfTools = background.MasteryOfTools
+			equipmentList = background.Equipment
 		}
-
-		if background.Type.Value != nil {
-			var rollNumOfType int
-			rollNumOfType, _ = random.IntRange(0, len(background.Type.Value))
-			backgroundType = background.Type.Value[rollNumOfType]
-		} else {
-			backgroundType = "Стандартный"
-		}
-
-		rollNum, _ := random.IntRange(0, len(background.CharacterTrait.Value))
-		characterTrait = background.CharacterTrait.Value[rollNum]
-
-		rollNum, _ = random.IntRange(0, len(background.Ideal.Value))
-		ideal = background.Ideal.Value[rollNum].Text
-		worldviewRu = background.Ideal.Value[rollNum].WorldviewRu
-
-		rollNum, _ = random.IntRange(0, len(background.Affection.Value))
-		affection = background.Affection.Value[rollNum]
-
-		rollNum, _ = random.IntRange(0, len(background.Weakness.Value))
-		weakness = background.Weakness.Value[rollNum]
-
-		BackgroundSkillMastery = background.SkillMastery
-		bgAbility = background.BackgroundAbility
-		masteryOfTools = background.MasteryOfTools
-		equipmentList = background.Equipment
 	}
 
 	return &BackgroundAnswer{

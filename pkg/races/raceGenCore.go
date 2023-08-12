@@ -135,7 +135,7 @@ func setEyesColor() string {
 
 	color, err := random.Choice(colors)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	return color
 }
@@ -146,7 +146,7 @@ func setHairColor() string {
 
 	color, err := random.Choice(colors)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	return color
 }
