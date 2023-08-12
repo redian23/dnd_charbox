@@ -1,7 +1,7 @@
 package characterCore
 
 import (
-	"pregen/pkg/backgr"
+	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 )
 
@@ -39,7 +39,7 @@ func SetSkillsForCharacter() Skills {
 	sk = setSkillsNames(sk)
 	sk = setSkillModifierValue(sk)
 
-	skillsSlice := classes.GetAnalyzedSkillSlice(backgr.BackgroundSkillMastery)
+	skillsSlice := classes.GetAnalyzedSkillSlice(backgrounds.BackgroundSkillMastery)
 	sk = setSkillProficiency(skillsSlice, sk)
 
 	return sk

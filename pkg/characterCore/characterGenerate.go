@@ -1,7 +1,7 @@
 package characterCore
 
 import (
-	"pregen/pkg/backgr"
+	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/races"
 )
@@ -13,7 +13,7 @@ func GenerateFullCharacter() *Character {
 		Experience: 0,
 		Race:       races.GenerateRaceForCharacter(),
 		Class:      classes.GenerateClass(),
-		Background: backgr.GenerateBackground(),
+		Background: backgrounds.GenerateBackground(),
 		Skills:     SetSkillsForCharacter(),
 	}
 }

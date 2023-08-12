@@ -1,32 +1,30 @@
-package backgr
+package backgrounds
 
 import (
 	"github.com/mazen160/go-random"
 	"pregen/pkg/classes"
 )
 
-var BackgroundSkillMastery []string
+var (
+	backgroundNameRu       string
+	advice                 string
+	personalization        string
+	description            string
+	backgroundType         string
+	characterTrait         string
+	worldviewRu            string
+	ideal                  string
+	affection              string
+	weakness               string
+	masteryOfTools         []string
+	bgAbility              backgroundAbility
+	equipmentList          []string
+	BackgroundSkillMastery []string
+)
 
 func GenerateBackground() *BackgroundAnswer {
-	var backData = getBackgroundsFormDB()
-
+	backData := getBackgroundsFormDB()
 	backgroundName = backgroundAnalyze(classes.ClassNameGlobal)
-	var backgroundNameRu string
-	var advice string
-	var personalization string
-	var description string
-	var backgroundType string
-	var characterTrait string
-	var worldviewRu string
-	var ideal string
-
-	var affection string
-	var weakness string
-
-	var masteryOfTools []string
-
-	var bgAbility backgroundAbility
-	var equipmentList []string
 
 	for _, background := range backData {
 		if background.BackgroundName == backgroundName {

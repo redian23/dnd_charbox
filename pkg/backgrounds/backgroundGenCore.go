@@ -1,4 +1,4 @@
-package backgr
+package backgrounds
 
 import (
 	"context"
