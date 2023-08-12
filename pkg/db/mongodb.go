@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"fmt"
+	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -10,17 +11,33 @@ import (
 	"time"
 )
 
-const (
-	address = "172.20.0.2:27017"
-	dbname  = "data"
+var (
+	address, dbname string
+	login, passwd   string
 )
 
-func ConnectToDB() *mongo.Client {
+func InitMongoENV(path string) {
+	// Set the file name of the configurations file
+	viper.SetConfigName("creds.env")
+	// Set the path to look for the configurations file
+	viper.AddConfigPath(path)
+	// Enable VIPER to read Environment Variables
+	viper.AutomaticEnv()
+	viper.SetConfigType("env")
+	if err := viper.ReadInConfig(); err != nil {
+		log.Printf("Error reading config file, %s", err)
+	}
 
-	//переделать чтобы всасывало через вайпер
+	address = viper.GetString("address")
+	dbname = viper.Get("dbname").(string)
+	login = viper.Get("login").(string)
+	passwd = viper.Get("passwd").(string)
+}
+
+func ConnectToDB() *mongo.Client {
 	cred := options.Credential{
-		Username: "admin",
-		Password: "f2h2f342g",
+		Username: login,
+		Password: passwd,
 	}
 	// Use the SetServerAPIOptions() method to set the Stable API version to 1
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)

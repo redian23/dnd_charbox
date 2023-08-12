@@ -8,6 +8,7 @@ import (
 var BackgroundSkillMastery []string
 
 func GenerateBackground() *BackgroundAnswer {
+	var backData = getBackgroundsFormDB()
 
 	backgroundName = backgroundAnalyze(classes.ClassNameGlobal)
 	var backgroundNameRu string

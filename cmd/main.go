@@ -16,32 +16,10 @@ import (
 
 const Version = "0.6.7 Beta build"
 
-var (
-	htmlSitePath, filePath string
-	logPath                string
-)
-
-func init() {
-	//InitServerPathVars(true)
-	InitServerPathVars(false)
-	db.PingMongoDB()
-}
-
-func InitServerPathVars(status bool) {
-	if status == true {
-		htmlSitePath = "/usr/share/nginx/html/*/*.html"
-		races.RacePhotoPath = "/usr/share/nginx/html/charbox/race_imgs/"
-		filePath = "/usr/share/nginx/html"
-		logPath = "/var/logs/"
-	} else {
-		htmlSitePath = "../web/*/*.html"
-		races.RacePhotoPath = "../web/charbox/race_imgs/"
-		filePath = "../web"
-		logPath = "../logs/"
-	}
-}
-
 func main() {
+	InitServerPathVars(true)
+	db.PingMongoDB()
+
 	f, _ := os.Create(logPath + "gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 

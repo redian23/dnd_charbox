@@ -11,9 +11,9 @@ import (
 )
 
 var (
-	chars          = GetClassCharactsFormDB()
-	armorData      = GetArmorFormDB()
-	weaponData     = GetWeaponFormDB()
+	chars          ClassesBSON
+	armorData      []ArmorAnswer
+	weaponData     []WeaponAnswer
 	equipmentList  []Variants
 	classSkills    []string
 	ModifierGlobal Modifier

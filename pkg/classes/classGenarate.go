@@ -3,6 +3,10 @@ package classes
 var ClassNameGlobal string
 
 func GenerateClass() *ClassAnswer {
+	chars = GetClassCharactsFormDB()
+	armorData = GetArmorFormDB()
+	weaponData = GetWeaponFormDB()
+
 	className, classNameRU, classAbility := statAnalyze()
 	ClassNameGlobal = className
 	modif := setModifiersForClass(classAbility)

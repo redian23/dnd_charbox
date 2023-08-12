@@ -8,7 +8,6 @@ import (
 )
 
 var backgroundName string
-var backData = getBackgroundsFormDB()
 
 func getBackgroundsFormDB() []BackgroundBson {
 	var results []BackgroundBson

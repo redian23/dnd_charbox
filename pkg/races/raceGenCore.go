@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	raceData      = getRacesFormDB()
+	raceData      []RacesBSON
 	raceName      string
 	RacePhotoPath string
 )
