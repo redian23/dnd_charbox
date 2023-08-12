@@ -5,11 +5,6 @@ import (
 	"pregen/pkg/classes"
 )
 
-var (
-	classSkills []string
-	chars       = classes.GetClassCharactsFormDB()
-)
-
 type Skills struct {
 	Acrobatics     skill `json:"acrobatics"`
 	AnimalHandling skill `json:"animal_handling"`

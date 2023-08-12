@@ -4,14 +4,12 @@ let charData
 async function getCurrentClass() {
     hideUploadPage()
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
-    console.log(response.status)
     if (response.status !== 200) {
         document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
     }
     const json = await response.json();
     let data = JSON.stringify(json);
 
-    console.log(data)
     charData = data
     await writeRacePhotoLabels(data)
     await writeToAbilitiesLabels(data)
@@ -89,7 +87,7 @@ function writeToSaveThrowsLabels(data) {
 }
 
 function writeToSkillsLabels(data) {
-    let skills =  JSON.parse(data)["class"]["skills"];
+    let skills =  JSON.parse(data)["skills"];
 
     //обнуление радио
     var radios = ["rd_Acrobatics", "rd_Animal_Handling","rd_Arcana","rd_Athletics",
@@ -333,7 +331,6 @@ function writeWeaponLabels(data) {
 function writeRacePhotoLabels(data) {
     document.getElementById("img_Character_Preview").src = "";
 
-    console.log(JSON.parse(data)["race"]["race_photo"]);
     document.getElementById("img_Character_Preview").src = "photos/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
         JSON.parse(data)["race"]["race_photo"]["file_name"] ;
     document.getElementById("img_Character_Preview").alt = "Арт является примерным видом персонажа."
