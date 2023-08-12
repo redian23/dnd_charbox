@@ -8,11 +8,13 @@ import (
 	"net/http"
 	"os"
 	"pregen/api"
-	"pregen/backend/races"
-	"pregen/db"
+	"pregen/pkg/db"
+	"pregen/pkg/races"
 	"strings"
 	"time"
 )
+
+const Version = "0.6.7 Beta build"
 
 var (
 	htmlSitePath, filePath string
@@ -20,22 +22,22 @@ var (
 )
 
 func init() {
-	InitServerPathVars(true)
-	//InitServerPathVars(false)
+	//InitServerPathVars(true)
+	InitServerPathVars(false)
 	db.PingMongoDB()
 }
 
 func InitServerPathVars(status bool) {
 	if status == true {
 		htmlSitePath = "/usr/share/nginx/html/*/*.html"
-		races.RacePhotoPath = "/usr/share/nginx/html/charbox/Racepics/"
+		races.RacePhotoPath = "/usr/share/nginx/html/charbox/race_imgs/"
 		filePath = "/usr/share/nginx/html"
 		logPath = "/var/logs/"
 	} else {
-		htmlSitePath = "frontend/*/*.html"
-		races.RacePhotoPath = "./frontend/Racepics/"
-		filePath = "./frontend"
-		logPath = ""
+		htmlSitePath = "../web/*/*.html"
+		races.RacePhotoPath = "../web/charbox/race_imgs/"
+		filePath = "../web"
+		logPath = "../logs/"
 	}
 }
 
@@ -99,8 +101,8 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	//router.Run(":848") //local
-	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	router.Run(":848") //local
+	//router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
 
 func keyFunc(c *gin.Context) string {

@@ -12,7 +12,6 @@ type about struct {
 }
 
 func GetAbout(c *gin.Context) {
-
 	aboutCharBox := about{
 		Projects: []string{"Character Box", "DiceRoll"},
 		Author:   "Redian23",

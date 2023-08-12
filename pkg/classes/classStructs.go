@@ -12,7 +12,6 @@ type ClassAnswer struct {
 	Proficiencies    Proficiencies  `json:"proficiencies"`
 	ProficiencyBonus int            `json:"proficiency_bonus"`
 	PassiveWisdom    int            `json:"passive_wisdom"`
-	Skills           Skills         `json:"skills"`
 	SkillsOfClass    []string       `json:"skills_of_class"`
 	SavingThrows     SavingThrows   `json:"saving_throws"`
 	Hits             hits           `json:"hits"`
@@ -45,34 +44,6 @@ type Modifier struct {
 	Intelligence   int `json:"intelligence"`
 	Wisdom         int `json:"wisdom"`
 	Charisma       int `json:"charisma"`
-}
-
-type Skills struct {
-	Acrobatics     skill `json:"acrobatics"`
-	AnimalHandling skill `json:"animal_handling"`
-	Arcana         skill `json:"arcana"`
-	Athletics      skill `json:"athletics"`
-	Deception      skill `json:"deception"`
-	History        skill `json:"history"`
-	Insight        skill `json:"insight"`
-	Intimidation   skill `json:"intimidation"`
-	Investigation  skill `json:"investigation"`
-	Medicine       skill `json:"medicine"`
-	Nature         skill `json:"nature"`
-	Perception     skill `json:"perception"`
-	Performance    skill `json:"performance"`
-	Persuasion     skill `json:"persuasion"`
-	Religion       skill `json:"religion"`
-	SleightOfHand  skill `json:"sleight_of_hand"`
-	Stealth        skill `json:"stealth"`
-	Survival       skill `json:"survival"`
-}
-
-type skill struct {
-	SkillName     string `json:"skill_name"`
-	SkillNameRu   string `json:"skill_name_ru"`
-	ModifierValue int    `json:"modifier_value"`
-	Proficiency   bool   `json:"proficiency"`
 }
 
 type SavingThrows struct {

@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"pregen/backend/characterCore"
+	"pregen/pkg/characterCore"
 )
 
 func GetRandomCharacter(c *gin.Context) {

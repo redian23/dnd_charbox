@@ -3,20 +3,20 @@ package classes
 import (
 	"context"
 	"github.com/mazen160/go-random"
-	"pregen/backend/dice"
-	"pregen/backend/races"
-	"pregen/db"
+	"pregen/pkg/db"
+	"pregen/pkg/dice"
+	"pregen/pkg/races"
 	"reflect"
 	"sort"
 )
 
 var (
-	chars         = GetClassCharactsFormDB()
-	armorData     = GetArmorFormDB()
-	weaponData    = GetWeaponFormDB()
-	equipmentList []Variants
-	mod           Modifier
-	classSkills   []string
+	chars          = GetClassCharactsFormDB()
+	armorData      = GetArmorFormDB()
+	weaponData     = GetWeaponFormDB()
+	equipmentList  []Variants
+	classSkills    []string
+	ModifierGlobal Modifier
 )
 
 func GetClassCharactsFormDB() ClassesBSON {
@@ -154,7 +154,7 @@ func setModifiersForClass(ab Ability) Modifier {
 		modifier.Charisma = modifierArray[5]
 	}
 	//fmt.Println(modifier)
-	mod = modifier //присвоение в переменную для всего пакета
+	ModifierGlobal = modifier //присвоение в переменную для всего пакета
 	return modifier
 }
 
@@ -204,22 +204,22 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 	for _, stat := range saveThrArray {
 		switch stat {
 		case saveTh.Strength.Name:
-			saveTh.Strength.Point += proficiencyBonus
+			saveTh.Strength.Point += 2
 			saveTh.Strength.Mastery = true
 		case saveTh.Dexterity.Name:
-			saveTh.Dexterity.Point += proficiencyBonus
+			saveTh.Dexterity.Point += 2
 			saveTh.Dexterity.Mastery = true
 		case saveTh.BodyDifficulty.Name:
-			saveTh.BodyDifficulty.Point += proficiencyBonus
+			saveTh.BodyDifficulty.Point += 2
 			saveTh.BodyDifficulty.Mastery = true
 		case saveTh.Intelligence.Name:
-			saveTh.Intelligence.Point += proficiencyBonus
+			saveTh.Intelligence.Point += 2
 			saveTh.Intelligence.Mastery = true
 		case saveTh.Wisdom.Name:
-			saveTh.Wisdom.Point += proficiencyBonus
+			saveTh.Wisdom.Point += 2
 			saveTh.Wisdom.Mastery = true
 		case saveTh.Charisma.Name:
-			saveTh.Charisma.Point += proficiencyBonus
+			saveTh.Charisma.Point += 2
 			saveTh.Charisma.Mastery = true
 		}
 	}
@@ -311,12 +311,12 @@ func setArmor(className string) []ArmorAnswer {
 		armorAns.Stealth = armor.Stealth
 		switch armor.ArmorType {
 		case "Лёгкий доспех":
-			armorAns.ArmorClassCount = armor.ArmorClassCount + mod.Dexterity + shield
+			armorAns.ArmorClassCount = armor.ArmorClassCount + ModifierGlobal.Dexterity + shield
 		case "Средний доспех":
-			if mod.Dexterity > 2 {
+			if ModifierGlobal.Dexterity > 2 {
 				armorAns.ArmorClassCount = armor.ArmorClassCount + 2 + shield
 			} else {
-				armorAns.ArmorClassCount = armor.ArmorClassCount + mod.Dexterity + shield
+				armorAns.ArmorClassCount = armor.ArmorClassCount + ModifierGlobal.Dexterity + shield
 			}
 		case "Тяжёлый доспех":
 			armorAns.ArmorClassCount = armor.ArmorClassCount + shield
@@ -328,16 +328,73 @@ func setArmor(className string) []ArmorAnswer {
 		var noArmor = ArmorAnswer{ArmorName: "Без Доспеха", ArmorType: "Нет", Stealth: true}
 		switch className {
 		case "Монах":
-			noArmor.ArmorClassCount = 10 + mod.Dexterity + mod.Wisdom
+			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.Wisdom
 		case "Варвар":
-			noArmor.ArmorClassCount = 10 + mod.Dexterity + mod.BodyDifficulty
+			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.BodyDifficulty
 		case "Волшебник":
-			noArmor.ArmorClassCount = 10 + mod.Dexterity + mod.Intelligence
+			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.Intelligence
 		}
 		armorAnsList = append(armorAnsList, noArmor)
 	}
 	return armorAnsList
+}
 
+func setClassSkills() []string {
+	var skillsArray []string
+	var randSkillCount int
+	var skills []string
+
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			skillsArray = char.SkillsInDB.SkillsList
+			randSkillCount = char.SkillsInDB.RandomCount
+		}
+	}
+
+	for i := range skillsArray {
+		if i < randSkillCount {
+			rollNum, _ := random.IntRange(0, len(skillsArray))
+			skills = append(skills, skillsArray[rollNum])
+		}
+	}
+	classSkills = skills
+	return skills
+}
+
+func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
+	var raceSkill = races.GetRaceSkill()
+
+ReRollClassSkills:
+
+	if reflect.DeepEqual(classSkills, backgroundSkills) == true {
+		classSkills = setClassSkills()
+		goto ReRollClassSkills
+	}
+	for _, classSkl := range classSkills {
+		for _, backgroundSkl := range backgroundSkills {
+			if classSkl == raceSkill {
+				classSkills = setClassSkills()
+				goto ReRollClassSkills
+			}
+			if classSkl == backgroundSkl {
+				classSkills = setClassSkills()
+				goto ReRollClassSkills
+			}
+		}
+	}
+	for i, classSkl1 := range classSkills {
+		for j, classSkl2 := range classSkills {
+			if classSkl1 == classSkl2 && i != j {
+				classSkills = setClassSkills()
+				goto ReRollClassSkills
+			}
+		}
+	}
+
+	var skillsSliceTmp = append(backgroundSkills, classSkills...)
+	var skillsSlice = append(skillsSliceTmp, raceSkill)
+
+	return skillsSlice
 }
 
 func setWeapons() []WeaponAnswer {

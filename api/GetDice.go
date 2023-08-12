@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"pregen/backend/dice"
+	"pregen/pkg/dice"
 )
 
 type multiDiceRoll struct {
