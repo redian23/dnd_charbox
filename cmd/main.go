@@ -60,7 +60,7 @@ func main() {
 	router.StaticFS("/f", http.Dir(filePath))
 	router.StaticFS("/photos", http.Dir(races.RacePhotoPath))
 
-	router.GET("/", func(c *gin.Context) {
+	router.GET("/dices", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
 			"title": "Dice Roller",
 			"path":  "./f/diceroll",
@@ -72,7 +72,12 @@ func main() {
 			"path":  "./f/charbox",
 		})
 	})
-
+	router.GET("/charbox", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
+			"title": "Character Box",
+			"path":  "./f/charbox",
+		})
+	})
 	router.GET("/about", func(c *gin.Context) {
 		api.GetAbout(c)
 	})
