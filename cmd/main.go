@@ -60,7 +60,7 @@ func main() {
 	router.StaticFS("/f", http.Dir(filePath))
 	router.StaticFS("/photos", http.Dir(races.RacePhotoPath))
 
-	router.GET("/dices", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
 			"title": "Dice Roller",
 			"path":  "./f/diceroll",
