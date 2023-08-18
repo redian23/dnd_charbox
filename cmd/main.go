@@ -67,8 +67,8 @@ func main() {
 		})
 	})
 	router.GET("/test", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
-			"title": "Character Box",
+		c.HTML(http.StatusOK, "character_box_test.html", gin.H{
+			"title": "CharBox Beta",
 			"path":  "./f/charbox",
 		})
 	})
