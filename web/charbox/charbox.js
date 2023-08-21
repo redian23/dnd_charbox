@@ -405,7 +405,7 @@ function exportToLSS() {
         const content = await rawResponse.json();
         console.log(JSON.stringify(content));
 
-        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content));
         var downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download",content["name"]["value"]+"_export_to_lss(beta).json");
