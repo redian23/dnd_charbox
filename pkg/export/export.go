@@ -17,7 +17,7 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 		JSONType:   "character",
 		Template:   "default",
 		Name:       Name{Value: lc.Race.CharacterName}, //var
-		HiddenName: "",                                 //var
+		HiddenName: "Крутой Язык_18647742",             //var
 		Info: Info{
 			CharClass:  CharClass{Name: "charClass", Label: "класс и уровень", Value: lc.Class.ClassNameRU},             //var
 			Level:      Level{Name: "level", Label: "уровень", Value: 1},                                                //var
