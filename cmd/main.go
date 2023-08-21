@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const Version = "0.6.7 Beta build"
+const Version = "0.7 Beta build"
 
 func main() {
 	InitServerPathVars(true)
@@ -48,6 +48,9 @@ func main() {
 
 		v1.GET("/get-character", mw, func(c *gin.Context) {
 			api.GetRandomCharacter(c)
+		})
+		v1.POST("/run-lss-export", mw, func(c *gin.Context) {
+			api.GetLSSJson(c)
 		})
 	}
 

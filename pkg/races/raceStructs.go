@@ -3,6 +3,7 @@ package races
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type RacesAnswer struct {
+	CharacterName string        `json:"character_name"`
 	RaceName      string        `json:"race_name"`
 	RaceNameRu    string        `json:"race_name_ru"`
 	Gender        string        `json:"gender"`

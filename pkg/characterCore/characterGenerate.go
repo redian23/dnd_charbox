@@ -6,14 +6,18 @@ import (
 	"pregen/pkg/races"
 )
 
+var LastCharacter Character
+
 func GenerateFullCharacter() *Character {
 
-	return &Character{
+	LastCharacter = Character{
 		Level:      1,
 		Experience: 0,
 		Race:       races.GenerateRaceForCharacter(),
+
 		Class:      classes.GenerateClass(),
 		Background: backgrounds.GenerateBackground(),
 		Skills:     SetSkillsForCharacter(),
 	}
+	return &LastCharacter
 }

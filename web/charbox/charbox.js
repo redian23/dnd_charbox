@@ -393,7 +393,26 @@ function downloadObjectAsJson(){
 }
 
 function exportToLSS() {
-    document.getElementById("btn_export_lss").innerHTML = "{Отсутствует интеграция c LSS}"
-    document.getElementById("btn_export_lss").className = "button is-danger";
+    (async () => {
+        const rawResponse = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/run-lss-export`,
+            { method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: charData
+        });
+        const content = await rawResponse.json();
+        console.log(JSON.stringify(content));
+
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download",content["name"]["value"]+"_export_to_lss(beta).json");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    })();
+
 }
 

@@ -90,6 +90,7 @@ func GenerateRaceForCharacter() *RacesAnswer {
 		Eyes:          setEyesColor(),
 		Hair:          setHairColor(),
 		RaceSkill:     raceSkill,
+		CharacterName: firstName,
 		FirstName:     firstName,
 		LastName:      lastName,
 		Speed:         raceSpeed,

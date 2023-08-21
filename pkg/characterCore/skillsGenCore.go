@@ -6,27 +6,27 @@ import (
 )
 
 type Skills struct {
-	Acrobatics     skill `json:"acrobatics"`
-	AnimalHandling skill `json:"animal_handling"`
-	Arcana         skill `json:"arcana"`
-	Athletics      skill `json:"athletics"`
-	Deception      skill `json:"deception"`
-	History        skill `json:"history"`
-	Insight        skill `json:"insight"`
-	Intimidation   skill `json:"intimidation"`
-	Investigation  skill `json:"investigation"`
-	Medicine       skill `json:"medicine"`
-	Nature         skill `json:"nature"`
-	Perception     skill `json:"perception"`
-	Performance    skill `json:"performance"`
-	Persuasion     skill `json:"persuasion"`
-	Religion       skill `json:"religion"`
-	SleightOfHand  skill `json:"sleight_of_hand"`
-	Stealth        skill `json:"stealth"`
-	Survival       skill `json:"survival"`
+	Acrobatics     Skill `json:"acrobatics"`
+	AnimalHandling Skill `json:"animal_handling"`
+	Arcana         Skill `json:"arcana"`
+	Athletics      Skill `json:"athletics"`
+	Deception      Skill `json:"deception"`
+	History        Skill `json:"history"`
+	Insight        Skill `json:"insight"`
+	Intimidation   Skill `json:"intimidation"`
+	Investigation  Skill `json:"investigation"`
+	Medicine       Skill `json:"medicine"`
+	Nature         Skill `json:"nature"`
+	Perception     Skill `json:"perception"`
+	Performance    Skill `json:"performance"`
+	Persuasion     Skill `json:"persuasion"`
+	Religion       Skill `json:"religion"`
+	SleightOfHand  Skill `json:"sleight_of_hand"`
+	Stealth        Skill `json:"stealth"`
+	Survival       Skill `json:"survival"`
 }
 
-type skill struct {
+type Skill struct {
 	SkillName     string `json:"skill_name"`
 	SkillNameRu   string `json:"skill_name_ru"`
 	ModifierValue int    `json:"modifier_value"`
