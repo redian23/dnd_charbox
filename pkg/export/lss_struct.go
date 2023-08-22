@@ -23,7 +23,13 @@ type ExportToLss struct {
 	BonusesStats  BonusesStats  `json:"bonusesStats"`
 	Conditions    []interface{} `json:"conditions"`
 	CasterClass   CasterClass   `json:"casterClass"`
+	Avatar        Avatar        `json:"avatar"`
 }
+type Avatar struct {
+	Jpeg string `json:"jpeg"`
+	Webp string `json:"webp"`
+}
+
 type Name struct {
 	Value string `json:"value"`
 }

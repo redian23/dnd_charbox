@@ -110,7 +110,11 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Flaws:       Flaws{Value: Value{Data: lc.Background.Weakness}},
 			Background: Background{Value: Value{Data: lc.Background.Personalization + " <p>" +
 				lc.Background.Description + "</p>" +
-				"<strong>Совет</strong>" + lc.Background.Advice}},
+				"<strong>Совет:</strong> " + lc.Background.Advice}},
+		},
+		Avatar: Avatar{
+			Jpeg: "https://diceroll.swn.by/photos/" + lc.Race.RacePhoto.Path + lc.Race.RacePhoto.FileName,
+			Webp: "",
 		},
 	}
 }
@@ -197,7 +201,7 @@ func gerRaceAbil(lc characterCore.Character) string {
 		raseAbilities += ability.AbilityName + ": " + ability.Description + ", "
 	}
 	if raseAbilities == "" {
-		raseAbilities = "Нету"
+		raseAbilities = "Нет"
 	}
 	return raseAbilities
 }
