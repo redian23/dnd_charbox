@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const Version = "0.7 Beta build"
+const Version = "0.7.5 Beta build"
 
 func main() {
 	InitServerPathVars(true)

@@ -13,7 +13,6 @@ type ExportToLss struct {
 	Stats         Stats         `json:"stats"`
 	Saves         Saves         `json:"saves"`
 	Skills        Skills        `json:"skills"`
-	Abilities     Abilities     `json:"abilities"`
 	Vitality      Vitality      `json:"vitality"`
 	WeaponsList   []WeaponsList `json:"weaponsList"`
 	Weapons       Weapons       `json:"weapons"`
@@ -221,9 +220,10 @@ type Saves struct {
 	Cha Cha `json:"cha"`
 }
 type skill struct {
-	BaseStat string `json:"baseSta0t"`
-	Name     string `json:"name"`
-	Label    string `json:"label"`
+	BaseStat string      `json:"baseSta0t"`
+	Name     string      `json:"name"`
+	Label    string      `json:"label"`
+	IsProf   interface{} `json:"isProf"`
 }
 
 type Skills struct {

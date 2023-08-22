@@ -408,7 +408,7 @@ function exportToLSS() {
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content));
         var downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download",content["name"]["value"]+"_export_to_lss(beta).json");
+        downloadAnchorNode.setAttribute("download",content["name"]["value"]+"_"+content["info"]["charClass"]["value"]+"_export_to_lss(beta).json");
         document.body.appendChild(downloadAnchorNode); // required for firefox
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
