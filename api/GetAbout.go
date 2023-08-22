@@ -9,7 +9,7 @@ type about struct {
 	Projects []string          `json:"projects"`
 	Author   string            `json:"author"`
 	Team     map[string]string `json:"team"`
-	Thank    map[string]string `json:"thank"`
+	Thanks   map[string]string `json:"thanks"`
 }
 
 func GetAbout(c *gin.Context) {
@@ -21,7 +21,7 @@ func GetAbout(c *gin.Context) {
 			"QA":                     "Racist Ooga Booga",
 			"A_QA":                   "Lisha_Svitok",
 		},
-		Thank: map[string]string{
+		Thanks: map[string]string{
 			"Special thanks to": "shakusky.lss",
 		},
 	}
