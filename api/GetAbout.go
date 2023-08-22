@@ -22,7 +22,7 @@ func GetAbout(c *gin.Context) {
 			"A_QA":                   "Lisha_Svitok",
 		},
 		Thank: map[string]string{
-			"Thank very much for help with integration LSS": "shakusky.lss",
+			"Special thanks to": "shakusky.lss",
 		},
 	}
 
