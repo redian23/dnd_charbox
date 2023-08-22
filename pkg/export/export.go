@@ -98,7 +98,7 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 		},
 		WeaponsList: getWeaponList(lc),
 		Text: Text{
-			Attacks:   Attacks{Value: Value{Data: "To be continued ..."}}, //spells
+			Attacks:   Attacks{Value: Value{Data: ""}}, //spells
 			Equipment: Equipment{Value: Value{getEquipString(lc)}},
 			Prof:      Prof{Value: Value{getProfs(lc)}},
 			Traits: Traits{Value: Value{Data: "<strong>Умения от предыстории:</strong> " + lc.Background.BackgroundAbility.AbilityName +
@@ -110,7 +110,7 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Flaws:       Flaws{Value: Value{Data: lc.Background.Weakness}},
 			Background: Background{Value: Value{Data: lc.Background.Personalization + " <p>" +
 				lc.Background.Description + "</p>" +
-				lc.Background.Advice}},
+				"<strong>Совет</strong>" + lc.Background.Advice}},
 		},
 	}
 }
@@ -171,7 +171,7 @@ func getEquipString(lc characterCore.Character) string {
 		}
 		backgroundEquipString += equipment + ", "
 	}
-	return equipString + " " + backgroundEquipString
+	return equipString + ", " + backgroundEquipString
 }
 
 func getWeaponList(lc characterCore.Character) []WeaponsList {
@@ -179,7 +179,7 @@ func getWeaponList(lc characterCore.Character) []WeaponsList {
 	var wp WeaponsList
 
 	for _, weapon := range lc.Class.Weapon {
-		wp.Name.Value = weapon.WeaponName + " кол-во:" + strconv.Itoa(weapon.Count)
+		wp.Name.Value = weapon.WeaponName + " ( кол-во:" + strconv.Itoa(weapon.Count) + " )"
 		wp.Mod.Value = strconv.Itoa(lc.Class.Modifier.Strength)
 		wp.Dmg.Value = weapon.Damage
 		wplist = append(wplist, wp)
