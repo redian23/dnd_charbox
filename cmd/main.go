@@ -9,7 +9,6 @@ import (
 	"os"
 	"pregen/api"
 	"pregen/pkg/db"
-	"pregen/pkg/races"
 	"strings"
 	"time"
 )
@@ -53,7 +52,7 @@ func main() {
 
 	router.LoadHTMLGlob(htmlSitePath)
 	router.StaticFS("/f", http.Dir(filePath))
-	router.StaticFS("/photos", http.Dir(races.RacePhotoPath))
+	router.StaticFS("/imgs", http.Dir(imgsPath))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
@@ -68,7 +67,15 @@ func main() {
 			"path":  "./f/charbox",
 		})
 	})
+	router.GET("/test404", func(c *gin.Context) {
+		c.HTML(404, "404.html", gin.H{})
 
+	})
+	router.NoRoute(func(c *gin.Context) {
+		c.HTML(404, "404.html", gin.H{
+			"img": imgsPath,
+		})
+	})
 	router.GET("/about", func(c *gin.Context) {
 		api.GetAbout(c)
 	})

@@ -331,7 +331,7 @@ function writeWeaponLabels(data) {
 function writeRacePhotoLabels(data) {
     document.getElementById("img_Character_Preview").src = "";
 
-    document.getElementById("img_Character_Preview").src = "photos/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
+    document.getElementById("img_Character_Preview").src = "imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
         JSON.parse(data)["race"]["race_photo"]["file_name"] ;
     document.getElementById("img_Character_Preview").alt = "Арт является примерным видом персонажа."
 }

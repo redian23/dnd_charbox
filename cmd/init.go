@@ -10,6 +10,7 @@ import (
 var (
 	htmlSitePath, filePath string
 	logPath                string
+	imgsPath               string
 )
 
 func InitGinENV(envPath, fileENV string) {
@@ -24,8 +25,9 @@ func InitGinENV(envPath, fileENV string) {
 		log.Printf("Error reading config file, %s", err)
 	}
 
-	races.RacePhotoPath = viper.GetString("photoPath")
+	races.RacePhotoPath = viper.GetString("racePhotoPath")
 	htmlSitePath = viper.GetString("htmlSitePath")
+	imgsPath = viper.GetString("imgsPath")
 	filePath = viper.GetString("filePath")
 	logPath = viper.GetString("logPath")
 }

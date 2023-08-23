@@ -1,6 +1,7 @@
 # Gin .cnf
 
 htmlSitePath = "../web/*/*.html"
-photoPath = "../web/charbox/race_imgs/"
 filePath = "../web"
+imgsPath = "../web/charbox/img/"
+racePhotoPath = "../web/charbox/img/race_imgs/"
 logPath = "../logs/"

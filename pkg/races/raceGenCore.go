@@ -45,8 +45,9 @@ func setRacePhoto(raceName, gender string) racePhoto {
 				_, racePhotoList := readDirectory(RacePhotoPath + manPhotoPath)
 				randNum, _ := random.IntRange(0, len(racePhotoList))
 
-				photo.Path = manPhotoPath
+				photo.Path = "race_imgs/" + manPhotoPath
 				photo.FileName = racePhotoList[randNum]
+				fmt.Println(photo)
 				return photo
 			} else {
 				var womanPhotoPath = folderName + "/w/"
@@ -54,8 +55,10 @@ func setRacePhoto(raceName, gender string) racePhoto {
 				_, racePhotoList := readDirectory(RacePhotoPath + womanPhotoPath)
 				randNum, _ := random.IntRange(0, len(racePhotoList))
 
-				photo.Path = womanPhotoPath
+				photo.Path = "race_imgs/" + womanPhotoPath
 				photo.FileName = racePhotoList[randNum]
+				fmt.Println(photo)
+
 				return photo
 			}
 		}

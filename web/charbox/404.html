@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Page not found</title>
+</head>
+<body>
+<style>
+    .div_img_404{
+        zoom: 90%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 45%;
+        transform: translate(-50%, -50%)
+    }
+</style>
+    <div class="div_img_404">
+        <img id="img_error" src="" alt="">
+    </div>
+<script>
+    var imgsList = Array("404.jpg","404_2.jpeg");
+    var img = imgsList[Math.floor(Math.random()*imgsList.length)];
+
+    document.getElementById("img_error").src= `${window.location.protocol}//${window.location.hostname}:${window.location.port}/imgs/` + img
+</script>
+</body>
+</html>
