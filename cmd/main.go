@@ -67,10 +67,7 @@ func main() {
 			"path":  "./f/charbox",
 		})
 	})
-	router.GET("/test404", func(c *gin.Context) {
-		c.HTML(404, "404.html", gin.H{})
 
-	})
 	router.NoRoute(func(c *gin.Context) {
 		c.HTML(404, "404.html", gin.H{
 			"img": imgsPath,
