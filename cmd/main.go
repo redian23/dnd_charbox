@@ -57,7 +57,7 @@ func main() {
 			"path":  "./f/diceroll",
 		})
 	})
-	r.NoRoute(func(c *gin.Context) {
+	router.NoRoute(func(c *gin.Context) {
 	    c.JSON(404, gin.H{"code": "PAGE_NOT_FOUND", "message": "Page not found"})
 	})
 	router.GET("/about", func(c *gin.Context) {
