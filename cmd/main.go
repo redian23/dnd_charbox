@@ -15,7 +15,7 @@ import (
 const Version = "0.7.5 Beta build <DICE_Roll>"
 
 func main() {
-	InitServerPathVars(false)
+	InitServerPathVars(true)
 	f, _ := os.Create(logPath + "diceroll_gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 
@@ -64,8 +64,8 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	router.Run(":810") //local
-	//router.RunTLS(":410", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	//router.Run(":810") //local
+	router.RunTLS(":410", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
 
 func keyFunc(c *gin.Context) string {
