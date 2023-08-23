@@ -3,8 +3,6 @@ package main
 import (
 	"github.com/spf13/viper"
 	"log"
-	"pregen/pkg/db"
-	"pregen/pkg/races"
 )
 
 var (
@@ -24,7 +22,6 @@ func InitGinENV(envPath, fileENV string) {
 		log.Printf("Error reading config file, %s", err)
 	}
 
-	races.RacePhotoPath = viper.GetString("photoPath")
 	htmlSitePath = viper.GetString("htmlSitePath")
 	filePath = viper.GetString("filePath")
 	logPath = viper.GetString("logPath")
@@ -32,10 +29,8 @@ func InitGinENV(envPath, fileENV string) {
 
 func InitServerPathVars(status bool) {
 	if status == true {
-		db.InitMongoENV("/etc/pregen.d/")
 		InitGinENV("/etc/pregen.d/", "prod.cnf")
 	} else {
-		db.InitMongoENV("../pkg/db/")
 		InitGinENV("../configs/", "test.cnf")
 	}
 }
