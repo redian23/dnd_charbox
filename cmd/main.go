@@ -20,7 +20,7 @@ func main() {
 	InitServerPathVars(true)
 	db.PingMongoDB()
 
-	f, _ := os.Create(logPath + "gin_errors.log")
+	f, _ := os.Create(logPath + "charbox_gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 
 	router := gin.Default()
@@ -38,14 +38,6 @@ func main() {
 	// api method
 	v1 := router.Group("api/v1/")
 	{
-		//v1.GET("/dice:number", func(c *gin.Context) {
-		//	number := c.Param("number")
-		//	api.GetDice(c, number)
-		//})
-		v1.GET("/roll", mw, func(c *gin.Context) {
-			api.GetMultiRoll(c)
-		})
-
 		v1.GET("/get-character", mw, func(c *gin.Context) {
 			api.GetRandomCharacter(c)
 		})
@@ -64,31 +56,28 @@ func main() {
 	router.StaticFS("/photos", http.Dir(races.RacePhotoPath))
 
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "dices.html", gin.H{
-			"title": "Dice Roller",
-			"path":  "./f/diceroll",
+		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
+			"title": "Character Box",
+			"path":  "./f/charbox",
 		})
 	})
+
 	router.GET("/test", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_test.html", gin.H{
 			"title": "CharBox Beta",
 			"path":  "./f/charbox",
 		})
 	})
-	router.GET("/charbox", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
-			"title": "Character Box",
-			"path":  "./f/charbox",
-		})
-	})
+
 	router.GET("/about", func(c *gin.Context) {
 		api.GetAbout(c)
 	})
+
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	//router.Run(":848") //local
-	router.RunTLS(":444", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	//router.Run(":820") //local
+	router.RunTLS(":420", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
 
 func keyFunc(c *gin.Context) string {
