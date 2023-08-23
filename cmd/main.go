@@ -69,9 +69,7 @@ func main() {
 	})
 
 	router.NoRoute(func(c *gin.Context) {
-		c.HTML(404, "404.html", gin.H{
-			"img": imgsPath,
-		})
+		c.HTML(404, "404.html", gin.H{})
 	})
 	router.GET("/about", func(c *gin.Context) {
 		api.GetAbout(c)
