@@ -3,6 +3,7 @@ package classes
 import (
 	"context"
 	"github.com/mazen160/go-random"
+	"math"
 	"pregen/pkg/db"
 	"pregen/pkg/dice"
 	"pregen/pkg/races"
@@ -138,20 +139,21 @@ func setModifiersForClass(ab Ability) Modifier {
 	abilitiesArray := []int{ab.Strength, ab.Dexterity, ab.BodyDifficulty,
 		ab.Intelligence, ab.Wisdom, ab.Charisma}
 	var modifier Modifier
-	var modifierArray []int
+	var modifierArray []float64
 
 	for _, ability := range abilitiesArray {
-		modPoint := (ability - 10) / 2
+
+		modPoint := math.Floor(float64(ability-10) / 2)
 		modifierArray = append(modifierArray, modPoint)
 	}
 
 	for range modifierArray {
-		modifier.Strength = modifierArray[0]
-		modifier.Dexterity = modifierArray[1]
-		modifier.BodyDifficulty = modifierArray[2]
-		modifier.Intelligence = modifierArray[3]
-		modifier.Wisdom = modifierArray[4]
-		modifier.Charisma = modifierArray[5]
+		modifier.Strength = int(modifierArray[0])
+		modifier.Dexterity = int(modifierArray[1])
+		modifier.BodyDifficulty = int(modifierArray[2])
+		modifier.Intelligence = int(modifierArray[3])
+		modifier.Wisdom = int(modifierArray[4])
+		modifier.Charisma = int(modifierArray[5])
 	}
 	//fmt.Println(modifier)
 	ModifierGlobal = modifier //присвоение в переменную для всего пакета
