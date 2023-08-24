@@ -142,7 +142,6 @@ func setModifiersForClass(ab Ability) Modifier {
 	var modifierArray []float64
 
 	for _, ability := range abilitiesArray {
-
 		modPoint := math.Floor(float64(ability-10) / 2)
 		modifierArray = append(modifierArray, modPoint)
 	}
