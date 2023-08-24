@@ -330,6 +330,8 @@ func setArmor(className string) []ArmorAnswer {
 			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.BodyDifficulty
 		case "Волшебник":
 			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.Intelligence
+		case "Чародей":
+			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.Intelligence
 		}
 		armorAnsList = append(armorAnsList, noArmor)
 	}
