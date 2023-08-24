@@ -177,17 +177,14 @@ function writeToSkillsLabels(data) {
 }
 
 function writeOtherLabels(data) {
-    //document.getElementById("imageid").src="../template/save.png";
+    document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
 
     let clas = JSON.parse(data)["class"]
-
     document.getElementById("lbl_initiative").innerHTML = clas["initiative"];
-
     document.getElementById("lbl_hitsDice").innerHTML = clas["hits"]["hit_dice"];
     document.getElementById("lbl_hitsCount").innerHTML = clas["hits"]["hit_count"];
-
     document.getElementById("lbl_proficiency_bonus").innerHTML = clas["proficiency_bonus"];
-    document.getElementById("lbl_passive_wisdom").innerHTML = clas["passive_wisdom"];
+
     if (clas["inspiration"] === true) {
         document.getElementById("lbl_inspiration").innerHTML = "*" ;
     }

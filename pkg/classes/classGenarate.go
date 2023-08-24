@@ -19,7 +19,6 @@ func GenerateClass() *ClassAnswer {
 		Inspiration:      true,
 		Proficiencies:    setProficiencies(),
 		ProficiencyBonus: 2,
-		PassiveWisdom:    setPassiveWisdom(modif.Wisdom),
 		SkillsOfClass:    setClassSkills(),
 		SavingThrows:     setSaveThrowsForClass(modif),
 		Hits: hits{

@@ -227,10 +227,6 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 	//fmt.Println("2 - ", saveTh)
 	return saveTh
 }
-func setPassiveWisdom(modWisdom int) int {
-	passWisdom := 10 + modWisdom
-	return passWisdom
-}
 
 func setHitDice() string {
 	var hitDice string

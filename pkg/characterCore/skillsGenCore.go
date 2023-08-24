@@ -1,9 +1,12 @@
 package characterCore
 
 import (
+	"fmt"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 )
+
+var PassWisdom int
 
 type Skills struct {
 	Acrobatics     Skill `json:"acrobatics"`
@@ -180,5 +183,11 @@ func setSkillProficiency(skillsSlice []string, sk Skills) Skills {
 			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + 2
 		}
 	}
+	setPassiveWisdom(sk)
 	return sk
+}
+
+func setPassiveWisdom(sk Skills) {
+	fmt.Println(sk.Perception.ModifierValue)
+	PassWisdom = 10 + sk.Perception.ModifierValue
 }

@@ -11,7 +11,6 @@ type ClassAnswer struct {
 	Inspiration      bool           `json:"inspiration"`
 	Proficiencies    Proficiencies  `json:"proficiencies"`
 	ProficiencyBonus int            `json:"proficiency_bonus"`
-	PassiveWisdom    int            `json:"passive_wisdom"`
 	SkillsOfClass    []string       `json:"skills_of_class"`
 	SavingThrows     SavingThrows   `json:"saving_throws"`
 	Hits             hits           `json:"hits"`

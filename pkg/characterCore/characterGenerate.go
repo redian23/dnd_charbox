@@ -11,12 +11,13 @@ var LastCharacter Character
 func GenerateFullCharacter() *Character {
 
 	LastCharacter = Character{
-		Level:      1,
-		Experience: 0,
-		Race:       races.GenerateRaceForCharacter(),
-		Class:      classes.GenerateClass(),
-		Background: backgrounds.GenerateBackground(),
-		Skills:     SetSkillsForCharacter(),
+		Level:         1,
+		Experience:    0,
+		Race:          races.GenerateRaceForCharacter(),
+		Class:         classes.GenerateClass(),
+		Background:    backgrounds.GenerateBackground(),
+		Skills:        SetSkillsForCharacter(),
+		PassiveWisdom: PassWisdom,
 	}
 	return &LastCharacter
 }
