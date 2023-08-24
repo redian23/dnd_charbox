@@ -91,36 +91,26 @@ func setSkillsNames(sk Skills) Skills {
 	return sk
 }
 func setSkillModifierValue(sk Skills) Skills {
-	modifierArray := []int{classes.ModifierGlobal.Strength, classes.ModifierGlobal.Dexterity,
-		classes.ModifierGlobal.Intelligence, classes.ModifierGlobal.Wisdom, classes.ModifierGlobal.Charisma}
 
-	for i := range modifierArray {
-		switch {
-		case classes.ModifierGlobal.Strength == modifierArray[i]:
-			sk.Athletics.ModifierValue = classes.ModifierGlobal.Strength
-		case classes.ModifierGlobal.Dexterity == modifierArray[i]:
-			sk.Acrobatics.ModifierValue = classes.ModifierGlobal.Dexterity
-			sk.SleightOfHand.ModifierValue = classes.ModifierGlobal.Dexterity
-			sk.Stealth.ModifierValue = classes.ModifierGlobal.Dexterity
-		case classes.ModifierGlobal.Intelligence == modifierArray[i]:
-			sk.Arcana.ModifierValue = classes.ModifierGlobal.Intelligence
-			sk.History.ModifierValue = classes.ModifierGlobal.Intelligence
-			sk.Investigation.ModifierValue = classes.ModifierGlobal.Intelligence
-			sk.Nature.ModifierValue = classes.ModifierGlobal.Intelligence
-			sk.Religion.ModifierValue = classes.ModifierGlobal.Intelligence
-		case classes.ModifierGlobal.Wisdom == modifierArray[i]:
-			sk.AnimalHandling.ModifierValue = classes.ModifierGlobal.Wisdom
-			sk.Insight.ModifierValue = classes.ModifierGlobal.Wisdom
-			sk.Medicine.ModifierValue = classes.ModifierGlobal.Wisdom
-			sk.Perception.ModifierValue = classes.ModifierGlobal.Wisdom
-			sk.Survival.ModifierValue = classes.ModifierGlobal.Wisdom
-		case classes.ModifierGlobal.Charisma == modifierArray[i]:
-			sk.Deception.ModifierValue = classes.ModifierGlobal.Charisma
-			sk.Intimidation.ModifierValue = classes.ModifierGlobal.Charisma
-			sk.Performance.ModifierValue = classes.ModifierGlobal.Charisma
-			sk.Persuasion.ModifierValue = classes.ModifierGlobal.Charisma
-		}
-	}
+	sk.Athletics.ModifierValue = classes.ModifierGlobal.Strength
+	sk.Acrobatics.ModifierValue = classes.ModifierGlobal.Dexterity
+	sk.SleightOfHand.ModifierValue = classes.ModifierGlobal.Dexterity
+	sk.Stealth.ModifierValue = classes.ModifierGlobal.Dexterity
+	sk.Arcana.ModifierValue = classes.ModifierGlobal.Intelligence
+	sk.History.ModifierValue = classes.ModifierGlobal.Intelligence
+	sk.Investigation.ModifierValue = classes.ModifierGlobal.Intelligence
+	sk.Nature.ModifierValue = classes.ModifierGlobal.Intelligence
+	sk.Religion.ModifierValue = classes.ModifierGlobal.Intelligence
+	sk.AnimalHandling.ModifierValue = classes.ModifierGlobal.Wisdom
+	sk.Insight.ModifierValue = classes.ModifierGlobal.Wisdom
+	sk.Medicine.ModifierValue = classes.ModifierGlobal.Wisdom
+	sk.Perception.ModifierValue = classes.ModifierGlobal.Wisdom
+	sk.Survival.ModifierValue = classes.ModifierGlobal.Wisdom
+	sk.Deception.ModifierValue = classes.ModifierGlobal.Charisma
+	sk.Intimidation.ModifierValue = classes.ModifierGlobal.Charisma
+	sk.Performance.ModifierValue = classes.ModifierGlobal.Charisma
+	sk.Persuasion.ModifierValue = classes.ModifierGlobal.Charisma
+
 	return sk
 }
 
