@@ -122,17 +122,6 @@ func GetRaceSkill() string {
 	return ""
 }
 
-func setGender() string {
-	var gender string
-	count, _ := random.IntRange(1, 10)
-	if count%2 == 0 {
-		gender = "Мужской"
-	} else {
-		gender = "Женский"
-	}
-	return gender
-}
-
 func setEyesColor() string {
 	var colors = []string{"Желтый", "Синий", "Красный", "Зеленый", "Карий", "Морская волна"}
 

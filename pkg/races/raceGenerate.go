@@ -12,7 +12,7 @@ var (
 	raceHeightFt                    string
 	raceWeight, raceWeightLb        int
 	raceBodySize                    string
-	raceGender                      = setGender()
+	raceGender                      string
 	firstName, lastName, resist     string
 	langs                           []string
 	darkvision                      bool
@@ -49,6 +49,13 @@ func GenerateRaceForCharacter() *RacesAnswer {
 
 			raceBodySize = race.BodySize
 			raceSpeed = race.Speed
+
+			count, _ := random.IntRange(1, 10)
+			if count%2 == 0 {
+				raceGender = "Мужской"
+			} else {
+				raceGender = "Женский"
+			}
 
 			if raceGender == "Мужской" && len(race.Names.Man) != 0 {
 				rollNum, _ = random.IntRange(0, len(race.Names.Man))
