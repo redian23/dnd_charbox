@@ -12,7 +12,6 @@ function getCharacter() {
 }
 
 async function getRandomCharacter() {
-
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
     if (response.status !== 200) {
         document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
@@ -25,6 +24,7 @@ async function getRandomCharacter() {
 }
 
 async function getCurrentCharacter() {
+    WriteAllLabels(data)
     let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
