@@ -24,7 +24,6 @@ async function getRandomCharacter() {
 }
 
 async function getCurrentCharacter() {
-    WriteAllLabels(data)
     let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
