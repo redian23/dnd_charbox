@@ -41,6 +41,12 @@ input[type="radio"]:checked {
 .tile.is-parent {
     padding: 0.5rem;
 }
+.tile.is-parent.is-vertical.box.select_form{
+    padding: 0.2rem;
+    background: #79a8e1;
+    border-radius: 0;
+    margin-bottom: 0;
+}
 .tile.is-parent.is-vertical.box.head{
     padding: 0.2rem;
     background: #a4ccf1;

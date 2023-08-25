@@ -15,10 +15,9 @@
         <div class="hero-body">
             <p class="title">Добро пожаловать в Шкатулку Персонажей.</p>
             <p class="subtitle">Желаю удачи в поисках Вашего идеального DnD персонажа.</p>
-            <button class="button is-primary" id="btn_get_class" onclick="getCurrentClass()">Тыкнуть и Сгенерировать</button>
             <button class="button is-dark" id="btn_export_lss" onclick="exportToLSS()"> Экспорт в LongStoryShort </button>
-            <button class="button is-warning" onclick="downloadObjectAsJson()">Скачать JSON</button>
-            <button class="button is-delete" id="btn_show_upload" onclick="showUploadPage()">Импорт JSON</button>
+            <button class="button is-warning" onclick="downloadObjectAsJson()">Скачать CharBox JSON</button>
+            <button class="button is-delete" id="btn_show_upload" onclick="showUploadPage()">Импорт JSON для CharBox</button>
 
             <div id="file-js" class="file has-name" style="display: none">
                     <label class="file-label">
@@ -44,6 +43,62 @@
 </head>
 <body>
     <script src="{{.path}}/charbox.js"></script>
+    <div name="Character_list_header" class="tile  is-parent is-vertical box select_form">
+        <div style="text-align: center"><label class="title">Чекбоксы</label></div>
+        <div>
+            <div class="select is-medium is-info">
+                <label>
+                    <select onchange="getSelectClassNameValue()" id="select_class_name">
+                        <option>Случайный класс</option>
+                        <option>Волшебник</option>
+                        <option>Алхимик</option>
+                        <option>Воин</option>
+                        <option>Варвар</option>
+                        <option>Паладин</option>
+                        <option>Монах</option>
+                        <option>Плут</option>
+                        <option>Следопыт</option>
+                        <option>Друид</option>
+                        <option>Жрец</option>
+                        <option>Чернокнижник</option>
+                        <option>Чародей</option>
+                        <option>Бард</option>
+                        <option>Изобретатель</option>
+                    </select>
+                </label>
+            </div>
+            <div class="select is-medium is-info">
+                <label>
+                <select onchange="getSelectRaceNameValue()" id="select_race_name">
+                        <option>Случайная раса</option>
+                        <option>Аасимар</option>
+                        <option>Багбир</option>
+                        <option>Гном</option>
+                        <option>Гоблин</option>
+                        <option>Голиаф</option>
+                        <option>Дварф</option>
+                        <option>Кенку</option>
+                        <option>Кобольд</option>
+                        <option>Локата</option>
+                        <option>Орк</option>
+                        <option>Тифлинг</option>
+                        <option>Эльф</option>
+                        <option>Полуорк</option>
+                        <option>Полурослик</option>
+                        <option>Полуэльф</option>
+                        <option>Табакси</option>
+                        <option>Человек</option>
+                        <option>Мурлок</option>
+                        <option>Фирболг</option>
+                        <option>Драконорожденный</option>
+                        <option>Юань-ти</option>
+                        <option>Тритон</option>
+                    </select>
+                </label>
+            </div>
+            <button class="button is-primary" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
+        </div>
+    </div>
     <div name="Character_list_header" class="tile  is-parent is-vertical box head">
         <div style="text-align: center"><label class="title">Основной раздел</label></div>
         <div class="tile">

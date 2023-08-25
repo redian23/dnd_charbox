@@ -1,8 +1,18 @@
-window.onload = getCurrentClass();
+window.onload = getRandomCharacter();
 let charData
 
-async function getCurrentClass() {
+function getCharacter() {
     hideUploadPage()
+
+    if (getSelectClassNameValue() === "random" && getSelectRaceNameValue() === "random" ){
+        getRandomCharacter()
+    }else {
+        getCurrentCharacter()
+    }
+}
+
+async function getRandomCharacter() {
+
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
     if (response.status !== 200) {
         document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
@@ -11,6 +21,31 @@ async function getCurrentClass() {
     let data = JSON.stringify(json);
 
     charData = data
+    WriteAllLabels(data)
+}
+
+async function getCurrentCharacter() {
+    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}"}`
+
+    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
+        { method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(JSON.parse(req_json))
+        });
+    if (response.status !== 200) {
+        document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
+    }
+    const json = await response.json();
+    let data = JSON.stringify(json);
+
+    charData = data
+    WriteAllLabels(data)
+}
+
+async function WriteAllLabels(data) {
     await writeRacePhotoLabels(data)
     await writeToAbilitiesLabels(data)
     await writeToSaveThrowsLabels(data)
@@ -23,8 +58,8 @@ async function getCurrentClass() {
     await writeClassEquipmentLabels(data)
     await writeArmorLabels(data)
     await writeWeaponLabels(data)
-
 }
+
 
 function writeToAbilitiesLabels(data) {
     document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
@@ -361,20 +396,8 @@ function importFile() {
         var result = JSON.parse(e.target.result);
         var data = JSON.stringify(result, null, 2);
 
-        writeToAbilitiesLabels(data)
-        writeToSaveThrowsLabels(data)
-        writeToSkillsLabels(data)
-        writeOtherLabels(data)
-        writeBackgroundLabels(data)
-        writeAppearanceLabels(data)
-        writeProficienciesLabels(data)
-        writeRaceAbilitiesLabels(data)
-        writeClassEquipmentLabels(data)
-        writeArmorLabels(data)
-        writeWeaponLabels(data)
-        writeRacePhotoLabels(data)
+        WriteAllLabels(data)
     };
-
     fr.readAsText(files.item(0));
 }
 
@@ -410,6 +433,17 @@ function exportToLSS() {
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
     })();
-
 }
 
+function getSelectClassNameValue() {
+    if (document.getElementById("select_class_name").value === "Случайный класс") {
+        return "random"
+    }
+    return document.getElementById("select_class_name").value;
+}
+function getSelectRaceNameValue() {
+    if (document.getElementById("select_race_name").value === "Случайная раса") {
+        return "random"
+    }
+    return document.getElementById("select_race_name").value;
+}

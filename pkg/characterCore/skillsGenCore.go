@@ -1,7 +1,6 @@
 package characterCore
 
 import (
-	"fmt"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 )
@@ -178,6 +177,5 @@ func setSkillProficiency(skillsSlice []string, sk Skills) Skills {
 }
 
 func setPassiveWisdom(sk Skills) {
-	fmt.Println(sk.Perception.ModifierValue)
 	PassWisdom = 10 + sk.Perception.ModifierValue
 }

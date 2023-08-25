@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-const Version = "0.7.5 Beta build"
+const Version = "0.7.7 Beta build"
 
 func main() {
 	InitServerPathVars(true)
@@ -24,10 +24,10 @@ func main() {
 
 	router := gin.Default()
 
-	// This makes it so each ip can only make 5 requests per second
+	// This makes it so each ip can only make 10 requests per second
 	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
 		Rate:  time.Second,
-		Limit: 5,
+		Limit: 10,
 	})
 	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
 		ErrorHandler: errorHandler,
@@ -39,6 +39,9 @@ func main() {
 	{
 		v1.GET("/get-character", mw, func(c *gin.Context) {
 			api.GetRandomCharacter(c)
+		})
+		v1.POST("/post-current-character", mw, func(c *gin.Context) {
+			api.GetCurrentCharacter(c)
 		})
 		v1.POST("/run-lss-export", mw, func(c *gin.Context) {
 			api.GetLSSJson(c)
