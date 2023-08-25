@@ -26,7 +26,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	raceName = raceData[rollNum].RaceName
 
 	for _, race := range raceData {
-		if race.RaceName == raceName {
+		if race.RaceNameRu == raceNameRu {
 
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName

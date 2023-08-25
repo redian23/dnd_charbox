@@ -1,5 +1,19 @@
-window.onload = getRandomCharacter();
 let charData
+
+function getSelectClassNameValue() {
+    console.log(document.getElementById("select_class_name").value)
+    if (document.getElementById("select_class_name").value === "Случайный класс") {
+        return "random"
+    }
+    return document.getElementById("select_class_name").value;
+}
+function getSelectRaceNameValue() {
+    console.log(document.getElementById("select_race_name").value)
+    if (document.getElementById("select_race_name").value === "Случайная раса") {
+        return "random"
+    }
+    return document.getElementById("select_race_name").value;
+}
 
 async function getCharacter() {
     hideUploadPage()
@@ -37,7 +51,6 @@ async function WriteAllLabels(data) {
     await writeArmorLabels(data)
     await writeWeaponLabels(data)
 }
-
 
 function writeToAbilitiesLabels(data) {
     document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
@@ -229,7 +242,6 @@ function writeAppearanceLabels(data) {
     document.getElementById("p_dragon_type").style.display = "none";
     document.getElementById("div_snake_appearance").style.visibility= "hidden";
 
-
     document.getElementById("lbl_raceName").innerHTML = race["race_type_name_ru"];
     document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
@@ -411,17 +423,4 @@ function exportToLSS() {
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
     })();
-}
-
-function getSelectClassNameValue() {
-    if (document.getElementById("select_class_name").value === "Случайный класс") {
-        return "random"
-    }
-    return document.getElementById("select_class_name").value;
-}
-function getSelectRaceNameValue() {
-    if (document.getElementById("select_race_name").value === "Случайная раса") {
-        return "random"
-    }
-    return document.getElementById("select_race_name").value;
 }
