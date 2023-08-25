@@ -2,12 +2,12 @@ package classes
 
 var ClassNameGlobal string
 
-func GenerateClass() *ClassAnswer {
+func GenerateClass(classNameRU string) *ClassAnswer {
 	chars = GetClassCharactsFormDB()
 	armorData = GetArmorFormDB()
 	weaponData = GetWeaponFormDB()
 
-	className, classNameRU, classAbility := statAnalyze()
+	className, _, classAbility := statAnalyze()
 	ClassNameGlobal = className
 	modif := setModifiersForClass(classAbility)
 

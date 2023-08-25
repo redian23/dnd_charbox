@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-const Version = "0.7.7 Beta build"
+const Version = "0.7.9 Beta build"
 
 func main() {
 	InitServerPathVars(true)
@@ -37,9 +37,6 @@ func main() {
 	// api method
 	v1 := router.Group("api/v1/")
 	{
-		v1.GET("/get-character", mw, func(c *gin.Context) {
-			api.GetRandomCharacter(c)
-		})
 		v1.POST("/post-current-character", mw, func(c *gin.Context) {
 			api.GetCurrentCharacter(c)
 		})

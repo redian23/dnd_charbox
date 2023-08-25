@@ -8,13 +8,13 @@ import (
 
 var LastCharacter Character
 
-func GenerateFullCharacter() *Character {
+func GenerateFullCharacter(className, raceName string) *Character {
 
 	LastCharacter = Character{
 		Level:         1,
 		Experience:    0,
-		Race:          races.GenerateRaceForCharacter(),
-		Class:         classes.GenerateClass(),
+		Race:          races.GenerateRaceForCharacter(raceName),
+		Class:         classes.GenerateClass(className),
 		Background:    backgrounds.GenerateBackground(),
 		Skills:        SetSkillsForCharacter(),
 		PassiveWisdom: PassWisdom,

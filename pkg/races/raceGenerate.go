@@ -19,12 +19,11 @@ var (
 	raceAbil                        []raceAbility
 )
 
-func GenerateRaceForCharacter() *RacesAnswer {
+func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	raceData = getRacesFormDB()
 	rollNum, _ := random.IntRange(0, len(raceData))
 
 	raceName = raceData[rollNum].RaceName
-	raceNameRu := raceData[rollNum].RaceNameRu
 
 	for _, race := range raceData {
 		if race.RaceName == raceName {

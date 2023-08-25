@@ -1,29 +1,8 @@
 window.onload = getRandomCharacter();
 let charData
 
-function getCharacter() {
+async function getCharacter() {
     hideUploadPage()
-
-    if (getSelectClassNameValue() === "random" && getSelectRaceNameValue() === "random" ){
-        getRandomCharacter()
-    }else {
-        getCurrentCharacter()
-    }
-}
-
-async function getRandomCharacter() {
-    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`);
-    if (response.status !== 200) {
-        document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
-    }
-    const json = await response.json();
-    let data = JSON.stringify(json);
-
-    charData = data
-    WriteAllLabels(data)
-}
-
-async function getCurrentCharacter() {
     let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
