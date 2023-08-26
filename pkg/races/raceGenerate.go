@@ -55,8 +55,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			if raceGender == "Мужской" {
 				rollNum, _ = random.IntRange(0, len(race.Names.Man))
 				firstName = race.Names.Man[rollNum]
-			}
-			if raceGender == "Женский" {
+			} else {
 				rollNum, _ = random.IntRange(0, len(race.Names.Woman))
 				firstName = race.Names.Woman[rollNum]
 			}
@@ -65,6 +64,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 				rollNum, _ = random.IntRange(0, len(race.LastNames))
 				lastName = race.LastNames[rollNum].(string)
 			}
+
 			langs = race.Langs
 			resist = race.Resist
 			darkvision = race.Darkvision

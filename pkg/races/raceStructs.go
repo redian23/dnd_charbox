@@ -45,8 +45,8 @@ type RacesBSON struct {
 	Langs      []string           `json:"langs"`
 	RaceSkill  []string           `json:"race_skill"`
 	Names      names              `bson:"names"`
-	LastNames  []interface{}      `bson:"last_names"`
-	Resist     string             `bson:"resist"`
+	LastNames  []interface{}      `json:"last_names"`
+	Resist     string             `json:"resist"`
 	Darkvision bool               `json:"darkvision"`
 }
 
