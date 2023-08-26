@@ -26,7 +26,7 @@ async function winOnloadGenerate() {
             },
             body: JSON.stringify(JSON.parse(req_json))
         });
-    if (response.status !== 200) {
+    if (response.status === 429) {
         document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
     }
     const json = await response.json();
@@ -249,6 +249,7 @@ function writeBackgroundLabels(data) {
     document.getElementById("lbl_worldview").innerHTML = backgr["worldview"];
     document.getElementById("lbl_affection").innerHTML = backgr["affection"];
     document.getElementById("lbl_weakness").innerHTML = backgr["weakness"];
+    document.getElementById("lbl_gold").innerHTML = backgr["gold"];
 
     document.getElementById("lbl_background_ability").innerHTML = "<br> <strong>"+ backgr["background_ability"]["AbilityName"]+"</strong>"
         + " - " + backgr["background_ability"]["Description"];

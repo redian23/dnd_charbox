@@ -16,12 +16,13 @@ var (
 	langs                           []string
 	darkvision                      bool
 	raceAbil                        []raceAbility
-	firstName, lastName, resist     string
+	firstName, resist               string
 )
 
 func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	raceData = getRacesFormDB()
 	rollNum, _ := random.IntRange(0, len(raceData))
+	var lastName string
 
 	for _, race := range raceData {
 		if race.RaceNameRu == raceNameRu {
@@ -65,8 +66,9 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 				lastName = race.LastNames[rollNum].(string)
 			}
 
-			langs = race.Langs
 			resist = race.Resist
+			langs = race.Langs
+
 			darkvision = race.Darkvision
 
 			for _, rType := range race.Type {

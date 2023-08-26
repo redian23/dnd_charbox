@@ -16,6 +16,7 @@ var (
 	ideal                  string
 	affection              string
 	weakness               string
+	gold                   int
 	masteryOfTools         []string
 	bgAbility              backgroundAbility
 	equipmentList          []string
@@ -63,6 +64,8 @@ func GenerateBackground() *BackgroundAnswer {
 			bgAbility = background.BackgroundAbility
 			masteryOfTools = background.MasteryOfTools
 			equipmentList = background.Equipment
+
+			gold = background.Gold
 		}
 	}
 
@@ -82,5 +85,6 @@ func GenerateBackground() *BackgroundAnswer {
 		BackgroundAbility: bgAbility,
 		MasteryOfTools:    masteryOfTools,
 		Equipment:         equipmentList,
+		Gold:              gold,
 	}
 }

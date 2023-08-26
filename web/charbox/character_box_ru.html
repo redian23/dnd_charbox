@@ -99,7 +99,7 @@
             <button class="button is-medium is-success" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
         </div>
     </div>
-    <div name="Character_list_header" class="tile  is-parent is-vertical box head">
+    <div name="Character_list_header" class="tile is-parent is-vertical box head">
         <div style="text-align: center"><label class="title">Основной раздел</label></div>
         <div class="tile">
             <div class="tile is-parent">
@@ -142,19 +142,19 @@
             <div class="tile">
                 <div name="CHAR_POINTS" class="tile is-2 is-parent is-vertical">
                         <article class="tile is-child box">
-                            <p class="title"> Значения Характеристик</p>
-                            <p class="subtitle"> Всего: <label id="lbl_ability_total_info"></label></p>
-                            <div class="div_chat" id="char_div" >
-                            <p>Сила: [ <label id="lbl_modifier_strength_info"></label> ] ( <label id="lbl_ability_strength_info"></label> )</p>
-                            <p>Ловкость: [ <label id="lbl_modifier_dexterity_info"></label> ] ( <label id="lbl_ability_dexterity_info"></label> )</p>
-                            <p>Телосложение: [ <label id="lbl_modifier_bodyDifficulty_info"></label> ] ( <label id="lbl_ability_bodyDifficulty_info"></label> )</p>
-                            <p>Интеллект: [ <label id="lbl_modifier_intelligence_info"></label> ] ( <label id="lbl_ability_intelligence_info"></label> )</p>
-                            <p>Мудрость: [ <label id="lbl_modifier_wisdom_info"></label> ] ( <label id="lbl_ability_wisdom_info"></label> )</p>
-                            <p>Харизма: [ <label id="lbl_modifier_charisma_info"></label> ] ( <label id="lbl_ability_charisma_info"></label> )</p>
-                        </div>
+                            <p class="title"> Значения Характеристик:</p>
+                            <p class="subtitle"><strong>Всего: ( <label id="lbl_ability_total_info"></label> )</strong></p>
+                            <div id="char_div" >
+                                <label class="subtitle-text">Сила: [ <label id="lbl_modifier_strength_info"></label> ] ( <label id="lbl_ability_strength_info"></label> )</label><br>
+                                <label class="subtitle-text">Ловкость: [ <label id="lbl_modifier_dexterity_info"></label> ] ( <label id="lbl_ability_dexterity_info"></label> )</label><br>
+                                <label class="subtitle-text">Телосложение: [ <label id="lbl_modifier_bodyDifficulty_info"></label> ] ( <label id="lbl_ability_bodyDifficulty_info"></label> )</label><br>
+                                <label class="subtitle-text">Интеллект: [ <label id="lbl_modifier_intelligence_info"></label> ] ( <label id="lbl_ability_intelligence_info"></label> )</label><br>
+                                <label class="subtitle-text">Мудрость: [ <label id="lbl_modifier_wisdom_info"></label> ] ( <label id="lbl_ability_wisdom_info"></label> )</label><br>
+                                <label class="subtitle-text">Харизма: [ <label id="lbl_modifier_charisma_info"></label> ] ( <label id="lbl_ability_charisma_info"></label> )</label><br>
+                            </div>
                     </article>
                     <article class="tile is-child box">
-                        <p class="title">Спас-броски</p>
+                        <p class="title">Спас-броски:</p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled> [ <label id="lbl_modifier_ST_strength_info"> </label> ] Сила</label></p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_dexterity_info" disabled> [ <label id="lbl_modifier_ST_dexterity_info"> </label> ] Ловкость</label></p>
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_bodyDifficulty_info" disabled> [ <label id="lbl_modifier_ST_bodyDifficulty_info"> </label> ] Телосложение</label></p>
@@ -163,26 +163,7 @@
                         <p><label class="radio"><input type="radio" id="rd_modifier_ST_charisma_info" disabled> [ <label id="lbl_modifier_ST_charisma_info"> </label> ] Харизма</label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p><label class="title">Бонусы</label></p>
-                        <p><label class="subtitle">[ <label id="lbl_inspiration"> </label> ] Вдохновение</label> </p>
-                        <p><label class="subtitle">[ +<label id="lbl_proficiency_bonus"> </label> ] Бонус мастерства</label> </p>
-                        <p><label class="subtitle">[ <label id="lbl_passive_wisdom"> </label> ] Пассивная мудрость (Восприятие)</label> </p>
-                    </article>
-                </div>
-                <div name="Skills page" class="tile is-2 is-parent is-vertical">
-                    <article class="tile is-child box">
-                        <p class="title">Хиты: [ <label id="lbl_hitsCount"></label> ]</p>
-                        <p class="subtitle">Кость Хитов: [ <label id="lbl_hitsDice"></label> ]</p>
-                        <p class="subtitle">Всего Костей Хитов: [ 1 ]</p>
-                    </article>
-                    <article class="tile is-child box">
-                        <p class="subtitle">Доспех: [ <label id="lbl_armor_name"></label> ]</p>
-                        <p class="subtitle">Класс Доспеха: [ <label id="lbl_armor_class"></label> ]</p>
-                        <p class="subtitle">Инициатива: [ <label id="lbl_initiative"></label> ]</p>
-                        <p class="subtitle">Скорость: [ <label id="lbl_speed"></label> ]</p>
-                    </article>
-                    <article class="tile is-child box">
-                        <p class="title">Навыки</p>
+                        <p class="title">Навыки:</p>
                         <p><label class="radio"><input type="radio" id="rd_Acrobatics" disabled> [ <label id="lbl_Acrobatics"> </label> ] Акробатика (Лов)</label></p>
                         <p><label class="radio"><input type="radio" id="rd_Investigation" disabled> [ <label id="lbl_Investigation"> </label> ] Анализ (Инт)</label></p>
                         <p><label class="radio"><input type="radio" id="rd_Athletics" disabled> [ <label id="lbl_Athletics"> </label> ] Атлетика (Сил)</label></p>
@@ -203,28 +184,54 @@
                         <p><label class="radio"><input type="radio" id="rd_Animal_Handling" disabled> [ <label id="lbl_Animal_Handling"> </label> ] Уход за животными (Муд)</label></p>
                     </article>
                 </div>
-                <div name="WareHouse page" class="tile is-parent is-3 is-vertical">
-                    <article class="tile is-child  box">
-                        <p class="subtitle">Прочие Владения и Языки: </p>
-                        <p class="subtitle-text" id="p_dragon_type" style="display:none;">Вид дракона: [ <label id="lbl_dragon_color"></label> ]</p>
-                        <p class="subtitle-text">Знание языков: [ <label id="lbl_languages"></label> ]</p>
-                        <p class="subtitle-text">Сопротивляемость к: [ <label id="lbl_resist"></label> ]</p>
-                        <p class="subtitle-text">Доспехи: [ <label id="lbl_armor"></label> ]</p>
-                        <p class="subtitle-text">Оружие: [ <label id="lbl_weapon"></label> ]</p>
-                        <p class="subtitle-text">Инструменты от класса: [ <label id="lbl_class_instruments"></label> ]</p>
-                        <p class="subtitle-text">Инструменты от предыстории: [ <label id="lbl_background_instruments"></label> ]</p>
+                <div name="Skills page" class="tile is-3 is-parent is-vertical">
+                    <article class="tile is-child box">
+                        <p class="title">Хиты: [ <label id="lbl_hitsCount"></label> ]</p>
+                        <p class="subtitle-text">Кость Хитов: [ <label id="lbl_hitsDice"></label> ]</p>
+                        <p class="subtitle-text">Всего Костей Хитов: [ 1 ]</p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Оружие: <br> </p>
+                        <p class="subtitle-text">Вдохновение: [ <label id="lbl_inspiration"> </label> ]</p>
+                        <p class="subtitle-text">Бонус мастерства: [ +<label id="lbl_proficiency_bonus"> </label> ]</p>
+                        <p class="subtitle-text">Пассивная мудрость (Восприятие): [ <label id="lbl_passive_wisdom"> </label> ]</p>
+                        <p class="subtitle-text">Доспех: [ <label id="lbl_armor_name"></label> ]</p>
+                        <p class="subtitle-text">Класс Доспеха: [ <label id="lbl_armor_class"></label> ]</p>
+                        <p class="subtitle-text">Инициатива: [ <label id="lbl_initiative"></label> ]</p>
+                        <p class="subtitle-text">Скорость: [ <label id="lbl_speed"></label> ]</p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="title">Монеты: <br> </p>
                         <label class="subtitle-text">
-                             <label class="subtitle-text" id="lbl_weapon_list"></label>
+                            <p><strong>Медные монеты:</strong> [ 0 ]</p>
+                            <p><strong>Серебряные монеты:</strong> [ 0 ]</p>
+                            <p><strong>Золотые монеты:</strong> [ <label id="lbl_gold"></label> ]</p>
+                            <p><strong>Электро монеты:</strong> [ 0 ]</p>
+                            <p><strong>Платиновые монеты:</strong> [ 0 ]</p>
                         </label>
                     </article>
+                    <article class="tile is-child  box">
+                        <p class="title">Прочие Владения и Языки: </p>
+                        <p class="subtitle-text" id="p_dragon_type" style="display:none;">Вид дракона: [ <label id="lbl_dragon_color"></label> ]</p>
+                        <p class="subtitle-text"><strong>Знание языков:</strong> [ <label id="lbl_languages"></label> ]</p>
+                        <p class="subtitle-text"><strong>Сопротивляемость к:</strong> [ <label id="lbl_resist"></label> ]</p>
+                        <p class="subtitle-text"><strong>Доспехи:</strong> [ <label id="lbl_armor"></label> ]</p>
+                        <p class="subtitle-text"><strong>Оружие:</strong> [ <label id="lbl_weapon"></label> ]</p>
+                        <p class="subtitle-text"><strong>Инструменты от класса:</strong> [ <label id="lbl_class_instruments"></label> ]</p>
+                        <p class="subtitle-text"><strong>Инструменты от предыстории:</strong> [ <label id="lbl_background_instruments"></label> ]</p>
+                    </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Снаряжение: <br></p>
+                        <p class="title">Оружие: <br> </p>
+                        <label class="subtitle-text">
+                            <label class="subtitle-text" id="lbl_weapon_list"></label>
+                        </label>
+                    </article>
+                </div>
+                <div name="Background INFO" class="tile is-parent is-vertical">
+                    <article class="tile is-child box">
+                        <p class="title">Снаряжение: <br></p>
                         <p class="subtitle"><strong>Снаряжение от предыстории:</strong>
                             <label class="subtitle-text">
-                               [ <label class="subtitle-text" id="lbl_list_background_equipment"></label> ]
+                                [ <label class="subtitle-text" id="lbl_list_background_equipment"></label> ]
                             </label>
                         </p>
                         <p class="subtitle"><strong>Снаряжение от класса:</strong>
@@ -233,34 +240,31 @@
                             </label>
                         </p>
                     </article>
-                </div>
-                <div name="Background INFO" class="tile is-parent is-5 is-vertical">
                     <article class="tile is-child box">
                         <p class="title">Умения и способности:<br></p>
-                        <p class="subtitle">Умение от предыстории: <label class="subtitle-text" id="lbl_background_ability"></label></p>
-                        <p class="subtitle">Умение от расы:<br> <label class="subtitle-text" id="lbl_race_abilities"></label></p>
+                        <p class="subtitle"><strong>Умение от предыстории:</strong> <label class="subtitle-text" id="lbl_background_ability"></label></p>
+                        <p class="subtitle"><strong>Умение от расы:</strong><br> <label class="subtitle-text" id="lbl_race_abilities"></label></p>
                     </article>
                     <article class="tile is-child box">
                         <p class="title">Черта характера :<br></p>
 <!--                        <p class="subtitle">Черта от предыстории: <label class="subtitle-text" id="lbl_backgroundTrait"></label></p>-->
-                        <p class="subtitle">Расовая черта: <label class="subtitle-text" id="lbl_characterTrait"></label></p>
+                        <p class="subtitle"><strong>Расовая черта:</strong> <label class="subtitle-text" id="lbl_characterTrait"></label></p>
                     </article>
                     <article class="tile is-child  box">
-                        <p class="subtitle">Описание предыстории: <label class="subtitle-text" id="lbl_background_description"></label></p>
+                        <p class="subtitle"><strong>Описание предыстории:</strong> <label class="subtitle-text" id="lbl_background_description"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Персонализация: <label class="subtitle-text" id="lbl_personalization"></label></p>
-                        <p class="subtitle">Совет: <label class="subtitle-text" id="lbl_advice"></label></p>
-                    </article>
-
-                    <article class="tile is-child box">
-                        <p class="subtitle">Идеал: <label class="subtitle-text" id="lbl_ideal"></label></p>
+                        <p class="subtitle"><strong>Персонализация:</strong> <label class="subtitle-text" id="lbl_personalization"></label></p>
+                        <p class="subtitle"><strong>Совет:</strong> <label class="subtitle-text" id="lbl_advice"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Привязанность: <label class="subtitle-text" id="lbl_affection"></label></p>
+                        <p class="subtitle"><strong>Идеал:</strong> <label class="subtitle-text" id="lbl_ideal"></label></p>
                     </article>
                     <article class="tile is-child box">
-                        <p class="subtitle">Слабость: <label class="subtitle-text" id="lbl_weakness"></label></p>
+                        <p class="subtitle"><strong>Привязанность:</strong> <label class="subtitle-text" id="lbl_affection"></label></p>
+                    </article>
+                    <article class="tile is-child box">
+                        <p class="subtitle"><strong>Слабость:</strong> <label class="subtitle-text" id="lbl_weakness"></label></p>
                     </article>
                 </div>
             </div>

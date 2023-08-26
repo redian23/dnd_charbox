@@ -18,6 +18,7 @@ type BackgroundAnswer struct {
 	Ideal             string            `json:"ideal"`
 	Affection         string            `json:"affection"`
 	Weakness          string            `json:"weakness"`
+	Gold              int               `json:"gold"`
 }
 type BackgroundBson struct {
 	ID                primitive.ObjectID `bson:"_id"`
@@ -28,6 +29,7 @@ type BackgroundBson struct {
 	Equipment         []string           `json:"equipment"`
 	Personalization   string             `json:"personalization"`
 	Advice            string             `json:"advice"`
+	Gold              int                `json:"gold"`
 	SkillMastery      []string           `json:"skill_mastery"`
 	MasteryOfTools    []string           `bson:"masteryOfTools"`
 	Type              Type               `json:"type,omitempty"`
@@ -47,6 +49,7 @@ type BackgroundJson struct {
 	Description      string         `json:"description"`
 	Personalization  string         `json:"personalization"`
 	Advice           string         `json:"advice"`
+	Gold             int            `json:"gold"`
 	SkillMastery     []string       `json:"skill_mastery"`
 	Type             Type           `json:"type,omitempty"`
 	CharacterTrait   CharacterTrait `json:"character_trait"`

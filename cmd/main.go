@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-const Version = "0.7.9 Beta build"
+const Version = "0.8.1 Beta build"
 
 func main() {
 	InitServerPathVars(true)
@@ -24,10 +24,10 @@ func main() {
 
 	router := gin.Default()
 
-	// This makes it so each ip can only make 10 requests per second
+	// This makes it so each ip can only make 5 requests per second
 	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
 		Rate:  time.Second,
-		Limit: 10,
+		Limit: 5,
 	})
 	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
 		ErrorHandler: errorHandler,
