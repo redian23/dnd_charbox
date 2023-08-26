@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/mazen160/go-random"
 	"net/http"
@@ -26,7 +25,6 @@ func GetCurrentCharacter(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	fmt.Println(chr.ClassName, chr.RaceName)
 	if chr.ClassName == "random" {
 		randNum, _ := random.IntRange(0, len(classArray)-1)
 		chr.ClassName = classArray[randNum]

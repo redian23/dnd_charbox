@@ -3,18 +3,20 @@
         zoom: 80%;
     }
 }
-
 .subtitle{
     font-size: 25px;
     font-weight: bold;
 }
-
 .subtitle-text{
     font-size: 20px;
     font-weight: normal;
 }
 .button {
     margin: 5px;
+}
+.select {
+    margin: 5px;
+    padding-left: 1rem;
 }
 .div_chat{
     padding-left: 0.5rem;
@@ -43,7 +45,7 @@ input[type="radio"]:checked {
 }
 .tile.is-parent.is-vertical.box.select_form{
     padding: 0.2rem;
-    background: #79a8e1;
+    background: #8eb6e7;
     border-radius: 0;
     margin-bottom: 0;
 }

@@ -45,6 +45,7 @@
     <script src="{{.path}}/charbox.js"></script>
     <div name="Character_list_header" class="tile  is-parent is-vertical box select_form">
         <div>
+            <div style="text-align: center"><label class="title">Выбор параметров для генерации</label></div>
             <div class="select is-medium is-info">
                 <label>
                     <select id="select_class_name">
@@ -95,8 +96,7 @@
                     </select>
                 </label>
             </div>
-            <button class="button is-primary" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
-            <div style="text-align: center"><label class="title">(Генерация конкретного персонажа может занять какое-то время)</label></div>
+            <button class="button is-medium is-success" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
         </div>
     </div>
     <div name="Character_list_header" class="tile  is-parent is-vertical box head">
