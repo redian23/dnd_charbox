@@ -55,14 +55,10 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			if raceGender == "Мужской" {
 				rollNum, _ = random.IntRange(0, len(race.Names.Man))
 				firstName = race.Names.Man[rollNum]
-				fmt.Println(race.Names.Man)
-				fmt.Println(firstName)
 			}
 			if raceGender == "Женский" {
 				rollNum, _ = random.IntRange(0, len(race.Names.Woman))
 				firstName = race.Names.Woman[rollNum]
-				fmt.Println(race.Names.Woman)
-				fmt.Println(firstName)
 			}
 
 			if len(race.LastNames) != 0 {
