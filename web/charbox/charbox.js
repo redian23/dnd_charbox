@@ -268,9 +268,9 @@ function writeAppearanceLabels(data) {
     document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
 
-    console.log(ocument.getElementById("lbl_raceName").innerHTML)
-    console.log(ocument.getElementById("lbl_charFirstName").innerHTML)
-    console.log(ocument.getElementById("lbl_charLastName").innerHTML)
+    console.log(document.getElementById("lbl_raceName").innerHTML)
+    console.log(document.getElementById("lbl_charFirstName").innerHTML)
+    console.log(document.getElementById("lbl_charLastName").innerHTML)
 
     document.getElementById("lbl_charFirstName2").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName2").innerHTML =  race["last_name"];
@@ -439,7 +439,7 @@ function exportToLSS() {
             body: charData
         });
         const content = await rawResponse.json();
-        console.log(JSON.stringify(content));
+        //console.log(JSON.stringify(content));
 
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content));
         var downloadAnchorNode = document.createElement('a');
