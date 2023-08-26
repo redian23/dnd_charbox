@@ -26,11 +26,11 @@ func GetCurrentCharacter(c *gin.Context) {
 		return
 	}
 	if chr.ClassName == "random" {
-		randNum, _ := random.IntRange(0, len(classArray)-1)
+		randNum, _ := random.IntRange(0, len(classArray))
 		chr.ClassName = classArray[randNum]
 	}
 	if chr.RaceName == "random" {
-		randNum, _ := random.IntRange(0, len(raceArray)-1)
+		randNum, _ := random.IntRange(0, len(raceArray))
 		chr.RaceName = raceArray[randNum]
 	}
 

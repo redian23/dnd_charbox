@@ -48,19 +48,21 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			raceBodySize = race.BodySize
 			raceSpeed = race.Speed
 
-			count, _ := random.IntRange(1, 10)
-			if count%2 == 0 {
-				raceGender = "Мужской"
-			} else {
-				raceGender = "Женский"
-			}
+			genders := [2]string{"Мужской", "Женский"} //шах и мат феминистки
+			count, _ := random.IntRange(0, 1)
+			raceGender = genders[count]
 
-			if raceGender == "Мужской" && len(race.Names.Man) != 0 {
+			if raceGender == "Мужской" {
 				rollNum, _ = random.IntRange(0, len(race.Names.Man))
 				firstName = race.Names.Man[rollNum]
-			} else {
+				fmt.Println(race.Names.Man)
+				fmt.Println(firstName)
+			}
+			if raceGender == "Женский" {
 				rollNum, _ = random.IntRange(0, len(race.Names.Woman))
 				firstName = race.Names.Woman[rollNum]
+				fmt.Println(race.Names.Woman)
+				fmt.Println(firstName)
 			}
 
 			if len(race.LastNames) != 0 {
@@ -79,11 +81,6 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 		}
 	}
 
-	fmt.Println(raceNameRu,
-		raceGender,
-		setRacePhoto(raceNameGlobal, raceGender),
-		raceType,
-		raceTypeRu)
 	return &RacesAnswer{
 		RaceName:      raceNameGlobal,
 		RaceNameRu:    raceNameRu,
