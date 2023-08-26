@@ -263,9 +263,14 @@ function writeAppearanceLabels(data) {
     document.getElementById("p_dragon_type").style.display = "none";
     document.getElementById("div_snake_appearance").style.visibility= "hidden";
 
+
     document.getElementById("lbl_raceName").innerHTML = race["race_type_name_ru"];
     document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
+
+    console.log(ocument.getElementById("lbl_raceName").innerHTML)
+    console.log(ocument.getElementById("lbl_charFirstName").innerHTML)
+    console.log(ocument.getElementById("lbl_charLastName").innerHTML)
 
     document.getElementById("lbl_charFirstName2").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName2").innerHTML =  race["last_name"];
