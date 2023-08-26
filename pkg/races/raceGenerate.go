@@ -16,12 +16,12 @@ var (
 	langs                           []string
 	darkvision                      bool
 	raceAbil                        []raceAbility
+	firstName, lastName, resist     string
 )
 
 func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	raceData = getRacesFormDB()
 	rollNum, _ := random.IntRange(0, len(raceData))
-	var firstName, lastName, resist string
 
 	for _, race := range raceData {
 		if race.RaceNameRu == raceNameRu {
@@ -53,10 +53,10 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			raceGender = genders[count]
 
 			if raceGender == "Мужской" {
-				rollNum, _ = random.IntRange(0, len(race.Names.Man))
+				rollNum, _ = random.IntRange(0, len(race.Names.Man)-1)
 				firstName = race.Names.Man[rollNum]
 			} else {
-				rollNum, _ = random.IntRange(0, len(race.Names.Woman))
+				rollNum, _ = random.IntRange(0, len(race.Names.Woman)-1)
 				firstName = race.Names.Woman[rollNum]
 			}
 
