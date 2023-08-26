@@ -1,18 +1,39 @@
 let charData
+window.onload = winOnloadGenerate()
 
 function getSelectClassNameValue() {
-    console.log(document.getElementById("select_class_name").value)
     if (document.getElementById("select_class_name").value === "Случайный класс") {
         return "random"
     }
     return document.getElementById("select_class_name").value;
 }
 function getSelectRaceNameValue() {
-    console.log(document.getElementById("select_race_name").value)
     if (document.getElementById("select_race_name").value === "Случайная раса") {
         return "random"
     }
     return document.getElementById("select_race_name").value;
+}
+
+async function winOnloadGenerate() {
+    hideUploadPage()
+    let req_json = `{"class":"random", "race":"random"}`
+
+    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
+        { method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(JSON.parse(req_json))
+        });
+    if (response.status !== 200) {
+        document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
+    }
+    const json = await response.json();
+    let data = JSON.stringify(json);
+
+    charData = data
+    WriteAllLabels(data)
 }
 
 async function getCharacter() {
