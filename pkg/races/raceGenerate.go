@@ -5,23 +5,23 @@ import (
 	"github.com/mazen160/go-random"
 )
 
-func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
-	var (
-		raceType, raceTypeRu, raceSkill string
-		raceAge, raceSpeed              int
-		raceHeight                      int
-		raceHeightFt                    string
-		raceWeight, raceWeightLb        int
-		raceBodySize                    string
-		raceGender                      string
-		langs                           []string
-		darkvision                      bool
-		raceAbil                        []raceAbility
-		firstName, lastName, resist     string
-	)
+var (
+	raceType, raceTypeRu, raceSkill string
+	raceAge, raceSpeed              int
+	raceHeight                      int
+	raceHeightFt                    string
+	raceWeight, raceWeightLb        int
+	raceBodySize                    string
+	raceGender                      string
+	langs                           []string
+	darkvision                      bool
+	raceAbil                        []raceAbility
+)
 
+func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	raceData = getRacesFormDB()
 	rollNum, _ := random.IntRange(0, len(raceData))
+	var firstName, lastName, resist string
 
 	for _, race := range raceData {
 		if race.RaceNameRu == raceNameRu {
@@ -79,6 +79,11 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 		}
 	}
 
+	fmt.Println(raceNameRu,
+		raceGender,
+		setRacePhoto(raceNameGlobal, raceGender),
+		raceType,
+		raceTypeRu)
 	return &RacesAnswer{
 		RaceName:      raceNameGlobal,
 		RaceNameRu:    raceNameRu,
