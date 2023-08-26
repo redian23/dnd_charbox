@@ -5,34 +5,33 @@ import (
 	"github.com/mazen160/go-random"
 )
 
-var (
-	raceType, raceTypeRu, raceSkill string
-	raceAge, raceSpeed              int
-	raceHeight                      int
-	raceHeightFt                    string
-	raceWeight, raceWeightLb        int
-	raceBodySize                    string
-	raceGender                      string
-	firstName, lastName, resist     string
-	langs                           []string
-	darkvision                      bool
-	raceAbil                        []raceAbility
-)
-
 func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
+	var (
+		raceType, raceTypeRu, raceSkill string
+		raceAge, raceSpeed              int
+		raceHeight                      int
+		raceHeightFt                    string
+		raceWeight, raceWeightLb        int
+		raceBodySize                    string
+		raceGender                      string
+		langs                           []string
+		darkvision                      bool
+		raceAbil                        []raceAbility
+		firstName, lastName, resist     string
+	)
+
 	raceData = getRacesFormDB()
 	rollNum, _ := random.IntRange(0, len(raceData))
 
-	raceName = raceData[rollNum].RaceName
-
 	for _, race := range raceData {
 		if race.RaceNameRu == raceNameRu {
+			raceNameGlobal = race.RaceName
 
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName
 			raceTypeRu = race.Type[rollNum].TypeRaceNameRu
 
-			if race.RaceName == raceName && len(race.RaceSkill) > 0 {
+			if race.RaceNameRu == raceNameRu && len(race.RaceSkill) > 0 {
 				rollNum, _ = random.IntRange(0, len(race.RaceSkill))
 				raceSkill = race.RaceSkill[rollNum]
 			}
@@ -81,10 +80,10 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	}
 
 	return &RacesAnswer{
-		RaceName:      raceName,
+		RaceName:      raceNameGlobal,
 		RaceNameRu:    raceNameRu,
 		Gender:        raceGender,
-		RacePhoto:     setRacePhoto(raceName, raceGender),
+		RacePhoto:     setRacePhoto(raceNameGlobal, raceGender),
 		Type:          raceType,
 		TypeRu:        raceTypeRu,
 		Age:           raceAge,
