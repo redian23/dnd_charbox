@@ -330,7 +330,7 @@ function writeRaceAbilitiesLabels(data) {
         let race_abil = JSON.parse(data)["race"]["race_abilities"];
 
     if (race_abil === null){
-        document.getElementById("lbl_race_abilities").innerHTML = "Нету"
+        document.getElementById("lbl_race_abilities").innerHTML = "Нет"
         return
     }
     for(let i = 0; i < race_abil.length; i++){
