@@ -256,13 +256,10 @@ function writeBackgroundLabels(data) {
 
     backgrEquip = backgr["equipment"]
     for(let i = 0; i < backgrEquip.length; i++){
-        if (i === backgrEquip.length-1){
-            comma = ""
-        }
-        if (JSON.stringify(backgrEquip[i]["count"]) > 1){
-            document.getElementById("lbl_list_background_equipment").innerHTML += backgrEquip[i]+ comma ;
-        } else {
+        if (i !== backgrEquip.length-1) {
             document.getElementById("lbl_list_background_equipment").innerHTML += backgrEquip[i]+ ", " ;
+        } else {
+            document.getElementById("lbl_list_background_equipment").innerHTML += backgrEquip[i];
         }
     }
 
@@ -349,14 +346,11 @@ function writeClassEquipmentLabels(data) {
     let equip = JSON.parse(data)["class"]["class_equipment"];
 
     for(let i = 0; i < equip.length; i++){
-        if (i === equip.length-1){
-            comma = ""
-        }
-        if (JSON.stringify(equip[i]["count"]) > 1){
+        if (i !== equip.length-1){
             document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) +
-               " (" + JSON.parse(JSON.stringify(equip[i]["count"]))+ ")" + comma;
+               " (" + JSON.parse(JSON.stringify(equip[i]["count"]))+ ")" +", ";
         } else {
-            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) + ", ";
+            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"]));
         }
     }
 }
