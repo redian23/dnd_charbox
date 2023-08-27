@@ -321,6 +321,7 @@ func setArmor(className string) []ArmorAnswer {
 			armorAns.ArmorClassCount = armor.ArmorClassCount + shield
 		}
 		armorAnsList = append(armorAnsList, armorAns)
+
 	}
 
 	if armorAnsList == nil {
@@ -400,7 +401,6 @@ ReRollClassSkills:
 
 func setWeapons() []WeaponAnswer {
 	var weaponList []WeaponAnswer
-
 	for _, item := range equipmentList {
 		if item.Type == "weapon" {
 			switch item.ItemName {
@@ -408,22 +408,25 @@ func setWeapons() []WeaponAnswer {
 				rollNum, _ := random.IntRange(0, 13)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
+				break
 			case "Простое рукопашное оружие":
 				rollNum, _ := random.IntRange(0, 9)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
+				break
 			case "Воинское оружие":
 				rollNum, _ := random.IntRange(14, 36)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
+				break
 			case "Воинское рукопашное оружие":
 				rollNum, _ := random.IntRange(14, 31)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
+				break
 			}
 		}
 	}
-
 	for _, item := range equipmentList {
 		if item.Type == "weapon" {
 			for _, weapon := range weaponData {

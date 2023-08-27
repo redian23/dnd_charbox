@@ -361,9 +361,11 @@ function writeClassEquipmentLabels(data) {
 function writeArmorLabels(data) {
     let armor = JSON.parse(data)["class"]["armor"];
 
-    for(let i = 0; i < 1; i++) {
-        document.getElementById("lbl_armor_name").innerHTML = JSON.parse(JSON.stringify(armor[i]["armorName"]));
-        document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
+    for(let i = 0; i < armor.length; i++) {
+        if (armor[i]["armorName"] !== "Щит"){
+            document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i]["armorName"]);
+            document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
+        }
     }
 }
 
