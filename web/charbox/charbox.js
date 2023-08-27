@@ -239,6 +239,8 @@ function writeOtherLabels(data) {
 
 function writeBackgroundLabels(data) {
     let backgr = JSON.parse(data)["background"]
+    document.getElementById("lbl_list_background_equipment").innerHTML = "";
+
     document.getElementById("lbl_background_name").innerHTML = backgr["background_name_ru"];
     document.getElementById("lbl_background_type").innerHTML = backgr["type"];
     document.getElementById("lbl_background_description").innerHTML = backgr["description"];
