@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/JGLTechnologies/gin-rate-limit"
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"io"
@@ -10,13 +9,12 @@ import (
 	"pregen/api"
 	"pregen/pkg/db"
 	"strings"
-	"time"
 )
 
 const Version = "0.8.2 Beta build"
 
 func main() {
-	InitServerPathVars(true)
+	InitServerPathVars(false)
 	db.PingMongoDB()
 
 	f, _ := os.Create(logPath + "charbox_gin_errors.log")
@@ -24,23 +22,13 @@ func main() {
 
 	router := gin.Default()
 
-	// This makes it so each ip can only make 5 requests per second
-	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
-		Rate:  time.Second,
-		Limit: 5,
-	})
-	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
-		ErrorHandler: errorHandler,
-		KeyFunc:      keyFunc,
-	})
-
 	// api method
 	v1 := router.Group("api/v1/")
 	{
-		v1.POST("/post-current-character", mw, func(c *gin.Context) {
+		v1.POST("/post-current-character", func(c *gin.Context) {
 			api.GetCurrentCharacter(c)
 		})
-		v1.POST("/run-lss-export", mw, func(c *gin.Context) {
+		v1.POST("/run-lss-export", func(c *gin.Context) {
 			api.GetLSSJson(c)
 		})
 	}
@@ -78,15 +66,6 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	//router.Run(":820") //local
-	router.RunTLS(":420", "/etc/letsencrypt/live/charbox.swn.by/fullchain.pem", "/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
-}
-
-func keyFunc(c *gin.Context) string {
-	return c.ClientIP()
-}
-
-func errorHandler(c *gin.Context, info ratelimit.Info) {
-	c.String(429, "Too many requests. Try again in "+time.Until(info.ResetTime).String())
-	time.Sleep(3 * time.Second)
+	router.Run(":820") //local
+	//router.RunTLS(":420", "/etc/letsencrypt/live/charbox.swn.by/fullchain.pem", "/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
 }
