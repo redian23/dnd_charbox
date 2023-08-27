@@ -264,10 +264,7 @@ function writeBackgroundLabels(data) {
             document.getElementById("lbl_list_background_equipment").innerHTML += backgrEquip[i];
         }
     }
-
-    console.log(document.getElementById("lbl_list_background_equipment").innerHTML)
     document.getElementById("lbl_background_instruments").innerHTML = backgr["mastery_of_tools"]
-
 }
 
 function writeAppearanceLabels(data) {
@@ -374,14 +371,15 @@ function writeWeaponLabels(data) {
     document.getElementById("lbl_weapon_list").innerHTML = ""
 
     let weapon = JSON.parse(data)["class"]["weapon"];
-    let count = " ";
-
     for(let i = 0; i < weapon.length; i++) {
         if (JSON.stringify(weapon[i]["count"]) > 1){
-            count = " (" + JSON.stringify(weapon[i]["count"]) + ") "
+            document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"])
+                + " (" + JSON.stringify(weapon[i]["count"]) + "), "
+                + JSON.stringify(weapon[i]["damage"]) +", "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
+        }else{
+            document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"]) + ", "
+                + JSON.stringify(weapon[i]["damage"]) +", "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
         }
-        document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"]) + count
-            + JSON.stringify(weapon[i]["damage"]) +" "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
     }
 }
 
