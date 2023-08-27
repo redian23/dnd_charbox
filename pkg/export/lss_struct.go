@@ -382,7 +382,32 @@ type Text struct {
 	SpellsLevel1 SpellsLevel1 `json:"spells-level-1"`
 	SpellsLevel0 SpellsLevel0 `json:"spells-level-0"`
 }
+
+type Gp struct {
+	Value int `json:"value"`
+}
+type Total struct {
+	Value float64 `json:"value"`
+}
+type Sp struct {
+	Value int `json:"value"`
+}
+type Cp struct {
+	Value int `json:"value"`
+}
+type Pp struct {
+	Value int `json:"value"`
+}
+type Ep struct {
+	Value int `json:"value"`
+}
 type Coins struct {
+	Gp    Gp    `json:"gp"`
+	Total Total `json:"total"`
+	Sp    Sp    `json:"sp"`
+	Cp    Cp    `json:"cp"`
+	Pp    Pp    `json:"pp"`
+	Ep    Ep    `json:"ep"`
 }
 type Resources struct {
 }

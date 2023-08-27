@@ -7,7 +7,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 	armorData = GetArmorFormDB()
 	weaponData = GetWeaponFormDB()
 
-	className, _, classAbility := statAnalyze()
+	className, _, classAbility := statAnalyze(classNameRU)
 	ClassNameGlobal = className
 	modif := setModifiersForClass(classAbility)
 

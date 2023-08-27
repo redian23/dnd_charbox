@@ -264,6 +264,7 @@ function writeAppearanceLabels(data) {
     document.getElementById("p_dragon_type").style.display = "none";
     document.getElementById("div_snake_appearance").style.visibility= "hidden";
 
+
     document.getElementById("lbl_raceName").innerHTML = race["race_type_name_ru"];
     document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
@@ -293,7 +294,7 @@ function writeAppearanceLabels(data) {
     }
 
     if (race["race_name"] === "Yuan-ti"){
-        document.getElementById("div_snake_appearance").style.visibility= "visible";
+        document.getElementById("div_snake_appearance").style.visibility= "visible"
         document.getElementById("lbl_hairColor").innerHTML = "Нет";
 
         document.getElementById("lbl_typeSnakeBody").innerHTML =  race["other"]["yuanti_appearance"]["type_snake_body"];

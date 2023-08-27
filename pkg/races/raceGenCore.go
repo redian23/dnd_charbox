@@ -73,7 +73,6 @@ func InsertRacesToDB() {
 	docs := []interface{}{}
 
 	for _, cl := range race {
-		fmt.Println(cl)
 		docs = append(docs, cl)
 	}
 

@@ -113,7 +113,7 @@ func extractStats(abil Ability) []string {
 	return statsForFindClassSpec
 }
 
-func statAnalyze() (string, string, Ability) {
+func statAnalyze(needClass string) (string, string, Ability) {
 START:
 	var abilities = rerollClassAbilitiesStats()
 	var stats = extractStats(abilities)
@@ -122,8 +122,10 @@ START:
 	for _, char := range chars {
 		for _, cla := range char.CharReq {
 			if reflect.DeepEqual(stats, cla) {
-				name = char.ClassName
-				nameRu = char.ClassNameRU
+				if needClass == char.ClassNameRU {
+					name = char.ClassName
+					nameRu = char.ClassNameRU
+				}
 			}
 		}
 	}
@@ -406,22 +408,18 @@ func setWeapons() []WeaponAnswer {
 				rollNum, _ := random.IntRange(0, 13)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
-				continue
 			case "Простое рукопашное оружие":
 				rollNum, _ := random.IntRange(0, 9)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
-				continue
 			case "Воинское оружие":
 				rollNum, _ := random.IntRange(14, 36)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
-				continue
 			case "Воинское рукопашное оружие":
 				rollNum, _ := random.IntRange(14, 31)
 				weaponData[rollNum].Count = item.Count
 				weaponList = append(weaponList, weaponData[rollNum])
-				continue
 			}
 		}
 	}

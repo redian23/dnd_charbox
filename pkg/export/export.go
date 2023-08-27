@@ -113,8 +113,12 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 				"<strong>Совет:</strong> " + lc.Background.Advice}},
 		},
 		Avatar: Avatar{
-			Jpeg: "https://diceroll.swn.by/photos/" + lc.Race.RacePhoto.Path + lc.Race.RacePhoto.FileName,
+			Jpeg: "https://charbox.swn.by/imgs/" + lc.Race.RacePhoto.Path + lc.Race.RacePhoto.FileName,
 			Webp: "",
+		},
+		Coins: Coins{
+			Total: Total{Value: float64(lc.Background.Gold)},
+			Gp:    Gp{Value: lc.Background.Gold},
 		},
 	}
 }
