@@ -24,10 +24,10 @@ func main() {
 
 	router := gin.Default()
 
-	// This makes it so each ip can only make 5 requests per second
+	// This makes it so each ip can only make 3 requests per second
 	store := ratelimit.InMemoryStore(&ratelimit.InMemoryOptions{
 		Rate:  time.Second,
-		Limit: 5,
+		Limit: 3,
 	})
 	mw := ratelimit.RateLimiter(store, &ratelimit.Options{
 		ErrorHandler: errorHandler,
@@ -88,5 +88,5 @@ func keyFunc(c *gin.Context) string {
 
 func errorHandler(c *gin.Context, info ratelimit.Info) {
 	c.String(429, "Too many requests. Try again in "+time.Until(info.ResetTime).String())
-	time.Sleep(2 * time.Second)
+	time.Sleep(3 * time.Second)
 }
