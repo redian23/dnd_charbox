@@ -14,7 +14,7 @@ import (
 const Version = "0.8.2 Beta build"
 
 func main() {
-	InitServerPathVars(false)
+	InitServerPathVars(true)
 	db.PingMongoDB()
 
 	f, _ := os.Create(logPath + "charbox_gin_errors.log")
@@ -66,6 +66,6 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	router.Run(":820") //local
-	//router.RunTLS(":420", "/etc/letsencrypt/live/charbox.swn.by/fullchain.pem", "/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
+	//router.Run(":820") //local
+	router.RunTLS(":420", "/etc/letsencrypt/live/charbox.swn.by/fullchain.pem", "/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
 }
