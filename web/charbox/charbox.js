@@ -347,10 +347,15 @@ function writeClassEquipmentLabels(data) {
 
     for(let i = 0; i < equip.length; i++){
         if (i !== equip.length-1){
+            comma = ", "
+        }else {
+            comma = ""
+        }
+        if (JSON.stringify(equip[i]["count"]) > 1){
             document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) +
-               " (" + JSON.parse(JSON.stringify(equip[i]["count"]))+ ")" +", ";
+                " (" + JSON.parse(JSON.stringify(equip[i]["count"]))+ ")" + comma;
         } else {
-            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"]));
+            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) + comma;
         }
     }
 }
