@@ -405,25 +405,61 @@ func setWeapons() []WeaponAnswer {
 		if item.Type == "weapon" {
 			switch item.ItemName {
 			case "Простое оружие":
-				rollNum, _ := random.IntRange(0, 13)
-				weaponData[rollNum].Count = item.Count
-				weaponList = append(weaponList, weaponData[rollNum])
-				break
+				if item.Count == 2 {
+					for i := 0; i < 2; i++ {
+						rollNum, _ := random.IntRange(0, 13)
+						weaponData[rollNum].Count = 1
+						weaponList = append(weaponList, weaponData[rollNum])
+					}
+					break
+				} else {
+					rollNum, _ := random.IntRange(0, 13)
+					weaponData[rollNum].Count = item.Count
+					weaponList = append(weaponList, weaponData[rollNum])
+					break
+				}
 			case "Простое рукопашное оружие":
-				rollNum, _ := random.IntRange(0, 9)
-				weaponData[rollNum].Count = item.Count
-				weaponList = append(weaponList, weaponData[rollNum])
-				break
+				if item.Count == 2 {
+					for i := 0; i < 2; i++ {
+						rollNum, _ := random.IntRange(0, 9)
+						weaponData[rollNum].Count = 1
+						weaponList = append(weaponList, weaponData[rollNum])
+					}
+					break
+				} else {
+					rollNum, _ := random.IntRange(0, 9)
+					weaponData[rollNum].Count = item.Count
+					weaponList = append(weaponList, weaponData[rollNum])
+					break
+				}
 			case "Воинское оружие":
-				rollNum, _ := random.IntRange(14, 36)
-				weaponData[rollNum].Count = item.Count
-				weaponList = append(weaponList, weaponData[rollNum])
-				break
+				if item.Count == 2 {
+					for i := 0; i < 2; i++ {
+						rollNum, _ := random.IntRange(14, 36)
+						weaponData[rollNum].Count = 1
+						weaponList = append(weaponList, weaponData[rollNum])
+					}
+					break
+				} else {
+					rollNum, _ := random.IntRange(14, 36)
+					weaponData[rollNum].Count = item.Count
+					weaponList = append(weaponList, weaponData[rollNum])
+					break
+				}
 			case "Воинское рукопашное оружие":
-				rollNum, _ := random.IntRange(14, 31)
-				weaponData[rollNum].Count = item.Count
-				weaponList = append(weaponList, weaponData[rollNum])
-				break
+				if item.Count == 2 {
+					for i := 0; i < 2; i++ {
+						rollNum, _ := random.IntRange(14, 31)
+						weaponData[rollNum].Count = 1
+						weaponList = append(weaponList, weaponData[rollNum])
+					}
+					break
+				} else {
+					rollNum, _ := random.IntRange(14, 13)
+					weaponData[rollNum].Count = item.Count
+					weaponList = append(weaponList, weaponData[rollNum])
+					break
+				}
 			}
 		}
 	}

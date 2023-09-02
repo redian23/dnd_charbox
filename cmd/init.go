@@ -8,6 +8,7 @@ import (
 )
 
 var (
+	ProdStatus             bool
 	htmlSitePath, filePath string
 	logPath                string
 	imgsPath               string
@@ -32,8 +33,8 @@ func InitGinENV(envPath, fileENV string) {
 	logPath = viper.GetString("logPath")
 }
 
-func InitServerPathVars(status bool) {
-	if status == true {
+func InitServerPathVars() {
+	if ProdStatus == true {
 		db.InitMongoENV("/etc/pregen.d/")
 		InitGinENV("/etc/pregen.d/", "prod.cnf")
 	} else {
