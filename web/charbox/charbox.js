@@ -26,9 +26,6 @@ async function winOnloadGenerate() {
             },
             body: JSON.stringify(JSON.parse(req_json))
         });
-    if (response.status === 429) {
-        document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
-    }
     const json = await response.json();
     let data = JSON.stringify(json);
 
