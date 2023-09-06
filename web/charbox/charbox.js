@@ -45,9 +45,6 @@ async function getCharacter() {
             },
             body: JSON.stringify(JSON.parse(req_json))
         });
-    if (response.status !== 200) {
-        document.getElementById("lbl_429_warning").innerHTML = "Был превышен лимит вызова генерации!"
-    }
     const json = await response.json();
     let data = JSON.stringify(json);
 
