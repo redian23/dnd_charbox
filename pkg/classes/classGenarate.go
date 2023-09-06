@@ -9,6 +9,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 
 	className, _, classAbility := statAnalyze(classNameRU)
 	ClassNameGlobal = className
+
 	modif := setModifiersForClass(classAbility)
 
 	return &ClassAnswer{

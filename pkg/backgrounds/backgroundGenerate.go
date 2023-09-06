@@ -64,7 +64,6 @@ func GenerateBackground() *BackgroundAnswer {
 			bgAbility = background.BackgroundAbility
 			masteryOfTools = background.MasteryOfTools
 			equipmentList = background.Equipment
-
 			gold = background.Gold
 		}
 	}

@@ -36,7 +36,8 @@ type Skill struct {
 }
 
 func SetSkillsForCharacter() Skills {
-	var sk Skills
+	sk := Skills{}
+
 	// принимает нужный экземпляр обьекта и в себя же записывает новые данные
 	sk = setSkillsNames(sk)
 	sk = setSkillModifierValue(sk)
@@ -48,7 +49,6 @@ func SetSkillsForCharacter() Skills {
 }
 
 func setSkillsNames(sk Skills) Skills {
-
 	sk.Athletics.SkillName = "Athletics"
 	sk.Acrobatics.SkillName = "Acrobatics"
 	sk.SleightOfHand.SkillName = "Sleight Of Hand"

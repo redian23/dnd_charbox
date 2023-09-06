@@ -3,23 +3,18 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"html/template"
-	"io"
 	"net/http"
-	"os"
 	"pregen/api"
 	"pregen/pkg/db"
 	"strings"
 )
 
-const Version = "0.8.3 Beta build"
+const Version = "0.8.4 Beta build"
 
 func main() {
 	ProdStatus = true
 	InitServerPathVars()
 	db.PingMongoDB()
-
-	f, _ := os.Create(logPath + "charbox_gin_errors.log")
-	gin.DefaultErrorWriter = io.MultiWriter(f)
 
 	router := gin.Default()
 
@@ -71,6 +66,6 @@ func main() {
 	if ProdStatus == true {
 		router.RunTLS(":420", "/etc/letsencrypt/live/charbox.swn.by/fullchain.pem", "/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
 	} else {
-		router.Run(":820") //local
+		router.Run(":8080") //local
 	}
 }

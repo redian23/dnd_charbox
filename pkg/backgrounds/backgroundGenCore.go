@@ -21,7 +21,6 @@ func getBackgroundsFormDB() []BackgroundBson {
 
 func backgroundAnalyze(className string) string {
 	var chars = classes.GetClassCharactsFormDB()
-
 	for _, char := range chars {
 		if className == char.ClassName {
 			var rollNum int

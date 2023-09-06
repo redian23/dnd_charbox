@@ -19,7 +19,7 @@ type RacesAnswer struct {
 	Hair          string        `json:"hair"`
 	Speed         int           `json:"speed"`
 	Langs         []string      `json:"langs"`
-	RaceSkill     string        `json:"race_skill"`
+	RaceSkill     []string      `json:"race_skill"`
 	FirstName     string        `json:"first_name"`
 	LastName      string        `json:"last_name"`
 	Resist        string        `json:"resist"`
@@ -43,13 +43,16 @@ type RacesBSON struct {
 	BodySize   string             `json:"body_size"`
 	Speed      int                `json:"speed"`
 	Langs      []string           `json:"langs"`
-	RaceSkill  []string           `json:"race_skill"`
+	RaceSkill  skillsInDB         `json:"race_skill"`
 	Names      names              `bson:"names"`
 	LastNames  []interface{}      `json:"last_names"`
 	Resist     string             `json:"resist"`
 	Darkvision bool               `json:"darkvision"`
 }
-
+type skillsInDB struct {
+	RandomCount int      `json:"random_count"`
+	SkillsList  []string `bson:"skilllist"`
+}
 type RacesJsonStruct []struct {
 	RaceName   string        `json:"race_name"`
 	RaceNameRu string        `json:"race_name_ru"`

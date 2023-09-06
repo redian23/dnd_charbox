@@ -38,7 +38,7 @@ func InitServerPathVars() {
 		db.InitMongoENV("/etc/pregen.d/")
 		InitGinENV("/etc/pregen.d/", "prod.cnf")
 	} else {
-		db.InitMongoENV("../pkg/db/")
-		InitGinENV("../configs/", "test.cnf")
+		db.InitMongoENV("./pkg/db/")
+		InitGinENV("./configs/", "test.cnf")
 	}
 }

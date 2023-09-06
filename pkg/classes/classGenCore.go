@@ -2,6 +2,7 @@ package classes
 
 import (
 	"context"
+	"fmt"
 	"github.com/mazen160/go-random"
 	"math"
 	"pregen/pkg/db"
@@ -114,27 +115,22 @@ func extractStats(abil Ability) []string {
 }
 
 func statAnalyze(needClass string) (string, string, Ability) {
-START:
-	var abilities = rerollClassAbilitiesStats()
-	var stats = extractStats(abilities)
+	//пепписать без гото
 	var name, nameRu string
-
-	for _, char := range chars {
-		for _, cla := range char.CharReq {
-			if reflect.DeepEqual(stats, cla) {
-				if needClass == char.ClassNameRU {
+	var abilities Ability
+	for {
+		abilities = rerollClassAbilitiesStats()
+		stats := extractStats(abilities)
+		for _, char := range chars {
+			for _, cla := range char.CharReq {
+				if reflect.DeepEqual(stats, cla) && needClass == char.ClassNameRU {
 					name = char.ClassName
 					nameRu = char.ClassNameRU
+					return name, nameRu, abilities
 				}
 			}
 		}
 	}
-
-	if name == "" {
-		goto START
-	}
-
-	return name, nameRu, abilities
 }
 
 func setModifiersForClass(ab Ability) Modifier {
@@ -342,9 +338,9 @@ func setArmor(className string) []ArmorAnswer {
 }
 
 func setClassSkills() []string {
+	var skills []string
 	var skillsArray []string
 	var randSkillCount int
-	var skills []string
 
 	for _, char := range chars {
 		if char.ClassName == ClassNameGlobal {
@@ -359,28 +355,24 @@ func setClassSkills() []string {
 			skills = append(skills, skillsArray[rollNum])
 		}
 	}
+
 	classSkills = skills
 	return skills
 }
 
 func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
-	var raceSkill = races.GetRaceSkill()
+	var skillMap = make(map[int]string)
 
-ReRollClassSkills:
+	raceSkill := races.GetRaceSkill()
+	classSkills = setClassSkills()
 
 	if reflect.DeepEqual(classSkills, backgroundSkills) == true {
 		classSkills = setClassSkills()
-		goto ReRollClassSkills
 	}
 	for _, classSkl := range classSkills {
 		for _, backgroundSkl := range backgroundSkills {
-			if classSkl == raceSkill {
-				classSkills = setClassSkills()
-				goto ReRollClassSkills
-			}
 			if classSkl == backgroundSkl {
 				classSkills = setClassSkills()
-				goto ReRollClassSkills
 			}
 		}
 	}
@@ -388,15 +380,27 @@ ReRollClassSkills:
 		for j, classSkl2 := range classSkills {
 			if classSkl1 == classSkl2 && i != j {
 				classSkills = setClassSkills()
-				goto ReRollClassSkills
 			}
 		}
 	}
 
 	var skillsSliceTmp = append(backgroundSkills, classSkills...)
-	var skillsSlice = append(skillsSliceTmp, raceSkill)
+	var skillsSlice = append(skillsSliceTmp, raceSkill...)
 
+	for i, skillName := range skillsSlice {
+		skillMap[i] = skillName
+	}
+	fmt.Println(backgroundSkills, classSkills, raceSkill)
+	fmt.Println(skillMap)
+	for k, v := range skillMap {
+		for i, s := range skillMap {
+			if i != k && v == s {
+				fmt.Println(v, s)
+			}
+		}
+	}
 	return skillsSlice
+
 }
 
 func setWeapons() []WeaponAnswer {

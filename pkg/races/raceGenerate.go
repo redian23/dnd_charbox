@@ -6,17 +6,17 @@ import (
 )
 
 var (
-	raceType, raceTypeRu, raceSkill string
-	raceAge, raceSpeed              int
-	raceHeight                      int
-	raceHeightFt                    string
-	raceWeight, raceWeightLb        int
-	raceBodySize                    string
-	raceGender                      string
-	langs                           []string
-	darkvision                      bool
-	raceAbil                        []raceAbility
-	firstName, resist               string
+	raceType, raceTypeRu     string
+	raceAge, raceSpeed       int
+	raceHeight               int
+	raceHeightFt             string
+	raceWeight, raceWeightLb int
+	raceBodySize             string
+	raceGender               string
+	langs                    []string
+	darkvision               bool
+	raceAbil                 []raceAbility
+	firstName, resist        string
 )
 
 func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
@@ -31,11 +31,6 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName
 			raceTypeRu = race.Type[rollNum].TypeRaceNameRu
-
-			if race.RaceNameRu == raceNameRu && len(race.RaceSkill) > 0 {
-				rollNum, _ = random.IntRange(0, len(race.RaceSkill))
-				raceSkill = race.RaceSkill[rollNum]
-			}
 
 			maxAge := (race.MaxAge * 75) / 100
 			raceAge, _ = random.IntRange(race.MinAge, maxAge)
@@ -94,7 +89,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 		BodySize:      raceBodySize,
 		Eyes:          setEyesColor(),
 		Hair:          setHairColor(),
-		RaceSkill:     raceSkill,
+		RaceSkill:     nil,
 		CharacterName: firstName,
 		FirstName:     firstName,
 		LastName:      lastName,

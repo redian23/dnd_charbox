@@ -6,11 +6,8 @@ import (
 	"pregen/pkg/races"
 )
 
-var LastCharacter Character
-
 func GenerateFullCharacter(className, raceName string) *Character {
-
-	LastCharacter = Character{
+	return &Character{
 		Level:         1,
 		Experience:    0,
 		Race:          races.GenerateRaceForCharacter(raceName),
@@ -19,5 +16,4 @@ func GenerateFullCharacter(className, raceName string) *Character {
 		Skills:        SetSkillsForCharacter(),
 		PassiveWisdom: PassWisdom,
 	}
-	return &LastCharacter
 }

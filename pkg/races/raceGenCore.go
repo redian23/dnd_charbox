@@ -108,14 +108,26 @@ func GetRaceAbilities() StatsUp {
 	return StatsUp{}
 }
 
-func GetRaceSkill() string {
+func GetRaceSkill() []string {
+	var skills []string
+	var skillsArray []string
+	var randSkillCount int
+
 	for _, race := range raceData {
-		if race.RaceName == raceNameGlobal && len(race.RaceSkill) > 0 {
-			rollNum, _ := random.IntRange(0, len(race.RaceSkill))
-			return race.RaceSkill[rollNum]
+		if race.RaceName == raceNameGlobal {
+			skillsArray = race.RaceSkill.SkillsList
+			randSkillCount = race.RaceSkill.RandomCount
 		}
 	}
-	return ""
+
+	for i, _ := range skillsArray {
+		if i < randSkillCount {
+			rollNum, _ := random.IntRange(0, len(skillsArray))
+			skills = append(skills, skillsArray[rollNum])
+		}
+	}
+
+	return skills
 }
 
 func setEyesColor() string {
