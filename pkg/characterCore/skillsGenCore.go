@@ -29,10 +29,11 @@ type Skills struct {
 }
 
 type Skill struct {
-	SkillName     string `json:"skill_name"`
-	SkillNameRu   string `json:"skill_name_ru"`
-	ModifierValue int    `json:"modifier_value"`
-	Proficiency   bool   `json:"proficiency"`
+	SkillName         string `json:"skill_name"`
+	SkillNameRu       string `json:"skill_name_ru"`
+	ModifierValue     int    `json:"modifier_value"`
+	Proficiency       bool   `json:"proficiency"`
+	DoubleProficiency bool   `json:"double_proficiency"`
 }
 
 func SetSkillsForCharacter() Skills {
@@ -42,9 +43,10 @@ func SetSkillsForCharacter() Skills {
 	sk = setSkillsNames(sk)
 	sk = setSkillModifierValue(sk)
 
-	skillsSlice := classes.GetAnalyzedSkillSlice(backgrounds.BackgroundSkillMastery)
-	sk = setSkillProficiency(skillsSlice, sk)
+	skillMap, dblProfMap := classes.GetAnalyzedSkillSlice(backgrounds.BackgroundSkillMastery)
+	sk = setSkillProficiency(skillMap, sk)
 
+	sk = setDoubleSkillProficiency(dblProfMap, sk)
 	return sk
 }
 
@@ -113,8 +115,8 @@ func setSkillModifierValue(sk Skills) Skills {
 	return sk
 }
 
-func setSkillProficiency(skillsSlice []string, sk Skills) Skills {
-	for _, profSkill := range skillsSlice {
+func setSkillProficiency(skillMap map[int]string, sk Skills) Skills {
+	for _, profSkill := range skillMap {
 		switch profSkill {
 		case sk.Athletics.SkillName:
 			sk.Athletics.Proficiency = true
@@ -173,6 +175,50 @@ func setSkillProficiency(skillsSlice []string, sk Skills) Skills {
 		}
 	}
 	setPassiveWisdom(sk)
+	return sk
+}
+
+func setDoubleSkillProficiency(dblMap map[string]string, sk Skills) Skills {
+	for _, dblProfSkill := range dblMap {
+		switch dblProfSkill {
+		case sk.Athletics.SkillName:
+			sk.Athletics.DoubleProficiency = true
+		case sk.Acrobatics.SkillName:
+			sk.Acrobatics.DoubleProficiency = true
+		case sk.SleightOfHand.SkillName:
+			sk.SleightOfHand.DoubleProficiency = true
+		case sk.Stealth.SkillName:
+			sk.Stealth.DoubleProficiency = true
+		case sk.Arcana.SkillName:
+			sk.Arcana.DoubleProficiency = true
+		case sk.History.SkillName:
+			sk.History.DoubleProficiency = true
+		case sk.Investigation.SkillName:
+			sk.Investigation.DoubleProficiency = true
+		case sk.Nature.SkillName:
+			sk.Nature.DoubleProficiency = true
+		case sk.Religion.SkillName:
+			sk.Religion.DoubleProficiency = true
+		case sk.AnimalHandling.SkillName:
+			sk.AnimalHandling.DoubleProficiency = true
+		case sk.Insight.SkillName:
+			sk.Insight.DoubleProficiency = true
+		case sk.Medicine.SkillName:
+			sk.Medicine.DoubleProficiency = true
+		case sk.Perception.SkillName:
+			sk.Perception.DoubleProficiency = true
+		case sk.Survival.SkillName:
+			sk.Survival.DoubleProficiency = true
+		case sk.Deception.SkillName:
+			sk.Deception.DoubleProficiency = true
+		case sk.Intimidation.SkillName:
+			sk.Intimidation.DoubleProficiency = true
+		case sk.Performance.SkillName:
+			sk.Performance.DoubleProficiency = true
+		case sk.Persuasion.SkillName:
+			sk.Persuasion.DoubleProficiency = true
+		}
+	}
 	return sk
 }
 

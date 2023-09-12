@@ -129,7 +129,7 @@ function writeToSaveThrowsLabels(data) {
 
 function writeToSkillsLabels(data) {
     let skills =  JSON.parse(data)["skills"];
-
+    console.log(skills)
     //обнуление радио
     var radios = ["rd_Acrobatics", "rd_Animal_Handling","rd_Arcana","rd_Athletics",
         "rd_Deception","rd_History","rd_Insight","rd_Intimidation",
@@ -215,6 +215,63 @@ function writeToSkillsLabels(data) {
     if (skills["survival"]["proficiency"] === true){
         document.getElementById("rd_Survival").checked=true;
     }
+
+    if (skills["acrobatics"]["double_proficiency"] === true){
+        document.getElementById("rd_Acrobatics_dbl_prof").checked=true;
+    }
+    if (skills["animal_handling"]["double_proficiency"] === true){
+        document.getElementById("rd_Animal_Handling_dbl_prof").checked=true;
+    }
+    if (skills["arcana"]["double_proficiency"] === true){
+        document.getElementById("rd_Arcana_dbl_prof").checked=true;
+    }
+    if (skills["athletics"]["double_proficiency"] === true){
+        document.getElementById("rd_Athletics_dbl_prof").checked=true;
+    }
+    if (skills["deception"]["double_proficiency"] === true){
+        document.getElementById("rd_Deception_dbl_prof").checked=true;
+    }
+    if (skills["history"]["double_proficiency"] === true){
+        document.getElementById("rd_History_dbl_prof").checked=true;
+    }
+    if (skills["insight"]["double_proficiency"] === true){
+        document.getElementById("rd_Insight_dbl_prof").checked=true;
+    }
+    if (skills["intimidation"]["double_proficiency"] === true){
+        document.getElementById("rd_Intimidation_dbl_prof").checked=true;
+    }
+    if (skills["investigation"]["double_proficiency"] === true){
+        document.getElementById("rd_Investigation_dbl_prof").checked=true;
+    }
+    if (skills["medicine"]["double_proficiency"] === true){
+        document.getElementById("rd_Medicine_dbl_prof").checked=true;
+    }
+    if (skills["nature"]["double_proficiency"] === true){
+        document.getElementById("rd_Nature_dbl_prof").checked=true;
+    }
+    if (skills["perception"]["double_proficiency"] === true){
+        document.getElementById("rd_Perception_dbl_prof").checked=true;
+    }
+    if (skills["performance"]["double_proficiency"] === true){
+        document.getElementById("rd_Performance_dbl_prof").checked=true;
+    }
+    if (skills["persuasion"]["double_proficiency"] === true){
+        document.getElementById("rd_Persuasion_dbl_prof").checked=true;
+    }
+    if (skills["religion"]["double_proficiency"] === true){
+        document.getElementById("rd_Religion_dbl_prof").checked=true;
+    }
+    if (skills["sleight_of_hand"]["double_proficiency"] === true){
+        document.getElementById("rd_SleightofHand_dbl_prof").checked=true;
+    }
+    if (skills["stealth"]["double_proficiency"] === true){
+        document.getElementById("rd_Stealth_dbl_prof").checked=true;
+    }
+    if (skills["survival"]["double_proficiency"] === true){
+        document.getElementById("rd_Survival_dbl_prof").checked=true;
+    }
+
+
 }
 
 function writeOtherLabels(data) {

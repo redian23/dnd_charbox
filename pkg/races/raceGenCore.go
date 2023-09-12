@@ -110,20 +110,22 @@ func GetRaceAbilities() StatsUp {
 
 func GetRaceSkill() []string {
 	var skills []string
+	var skillsArray []string
 	var randSkillCount int
+	skillMap := make(map[int]string)
 
 	for _, race := range raceData {
 		if race.RaceName == raceNameGlobal {
-			skillsArray := race.RaceSkill.SkillsList
+			skillsArray = race.RaceSkill.SkillsList
 			randSkillCount = race.RaceSkill.RandomCount
-
-			for i, _ := range skillsArray {
-				if i < randSkillCount {
-					rollNum, _ := random.IntRange(0, len(skillsArray))
-					skills = append(skills, skillsArray[rollNum])
-				}
-			}
 		}
+	}
+	for i := len(skillsArray) - 1; i > 0; i-- {
+		skillMap[i] = skillsArray[i]
+	}
+
+	for i := 0; i < randSkillCount; i++ {
+		skills = append(skills, skillMap[i])
 	}
 	return skills
 }

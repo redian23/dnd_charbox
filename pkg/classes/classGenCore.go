@@ -2,7 +2,6 @@ package classes
 
 import (
 	"context"
-	"fmt"
 	"github.com/mazen160/go-random"
 	"math"
 	"pregen/pkg/db"
@@ -341,6 +340,7 @@ func setClassSkills() []string {
 	var skills []string
 	var skillsArray []string
 	var randSkillCount int
+	skillMap := make(map[int]string)
 
 	for _, char := range chars {
 		if char.ClassName == ClassNameGlobal {
@@ -349,26 +349,33 @@ func setClassSkills() []string {
 		}
 	}
 
-	for i := range skillsArray {
-		if i < randSkillCount {
-			rollNum, _ := random.IntRange(0, len(skillsArray))
-			skills = append(skills, skillsArray[rollNum])
-		}
+	for i, s := range skillsArray {
+		skillMap[i] = s
+	}
+
+	for i := 0; i < randSkillCount; i++ {
+		skills = append(skills, skillMap[i])
 	}
 
 	classSkills = skills
 	return skills
 }
 
-func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
+func GetAnalyzedSkillSlice(backgroundSkills []string) (map[int]string, map[string]string) {
 	var skillMap = make(map[int]string)
+	var doubleProfSkillMap = make(map[string]string)
 
 	raceSkill := races.GetRaceSkill()
 	classSkills = setClassSkills()
 
-	if reflect.DeepEqual(classSkills, backgroundSkills) == true {
-		classSkills = setClassSkills()
+	for {
+		if reflect.DeepEqual(classSkills, backgroundSkills) == true {
+			classSkills = setClassSkills()
+		} else {
+			break
+		}
 	}
+
 	for _, classSkl := range classSkills {
 		for _, backgroundSkl := range backgroundSkills {
 			if classSkl == backgroundSkl {
@@ -390,17 +397,20 @@ func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
 	for i, skillName := range skillsSlice {
 		skillMap[i] = skillName
 	}
-	fmt.Println(backgroundSkills, classSkills, raceSkill)
-	fmt.Println(skillMap)
+	//fmt.Println("back-", backgroundSkills, "\nclass-", classSkills, "\nrace-", raceSkill)
+	//fmt.Println(skillMap)
+
 	for k, v := range skillMap {
 		for i, s := range skillMap {
 			if i != k && v == s {
-				fmt.Println(v, s)
+				doubleProfSkillMap[s] = s
+				break
 			}
 		}
 	}
-	return skillsSlice
-
+	//fmt.Println(doubleProfSkillMap)
+	//fmt.Println("----------------------------------------------------")
+	return skillMap, doubleProfSkillMap
 }
 
 func setWeapons() []WeaponAnswer {

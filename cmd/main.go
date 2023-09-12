@@ -3,26 +3,18 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"html/template"
-	"io"
 	"net/http"
-	"os"
 	"pregen/api"
 	"pregen/pkg/db"
 	"strings"
 )
 
-const Version = "0.8.4 Beta build"
+const Version = "0.8.6 Beta build"
 
 func main() {
 	ProdStatus = true
 	InitServerPathVars()
 	db.PingMongoDB()
-
-	// Disable Console Color, you don't need console color when writing the logs to file.
-	gin.DisableConsoleColor()
-	f, _ := os.Create(logPath + "charbox_gin.log")
-	// Use the following code if you need to write the logs to file and console at the same time.
-	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
 	router := gin.Default()
 
