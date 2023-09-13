@@ -120,12 +120,18 @@ func GetRaceSkill() []string {
 			randSkillCount = race.RaceSkill.RandomCount
 		}
 	}
-	for i := len(skillsArray) - 1; i > 0; i-- {
-		skillMap[i] = skillsArray[i]
+
+	for i, skill := range skillsArray {
+		skillMap[i] = skill
 	}
 
-	for i := 0; i < randSkillCount; i++ {
-		skills = append(skills, skillMap[i])
+	var iter int
+	for _, s2 := range skillMap {
+		skills = append(skills, s2)
+		iter++
+		if iter >= randSkillCount {
+			break
+		}
 	}
 	return skills
 }

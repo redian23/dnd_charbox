@@ -9,12 +9,14 @@ import (
 	"strings"
 )
 
-const Version = "0.8.7 Beta build"
+const Version = "0.8.8 Beta build"
 
 func main() {
 	ProdStatus = true
 	InitServerPathVars()
 	db.PingMongoDB()
+
+	//spells.GetSpellsForClass("Друид", 3)
 
 	router := gin.Default()
 	// api method
@@ -34,20 +36,20 @@ func main() {
 	})
 
 	router.LoadHTMLGlob(htmlSitePath)
-	router.StaticFS("/f", http.Dir(filePath))
+	router.StaticFile("favicon.png", filePath+"/charbox/favicon.png")
+	router.StaticFile("charbox.js", filePath+"/charbox/charbox.js")
+	router.StaticFile("charbox.css", filePath+"/charbox/charbox.css")
 	router.StaticFS("/imgs", http.Dir(imgsPath))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
 			"title": "Character Box",
-			"path":  "./f/charbox",
 		})
 	})
 
 	router.GET("/test", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_test.html", gin.H{
 			"title": "CharBox Beta",
-			"path":  "./f/charbox",
 		})
 	})
 
@@ -63,7 +65,9 @@ func main() {
 	})
 
 	if ProdStatus == true {
-		router.RunTLS(":420", "/etc/letsencrypt/live/charbox.swn.by/fullchain.pem", "/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
+		router.RunTLS(":420",
+			"/etc/letsencrypt/live/charbox.swn.by/fullchain.pem",
+			"/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
 	} else {
 		router.Run(":8080") //local
 	}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{.path}}/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
     <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
     <meta content='true' name='HandheldFriendly'/>
     <meta content='width' name='MobileOptimized'/>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>{{.title}}</title>
     <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
-    <style> @import url("{{.path}}/charbox.css");</style>
+    <style> @import url("/charbox.css");</style>
     <section class="hero is-small is-info">
         <div class="hero-body">
             <p class="title">Добро пожаловать в Шкатулку Персонажей.</p>
@@ -41,7 +41,7 @@
     </section>
 </head>
 <body>
-    <script src="{{.path}}/charbox.js"></script>
+    <script src="/charbox.js"></script>
     <div name="Character_list_header" class="tile  is-parent is-vertical box select_form">
         <div>
             <div style="text-align: center"><label class="title">Выбор параметров для генерации</label></div>
@@ -417,7 +417,7 @@
         </div>
     </div>
 
-    <div id name="Character_spells_header" class="tile is-parent is-vertical box bottom" style="display: none">
+    <div id name="Character_spells_header" class="tile is-parent is-vertical box bottom">
         <div style="text-align: center"><label class="title">Заговоры и Заклинания</label></div>
         <div class="tile">
             <div class="tile is-parent">
