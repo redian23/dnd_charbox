@@ -12,7 +12,7 @@ import (
 const Version = "0.8.7 Beta build"
 
 func main() {
-	ProdStatus = false
+	ProdStatus = true
 	InitServerPathVars()
 	db.PingMongoDB()
 
