@@ -216,6 +216,16 @@ function writeToSkillsLabels(data) {
         document.getElementById("rd_Survival").checked=true;
     }
 
+    var radios = ["rd_Acrobatics_dbl_prof", "rd_Animal_Handling_dbl_prof","rd_Arcana_dbl_prof","rd_Athletics_dbl_prof",
+        "rd_Deception_dbl_prof","rd_History_dbl_prof","rd_Insight_dbl_prof","rd_Intimidation_dbl_prof",
+        "rd_Investigation_dbl_prof","rd_Medicine_dbl_prof","rd_Nature_dbl_prof","rd_Perception_dbl_prof",
+        "rd_Performance_dbl_prof","rd_Persuasion_dbl_prof", "rd_Religion_dbl_prof",
+        "rd_SleightofHand_dbl_prof", "rd_Stealth_dbl_prof", "rd_Survival_dbl_prof"];
+
+    for (var i = 0; i < radios.length; i++) {
+        document.getElementById(radios[i]).checked=false;
+    }
+
     if (skills["acrobatics"]["double_proficiency"] === true){
         document.getElementById("rd_Acrobatics_dbl_prof").checked=true;
     }
