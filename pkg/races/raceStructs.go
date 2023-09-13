@@ -41,7 +41,6 @@ type RacesBSON struct {
 	MinWeight  int                `json:"min_weight"`
 	MaxWeight  int                `json:"max_weight,omitempty"`
 	BodySize   string             `json:"body_size"`
-	Speed      int                `json:"speed"`
 	Langs      []string           `json:"langs"`
 	RaceSkill  skillsInDB         `json:"race_skill"`
 	Names      names              `bson:"names"`
@@ -89,6 +88,7 @@ type Type struct {
 	TypeRaceNameRu string        `json:"type_race_name_ru"`
 	StatsUp        StatsUp       `json:"stats_up"`
 	RaceAbilities  []raceAbility `bson:"raceAbilities"`
+	Speed          int           `json:"speed"`
 }
 type names struct {
 	Man   []string `json:"man"`

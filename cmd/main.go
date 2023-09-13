@@ -9,15 +9,14 @@ import (
 	"strings"
 )
 
-const Version = "0.8.6 Beta build"
+const Version = "0.8.7 Beta build"
 
 func main() {
-	ProdStatus = true
+	ProdStatus = false
 	InitServerPathVars()
 	db.PingMongoDB()
 
 	router := gin.Default()
-
 	// api method
 	v1 := router.Group("api/v1/")
 	{

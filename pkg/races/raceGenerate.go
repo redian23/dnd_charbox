@@ -31,6 +31,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName
 			raceTypeRu = race.Type[rollNum].TypeRaceNameRu
+			raceSpeed = race.Type[rollNum].Speed
 
 			maxAge := (race.MaxAge * 75) / 100
 			raceAge, _ = random.IntRange(race.MinAge, maxAge)
@@ -42,7 +43,6 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			raceWeightLb = (raceWeight * 220) / 100
 
 			raceBodySize = race.BodySize
-			raceSpeed = race.Speed
 
 			genders := [2]string{"Мужской", "Женский"} //шах и мат феминистки
 			count, _ := random.IntRange(0, 1)
