@@ -1,5 +1,7 @@
 package classes
 
+import "pregen/pkg/spells"
+
 var ClassNameGlobal string
 
 func GenerateClass(classNameRU string) *ClassAnswer {
@@ -30,5 +32,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		Armor:          setArmor(classNameRU),
 		Weapon:         setWeapons(),
 		Initiative:     setInitiative(),
+		SpellsLVL0:     spells.GetSpellsZeroLevelForClass(classNameRU, 3),
+		SpellsLVL1:     nil,
 	}
 }

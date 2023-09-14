@@ -4,7 +4,6 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type SpellsBSON struct {
 	ID          primitive.ObjectID `bson:"_id"`
-	Archetypes  []interface{}      `json:"archetypes"`
 	Classes     []string           `json:"classes"`
 	Components  string             `json:"components"`
 	Description string             `json:"description"`
@@ -14,5 +13,10 @@ type SpellsBSON struct {
 	Source      string             `json:"source"`
 	SpellName   string             `json:"spellName"`
 	SpellNameRu string             `json:"spellNameRu"`
-	Type        string             `json:"type"`
+	SpellData   SpellData          `bson:"spellData"`
+}
+
+type SpellData struct {
+	Level string `json:"level"`
+	Type  string `json:"type"`
 }

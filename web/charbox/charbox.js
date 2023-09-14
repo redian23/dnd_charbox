@@ -65,6 +65,7 @@ async function WriteAllLabels(data) {
     await writeClassEquipmentLabels(data)
     await writeArmorLabels(data)
     await writeWeaponLabels(data)
+    await writeSpellsLabels(data)
 }
 
 function writeToAbilitiesLabels(data) {
@@ -128,6 +129,7 @@ function writeToSaveThrowsLabels(data) {
 }
 
 function writeToSkillsLabels(data) {
+    //ПЕРЕДЕЛАТЬ *Звуки непереводимой смеси мата и айтишных терминов*
     let skills =  JSON.parse(data)["skills"];
     console.log(skills)
     //обнуление радио
@@ -460,6 +462,23 @@ fileInput.onchange = () => {
         const fileName = document.querySelector('#file-js .file-name');
         fileName.textContent = fileInput.files[0].name;
     }
+}
+
+function writeSpellsLabels(data) {
+    document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
+    let spells_0_lvl = JSON.parse(data)["class"]["spells_lvl_0"];
+    let spells_1_lvl = JSON.parse(data)["class"]["spells_lvl_1"];
+
+console.log(spells_0_lvl)
+    if (spells_0_lvl === null){
+        document.getElementById("lbl_spells_zero_lvl").innerHTML = "Не владеет заговорами"
+    }else {
+        for(let i = 0; i < spells_0_lvl.length; i++) {
+            document.getElementById("lbl_spells_zero_lvl").innerHTML += "* " + spells_0_lvl[i] + "</br>"
+        }
+    }
+
+    document.getElementById("lbl_spells_one_lvl").innerHTML = "В разработке ..."
 }
 
 function showUploadPage() {

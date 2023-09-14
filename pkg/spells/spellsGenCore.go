@@ -2,13 +2,12 @@ package spells
 
 import (
 	"context"
-	"fmt"
 	"pregen/pkg/db"
 )
 
-func GetSpellsFormDB() []SpellsBSON {
+func GetSpellsFormDB(collName string) []SpellsBSON {
 	var results []SpellsBSON
-	var cursor = db.ReadFromDB("spells")
+	var cursor = db.ReadFromDB(collName)
 
 	if err := cursor.All(context.TODO(), &results); err != nil {
 		panic(err)
@@ -16,14 +15,14 @@ func GetSpellsFormDB() []SpellsBSON {
 	return results
 }
 
-func GetSpellsForClass(classNameRu string, count int) map[string]string {
-	spells := GetSpellsFormDB()
+func GetSpellsZeroLevelForClass(classNameRu string, count int) []string {
+	spells := GetSpellsFormDB("spells_zero_lvl")
 	var spellList = make(map[string]string)
 	var spellAnswer []string
 	for _, spell := range spells {
 		for _, clas := range spell.Classes {
 			if clas == classNameRu {
-				spellList[spell.SpellNameRu] = spell.SpellNameRu
+				spellList[spell.SpellNameRu] = spell.SpellNameRu + " [" + spell.SpellName + "]"
 			}
 		}
 	}
@@ -36,6 +35,5 @@ func GetSpellsForClass(classNameRu string, count int) map[string]string {
 			break
 		}
 	}
-	fmt.Println(spellAnswer)
-	return spellList
+	return spellAnswer
 }

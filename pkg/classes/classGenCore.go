@@ -114,7 +114,6 @@ func extractStats(abil Ability) []string {
 }
 
 func statAnalyze(needClass string) (string, string, Ability) {
-	//пепписать без гото
 	var name, nameRu string
 	var abilities Ability
 	for {

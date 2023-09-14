@@ -18,6 +18,8 @@ type ClassAnswer struct {
 	Armor            []ArmorAnswer  `json:"armor"`
 	Weapon           []WeaponAnswer `json:"weapon"`
 	Initiative       string         `json:"initiative"`
+	SpellsLVL0       []string       `json:"spells_lvl_0"`
+	SpellsLVL1       []string       `json:"spells_lvl_1"`
 }
 
 type Proficiencies struct {
@@ -72,6 +74,7 @@ type ClassesBSON []struct {
 	Proficiencies  Proficiencies      `json:"proficiencies"`
 	PicksEquipment equipPicks         `bson:"equipPicks"`
 	BasicEquipment equipBasic         `bson:"equipBasic"`
+	Spells         Spells             `bson:"spells"`
 }
 
 type hits struct {
@@ -98,4 +101,10 @@ type ClassWriteToBD []struct {
 	ClassName   string   `json:"className"`
 	ClassNameRU string   `json:"classNameRU"`
 	Background  []string `json:"background"`
+}
+
+type Spells []struct {
+	Level string   `json:"level"`
+	List  []string `json:"list"`
+	Count int      `json:"count"`
 }
