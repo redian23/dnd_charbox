@@ -11,7 +11,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 
 	className, _, classAbility := statAnalyze(classNameRU)
 	ClassNameGlobal = className
-
+	spellCount := getClassZeroSpellCount()
 	modif := setModifiersForClass(classAbility)
 
 	return &ClassAnswer{
@@ -32,7 +32,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		Armor:          setArmor(classNameRU),
 		Weapon:         setWeapons(),
 		Initiative:     setInitiative(),
-		SpellsLVL0:     spells.GetSpellsZeroLevelForClass(classNameRU, 3),
+		SpellsLVL0:     spells.GetSpellsZeroLevelForClass(classNameRU, spellCount),
 		SpellsLVL1:     nil,
 	}
 }

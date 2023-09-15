@@ -507,6 +507,23 @@ func setInitiative() string {
 	return "D20 + мод_ЛОВ"
 }
 
+func getClassZeroSpellCount() int {
+	var spellList Spells
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			spellList = char.Spells
+		}
+	}
+
+	var spellCount int
+	for _, sp := range spellList {
+		if sp.Level == "Заговор" {
+			spellCount = sp.Count
+		}
+	}
+	return spellCount
+}
+
 func remove(s []int, i int) []int {
 	s[i] = s[len(s)-1]
 	return s[:len(s)-1]
