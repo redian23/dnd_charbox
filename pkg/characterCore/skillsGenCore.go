@@ -34,6 +34,7 @@ type Skill struct {
 	ModifierValue     int    `json:"modifier_value"`
 	Proficiency       bool   `json:"proficiency"`
 	DoubleProficiency bool   `json:"double_proficiency"`
+	ProfLSS           int    `json:"prof_lss"`
 }
 
 func SetSkillsForCharacter() Skills {
@@ -120,57 +121,75 @@ func setSkillProficiency(skillMap map[int]string, sk Skills) Skills {
 		switch profSkill {
 		case sk.Athletics.SkillName:
 			sk.Athletics.Proficiency = true
+			sk.Athletics.ProfLSS = 1
 			sk.Athletics.ModifierValue = sk.Athletics.ModifierValue + 2
 		case sk.Acrobatics.SkillName:
 			sk.Acrobatics.Proficiency = true
+			sk.Acrobatics.ProfLSS = 1
 			sk.Acrobatics.ModifierValue = sk.Acrobatics.ModifierValue + 2
 		case sk.SleightOfHand.SkillName:
 			sk.SleightOfHand.Proficiency = true
+			sk.SleightOfHand.ProfLSS = 1
 			sk.SleightOfHand.ModifierValue = sk.SleightOfHand.ModifierValue + 2
 		case sk.Stealth.SkillName:
 			sk.Stealth.Proficiency = true
+			sk.Stealth.ProfLSS = 1
 			sk.Stealth.ModifierValue = sk.Stealth.ModifierValue + 2
 		case sk.Arcana.SkillName:
 			sk.Arcana.Proficiency = true
+			sk.Arcana.ProfLSS = 1
 			sk.Arcana.ModifierValue = sk.Arcana.ModifierValue + 2
 		case sk.History.SkillName:
 			sk.History.Proficiency = true
+			sk.History.ProfLSS = 1
 			sk.History.ModifierValue = sk.History.ModifierValue + 2
 		case sk.Investigation.SkillName:
 			sk.Investigation.Proficiency = true
+			sk.Investigation.ProfLSS = 1
 			sk.Investigation.ModifierValue = sk.Investigation.ModifierValue + 2
 		case sk.Nature.SkillName:
 			sk.Nature.Proficiency = true
+			sk.Nature.ProfLSS = 1
 			sk.Nature.ModifierValue = sk.Nature.ModifierValue + 2
 		case sk.Religion.SkillName:
 			sk.Religion.Proficiency = true
+			sk.Religion.ProfLSS = 1
 			sk.Religion.ModifierValue = sk.Religion.ModifierValue + 2
 		case sk.AnimalHandling.SkillName:
 			sk.AnimalHandling.Proficiency = true
+			sk.AnimalHandling.ProfLSS = 1
 			sk.AnimalHandling.ModifierValue = sk.AnimalHandling.ModifierValue + 2
 		case sk.Insight.SkillName:
 			sk.Insight.Proficiency = true
+			sk.Insight.ProfLSS = 1
 			sk.Insight.ModifierValue = sk.Insight.ModifierValue + 2
 		case sk.Medicine.SkillName:
 			sk.Medicine.Proficiency = true
+			sk.Medicine.ProfLSS = 1
 			sk.Medicine.ModifierValue = sk.Medicine.ModifierValue + 2
 		case sk.Perception.SkillName:
 			sk.Perception.Proficiency = true
+			sk.Perception.ProfLSS = 1
 			sk.Perception.ModifierValue = sk.Perception.ModifierValue + 2
 		case sk.Survival.SkillName:
 			sk.Survival.Proficiency = true
+			sk.Survival.ProfLSS = 1
 			sk.Survival.ModifierValue = sk.Survival.ModifierValue + 2
 		case sk.Deception.SkillName:
 			sk.Deception.Proficiency = true
+			sk.Deception.ProfLSS = 1
 			sk.Deception.ModifierValue = sk.Deception.ModifierValue + 2
 		case sk.Intimidation.SkillName:
 			sk.Intimidation.Proficiency = true
+			sk.Intimidation.ProfLSS = 1
 			sk.Intimidation.ModifierValue = sk.Intimidation.ModifierValue + 2
 		case sk.Performance.SkillName:
 			sk.Performance.Proficiency = true
+			sk.Performance.ProfLSS = 1
 			sk.Performance.ModifierValue = sk.Performance.ModifierValue + 2
 		case sk.Persuasion.SkillName:
 			sk.Persuasion.Proficiency = true
+			sk.Persuasion.ProfLSS = 1
 			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + 2
 		}
 	}
@@ -183,40 +202,58 @@ func setDoubleSkillProficiency(dblMap map[string]string, sk Skills) Skills {
 		switch dblProfSkill {
 		case sk.Athletics.SkillName:
 			sk.Athletics.DoubleProficiency = true
+			sk.Athletics.ProfLSS = 2
 		case sk.Acrobatics.SkillName:
 			sk.Acrobatics.DoubleProficiency = true
+			sk.Acrobatics.ProfLSS = 2
 		case sk.SleightOfHand.SkillName:
 			sk.SleightOfHand.DoubleProficiency = true
+			sk.SleightOfHand.ProfLSS = 2
 		case sk.Stealth.SkillName:
 			sk.Stealth.DoubleProficiency = true
+			sk.Stealth.ProfLSS = 2
 		case sk.Arcana.SkillName:
 			sk.Arcana.DoubleProficiency = true
+			sk.Arcana.ProfLSS = 2
 		case sk.History.SkillName:
 			sk.History.DoubleProficiency = true
+			sk.History.ProfLSS = 2
 		case sk.Investigation.SkillName:
 			sk.Investigation.DoubleProficiency = true
+			sk.Investigation.ProfLSS = 2
 		case sk.Nature.SkillName:
 			sk.Nature.DoubleProficiency = true
+			sk.Nature.ProfLSS = 2
 		case sk.Religion.SkillName:
 			sk.Religion.DoubleProficiency = true
+			sk.Religion.ProfLSS = 2
 		case sk.AnimalHandling.SkillName:
 			sk.AnimalHandling.DoubleProficiency = true
+			sk.AnimalHandling.ProfLSS = 2
 		case sk.Insight.SkillName:
 			sk.Insight.DoubleProficiency = true
+			sk.Insight.ProfLSS = 2
 		case sk.Medicine.SkillName:
 			sk.Medicine.DoubleProficiency = true
+			sk.Medicine.ProfLSS = 2
 		case sk.Perception.SkillName:
 			sk.Perception.DoubleProficiency = true
+			sk.Perception.ProfLSS = 2
 		case sk.Survival.SkillName:
 			sk.Survival.DoubleProficiency = true
+			sk.Survival.ProfLSS = 2
 		case sk.Deception.SkillName:
 			sk.Deception.DoubleProficiency = true
+			sk.Deception.ProfLSS = 2
 		case sk.Intimidation.SkillName:
 			sk.Intimidation.DoubleProficiency = true
+			sk.Intimidation.ProfLSS = 2
 		case sk.Performance.SkillName:
 			sk.Performance.DoubleProficiency = true
+			sk.Performance.ProfLSS = 2
 		case sk.Persuasion.SkillName:
 			sk.Persuasion.DoubleProficiency = true
+			sk.Persuasion.ProfLSS = 2
 		}
 	}
 	return sk
