@@ -11,6 +11,8 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 
 	className, _, classAbility := statAnalyze(classNameRU)
 	ClassNameGlobal = className
+
+	classSkills, _ := setClassSkills()
 	spellCount := getClassZeroSpellCount()
 	modif := setModifiersForClass(classAbility)
 
@@ -22,7 +24,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		Inspiration:      true,
 		Proficiencies:    setProficiencies(),
 		ProficiencyBonus: 2,
-		SkillsOfClass:    setClassSkills(),
+		SkillsOfClass:    classSkills,
 		SavingThrows:     setSaveThrowsForClass(modif),
 		Hits: hits{
 			HitDice:  setHitDice(),

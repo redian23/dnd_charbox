@@ -6,21 +6,22 @@ import (
 )
 
 var (
-	backgroundNameRu       string
-	advice                 string
-	personalization        string
-	description            string
-	backgroundType         string
-	characterTrait         string
-	worldviewRu            string
-	ideal                  string
-	affection              string
-	weakness               string
-	gold                   int
-	masteryOfTools         []string
-	bgAbility              backgroundAbility
-	equipmentList          []string
-	BackgroundSkillMastery []string
+	backgroundNameRu     string
+	advice               string
+	personalization      string
+	description          string
+	backgroundType       string
+	characterTrait       string
+	worldviewRu          string
+	ideal                string
+	affection            string
+	weakness             string
+	gold                 int
+	masteryOfTools       []string
+	bgAbility            backgroundAbility
+	equipmentList        []string
+	BackgroundSkills     []string
+	BackgroundSkillCount int
 )
 
 func GenerateBackground() *BackgroundAnswer {
@@ -60,7 +61,7 @@ func GenerateBackground() *BackgroundAnswer {
 			rollNum, _ = random.IntRange(0, len(background.Weakness.Value))
 			weakness = background.Weakness.Value[rollNum]
 
-			BackgroundSkillMastery = background.SkillMastery
+			BackgroundSkills = background.SkillMastery
 			bgAbility = background.BackgroundAbility
 			masteryOfTools = background.MasteryOfTools
 			equipmentList = background.Equipment
@@ -75,7 +76,7 @@ func GenerateBackground() *BackgroundAnswer {
 		Description:       description,
 		Advice:            advice,
 		Personalization:   personalization,
-		SkillMastery:      BackgroundSkillMastery,
+		SkillMastery:      BackgroundSkills,
 		CharacterTrait:    characterTrait,
 		Ideal:             ideal,
 		Worldview:         worldviewRu,

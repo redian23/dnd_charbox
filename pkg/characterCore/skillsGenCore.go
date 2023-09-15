@@ -44,10 +44,8 @@ func SetSkillsForCharacter() Skills {
 	sk = setSkillsNames(sk)
 	sk = setSkillModifierValue(sk)
 
-	skillMap, dblProfMap := classes.GetAnalyzedSkillSlice(backgrounds.BackgroundSkillMastery)
-	sk = setSkillProficiency(skillMap, sk)
-
-	sk = setDoubleSkillProficiency(dblProfMap, sk)
+	skillList := classes.GetAnalyzedSkillSlice(backgrounds.BackgroundSkills)
+	sk = setSkillProficiency(skillList, sk)
 	return sk
 }
 
@@ -116,7 +114,7 @@ func setSkillModifierValue(sk Skills) Skills {
 	return sk
 }
 
-func setSkillProficiency(skillMap map[int]string, sk Skills) Skills {
+func setSkillProficiency(skillMap []string, sk Skills) Skills {
 	for _, profSkill := range skillMap {
 		switch profSkill {
 		case sk.Athletics.SkillName:
@@ -197,6 +195,7 @@ func setSkillProficiency(skillMap map[int]string, sk Skills) Skills {
 	return sk
 }
 
+// Useless & Defected
 func setDoubleSkillProficiency(dblMap map[string]string, sk Skills) Skills {
 	for _, dblProfSkill := range dblMap {
 		switch dblProfSkill {

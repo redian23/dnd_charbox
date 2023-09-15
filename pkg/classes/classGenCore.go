@@ -16,7 +16,6 @@ var (
 	armorData      []ArmorAnswer
 	weaponData     []WeaponAnswer
 	equipmentList  []Variants
-	classSkills    []string
 	ModifierGlobal Modifier
 )
 
@@ -335,11 +334,9 @@ func setArmor(className string) []ArmorAnswer {
 	return armorAnsList
 }
 
-func setClassSkills() []string {
-	var skills []string
+func setClassSkills() ([]string, int) {
 	var skillsArray []string
 	var randSkillCount int
-	skillMap := make(map[int]string)
 
 	for _, char := range chars {
 		if char.ClassName == ClassNameGlobal {
@@ -348,72 +345,37 @@ func setClassSkills() []string {
 		}
 	}
 
-	for i, skill := range skillsArray {
-		skillMap[i] = skill
-	}
-
-	var iter int
-	for _, s2 := range skillMap {
-		skills = append(skills, s2)
-		iter++
-		if iter >= randSkillCount {
-			break
-		}
-	}
-	classSkills = skills
-	return skills
+	return skillsArray, randSkillCount
 }
 
-func GetAnalyzedSkillSlice(backgroundSkills []string) (map[int]string, map[string]string) {
-	var skillMap = make(map[int]string)
-	var doubleProfSkillMap = make(map[string]string)
+func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
+	var skillMap = make(map[string]string)
+	var skills []string
+	var backgroundSkillsCount = 2
 
-	raceSkill := races.GetRaceSkill()
-	classSkills = setClassSkills()
+	raceSkills, raceSkillsCount := races.GetRaceSkill()
+	classSkills, classSkillsCount := setClassSkills()
 
-	for {
-		if reflect.DeepEqual(classSkills, backgroundSkills) == true {
-			classSkills = setClassSkills()
-		} else {
+	totalSkillCount := classSkillsCount + raceSkillsCount + backgroundSkillsCount
+
+	allSkillsSliceTmp := append(backgroundSkills, classSkills...)
+	allSkillsSlice := append(allSkillsSliceTmp, raceSkills...)
+
+	for _, skillName := range allSkillsSlice {
+		skillMap[skillName] = skillName
+	} //да я так удаляю дубликаты навыков
+
+	var iter int
+	for _, skl := range skillMap {
+		iter++
+		skills = append(skills, skl)
+		if iter >= totalSkillCount {
 			break
 		}
 	}
-
-	for _, classSkl := range classSkills {
-		for _, backgroundSkl := range backgroundSkills {
-			if classSkl == backgroundSkl {
-				classSkills = setClassSkills()
-			}
-		}
-	}
-	for i, classSkl1 := range classSkills {
-		for j, classSkl2 := range classSkills {
-			if classSkl1 == classSkl2 && i != j {
-				classSkills = setClassSkills()
-			}
-		}
-	}
-
-	var skillsSliceTmp = append(backgroundSkills, classSkills...)
-	var skillsSlice = append(skillsSliceTmp, raceSkill...)
-
-	for i, skillName := range skillsSlice {
-		skillMap[i] = skillName
-	}
-	//fmt.Println("back-", backgroundSkills, "\nclass-", classSkills, "\nrace-", raceSkill)
-	//fmt.Println(skillMap)
-
-	for k, v := range skillMap {
-		for i, s := range skillMap {
-			if i != k && v == s {
-				doubleProfSkillMap[s] = s
-				break
-			}
-		}
-	}
-	//fmt.Println(doubleProfSkillMap)
+	//fmt.Println(skills)
 	//fmt.Println("----------------------------------------------------")
-	return skillMap, doubleProfSkillMap
+	return skills
 }
 
 func setWeapons() []WeaponAnswer {
