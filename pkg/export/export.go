@@ -103,7 +103,7 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Prof:      Prof{Value: Value{getProfs(lc)}},
 			Traits: Traits{Value: Value{Data: "<strong>Умения от предыстории:</strong> " + lc.Background.BackgroundAbility.AbilityName +
 				"- " + lc.Background.BackgroundAbility.Description +
-				"<p><strong>Умения от расы:</strong> " + gerRaceAbil(lc) + "</p>"}},
+				"<p><strong>Умения от расы:</strong> " + getRaceAbil(lc) + "</p>"}},
 			Personality: Personality{Value: Value{Data: "Черта от расы: " + lc.Background.CharacterTrait}},
 			Ideals:      Ideals{Value: Value{Data: lc.Background.Ideal}},
 			Bonds:       Bonds{Value: Value{Data: lc.Background.Affection}},
@@ -111,6 +111,8 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Background: Background{Value: Value{Data: lc.Background.Personalization + " <p>" +
 				lc.Background.Description + "</p>" +
 				"<strong>Совет:</strong> " + lc.Background.Advice}},
+			SpellsLevel0: SpellsLevel0{Value: Value{Data: getZeroLvlSpells(lc)}},
+			SpellsLevel1: SpellsLevel1{Value: Value{Data: ""}},
 		},
 		Avatar: Avatar{
 			Jpeg: "https://charbox.swn.by/imgs/" + lc.Race.RacePhoto.Path + lc.Race.RacePhoto.FileName,
@@ -187,7 +189,7 @@ func getWeaponList(lc characterCore.Character) []WeaponsList {
 	var wp WeaponsList
 
 	for _, weapon := range lc.Class.Weapon {
-		wp.Name.Value = weapon.WeaponName + " ( кол-во:" + strconv.Itoa(weapon.Count) + " )"
+		wp.Name.Value = weapon.WeaponName
 		wp.Mod.Value = strconv.Itoa(lc.Class.Modifier.Strength)
 		wp.Dmg.Value = weapon.Damage
 		wplist = append(wplist, wp)
@@ -195,7 +197,7 @@ func getWeaponList(lc characterCore.Character) []WeaponsList {
 	return wplist
 }
 
-func gerRaceAbil(lc characterCore.Character) string {
+func getRaceAbil(lc characterCore.Character) string {
 	var raseAbilities string
 	for i, ability := range lc.Race.RaceAbilities {
 		if i == len(lc.Race.RaceAbilities)-1 {
@@ -208,4 +210,18 @@ func gerRaceAbil(lc characterCore.Character) string {
 		raseAbilities = "Нет"
 	}
 	return raseAbilities
+}
+
+func getZeroLvlSpells(lc characterCore.Character) string {
+	var zeroSpellList string
+
+	if len(lc.Class.SpellsLVL0) == 0 {
+		zeroSpellList = "Не владеет заговорами."
+		return zeroSpellList
+	}
+	for _, sp := range lc.Class.SpellsLVL0 {
+		zeroSpellList += "<p>" + sp + "</p>"
+
+	}
+	return zeroSpellList
 }

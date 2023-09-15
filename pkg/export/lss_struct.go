@@ -379,8 +379,8 @@ type Text struct {
 	Flaws        Flaws        `json:"flaws"`
 	Background   Background   `json:"background"`
 	Quests       Quests       `json:"quests"`
-	SpellsLevel1 SpellsLevel1 `json:"spells-level-1"`
 	SpellsLevel0 SpellsLevel0 `json:"spells-level-0"`
+	SpellsLevel1 SpellsLevel1 `json:"spells-level-1"`
 }
 
 type Gp struct {
