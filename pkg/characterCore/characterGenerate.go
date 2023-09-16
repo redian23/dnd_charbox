@@ -1,7 +1,6 @@
 package characterCore
 
 import (
-	"fmt"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/races"
@@ -35,7 +34,6 @@ func GetCharLangs() []string {
 	for _, race := range races.RaceData {
 		if race.RaceName == races.RaceNameGlobal {
 			raceLangs = race.RaceLanguages
-			fmt.Println(raceLangs)
 		}
 	}
 
