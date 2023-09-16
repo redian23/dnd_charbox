@@ -128,8 +128,8 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 func getProfs(lc characterCore.Character) string {
 	var profString string
 	var langs string
-	for i, lng := range lc.Race.Langs {
-		if i == len(lc.Race.Langs)-1 {
+	for i, lng := range lc.Langs {
+		if i == len(lc.Langs)-1 {
 			langs += lng
 			break
 		}

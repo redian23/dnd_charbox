@@ -6,22 +6,23 @@ import (
 )
 
 var (
-	backgroundNameRu     string
-	advice               string
-	personalization      string
-	description          string
-	backgroundType       string
-	characterTrait       string
-	worldviewRu          string
-	ideal                string
-	affection            string
-	weakness             string
-	gold                 int
-	masteryOfTools       []string
-	bgAbility            backgroundAbility
-	equipmentList        []string
-	BackgroundSkills     []string
-	BackgroundSkillCount int
+	backgroundNameRu       string
+	BackgroundNameRuGlobal string
+
+	advice           string
+	personalization  string
+	description      string
+	backgroundType   string
+	characterTrait   string
+	worldviewRu      string
+	ideal            string
+	affection        string
+	weakness         string
+	gold             int
+	masteryOfTools   []string
+	bgAbility        backgroundAbility
+	equipmentList    []string
+	BackgroundSkills []string
 )
 
 func GenerateBackground() *BackgroundAnswer {
@@ -32,6 +33,7 @@ func GenerateBackground() *BackgroundAnswer {
 		if background.BackgroundName == backgroundName {
 
 			backgroundNameRu = background.BackgroundNameRu
+			BackgroundNameRuGlobal = background.BackgroundNameRu
 			personalization = background.Personalization
 			advice = background.Advice
 			if background.Advice == "" {

@@ -14,24 +14,25 @@ var (
 	raceBodySize             string
 	raceGender               string
 	langs                    []string
-	darkvision               bool
 	raceAbil                 []raceAbility
 	firstName, resist        string
 )
 
 func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
-	raceData = getRacesFormDB()
-	rollNum, _ := random.IntRange(0, len(raceData))
+	RaceData = getRacesFormDB()
+	rollNum, _ := random.IntRange(0, len(RaceData))
 	var lastName string
 
-	for _, race := range raceData {
+	for _, race := range RaceData {
 		if race.RaceNameRu == raceNameRu {
-			raceNameGlobal = race.RaceName
+			RaceNameGlobal = race.RaceName
 
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName
 			raceTypeRu = race.Type[rollNum].TypeRaceNameRu
 			raceSpeed = race.Type[rollNum].Speed
+
+			RaceTypeGlobalRu = raceTypeRu
 
 			maxAge := (race.MaxAge * 75) / 100
 			raceAge, _ = random.IntRange(race.MinAge, maxAge)
@@ -62,23 +63,21 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			}
 
 			resist = race.Resist
-			langs = race.Langs
-
-			darkvision = race.Darkvision
 
 			for _, rType := range race.Type {
 				if raceTypeRu == rType.TypeRaceNameRu {
 					raceAbil = rType.RaceAbilities
 				}
 			}
+
 		}
 	}
 
 	return &RacesAnswer{
-		RaceName:      raceNameGlobal,
+		RaceName:      RaceNameGlobal,
 		RaceNameRu:    raceNameRu,
 		Gender:        raceGender,
-		RacePhoto:     setRacePhoto(raceNameGlobal, raceGender),
+		RacePhoto:     setRacePhoto(RaceNameGlobal, raceGender),
 		Type:          raceType,
 		TypeRu:        raceTypeRu,
 		Age:           raceAge,
@@ -94,9 +93,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 		FirstName:     firstName,
 		LastName:      lastName,
 		Speed:         raceSpeed,
-		Langs:         langs,
 		Resist:        resist,
-		Darkvision:    darkvision,
 		RaceAbilities: raceAbil,
 		Other: other{
 			DragonType:       setDragonType(raceTypeRu),

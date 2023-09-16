@@ -14,4 +14,5 @@ type Character struct {
 	Race          *races.RacesAnswer            `json:"race"`
 	Class         *classes.ClassAnswer          `json:"class"`
 	Skills        Skills                        `json:"skills"`
+	Langs         []string                      `json:"langs"`
 }

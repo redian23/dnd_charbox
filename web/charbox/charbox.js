@@ -288,6 +288,7 @@ function writeToSkillsLabels(data) {
 
 function writeOtherLabels(data) {
     document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
+    document.getElementById("lbl_languages").innerHTML =  JSON.parse(data)["langs"];
 
     let clas = JSON.parse(data)["class"]
     document.getElementById("lbl_initiative").innerHTML = clas["initiative"];
@@ -316,7 +317,7 @@ function writeBackgroundLabels(data) {
     document.getElementById("lbl_weakness").innerHTML = backgr["weakness"];
     document.getElementById("lbl_gold").innerHTML = backgr["gold"];
 
-    document.getElementById("lbl_background_ability").innerHTML = "<br> <strong>"+ backgr["background_ability"]["AbilityName"]+"</strong>"
+    document.getElementById("lbl_background_ability").innerHTML = "<strong>"+ backgr["background_ability"]["AbilityName"]+"</strong>"
         + " - " + backgr["background_ability"]["Description"];
 
     backgrEquip = backgr["equipment"]
@@ -346,7 +347,6 @@ function writeAppearanceLabels(data) {
     document.getElementById("lbl_bodySize").innerHTML =  race["body_size"];
 
     document.getElementById("lbl_speed").innerHTML =  race["speed"];
-    document.getElementById("lbl_languages").innerHTML =  race["langs"];
 
     document.getElementById("lbl_gender").innerHTML =  race["gender"];
     document.getElementById("lbl_age").innerHTML =  race["age"];

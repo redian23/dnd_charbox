@@ -11,9 +11,10 @@ import (
 )
 
 var (
-	raceData       []RacesBSON
-	raceNameGlobal string
-	RacePhotoPath  string
+	RaceData         []RacesBSON
+	RaceNameGlobal   string
+	RaceTypeGlobalRu string
+	RacePhotoPath    string
 )
 
 func readDirectory(path string) ([]string, []string) {
@@ -98,8 +99,8 @@ func getRacesFormDB() []RacesBSON {
 }
 
 func GetRaceAbilities() StatsUp {
-	for _, race := range raceData {
-		if race.RaceName == raceNameGlobal {
+	for _, race := range RaceData {
+		if race.RaceName == RaceNameGlobal {
 			for _, typppe := range race.Type {
 				return typppe.StatsUp
 			}
@@ -112,8 +113,8 @@ func GetRaceSkill() ([]string, int) {
 	var skillsArray []string
 	var randSkillCount int
 
-	for _, race := range raceData {
-		if race.RaceName == raceNameGlobal {
+	for _, race := range RaceData {
+		if race.RaceName == RaceNameGlobal {
 			skillsArray = race.RaceSkill.SkillsList
 			randSkillCount = race.RaceSkill.RandomCount
 		}

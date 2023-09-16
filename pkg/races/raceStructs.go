@@ -18,35 +18,32 @@ type RacesAnswer struct {
 	Eyes          string        `json:"eyes"`
 	Hair          string        `json:"hair"`
 	Speed         int           `json:"speed"`
-	Langs         []string      `json:"langs"`
 	RaceSkill     []string      `json:"race_skill"`
 	FirstName     string        `json:"first_name"`
 	LastName      string        `json:"last_name"`
 	Resist        string        `json:"resist"`
-	Darkvision    bool          `json:"darkvision"`
 	Other         other         `json:"other"`
 	RaceAbilities []raceAbility `json:"race_abilities"`
 	RacePhoto     racePhoto     `json:"race_photo"`
 }
 
 type RacesBSON struct {
-	ID         primitive.ObjectID `bson:"_id"`
-	RaceName   string             `json:"race_name"`
-	RaceNameRu string             `json:"race_name_ru"`
-	Type       []Type             `json:"type"`
-	MinAge     int                `json:"min_age"`
-	MaxAge     int                `json:"max_age"`
-	MinHeight  int                `json:"min_height"`
-	MaxHeight  int                `json:"max_height,omitempty"`
-	MinWeight  int                `json:"min_weight"`
-	MaxWeight  int                `json:"max_weight,omitempty"`
-	BodySize   string             `json:"body_size"`
-	Langs      []string           `json:"langs"`
-	RaceSkill  skillsInDB         `json:"race_skill"`
-	Names      names              `bson:"names"`
-	LastNames  []interface{}      `json:"last_names"`
-	Resist     string             `json:"resist"`
-	Darkvision bool               `json:"darkvision"`
+	ID            primitive.ObjectID `bson:"_id"`
+	RaceName      string             `json:"race_name"`
+	RaceNameRu    string             `json:"race_name_ru"`
+	Type          []Type             `json:"type"`
+	MinAge        int                `json:"min_age"`
+	MaxAge        int                `json:"max_age"`
+	MinHeight     int                `json:"min_height"`
+	MaxHeight     int                `json:"max_height,omitempty"`
+	MinWeight     int                `json:"min_weight"`
+	MaxWeight     int                `json:"max_weight,omitempty"`
+	BodySize      string             `json:"body_size"`
+	RaceLanguages []string           `bson:"langs"`
+	RaceSkill     skillsInDB         `json:"race_skill"`
+	Names         names              `bson:"names"`
+	LastNames     []interface{}      `json:"last_names"`
+	Resist        string             `json:"resist"`
 }
 type skillsInDB struct {
 	RandomCount int      `json:"random_count"`
