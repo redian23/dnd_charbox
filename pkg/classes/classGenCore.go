@@ -373,6 +373,7 @@ func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
 			break
 		}
 	}
+
 	//fmt.Println(skills)
 	//fmt.Println("----------------------------------------------------")
 	return skills

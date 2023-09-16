@@ -46,6 +46,20 @@ func SetSkillsForCharacter() Skills {
 
 	skillList := classes.GetAnalyzedSkillSlice(backgrounds.BackgroundSkills)
 	sk = setSkillProficiency(skillList, sk)
+
+	var doubleSkillProf []string
+	var iter int
+	if classes.ClassNameGlobal == "Rogue" {
+		for _, skl := range skillList {
+			iter++
+			doubleSkillProf = append(doubleSkillProf, skl)
+			if iter >= 2 {
+				break
+			}
+		}
+	}
+
+	sk = setDoubleSkillProficiency(doubleSkillProf, sk)
 	return sk
 }
 
@@ -196,7 +210,7 @@ func setSkillProficiency(skillMap []string, sk Skills) Skills {
 }
 
 // Useless & Defected
-func setDoubleSkillProficiency(dblMap map[string]string, sk Skills) Skills {
+func setDoubleSkillProficiency(dblMap []string, sk Skills) Skills {
 	for _, dblProfSkill := range dblMap {
 		switch dblProfSkill {
 		case sk.Athletics.SkillName:
