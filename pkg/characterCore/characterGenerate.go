@@ -43,7 +43,7 @@ func GetCharLangs() []string {
 	}
 	if backgrounds.BackgroundNameRuGlobal == "Отшельник" || backgrounds.BackgroundNameRuGlobal == "Благородный" ||
 		backgrounds.BackgroundNameRuGlobal == "Рыцарь" || backgrounds.BackgroundNameRuGlobal == "Гильдейский ремесленник" ||
-		backgrounds.BackgroundNameRuGlobal == "Чужестранец" {
+		backgrounds.BackgroundNameRuGlobal == "Чужеземец" {
 		addictionLangsCount += 1
 	}
 	if backgrounds.BackgroundNameRuGlobal == "Мудрец" || backgrounds.BackgroundNameRuGlobal == "Прислужник" {

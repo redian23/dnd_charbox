@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Version = "0.8.9.3 Beta build"
+const Version = "0.8.9.4 Beta build"
 
 func main() {
 	ProdStatus = true
