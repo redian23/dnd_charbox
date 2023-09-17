@@ -466,6 +466,7 @@ fileInput.onchange = () => {
 
 function writeSpellsLabels(data) {
     document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
+    document.getElementById("lbl_spells_one_lvl").innerHTML = ""
     let spells_0_lvl = JSON.parse(data)["zero_level_spells"];
     let spells_1_lvl = JSON.parse(data)["one_level_spells"];
 
