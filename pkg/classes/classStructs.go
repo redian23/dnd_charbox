@@ -18,8 +18,6 @@ type ClassAnswer struct {
 	Armor            []ArmorAnswer  `json:"armor"`
 	Weapon           []WeaponAnswer `json:"weapon"`
 	Initiative       string         `json:"initiative"`
-	SpellsLVL0       []string       `json:"spells_lvl_0"`
-	SpellsLVL1       []string       `json:"spells_lvl_1"`
 }
 
 type Proficiencies struct {

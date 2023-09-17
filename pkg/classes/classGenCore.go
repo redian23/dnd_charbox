@@ -238,6 +238,9 @@ func setHitCount(modBody int) int {
 		if char.ClassName == ClassNameGlobal {
 			hitCount = char.Hits.HitCount + modBody
 		}
+		if races.RaceTypeGlobalRu == "Холмовой Дворф" {
+			HitsCountGlobal += 1
+		}
 	}
 	return hitCount
 }
@@ -470,7 +473,7 @@ func setInitiative() string {
 	return "D20 + мод_ЛОВ"
 }
 
-func getClassZeroSpellCount() int {
+func GetClassZeroSpellCount() int {
 	var spellList Spells
 	for _, char := range chars {
 		if char.ClassName == ClassNameGlobal {
@@ -485,6 +488,61 @@ func getClassZeroSpellCount() int {
 		}
 	}
 	return spellCount
+}
+
+func GetClassOneSpells() Spells {
+	var spellList Spells
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			spellList = char.Spells
+		}
+	}
+
+	return spellList
+}
+
+func GetClassOneSpellCount() int {
+	var spellCount int
+	var spellList = GetClassOneSpells()
+	for _, sp := range spellList {
+		if sp.Level == "1 Уровень" {
+			spellCount = sp.Count
+			if spellCount == 99 &&
+				ClassNameGlobal == "Druid" || ClassNameGlobal == "Cleric" {
+				spellCount = ModifierGlobal.Wisdom
+			}
+			if spellCount == 99 && ClassNameGlobal == "Artificer" {
+				spellCount = ModifierGlobal.Intelligence
+			}
+		}
+	}
+	return spellCount
+}
+
+func GetClassOneSpellsList() []string {
+	var spellList Spells
+	var oneLevelSpells []string
+	for _, char := range chars {
+		if char.ClassName == ClassNameGlobal {
+			spellList = char.Spells
+		}
+	}
+
+	var classOneLvlSpellsCount = GetClassOneSpellCount()
+	var iter int
+	for _, spl := range spellList {
+		if spl.Level == "1 Уровень" {
+			for _, spellName := range spl.List {
+				oneLevelSpells = append(oneLevelSpells, spellName)
+				iter++
+				if iter >= classOneLvlSpellsCount {
+					break
+				}
+			}
+		}
+	}
+
+	return oneLevelSpells
 }
 
 func remove(s []int, i int) []int {

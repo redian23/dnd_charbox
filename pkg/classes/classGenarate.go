@@ -1,8 +1,10 @@
 package classes
 
-import "pregen/pkg/spells"
-
-var ClassNameGlobal string
+var (
+	HitsCountGlobal   int
+	ClassNameGlobal   string
+	ClassNameGlobalRu string
+)
 
 func GenerateClass(classNameRU string) *ClassAnswer {
 	chars = GetClassCharactsFormDB()
@@ -11,10 +13,11 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 
 	className, _, classAbility := statAnalyze(classNameRU)
 	ClassNameGlobal = className
-
+	ClassNameGlobalRu = classNameRU
 	classSkills, _ := setClassSkills()
-	spellCount := getClassZeroSpellCount()
 	modif := setModifiersForClass(classAbility)
+
+	HitsCountGlobal = setHitCount(modif.BodyDifficulty)
 
 	return &ClassAnswer{
 		ClassName:        className,
@@ -28,13 +31,11 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		SavingThrows:     setSaveThrowsForClass(modif),
 		Hits: hits{
 			HitDice:  setHitDice(),
-			HitCount: setHitCount(modif.BodyDifficulty),
+			HitCount: HitsCountGlobal,
 		},
 		ClassEquipment: setClassEquipmentList(),
 		Armor:          setArmor(classNameRU),
 		Weapon:         setWeapons(),
 		Initiative:     setInitiative(),
-		SpellsLVL0:     spells.GetSpellsZeroLevelForClass(classNameRU, spellCount),
-		SpellsLVL1:     nil,
 	}
 }

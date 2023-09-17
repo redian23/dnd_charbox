@@ -131,7 +131,7 @@ function writeToSaveThrowsLabels(data) {
 function writeToSkillsLabels(data) {
     //ПЕРЕДЕЛАТЬ *Звуки непереводимой смеси мата и айтишных терминов*
     let skills =  JSON.parse(data)["skills"];
-    console.log(skills)
+
     //обнуление радио
     var radios = ["rd_Acrobatics", "rd_Animal_Handling","rd_Arcana","rd_Athletics",
         "rd_Deception","rd_History","rd_Insight","rd_Intimidation",
@@ -466,10 +466,11 @@ fileInput.onchange = () => {
 
 function writeSpellsLabels(data) {
     document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
-    let spells_0_lvl = JSON.parse(data)["class"]["spells_lvl_0"];
-    let spells_1_lvl = JSON.parse(data)["class"]["spells_lvl_1"];
+    let spells_0_lvl = JSON.parse(data)["zero_level_spells"];
+    let spells_1_lvl = JSON.parse(data)["one_level_spells"];
 
-console.log(spells_0_lvl)
+    console.log(spells_0_lvl)
+    console.log(spells_1_lvl)
     if (spells_0_lvl === null){
         document.getElementById("lbl_spells_zero_lvl").innerHTML = "Не владеет заговорами"
     }else {
@@ -477,8 +478,13 @@ console.log(spells_0_lvl)
             document.getElementById("lbl_spells_zero_lvl").innerHTML += "* " + spells_0_lvl[i] + "</br>"
         }
     }
-
-    document.getElementById("lbl_spells_one_lvl").innerHTML = "В разработке ..."
+    if (spells_1_lvl === null){
+        document.getElementById("lbl_spells_one_lvl").innerHTML = "Не владеет заклинаниями"
+    }else {
+        for(let i = 0; i < spells_1_lvl.length; i++) {
+            document.getElementById("lbl_spells_one_lvl").innerHTML += "* " + spells_1_lvl[i] + "</br>"
+        }
+    }
 }
 
 function showUploadPage() {

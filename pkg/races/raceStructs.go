@@ -81,11 +81,13 @@ type StatsUp struct {
 	Charisma       int `json:"charisma"`
 }
 type Type struct {
-	TypeRaceName   string        `json:"type_race_name"`
-	TypeRaceNameRu string        `json:"type_race_name_ru"`
-	StatsUp        StatsUp       `json:"stats_up"`
-	RaceAbilities  []raceAbility `bson:"raceAbilities"`
-	Speed          int           `json:"speed"`
+	TypeRaceName      string              `json:"type_race_name"`
+	TypeRaceNameRu    string              `json:"type_race_name_ru"`
+	StatsUp           StatsUp             `json:"stats_up"`
+	RaceAbilities     []raceAbility       `bson:"raceAbilities"`
+	RaceZeroLvLSpells []RaceZeroLvLSpells `bson:"raceZeroLvLSpells"`
+	RaceOneLvLSpells  []RaceOneLvLSpells  `bson:"raceOneLvLSpells"`
+	Speed             int                 `json:"speed"`
 }
 type names struct {
 	Man   []string `json:"man"`
@@ -100,4 +102,17 @@ type other struct {
 type racePhoto struct {
 	Path     string `json:"path"`
 	FileName string `json:"file_name"`
+}
+
+type RaceAbilities struct {
+	AbilityName string `json:"ability_name"`
+	Description string `json:"description"`
+}
+type RaceZeroLvLSpells struct {
+	SpellName                string `json:"spellName"`
+	BasicSpellCharacteristic string `json:"basicSpellCharacteristic"`
+}
+type RaceOneLvLSpells struct {
+	SpellName                string `json:"spellName"`
+	BasicSpellCharacteristic string `json:"basicSpellCharacteristic"`
 }

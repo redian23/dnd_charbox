@@ -4,18 +4,21 @@ import (
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/races"
+	"pregen/pkg/spells"
 )
 
 func GenerateFullCharacter(className, raceName string) *Character {
 	return &Character{
-		Level:         1,
-		Experience:    0,
-		Race:          races.GenerateRaceForCharacter(raceName),
-		Class:         classes.GenerateClass(className),
-		Background:    backgrounds.GenerateBackground(),
-		Skills:        SetSkillsForCharacter(),
-		PassiveWisdom: PassWisdom,
-		Langs:         GetCharLangs(),
+		Level:           1,
+		Experience:      0,
+		Race:            races.GenerateRaceForCharacter(raceName),
+		Class:           classes.GenerateClass(className),
+		Background:      backgrounds.GenerateBackground(),
+		Skills:          SetSkillsForCharacter(),
+		PassiveWisdom:   PassWisdom,
+		Langs:           GetCharLangs(),
+		ZeroLevelSpells: spells.GetSpellsZeroLevelForCharacter(),
+		OneLevelSpells:  spells.GetSpellsOneLevelForCharacter(),
 	}
 }
 

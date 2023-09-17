@@ -215,11 +215,11 @@ func getRaceAbil(lc characterCore.Character) string {
 func getZeroLvlSpells(lc characterCore.Character) string {
 	var zeroSpellList string
 
-	if len(lc.Class.SpellsLVL0) == 0 {
+	if len(lc.ZeroLevelSpells) == 0 {
 		zeroSpellList = "Не владеет заговорами."
 		return zeroSpellList
 	}
-	for _, sp := range lc.Class.SpellsLVL0 {
+	for _, sp := range lc.ZeroLevelSpells {
 		zeroSpellList += "<p>" + sp + "</p>"
 
 	}

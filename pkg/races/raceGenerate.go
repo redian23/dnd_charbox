@@ -69,7 +69,6 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 					raceAbil = rType.RaceAbilities
 				}
 			}
-
 		}
 	}
 
