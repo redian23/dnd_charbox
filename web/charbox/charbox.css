@@ -156,3 +156,8 @@ input[type="radio"]:checked {
 .section.is-large.faq_section {
     padding-top: 4rem;
 }
+
+input.tce {
+    width: 40px;
+    height: 40px;
+}

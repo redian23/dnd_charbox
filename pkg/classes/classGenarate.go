@@ -24,7 +24,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		ClassNameRU:      classNameRU,
 		Ability:          classAbility,
 		Modifier:         modif,
-		Inspiration:      true,
+		Inspiration:      false,
 		Proficiencies:    setProficiencies(),
 		ProficiencyBonus: 2,
 		SkillsOfClass:    classSkills,
@@ -37,5 +37,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		Armor:          setArmor(classNameRU),
 		Weapon:         setWeapons(),
 		Initiative:     setInitiative(),
+		SpellUsing:     getClassSpellBasicCharacteristic(),
+		ClassAbilities: getClassAbilities(),
 	}
 }

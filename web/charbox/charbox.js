@@ -59,11 +59,13 @@ async function WriteAllLabels(data) {
     await writeBackgroundLabels(data)
     await writeAppearanceLabels(data)
     await writeProficienciesLabels(data)
+    await writeClassAbilitiesLabels(data)
     await writeRaceAbilitiesLabels(data)
     await writeClassEquipmentLabels(data)
     await writeArmorLabels(data)
     await writeWeaponLabels(data)
     await writeSpellsLabels(data)
+    await writeSpellUsingLabels(data)
 }
 
 function writeToAbilitiesLabels(data) {
@@ -296,6 +298,8 @@ function writeOtherLabels(data) {
 
     if (clas["inspiration"] === true) {
         document.getElementById("lbl_inspiration").innerHTML = "*" ;
+    }else {
+        document.getElementById("lbl_inspiration").innerHTML = "Нет" ;
     }
 }
 
@@ -386,6 +390,17 @@ function writeProficienciesLabels(data) {
     document.getElementById("lbl_armor").innerHTML = prof["armor"];
 }
 
+function writeClassAbilitiesLabels(data) {
+    document.getElementById("lbl_class_abilities").innerHTML = ""
+    let class_abil = JSON.parse(data)["class"]["class_abilities"];
+
+    for(let i = 0; i < class_abil.length; i++){
+        document.getElementById("lbl_class_abilities").innerHTML +=
+            "<strong>"+ JSON.parse(JSON.stringify(class_abil[i]["name"]))+"</strong>" +": "
+            + JSON.parse(JSON.stringify(class_abil[i]["description"])) + "<br>" ;
+    }
+}
+
 function writeRaceAbilitiesLabels(data) {
     document.getElementById("lbl_race_abilities").innerHTML = ""
         let race_abil = JSON.parse(data)["race"]["race_abilities"];
@@ -454,22 +469,12 @@ function writeRacePhotoLabels(data) {
     document.getElementById("img_Character_Preview").alt = "Арт является примерным видом персонажа."
 }
 
-// const fileInput = document.querySelector('#file-js input[type=file]');
-// fileInput.onchange = () => {
-//     if (fileInput.files.length > 0) {
-//         const fileName = document.querySelector('#file-js .file-name');
-//         fileName.textContent = fileInput.files[0].name;
-//     }
-// }
-
 function writeSpellsLabels(data) {
     document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
     document.getElementById("lbl_spells_one_lvl").innerHTML = ""
     let spells_0_lvl = JSON.parse(data)["zero_level_spells"];
     let spells_1_lvl = JSON.parse(data)["one_level_spells"];
 
-    console.log(spells_0_lvl)
-    console.log(spells_1_lvl)
     if (spells_0_lvl === null){
         document.getElementById("lbl_spells_zero_lvl").innerHTML = "Не владеет заговорами"
     }else {
@@ -486,41 +491,21 @@ function writeSpellsLabels(data) {
     }
 }
 
-function showUploadPage() {
-    document.getElementById("file-js").style.display = "inline";
-    document.getElementById("btn_show_upload").style.display = "none";
-}
+function writeSpellUsingLabels(data) {
+    let spell_using = JSON.parse(data)["class"]["spell_using"];
 
-function hideUploadPage() {
-    document.getElementById("file-js").style.display = "none";
-    document.getElementById("btn_show_upload").style.display = "inline";
-}
-
-function importFile() {
-    var files = document.getElementById('fl_upload_file').files;
-    if (files.length <= 0) {
-        return false;
+    if (spell_using["spell_damage_modifier"] === 0 ){
+        document.getElementById("div_caster_info").style.display = "none"
+    }else {
+        document.getElementById("div_caster_info").style.display = "block"
+        document.getElementById("lbl_basic_spell_characteristics").innerHTML =spell_using["basic_spell_characteristics"]
+        document.getElementById("lbl_spell_damage_modifier").innerHTML = spell_using["spell_damage_modifier"]
+        document.getElementById("lbl_saving_throw_difficulty").innerHTML = spell_using["saving_throw_difficulty"]
     }
-    var fr = new FileReader();
-    fr.onload = function(e) {
-        var result = JSON.parse(e.target.result);
-        var data = JSON.stringify(result, null, 2);
 
-        WriteAllLabels(data)
-    };
-    fr.readAsText(files.item(0));
 }
 
 
-function downloadObjectAsJson(){
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(charData), null, 2));
-    var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download","dnd_character.json");
-    document.body.appendChild(downloadAnchorNode); // required for firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-}
 
 function exportToLSS() {
     (async () => {

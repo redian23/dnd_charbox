@@ -30,7 +30,6 @@
                     <select id="select_class_name">
                         <option value="Случайный класс" selected="selected">Случайный класс</option>
                         <option>Волшебник</option>
-                        <option>Алхимик</option>
                         <option>Воин</option>
                         <option>Варвар</option>
                         <option>Паладин</option>
@@ -275,7 +274,7 @@
                     </article>
                     <article class="tile is-child box">
                         <p class="title">Умения и способности:<br></p>
-                        <p class="subtitle"><strong>Умение от класса:</strong> Упс ... </p>
+                        <p class="subtitle"><strong>Умение от класса:</strong><br> <label class="subtitle-text" id="lbl_class_abilities"></label></p>
                         <p class="subtitle"><strong>Умение от расы:</strong><br> <label class="subtitle-text" id="lbl_race_abilities"></label></p>
                     </article>
                     <article class="tile is-child  box">
@@ -411,6 +410,19 @@
                     <article class="tile is-child">
                         <p class="title">Заклинания:<label></label></p>
                         <p class="subtitle"><label id="lbl_spells_one_lvl"></label></p>
+                        <div id="div_caster_info">
+                            <p class="subtitle">
+                                <label>
+                                    <strong>Базовая характеристика заклинаний: </strong>[<label id="lbl_basic_spell_characteristics"></label>]<br>
+                                </label>
+                                <label>
+                                    <strong>Сложность спасброска: </strong>[<label id="lbl_saving_throw_difficulty"></label>]<br>
+                                </label>
+                                <label>
+                                    <strong>Модификатор броска атаки заклинанием: </strong>[<label id="lbl_spell_damage_modifier"></label>]<br>
+                                </label>
+                            </p>
+                        </div>
                     </article>
                 </article>
             </div>

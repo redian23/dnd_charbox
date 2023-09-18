@@ -545,6 +545,43 @@ func GetClassOneSpellsList() []string {
 	return oneLevelSpells
 }
 
+func getClassSpellBasicCharacteristic() spellUsing {
+	var su spellUsing
+
+	switch ClassNameGlobalRu {
+	case "Друид":
+		su.BasicSpellCharacteristics = "Мудрость"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Wisdom
+		su.SpellDamageModifier = 2 + ModifierGlobal.Wisdom
+	case "Жрец":
+		su.BasicSpellCharacteristics = "Мудрость"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Wisdom
+		su.SpellDamageModifier = 2 + ModifierGlobal.Wisdom
+	case "Изобретатель":
+		su.BasicSpellCharacteristics = "Интеллект"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Intelligence
+		su.SpellDamageModifier = 2 + ModifierGlobal.Intelligence
+	case "Волшебник":
+		su.BasicSpellCharacteristics = "Интеллект"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Intelligence
+		su.SpellDamageModifier = 2 + ModifierGlobal.Intelligence
+	case "Колдун":
+		su.BasicSpellCharacteristics = "Харизма"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Charisma
+		su.SpellDamageModifier = 2 + ModifierGlobal.Charisma
+	case "Бард":
+		su.BasicSpellCharacteristics = "Харизма"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Charisma
+		su.SpellDamageModifier = 2 + ModifierGlobal.Charisma
+	case "Чародей":
+		su.BasicSpellCharacteristics = "Харизма"
+		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Charisma
+		su.SpellDamageModifier = 2 + ModifierGlobal.Charisma
+	}
+
+	return su
+}
+
 func remove(s []int, i int) []int {
 	s[i] = s[len(s)-1]
 	return s[:len(s)-1]

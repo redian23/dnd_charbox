@@ -18,6 +18,14 @@ type ClassAnswer struct {
 	Armor            []ArmorAnswer  `json:"armor"`
 	Weapon           []WeaponAnswer `json:"weapon"`
 	Initiative       string         `json:"initiative"`
+	SpellUsing       spellUsing     `json:"spell_using"`
+	ClassAbilities   []classAbility `json:"class_abilities"`
+}
+
+type spellUsing struct {
+	BasicSpellCharacteristics string `json:"basic_spell_characteristics"`
+	SpellDamageModifier       int    `json:"spell_damage_modifier"`
+	SavingThrowDifficulty     int    `json:"saving_throw_difficulty"`
 }
 
 type Proficiencies struct {
