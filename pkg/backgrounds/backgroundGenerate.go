@@ -27,7 +27,7 @@ var (
 
 func GenerateBackground() *BackgroundAnswer {
 	backData := getBackgroundsFormDB()
-	backgroundName = backgroundAnalyze(classes.ClassNameGlobal)
+	backgroundName = backgroundAnalyze(classes.ClassNameGlobalRu)
 
 	for _, background := range backData {
 		if background.BackgroundName == backgroundName {

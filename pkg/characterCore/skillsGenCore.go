@@ -49,7 +49,7 @@ func SetSkillsForCharacter() Skills {
 
 	var doubleSkillProf []string
 	var iter int
-	if classes.ClassNameGlobal == "Rogue" {
+	if classes.ClassNameGlobalRu == "Плут" {
 		for _, skl := range skillList {
 			iter++
 			doubleSkillProf = append(doubleSkillProf, skl)

@@ -2,7 +2,6 @@ package classes
 
 var (
 	HitsCountGlobal   int
-	ClassNameGlobal   string
 	ClassNameGlobalRu string
 )
 
@@ -13,7 +12,6 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 	weaponData = GetWeaponFormDB()
 
 	className, _, classAbilityStats := statAnalyze(classNameRU)
-	ClassNameGlobal = className
 	ClassNameGlobalRu = classNameRU
 
 	classSkills, _ := setClassSkills()

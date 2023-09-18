@@ -171,7 +171,7 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 	var saveThrArray []string
 
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			saveThrArray = char.SavingThrows
 		}
 	}
@@ -228,7 +228,7 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 func setHitDice() string {
 	var hitDice string
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			hitDice = char.Hits.HitDice
 		}
 	}
@@ -237,7 +237,7 @@ func setHitDice() string {
 func setHitCount(modBody int) int {
 	var hitCount int
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			hitCount = char.Hits.HitCount + modBody
 		}
 		if races.RaceTypeGlobalRu == "Холмовой Дворф" {
@@ -249,7 +249,7 @@ func setHitCount(modBody int) int {
 
 func setProficiencies() Proficiencies {
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			return char.Proficiencies
 		}
 	}
@@ -346,7 +346,7 @@ func setClassSkills() ([]string, int) {
 	var randSkillCount int
 
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			skillsArray = char.SkillsInDB.SkillsList
 			randSkillCount = char.SkillsInDB.RandomCount
 		}
@@ -480,7 +480,7 @@ func setInitiative() string {
 func GetClassZeroSpellCount() int {
 	var spellList Spells
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			spellList = char.Spells
 		}
 	}
@@ -497,7 +497,7 @@ func GetClassZeroSpellCount() int {
 func GetClassOneSpells() Spells {
 	var spellList Spells
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			spellList = char.Spells
 		}
 	}
@@ -512,10 +512,10 @@ func GetClassOneSpellCount() int {
 		if sp.Level == "1 Уровень" {
 			spellCount = sp.Count
 			if spellCount == 99 &&
-				ClassNameGlobal == "Druid" || ClassNameGlobal == "Cleric" {
+				ClassNameGlobalRu == "Друид" || ClassNameGlobalRu == "Жрец" {
 				spellCount = ModifierGlobal.Wisdom
 			}
-			if spellCount == 99 && ClassNameGlobal == "Artificer" {
+			if spellCount == 99 && ClassNameGlobalRu == "Изобретатель" {
 				spellCount = ModifierGlobal.Intelligence
 			}
 		}
@@ -527,7 +527,7 @@ func GetClassOneSpellsList() []string {
 	var spellList Spells
 	var oneLevelSpells []string
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			spellList = char.Spells
 		}
 	}

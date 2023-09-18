@@ -19,10 +19,10 @@ func getBackgroundsFormDB() []BackgroundBson {
 	return results
 }
 
-func backgroundAnalyze(className string) string {
+func backgroundAnalyze(classNameRu string) string {
 	var chars = classes.GetClassCharactsFormDB()
 	for _, char := range chars {
-		if className == char.ClassName {
+		if classNameRu == char.ClassNameRU {
 			var rollNum int
 			rollNum, _ = random.IntRange(0, len(char.Background))
 
