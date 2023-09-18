@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Version = "0.8.9.5 Beta build"
+const Version = "0.9 Beta build"
 
 func main() {
 	ProdStatus = true
@@ -45,9 +45,9 @@ func main() {
 		})
 	})
 
-	router.GET("/test", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "character_box_test.html", gin.H{
-			"title": "CharBox Beta",
+	router.GET("/faq", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "charbox_faq.html", gin.H{
+			"title": "CharBox FAQ",
 		})
 	})
 

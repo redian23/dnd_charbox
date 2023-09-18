@@ -15,7 +15,6 @@ function getSelectRaceNameValue() {
 }
 
 async function winOnloadGenerate() {
-    hideUploadPage()
     let req_json = `{"class":"random", "race":"random"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
@@ -34,7 +33,6 @@ async function winOnloadGenerate() {
 }
 
 async function getCharacter() {
-    hideUploadPage()
     let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
@@ -456,13 +454,13 @@ function writeRacePhotoLabels(data) {
     document.getElementById("img_Character_Preview").alt = "Арт является примерным видом персонажа."
 }
 
-const fileInput = document.querySelector('#file-js input[type=file]');
-fileInput.onchange = () => {
-    if (fileInput.files.length > 0) {
-        const fileName = document.querySelector('#file-js .file-name');
-        fileName.textContent = fileInput.files[0].name;
-    }
-}
+// const fileInput = document.querySelector('#file-js input[type=file]');
+// fileInput.onchange = () => {
+//     if (fileInput.files.length > 0) {
+//         const fileName = document.querySelector('#file-js .file-name');
+//         fileName.textContent = fileInput.files[0].name;
+//     }
+// }
 
 function writeSpellsLabels(data) {
     document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
@@ -545,4 +543,8 @@ function exportToLSS() {
         downloadAnchorNode.click();
         downloadAnchorNode.remove();
     })();
+}
+
+function gotoFAQ(){
+    window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/faq`;
 }
