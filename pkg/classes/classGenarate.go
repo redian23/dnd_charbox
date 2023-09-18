@@ -7,22 +7,24 @@ var (
 )
 
 func GenerateClass(classNameRU string) *ClassAnswer {
+	ClassNameGlobalRu = ""
 	chars = GetClassCharactsFormDB()
 	armorData = GetArmorFormDB()
 	weaponData = GetWeaponFormDB()
 
-	className, _, classAbility := statAnalyze(classNameRU)
+	className, _, classAbilityStats := statAnalyze(classNameRU)
 	ClassNameGlobal = className
 	ClassNameGlobalRu = classNameRU
+
 	classSkills, _ := setClassSkills()
-	modif := setModifiersForClass(classAbility)
+	modif := setModifiersForClass(classAbilityStats)
 
 	HitsCountGlobal = setHitCount(modif.BodyDifficulty)
 
 	return &ClassAnswer{
 		ClassName:        className,
 		ClassNameRU:      classNameRU,
-		Ability:          classAbility,
+		Ability:          classAbilityStats,
 		Modifier:         modif,
 		Inspiration:      false,
 		Proficiencies:    setProficiencies(),

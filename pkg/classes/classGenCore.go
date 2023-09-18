@@ -115,19 +115,21 @@ func extractStats(abil Ability) []string {
 func statAnalyze(needClass string) (string, string, Ability) {
 	var name, nameRu string
 	var abilities Ability
-	for {
+
+	for i := 0; i < 100; i++ { //если юзать бесконечный for, то cpu взлетает до 100% под нагрузкой
 		abilities = rerollClassAbilitiesStats()
 		stats := extractStats(abilities)
+
 		for _, char := range chars {
 			for _, cla := range char.CharReq {
 				if reflect.DeepEqual(stats, cla) && needClass == char.ClassNameRU {
 					name = char.ClassName
 					nameRu = char.ClassNameRU
-					return name, nameRu, abilities
 				}
 			}
 		}
 	}
+	return name, nameRu, abilities
 }
 
 func setModifiersForClass(ab Ability) Modifier {
@@ -259,11 +261,13 @@ func setClassEquipmentList() []Variants {
 	var equipB equipBasic
 	var equipList []Variants
 	for _, char := range chars {
-		if char.ClassName == ClassNameGlobal {
+		if char.ClassNameRU == ClassNameGlobalRu {
 			equipP = char.PicksEquipment
 			equipB = char.BasicEquipment
+
 		}
 	}
+
 	for _, item := range equipP {
 		rollNum, _ := random.IntRange(0, len(item.Variants))
 		equipList = append(equipList, item.Variants[rollNum])
