@@ -296,6 +296,7 @@ function writeToSkillsLabels(data) {
 function writeOtherLabels(data) {
     document.getElementById("lbl_level").innerHTML =  JSON.parse(data)["level"];
     document.getElementById("lbl_exp_count").innerHTML =  JSON.parse(data)["experience"];
+    document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
 
 
     document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
@@ -305,7 +306,6 @@ function writeOtherLabels(data) {
     document.getElementById("lbl_initiative").innerHTML = clas["initiative"];
     document.getElementById("lbl_hitsDice").innerHTML = clas["hits"]["hit_dice"];
     document.getElementById("lbl_hitsCount").innerHTML = clas["hits"]["hit_count"];
-    document.getElementById("lbl_proficiency_bonus").innerHTML = clas["proficiency_bonus"];
 
     if (clas["inspiration"] === true) {
         document.getElementById("lbl_inspiration").innerHTML = "*" ;
