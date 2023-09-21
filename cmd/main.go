@@ -41,13 +41,13 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
-			"title": "Character Box",
+			"title": "Шкатулку Персонажей | Character Box",
 		})
 	})
 
 	router.GET("/faq", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "charbox_faq.html", gin.H{
-			"title": "CharBox FAQ",
+			"title": "Шкатулку Персонажей - Вопросы/Ответы | CharBox FAQ",
 		})
 	})
 
