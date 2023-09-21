@@ -7,6 +7,7 @@
     <meta content='true' name='HandheldFriendly'/>
     <meta content='width' name='MobileOptimized'/>
     <meta content='yes' name='apple-mobile-web-app-capable'/>
+    <meta name="google-site-verification" content="UmkWSkfoFNxgbCTCX-nVQMydwsNiDW730S-1fy_sChk" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>{{.title}}</title>
     <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
@@ -74,6 +75,22 @@
                     </select>
                 </label>
             </div>
+<!--            <div class="select is-medium is-info">-->
+<!--                <label>-->
+<!--                    <select id="select_char_level">-->
+<!--                        <option value=1 selected="selected">1 уровень</option>-->
+<!--                        <option value=2>2 уровень</option>-->
+<!--                        <option value=3>3 уровень</option>-->
+<!--                        <option value=4>4 уровень</option>-->
+<!--                        <option value=5>5 уровень</option>-->
+<!--                        <option value=6>6 уровень</option>-->
+<!--                        <option value=7>7 уровень</option>-->
+<!--                        <option value=8>8 уровень</option>-->
+<!--                        <option value=9>9 уровень</option>-->
+<!--                        <option value=10>10 уровень</option>-->
+<!--                    </select>-->
+<!--                </label>-->
+<!--            </div>-->
             <button class="button is-medium is-success" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
         </div>
     </div>
@@ -86,7 +103,10 @@
                     <p class="title">Имя персонажа: <label id="lbl_charFirstName"></label> <label id="lbl_charLastName"></label></p>
                 </article>
                 <article class="tile is-child">
-                    <p class="title">Уровень: [ 1 ] Опыт: [ 0 ]</p>
+                    <p class="title">
+                        Уровень: [ <label id="lbl_level"></label> ]
+                        Опыт: [ <label id="lbl_exp_count"></label> ]
+                    </p>
                 </article>
             </article>
             </div>
