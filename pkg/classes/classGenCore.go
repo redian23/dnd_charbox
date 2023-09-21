@@ -332,9 +332,9 @@ func setArmor(className string) []ArmorAnswer {
 		case "Варвар":
 			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.BodyDifficulty
 		case "Волшебник":
-			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.Intelligence
+			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity
 		case "Чародей":
-			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity + ModifierGlobal.Intelligence
+			noArmor.ArmorClassCount = 10 + ModifierGlobal.Dexterity
 		}
 		armorAnsList = append(armorAnsList, noArmor)
 	}
@@ -468,6 +468,11 @@ func setWeapons() []WeaponAnswer {
 		if item.ItemName == "Лёгкий арбалет" {
 			weaponList = append(weaponList, WeaponAnswer{"Арбалетные болты", "weapon", "", "Боепр.", 20})
 		}
+	}
+
+	if races.RaceNameGlobalRu == "Драконорожденный" {
+		dragonBreath := WeaponAnswer{WeaponName: "Дыхание Дракона", WeaponType: "weapon", Damage: races.DragonBornWeapon}
+		weaponList = append(weaponList, dragonBreath)
 	}
 
 	return weaponList

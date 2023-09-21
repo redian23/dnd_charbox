@@ -12,7 +12,8 @@ import (
 
 var (
 	RaceData         []RacesBSON
-	RaceNameGlobal   string
+	RaceNameGlobalRu string
+
 	RaceTypeGlobalRu string
 	RacePhotoPath    string
 )
@@ -100,7 +101,7 @@ func getRacesFormDB() []RacesBSON {
 
 func GetRaceAbilities() StatsUp {
 	for _, race := range RaceData {
-		if race.RaceName == RaceNameGlobal {
+		if race.RaceNameRu == RaceTypeGlobalRu {
 			for _, typppe := range race.Type {
 				return typppe.StatsUp
 			}
@@ -114,7 +115,7 @@ func GetRaceSkill() ([]string, int) {
 	var randSkillCount int
 
 	for _, race := range RaceData {
-		if race.RaceName == RaceNameGlobal {
+		if race.RaceName == RaceTypeGlobalRu {
 			skillsArray = race.RaceSkill.SkillsList
 			randSkillCount = race.RaceSkill.RandomCount
 		}
@@ -158,6 +159,7 @@ func GetRaceSpellsZeroLevel() []string {
 		if spells.SpellName == "" {
 			break
 		}
+
 		spl := spells.SpellName + "(" + spells.BasicSpellCharacteristic + ")"
 		raceSpells = append(raceSpells, spl)
 	}

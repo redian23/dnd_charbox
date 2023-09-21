@@ -65,13 +65,13 @@ func GetCharLangs() []string {
 
 	var addictionLangsCount int
 	for _, race := range races.RaceData {
-		if race.RaceName == races.RaceNameGlobal {
+		if race.RaceNameRu == races.RaceNameGlobalRu {
 			raceLangs = race.RaceLanguages
 		}
 	}
 
 	if races.RaceTypeGlobalRu == "Человек" || races.RaceTypeGlobalRu == "Высший Эльф" ||
-		races.RaceTypeGlobalRu == "Табакси" || races.RaceNameGlobal == "Полуэльф" {
+		races.RaceTypeGlobalRu == "Табакси" || races.RaceNameGlobalRu == "Полуэльф" {
 		addictionLangsCount += 1
 	}
 	if backgrounds.BackgroundNameRuGlobal == "Отшельник" || backgrounds.BackgroundNameRuGlobal == "Благородный" ||

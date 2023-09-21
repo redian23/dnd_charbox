@@ -4,6 +4,8 @@ import (
 	"github.com/mazen160/go-random"
 )
 
+var DragonBornWeapon string
+
 type dragonType struct {
 	Color        string `json:"color"`
 	DamageType   string `json:"damage"`
@@ -51,5 +53,6 @@ func setDragonType(dragonTypeName string) dragonType {
 	randElem, _ := random.IntRange(0, len(typeArray))
 	dragon := typeArray[randElem]
 
+	DragonBornWeapon = dragon.BreathWeapon + " (" + dragon.DamageType + ")"
 	return dragon
 }

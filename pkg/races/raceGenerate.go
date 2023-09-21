@@ -7,6 +7,7 @@ import (
 
 var (
 	raceType, raceTypeRu     string
+	raceName                 string
 	raceAge, raceSpeed       int
 	raceHeight               int
 	raceHeightFt             string
@@ -24,7 +25,8 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 
 	for _, race := range RaceData {
 		if race.RaceNameRu == raceNameRu {
-			RaceNameGlobal = race.RaceName
+			raceName = race.RaceName
+			RaceNameGlobalRu = raceNameRu
 
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName
@@ -72,10 +74,10 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 	}
 
 	return &RacesAnswer{
-		RaceName:      RaceNameGlobal,
-		RaceNameRu:    raceNameRu,
+		RaceName:      raceName,
+		RaceNameRu:    RaceNameGlobalRu,
 		Gender:        raceGender,
-		RacePhoto:     setRacePhoto(RaceNameGlobal, raceGender),
+		RacePhoto:     setRacePhoto(raceName, raceGender),
 		Type:          raceType,
 		TypeRu:        raceTypeRu,
 		Age:           raceAge,
