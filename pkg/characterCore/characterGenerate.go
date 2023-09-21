@@ -7,18 +7,48 @@ import (
 	"pregen/pkg/spells"
 )
 
-func GenerateFullCharacter(className, raceName string) *Character {
+func GenerateFullCharacter(className, raceName string, lvl int) *Character {
 	return &Character{
-		Level:           1,
-		Experience:      0,
-		Race:            races.GenerateRaceForCharacter(raceName),
-		Class:           classes.GenerateClass(className),
-		Background:      backgrounds.GenerateBackground(),
-		Skills:          SetSkillsForCharacter(),
-		PassiveWisdom:   PassWisdom,
-		Langs:           GetCharLangs(),
-		ZeroLevelSpells: spells.GetSpellsZeroLevelForCharacter(),
-		OneLevelSpells:  spells.GetSpellsOneLevelForCharacter(),
+		Level:            lvl,
+		Experience:       getExpCount(lvl),
+		ProficiencyBonus: getProfBonus(lvl),
+		Race:             races.GenerateRaceForCharacter(raceName),
+		Class:            classes.GenerateClass(className, lvl),
+		Background:       backgrounds.GenerateBackground(),
+		Skills:           SetSkillsForCharacter(),
+		PassiveWisdom:    PassWisdom,
+		Langs:            GetCharLangs(),
+		SpellsList: spellsList{
+			ZeroLevelSpells: spells.GetSpellsZeroLevelForCharacter(),
+			OneLevelSpells:  spells.GetSpellsOneLevelForCharacter(),
+		},
+	}
+}
+
+func getExpCount(lvl int) int {
+	var expCountMap = map[int]int{
+		1:  0,
+		2:  300,
+		3:  900,
+		4:  2700,
+		5:  6500,
+		6:  14000,
+		7:  23000,
+		8:  34000,
+		9:  48000,
+		10: 64000,
+	}
+	return expCountMap[lvl]
+}
+
+func getProfBonus(lvl int) int {
+	if lvl <= 4 {
+		return 2
+	}
+	if lvl >= 5 && lvl <= 8 {
+		return 3
+	} else {
+		return 4
 	}
 }
 
@@ -65,5 +95,8 @@ func GetCharLangs() []string {
 		iter++
 		raceLangs = append(raceLangs, lng)
 	}
+
+	raceLangs = append(raceLangs, classes.LanguageListGlobal...)
+
 	return raceLangs
 }

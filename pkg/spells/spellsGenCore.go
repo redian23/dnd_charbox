@@ -56,5 +56,6 @@ func GetSpellsOneLevelForCharacter() []string {
 	raceSpells := races.GetRaceSpellsOneLevel()
 
 	spellList := append(raceSpells, classSpells...)
+	spellList = append(spellList, classes.ClassSpecialSpells...)
 	return spellList
 }

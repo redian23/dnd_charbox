@@ -9,10 +9,10 @@ import (
 	"strings"
 )
 
-const Version = "0.9 Beta build"
+const Version = "0.9.1 Beta build"
 
 func main() {
-	ProdStatus = true
+	ProdStatus = false
 	InitServerPathVars()
 	db.PingMongoDB()
 

@@ -1,14 +1,18 @@
 package classes
 
-import "github.com/mazen160/go-random"
+import (
+	"github.com/mazen160/go-random"
+)
 
-type classAbility struct {
+var ClassSpecialSpells []string
+
+type ClassAbility struct {
 	Level       string `json:"level"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
 
-func getClassAbilities() []classAbility {
+func getClassAbilities() []ClassAbility {
 	switch ClassNameGlobalRu {
 	case "Воин":
 		return setFighterClassAbilities()
@@ -36,12 +40,11 @@ func getClassAbilities() []classAbility {
 		return setArtificerClassAbilities()
 	case "Колдун":
 		return setWarlockClassAbilities()
-
 	}
 	return nil
 }
 
-func setFighterClassAbilities() []classAbility {
+func setFighterClassAbilities() []ClassAbility {
 
 	type battleStyleVariant struct {
 		Name        string
@@ -58,34 +61,34 @@ func setFighterClassAbilities() []classAbility {
 	}
 
 	randNum, _ := random.IntRange(0, len(battelStyleVariants))
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level:       "1 Уровень",
 		Name:        "Боевой стиль",
 		Description: battelStyleVariants[randNum].Name + " - " + battelStyleVariants[randNum].Description,
 	}
 
-	abil2 := classAbility{
+	abil2 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Второе дыхание",
 		Description: "Вы обладаете ограниченным источником выносливости, которым можете воспользоваться, чтобы уберечь себя. В свой ход вы можете бонусным действием восстановить хиты в размере 1к10 + ваш уровень воина.\n\n" +
 			"Использовав это умение, вы должны завершить короткий либо продолжительный отдых, чтобы получить возможность использовать его снова.",
 	}
 
-	classAbilityList := []classAbility{abil1, abil2}
+	classAbilityList := []ClassAbility{abil1, abil2}
 
 	return classAbilityList
 }
 
-func setBarbarianClassAbilities() []classAbility {
+func setBarbarianClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Защита без доспехов",
 		Description: "Если вы не носите доспехов, ваш Класс Доспеха равен 10 + модификатор Ловкости + модификатор Телосложения." +
 			"Вы можете использовать щит, не теряя этого преимущества.",
 	}
 
-	abil2 := classAbility{
+	abil2 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Ярость",
 		Description: "В бою вы сражаетесь с первобытной свирепостью. В свой ход вы можете бонусным действием войти в состояние ярости.\n\n" +
@@ -97,14 +100,14 @@ func setBarbarianClassAbilities() []classAbility {
 			"Если вы впадали в состояние ярости максимальное для вашего уровня количество раз (смотрите колонку «ярость»), то вы должны совершить продолжительный отдых, прежде чем сможете использовать ярость ещё раз.",
 	}
 
-	classAbilityList := []classAbility{abil1, abil2}
+	classAbilityList := []ClassAbility{abil1, abil2}
 
 	return classAbilityList
 }
 
-func setPaladinClassAbilities() []classAbility {
+func setPaladinClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Божественное чувство",
 		Description: "Присутствие сильного зла воспринимается вашими чувствами как неприятный запах, а могущественное добро звучит как небесная музыка в ваших ушах. Вы можете действием открыть своё сознание для обнаружения таких сил. " +
@@ -114,7 +117,7 @@ func setPaladinClassAbilities() []classAbility {
 			"Вы можете использовать это умение количество раз, равное 1 + модификатор Харизмы. Когда вы заканчиваете продолжительный отдых, вы восстанавливаете все потраченные использования.",
 	}
 
-	abil2 := classAbility{
+	abil2 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Наложение рук",
 		Description: "Ваше благословенное касание может лечить раны. У вас есть запас целительной силы, который восстанавливается после продолжительного отдыха. " +
@@ -125,20 +128,20 @@ func setPaladinClassAbilities() []classAbility {
 			"Это умение не оказывает никакого эффекта на Нежить и Конструктов.",
 	}
 
-	classAbilityList := []classAbility{abil1, abil2}
+	classAbilityList := []ClassAbility{abil1, abil2}
 
 	return classAbilityList
 }
 
-func setMonkClassAbilities() []classAbility {
+func setMonkClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level:       "1 Уровень",
 		Name:        "Защита без доспехов",
 		Description: "Если вы не носите ни доспех, ни щит, ваш Класс Доспеха равен 10 + модификатор Ловкости + модификатор Мудрости.",
 	}
 
-	abil2 := classAbility{
+	abil2 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Боевые искусства",
 		Description: "Ваше знание боевых искусств позволяет вам эффективно использовать в бою безоружные удары и монашеское оружие — короткие мечи, а также любое простое рукопашное оружие, не имеющее свойств «двуручное» и «тяжёлое»." +
@@ -151,14 +154,14 @@ func setMonkClassAbilities() []classAbility {
 			"Как бы ни называлось ваше монашеское оружие, вы используете характеристики, соответствующие этому оружию.",
 	}
 
-	classAbilityList := []classAbility{abil1, abil2}
+	classAbilityList := []ClassAbility{abil1, abil2}
 
 	return classAbilityList
 }
 
-func setRogueClassAbilities() []classAbility {
+func setRogueClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Компетентность",
 		Description: "Выберите два ваших владения в навыках или одно владение навыком и владение воровскими инструментами." +
@@ -166,7 +169,7 @@ func setRogueClassAbilities() []classAbility {
 			"На 6-м уровне вы можете выбрать ещё два владения (навыки или воровские инструменты), чтобы получить эту же выгоду.",
 	}
 
-	abil2 := classAbility{
+	abil2 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Скрытая атака",
 		Description: "Вы знаете, как точно наносить удар и использовать отвлечение врага. Один раз в ход вы можете причинить дополнительный урон 1к6 одному из существ, по которому вы попали атакой, совершённой с преимуществом к броску атаки. " +
@@ -175,7 +178,7 @@ func setRogueClassAbilities() []classAbility {
 			"Дополнительный урон увеличивается, когда вы получаете уровни в этом классе, как показано в колонке «скрытая атака».",
 	}
 
-	abil3 := classAbility{
+	abil3 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Воровской жаргон",
 		Description: "Во время плутовского обучения вы выучили воровской жаргон, тайную смесь диалекта, жаргона и шифра, который позволяет скрывать сообщения в, казалось бы, обычном разговоре. " +
@@ -185,19 +188,19 @@ func setRogueClassAbilities() []classAbility {
 			"Например, является ли область опасной или территорией гильдии воров, находится ли поблизости добыча, простодушны ли люди в округе, и предоставляют ли здесь безопасное убежище для воров в бегах.",
 	}
 
-	classAbilityList := []classAbility{abil1, abil2, abil3}
+	classAbilityList := []ClassAbility{abil1, abil2, abil3}
 
 	return classAbilityList
 }
 
-func setRangerClassAbilities() []classAbility {
+func setRangerClassAbilities() []ClassAbility {
 
 	chosenEnemyList := []string{"Аберрации", "Великаны", "Драконы", "Звери", "Исчадия", "Конструкты",
 		"Монстры", "Небожители", "Нежить", "Растения", "Слизи", "Феи", "Элементали",
 	}
 	randNum, _ := random.IntRange(0, len(chosenEnemyList))
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Избранный враг",
 		Description: "У вас есть значительный опыт изучения, отслеживания, охоты и даже общения с определённым видом врагов.\n\n" +
@@ -209,7 +212,7 @@ func setRangerClassAbilities() []classAbility {
 	groundList := []string{"Арктика", "Болота", "Горы", "Леса", "Луга", "Побережье", "Подземье", "Пустыня"}
 	randNum2, _ := random.IntRange(0, len(groundList))
 
-	abil2 := classAbility{
+	abil2 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Исследователь природы",
 		Description: "Вы очень хорошо знакомы с одним видом природной среды и имеете большой опыт путешествий и выживания в регионах с таким климатом. " +
@@ -223,7 +226,7 @@ func setRangerClassAbilities() []classAbility {
 			"Вы можете выбрать дополнительную известную местность на 6-м и 10-м уровнях.",
 	}
 
-	abil3 := classAbility{
+	abil3 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Предпочтительный противник (TCE)",
 		Description: "Когда вы попадаете атакой по существу, вы можете призвать силы природы, чтобы отметить существо и сделать его своим избранным врагом на 1 минуту или до тех пор, пока не потеряете концентрацию (как если бы вы концентрировались на заклинании).\n\n" +
@@ -232,7 +235,7 @@ func setRangerClassAbilities() []classAbility {
 			"Дополнительный урон этого умения увеличивается, когда вы достигаете определённых уровней в этом классе: 1к6 на 6-м уровне и 1к8 на 14-м.",
 	}
 
-	abil4 := classAbility{
+	abil4 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Искусный исследователь",
 		Description: "Вы — непревзойдённый исследователь и отлично выживаете в природе, будучи способным как самостоятельно странствовать по дикой местности, так и помогать в этом другим. " +
@@ -250,17 +253,17 @@ func setRangerClassAbilities() []classAbility {
 
 	randNum3, _ := random.IntRange(0, 1)
 	if randNum3 == 0 {
-		classAbilityList := []classAbility{abil1, abil2}
+		classAbilityList := []ClassAbility{abil1, abil2}
 		return classAbilityList
 	} else {
-		classAbilityList := []classAbility{abil3, abil4}
+		classAbilityList := []ClassAbility{abil3, abil4}
 		return classAbilityList
 	}
 }
 
-func setWizardClassAbilities() []classAbility {
+func setWizardClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Магическое восстановление",
 		Description: "Вы знаете как восстанавливать часть магической энергии, изучая книгу заклинаний. Один раз в день, когда вы заканчиваете короткий отдых, вы можете восстановить часть использованных ячеек заклинаний. " +
@@ -268,33 +271,33 @@ func setWizardClassAbilities() []classAbility {
 			"Например, если вы волшебник 4-го уровня, вы можете восстановить ячейки заклинаний с суммой уровней не больше двух. Вы можете восстановить одну ячейку заклинаний 2-го уровня, или две ячейки заклинаний 1-го уровня.",
 	}
 
-	classAbilityList := []classAbility{abil1}
+	classAbilityList := []ClassAbility{abil1}
 
 	return classAbilityList
 }
 
-func setDruidClassAbilities() []classAbility {
+func setDruidClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Друидический язык",
 		Description: "Вы знаете Друидический язык — тайный язык друидов. Вы можете на нём говорить и оставлять тайные послания. Вы и все, кто знают этот язык, автоматически замечаете эти послания. " +
 			"Другие замечают присутствие послания при успешной проверке Мудрости (Восприятие) Сл 15, но без помощи магии не могут расшифровать его.",
 	}
 
-	classAbilityList := []classAbility{abil1}
+	classAbilityList := []ClassAbility{abil1}
 
 	return classAbilityList
 }
 
-func setClericClassAbilities() []classAbility {
+func setClericClassAbilities() []ClassAbility {
 
 	domainList := []string{"Домен бури", "Домен войны", "Домен жизни", "Домен знаний", "Домен обмана", "Домен природы",
 		"Домен света", "Домен смерти", "Домен магии", "Домен кузни", "Домен упокоения", "Домен мира", "Домен порядка", "Домен сумерек",
 	}
 	randNum, _ := random.IntRange(0, len(domainList))
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Божественный домен",
 		Description: domainList[randNum] + ", связанный с вашим божеством. " +
@@ -307,40 +310,37 @@ func setClericClassAbilities() []classAbility {
 			"Если вы получаете доступ к заклинанию, отсутствующему в списке заклинаний жреца, оно всё равно будет считаться для вас заклинанием жреца.",
 	}
 
-	classAbilityList := []classAbility{abil1}
+	classAbilityList := []ClassAbility{abil1}
 
 	return classAbilityList
 }
 
-func setSorcererClassAbilities() []classAbility {
+func setSorcererClassAbilities() []ClassAbility {
+	var specAbilities []ClassAbility
+	var originsDescription string
 
 	origins := []string{
 		"Наследие драконьей крови",
 		"Дикая магия",
-		"Божественная душа",
-		"Теневая магия",
-		"Штормовое колдовство",
-		"Аберрантный разум",
-		"Заводная душа",
-		"Лунное чародейство",
 	}
 	randNum, _ := random.IntRange(0, len(origins))
-
-	abil1 := classAbility{
+	specAbilities, originsDescription = SetSorcererOrigin(origins[randNum])
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Происхождение чародея",
-		Description: "Ваш источник - " + origins[randNum] + ", из которого ваш персонаж черпает свою силу." +
-			"Ваш выбор предоставляет вам умения на 1-м, 6-м, 14-м и 18-м уровнях.",
+		Description: "Ваш источник - " + origins[randNum] + ", из которого ваш персонаж черпает свою силу. " +
+			originsDescription +
+			".<br>Ваш выбор предоставляет вам умения на 1-м, 6-м, 14-м и 18-м уровнях.",
 	}
 
-	classAbilityList := []classAbility{abil1}
-
+	classAbilityList := []ClassAbility{abil1}
+	classAbilityList = append(classAbilityList, specAbilities...)
 	return classAbilityList
 }
 
-func setBardClassAbilities() []classAbility {
+func setBardClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Вдохновение барда",
 		Description: "Своими словами или музыкой вы можете вдохновлять других. " +
@@ -354,14 +354,14 @@ func setBardClassAbilities() []classAbility {
 			"Ваша кость бардовского вдохновения изменяется с ростом вашего уровня в этом классе. Она становится к8 на 5-м уровне, к10 на 10-м уровне и к12 на 15-м уровне.",
 	}
 
-	classAbilityList := []classAbility{abil1}
+	classAbilityList := []ClassAbility{abil1}
 
 	return classAbilityList
 }
 
-func setArtificerClassAbilities() []classAbility {
+func setArtificerClassAbilities() []ClassAbility {
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Магический мастеровой",
 		Description: "Вы научились вкладывать искру магии в обычные предметы. " +
@@ -379,26 +379,30 @@ func setArtificerClassAbilities() []classAbility {
 			"Если вы пытаетесь превысить свой максимум, самое старое свойство немедленно заканчивается, а затем начинает действовать новое свойство.",
 	}
 
-	classAbilityList := []classAbility{abil1}
+	classAbilityList := []ClassAbility{abil1}
 
 	return classAbilityList
 }
 
-func setWarlockClassAbilities() []classAbility {
+func setWarlockClassAbilities() []ClassAbility {
+	var specAbilities []ClassAbility
+	var partnerDescription string
 
-	otherSidePatrons := []string{"Архифея", "Исчадие", "Великий древний", "Бессмертный",
-		"Ведьмовской клинок", "Небожитель", "Бездонный", "Гений", "Нежить",
-	}
+	otherSidePatrons := []string{"Архифея", "Исчадие", "Великий древний", "Бездонный (TCE)", "Нежить (VRGR)"}
 	randNum, _ := random.IntRange(0, len(otherSidePatrons))
+	partner := otherSidePatrons[randNum]
+	specAbilities, partnerDescription, ClassSpecialSpells = SetOtherSidePatrons(partner)
 
-	abil1 := classAbility{
+	abil1 := ClassAbility{
 		Level: "1 Уровень",
 		Name:  "Потусторонний покровитель",
-		Description: "Вы заключаете сделку с " + otherSidePatrons[randNum] +
-			". Ваш выбор определит умения, предоставляемые вам на 1-м, 6-м, 10-м и 14-м уровнях.",
+		Description: "Ваш потусторонний покровитель -  <strong>" + partner +
+			"</strong>. " + partnerDescription + "<br>" +
+			"Ваш выбор определит умения, предоставляемые вам на 1-м, 6-м, 10-м и 14-м уровнях.",
 	}
 
-	classAbilityList := []classAbility{abil1}
+	classAbilityList := []ClassAbility{abil1}
+	classAbilityList = append(classAbilityList, specAbilities...)
 
 	return classAbilityList
 }

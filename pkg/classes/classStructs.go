@@ -3,23 +3,22 @@ package classes
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type ClassAnswer struct {
-	ClassName        string         `json:"class_name"`
-	ClassNameRU      string         `json:"class_name_ru"`
-	Description      string         `json:"description"`
-	Ability          Ability        `json:"ability"`
-	Modifier         Modifier       `json:"modifier"`
-	Inspiration      bool           `json:"inspiration"`
-	Proficiencies    Proficiencies  `json:"proficiencies"`
-	ProficiencyBonus int            `json:"proficiency_bonus"`
-	SkillsOfClass    []string       `json:"skills_of_class"`
-	SavingThrows     SavingThrows   `json:"saving_throws"`
-	Hits             hits           `json:"hits"`
-	ClassEquipment   []Variants     `json:"class_equipment"`
-	Armor            []ArmorAnswer  `json:"armor"`
-	Weapon           []WeaponAnswer `json:"weapon"`
-	Initiative       string         `json:"initiative"`
-	SpellUsing       spellUsing     `json:"spell_using"`
-	ClassAbilities   []classAbility `json:"class_abilities"`
+	ClassName      string         `json:"class_name"`
+	ClassNameRU    string         `json:"class_name_ru"`
+	Description    string         `json:"description"`
+	Ability        Ability        `json:"ability"`
+	Modifier       Modifier       `json:"modifier"`
+	Inspiration    bool           `json:"inspiration"`
+	Proficiencies  Proficiencies  `json:"proficiencies"`
+	SkillsOfClass  []string       `json:"skills_of_class"`
+	SavingThrows   SavingThrows   `json:"saving_throws"`
+	Hits           hits           `json:"hits"`
+	ClassEquipment []Variants     `json:"class_equipment"`
+	Armor          []ArmorAnswer  `json:"armor"`
+	Weapon         []WeaponAnswer `json:"weapon"`
+	Initiative     string         `json:"initiative"`
+	SpellUsing     spellUsing     `json:"spell_using"`
+	ClassAbilities []ClassAbility `json:"class_abilities"`
 }
 
 type spellUsing struct {

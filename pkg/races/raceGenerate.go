@@ -13,7 +13,6 @@ var (
 	raceWeight, raceWeightLb int
 	raceBodySize             string
 	raceGender               string
-	langs                    []string
 	raceAbil                 []raceAbility
 	firstName, resist        string
 )

@@ -10,6 +10,7 @@ import (
 type charParameters struct {
 	ClassName string `json:"class"`
 	RaceName  string `json:"race"`
+	Level     int    `json:"level"`
 }
 
 var classArray = []string{"Волшебник", "Воин", "Варвар", "Паладин", "Монах",
@@ -34,6 +35,6 @@ func GetCurrentCharacter(c *gin.Context) {
 		chr.RaceName = raceArray[randNum]
 	}
 
-	c.JSONP(http.StatusOK, characterCore.GenerateFullCharacter(chr.ClassName, chr.RaceName))
+	c.JSONP(http.StatusOK, characterCore.GenerateFullCharacter(chr.ClassName, chr.RaceName, chr.Level))
 
 }

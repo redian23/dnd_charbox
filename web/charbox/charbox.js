@@ -14,8 +14,15 @@ function getSelectRaceNameValue() {
     return document.getElementById("select_race_name").value;
 }
 
+function getSelectLevelValue() {
+    if (document.getElementById("select_char_level").value === "1 уровень") {
+        return 1
+    }
+    return document.getElementById("select_char_level").value;
+}
+
 async function winOnloadGenerate() {
-    let req_json = `{"class":"random", "race":"random"}`
+    let req_json = `{"class":"random", "race":"random", "level":1 }`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
@@ -33,7 +40,7 @@ async function winOnloadGenerate() {
 }
 
 async function getCharacter() {
-    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}"}`
+    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()} }`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
@@ -287,6 +294,10 @@ function writeToSkillsLabels(data) {
 }
 
 function writeOtherLabels(data) {
+    document.getElementById("lbl_level").innerHTML =  JSON.parse(data)["level"];
+    document.getElementById("lbl_exp_count").innerHTML =  JSON.parse(data)["experience"];
+
+
     document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
     document.getElementById("lbl_languages").innerHTML =  JSON.parse(data)["langs"];
 
@@ -472,8 +483,8 @@ function writeRacePhotoLabels(data) {
 function writeSpellsLabels(data) {
     document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
     document.getElementById("lbl_spells_one_lvl").innerHTML = ""
-    let spells_0_lvl = JSON.parse(data)["zero_level_spells"];
-    let spells_1_lvl = JSON.parse(data)["one_level_spells"];
+    let spells_0_lvl = JSON.parse(data)["spells"]["zero_level_spells"];
+    let spells_1_lvl = JSON.parse(data)["spells"]["one_level_spells"];
 
     if (spells_0_lvl === null){
         document.getElementById("lbl_spells_zero_lvl").innerHTML = "Не владеет заговорами"
@@ -504,8 +515,6 @@ function writeSpellUsingLabels(data) {
     }
 
 }
-
-
 
 function exportToLSS() {
     (async () => {
