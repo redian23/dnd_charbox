@@ -360,27 +360,29 @@ type Quests struct {
 	Value Value `json:"value"`
 	Size  int   `json:"size"`
 }
-type SpellsLevel1 struct {
+type SpellsLevel struct {
 	Value Value `json:"value"`
 }
-type SpellsLevel0 struct {
-	Value Value `json:"value"`
-}
+
 type Text struct {
-	Attacks      Attacks      `json:"attacks"`
-	Equipment    Equipment    `json:"equipment"`
-	Prof         Prof         `json:"prof"`
-	Traits       Traits       `json:"traits"`
-	Allies       Allies       `json:"allies"`
-	Features     Features     `json:"features"`
-	Personality  Personality  `json:"personality"`
-	Ideals       Ideals       `json:"ideals"`
-	Bonds        Bonds        `json:"bonds"`
-	Flaws        Flaws        `json:"flaws"`
-	Background   Background   `json:"background"`
-	Quests       Quests       `json:"quests"`
-	SpellsLevel0 SpellsLevel0 `json:"spells-level-0"`
-	SpellsLevel1 SpellsLevel1 `json:"spells-level-1"`
+	Attacks      Attacks     `json:"attacks"`
+	Equipment    Equipment   `json:"equipment"`
+	Prof         Prof        `json:"prof"`
+	Traits       Traits      `json:"traits"`
+	Allies       Allies      `json:"allies"`
+	Features     Features    `json:"features"`
+	Personality  Personality `json:"personality"`
+	Ideals       Ideals      `json:"ideals"`
+	Bonds        Bonds       `json:"bonds"`
+	Flaws        Flaws       `json:"flaws"`
+	Background   Background  `json:"background"`
+	Quests       Quests      `json:"quests"`
+	SpellsLevel0 SpellsLevel `json:"spells-level-0"`
+	SpellsLevel1 SpellsLevel `json:"spells-level-1"`
+	SpellsLevel2 SpellsLevel `json:"spells-level-2"`
+	SpellsLevel3 SpellsLevel `json:"spells-level-3"`
+	SpellsLevel4 SpellsLevel `json:"spells-level-4"`
+	SpellsLevel5 SpellsLevel `json:"spells-level-5"`
 }
 
 type Gp struct {

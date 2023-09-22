@@ -42,9 +42,9 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Hair:   Hair{Name: "hair", Label: "волосы", Value: lc.Race.Hair},                    //var
 		},
 		SpellsInfo: SpellsInfo{
-			Base: Base{Name: "base", Label: "Базовая характеристика заклинаний", Value: ""}, //var
-			Save: Save{Name: "save", Label: "Сложность спасброска", Value: ""},              //var
-			Mod:  Mod{Name: "mod", Label: "Бонус атаки заклинанием", Value: ""},             //var
+			Base: Base{Name: "base", Label: "Базовая характеристика заклинаний", Value: lc.Class.SpellUsing.BasicSpellCharacteristics}, //var
+			Save: Save{Name: "save", Label: "Сложность спасброска", Value: strconv.Itoa(lc.Class.SpellUsing.SavingThrowDifficulty)},    //var
+			Mod:  Mod{Name: "mod", Label: "Бонус атаки заклинанием", Value: strconv.Itoa(lc.Class.SpellUsing.SpellDamageModifier)},     //var                                               //var
 		},
 		Spells: Spells{
 			Slots1:  Slots1{Value: "2"},
@@ -101,8 +101,7 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Attacks:   Attacks{Value: Value{Data: ""}}, //spells
 			Equipment: Equipment{Value: Value{getEquipString(lc)}},
 			Prof:      Prof{Value: Value{getProfs(lc)}},
-			Traits: Traits{Value: Value{Data: "<strong>Умения от предыстории:</strong> " + lc.Background.BackgroundAbility.AbilityName +
-				"- " + lc.Background.BackgroundAbility.Description +
+			Traits: Traits{Value: Value{Data: "<strong>Умения от класса:</strong> " + getClassAbil(lc) +
 				"<p><strong>Умения от расы:</strong> " + getRaceAbil(lc) + "</p>"}},
 			Personality: Personality{Value: Value{Data: "Черта от расы: " + lc.Background.CharacterTrait}},
 			Ideals:      Ideals{Value: Value{Data: lc.Background.Ideal}},
@@ -111,8 +110,10 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Background: Background{Value: Value{Data: lc.Background.Personalization + " <p>" +
 				lc.Background.Description + "</p>" +
 				"<strong>Совет:</strong> " + lc.Background.Advice}},
-			SpellsLevel0: SpellsLevel0{Value: Value{Data: getZeroLvlSpells(lc)}},
-			SpellsLevel1: SpellsLevel1{Value: Value{Data: ""}},
+			Features: Features{Value: Value{Data: "<p><strong>" + lc.Background.BackgroundAbility.AbilityName + "</strong>: " +
+				lc.Background.BackgroundAbility.Description}},
+			SpellsLevel0: SpellsLevel{Value: Value{Data: getZeroLvlSpells(lc)}},
+			SpellsLevel1: SpellsLevel{Value: Value{Data: ""}},
 		},
 		Avatar: Avatar{
 			Jpeg: "https://charbox.swn.by/imgs/" + lc.Race.RacePhoto.Path + lc.Race.RacePhoto.FileName,
@@ -197,14 +198,21 @@ func getWeaponList(lc characterCore.Character) []WeaponsList {
 	return wplist
 }
 
+func getClassAbil(lc characterCore.Character) string {
+	var classAbilities string
+	for _, ability := range lc.Class.ClassAbilities {
+		classAbilities += "<p><strong>" + ability.Name + ":</strong> " + ability.Description + "</p>"
+	}
+	if classAbilities == "" {
+		classAbilities = "Нет"
+	}
+	return classAbilities
+}
+
 func getRaceAbil(lc characterCore.Character) string {
 	var raseAbilities string
-	for i, ability := range lc.Race.RaceAbilities {
-		if i == len(lc.Race.RaceAbilities)-1 {
-			raseAbilities += ability.AbilityName + ": " + ability.Description
-			break
-		}
-		raseAbilities += ability.AbilityName + ": " + ability.Description + ", "
+	for _, ability := range lc.Race.RaceAbilities {
+		raseAbilities += "<p><strong>" + ability.AbilityName + ":</strong> " + ability.Description + "</p>"
 	}
 	if raseAbilities == "" {
 		raseAbilities = "Нет"
