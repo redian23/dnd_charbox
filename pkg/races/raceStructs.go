@@ -108,11 +108,12 @@ type RaceAbilities struct {
 	AbilityName string `json:"ability_name"`
 	Description string `json:"description"`
 }
-type RaceZeroLvLSpells struct {
+
+type RaceOneLvLSpells struct {
 	SpellName                string `json:"spellName"`
 	BasicSpellCharacteristic string `json:"basicSpellCharacteristic"`
 }
-type RaceOneLvLSpells struct {
+type RaceZeroLvLSpells struct {
 	SpellName                string `json:"spellName"`
 	BasicSpellCharacteristic string `json:"basicSpellCharacteristic"`
 }

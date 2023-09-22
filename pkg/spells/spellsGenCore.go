@@ -2,6 +2,7 @@ package spells
 
 import (
 	"context"
+	"fmt"
 	"pregen/pkg/classes"
 	"pregen/pkg/db"
 	"pregen/pkg/races"
@@ -27,7 +28,7 @@ func GetClassSpellsZeroLevel() []string {
 	for _, spell := range spells {
 		for _, clas := range spell.Classes {
 			if clas == classes.ClassNameGlobalRu {
-				spellList[spell.SpellNameRu] = spell.SpellNameRu + " [" + spell.SpellName + "]"
+				spellList[spell.SpellNameRu] = "<a href=" + spell.URL + ">" + spell.SpellNameRu + " [" + spell.SpellName + "]" + "</a>"
 			}
 		}
 	}
@@ -45,7 +46,7 @@ func GetClassSpellsZeroLevel() []string {
 
 func GetSpellsZeroLevelForCharacter() []string {
 	classSpells := GetClassSpellsZeroLevel()
-	raceSpells := races.GetRaceSpellsZeroLevel()
+	raceSpells := GetRaceSpellsZeroLevel()
 
 	spellList := append(classSpells, raceSpells...)
 	return spellList
@@ -58,4 +59,33 @@ func GetSpellsOneLevelForCharacter() []string {
 	spellList := append(raceSpells, classSpells...)
 	spellList = append(spellList, classes.ClassSpecialSpells...)
 	return spellList
+}
+
+func GetRaceSpellsZeroLevel() []string {
+	zeroSpellsListFromBD := GetSpellsFormDB("spells_zero_lvl")
+
+	var raceZeroSpellsList []races.RaceZeroLvLSpells
+	var raceSpells []string
+	for _, race := range races.RaceData {
+		for _, rType := range race.Type {
+			if races.RaceTypeGlobalRu == rType.TypeRaceNameRu {
+				raceZeroSpellsList = rType.RaceZeroLvLSpells
+			}
+		}
+	}
+
+	for _, ZeroDBSpl := range zeroSpellsListFromBD {
+		for _, raceZeroSpl := range raceZeroSpellsList {
+			if ZeroDBSpl.SpellNameRu == raceZeroSpl.SpellName {
+				if raceZeroSpl.SpellName == "" {
+					break
+				}
+				fmt.Println(ZeroDBSpl.SpellNameRu, ZeroDBSpl.URL)
+				spl := "<a href=" + ZeroDBSpl.URL + ">" + ZeroDBSpl.SpellNameRu + " [" + ZeroDBSpl.SpellName + "]" + "</a>"
+				raceSpells = append(raceSpells, spl)
+			}
+		}
+	}
+
+	return raceSpells
 }

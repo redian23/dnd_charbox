@@ -14,6 +14,7 @@ type SpellsBSON struct {
 	SpellName   string             `json:"spellName"`
 	SpellNameRu string             `json:"spellNameRu"`
 	SpellData   SpellData          `bson:"spellData"`
+	URL         string             `bson:"url"`
 }
 
 type SpellData struct {

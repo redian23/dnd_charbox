@@ -144,29 +144,6 @@ func setHairColor() string {
 	return color
 }
 
-func GetRaceSpellsZeroLevel() []string {
-	var raceZeroSpellsList []RaceZeroLvLSpells
-	var raceSpells []string
-	for _, race := range RaceData {
-		for _, rType := range race.Type {
-			if raceTypeRu == rType.TypeRaceNameRu {
-				raceZeroSpellsList = rType.RaceZeroLvLSpells
-			}
-		}
-	}
-
-	for _, spells := range raceZeroSpellsList {
-		if spells.SpellName == "" {
-			break
-		}
-
-		spl := spells.SpellName + "(" + spells.BasicSpellCharacteristic + ")"
-		raceSpells = append(raceSpells, spl)
-	}
-
-	return raceSpells
-}
-
 func GetRaceSpellsOneLevel() []string {
 	var raceOneSpellsList []RaceOneLvLSpells
 	var raceSpells []string
