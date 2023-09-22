@@ -47,7 +47,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			raceBodySize = race.BodySize
 
 			genders := [2]string{"Мужской", "Женский"} //шах и мат феминистки
-			count, _ := random.IntRange(0, 1)
+			count, _ := random.IntRange(0, len(genders))
 			raceGender = genders[count]
 
 			if raceGender == "Мужской" {
