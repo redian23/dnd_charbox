@@ -2,7 +2,6 @@ package spells
 
 import (
 	"context"
-	"fmt"
 	"pregen/pkg/classes"
 	"pregen/pkg/db"
 	"pregen/pkg/races"
@@ -80,7 +79,6 @@ func GetRaceSpellsZeroLevel() []string {
 				if raceZeroSpl.SpellName == "" {
 					break
 				}
-				fmt.Println(ZeroDBSpl.SpellNameRu, ZeroDBSpl.URL)
 				spl := "<a href=" + ZeroDBSpl.URL + ">" + ZeroDBSpl.SpellNameRu + " [" + ZeroDBSpl.SpellName + "]" + "</a>"
 				raceSpells = append(raceSpells, spl)
 			}
