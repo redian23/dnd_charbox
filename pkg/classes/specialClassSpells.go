@@ -126,9 +126,10 @@ func SetSorcererOrigin(origin string) ([]ClassAbility, string) {
 			"Чаще всего, чародеи с таким источником силы могут проследить свою родословную до могучих чародеев древности, заключавших сделки с драконами или даже объявлявших себя потомками драконов. " +
 			"Некоторые из таких наследственных ветвей хорошо известны, но большинство из них скрыты. " +
 			"Или чародей может являться родоначальником такой ветви, получив силу в результате договора или других сверхъестественных обстоятельств."
-		if races.RaceTypeGlobalRu != "Кобольд" ||
-			races.RaceTypeGlobalRu != "Драконорожденный" ||
-			races.RaceTypeGlobalRu != "Юань-ти" {
+
+		if races.RaceTypeGlobalRu != "Кобольд" && origin == "Наследие драконьей крови" ||
+			races.RaceTypeGlobalRu != "Драконорожденный" && origin == "Наследие драконьей крови" ||
+			races.RaceTypeGlobalRu != "Юань-ти" && origin == "Наследие драконьей крови" {
 			LanguageListGlobal = append(LanguageListGlobal, "Драконий")
 		}
 		dragonAncestor := map[string]string{
