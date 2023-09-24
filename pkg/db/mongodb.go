@@ -42,7 +42,7 @@ func ConnectToDB() *mongo.Client {
 	// Use the SetServerAPIOptions() method to set the Stable API version to 1
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
 	opts := options.Client().ApplyURI("mongodb://" + address + "/" + DBNAME).
-		SetServerAPIOptions(serverAPI).SetAuth(cred).SetLoadBalanced(true)
+		SetServerAPIOptions(serverAPI).SetAuth(cred)
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(context.TODO(), opts)
 	if err != nil {
