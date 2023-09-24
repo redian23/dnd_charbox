@@ -41,8 +41,8 @@ func ConnectToDB() *mongo.Client {
 	}
 	// Use the SetServerAPIOptions() method to set the Stable API version to 1
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI("mongodb://" + address + "/" + dbname).SetServerAPIOptions(serverAPI).SetAuth(cred)
-
+	opts := options.Client().ApplyURI("mongodb://" + address + "/" + dbname).
+		SetServerAPIOptions(serverAPI).SetAuth(cred).SetMaxPoolSize(100000)
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(context.TODO(), opts)
 	if err != nil {
@@ -80,6 +80,7 @@ func StatusMongoDB() {
 			log.Fatal(err)
 		}
 	}(client, ctx)
+
 	var commandResult bson.M
 	command := bson.D{{"serverStatus", 1}}
 	err := client.Database("data").RunCommand(context.TODO(), command).Decode(&commandResult)
@@ -93,7 +94,7 @@ func StatusMongoDB() {
 
 func ReadFromDB(collectionName string) *mongo.Cursor {
 	client := ConnectToDB()
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	_, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 
 	coll := client.Database(dbname).Collection(collectionName)
 
@@ -101,12 +102,13 @@ func ReadFromDB(collectionName string) *mongo.Cursor {
 	if err != nil {
 		panic(err)
 	}
-	defer func(client *mongo.Client, ctx context.Context) {
-		err := client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
+	defer cancel()
+	//defer func(client *mongo.Client, ctx context.Context) {
+	//	err = client.Disconnect(ctx)
+	//	if err != nil {
+	//		log.Fatal(err)
+	//	}
+	//}(client, ctx)
 
 	return cursor
 }

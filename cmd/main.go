@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const Version = "0.9.1 Beta build"
+const Version = "0.9.2 Beta build"
 
 func main() {
 	ProdStatus = true
@@ -59,9 +59,6 @@ func main() {
 	})
 	router.GET("/s_map.xml", func(c *gin.Context) {
 		c.File(filePath + "/charbox/s_map.xml")
-	})
-	router.GET("/version", func(c *gin.Context) {
-		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
 
 	if ProdStatus == true {

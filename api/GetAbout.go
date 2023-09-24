@@ -21,7 +21,9 @@ func GetAbout(c *gin.Context) {
 		Projects: []string{"Character Box", "DiceRoll"},
 		Author:   "Redian23",
 		Team: []team{
-			{Occupation: "SysAdmin/BackEnd/FrontEnd", Name: "Redian23"},
+			{Occupation: "SysAdmin/GO BackEnd/FrontEnd", Name: "Redian23"},
+			{Occupation: "GO BackEnd", Name: "Redian23"},
+
 			{Occupation: "QA/PR Manager", Name: "Racist Ooga Booga"},
 			{Occupation: "A_QA", Name: "Lisha_Svitok"},
 		},

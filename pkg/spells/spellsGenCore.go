@@ -14,54 +14,36 @@ func GetSpellsFormDB(collName string) []SpellsBSON {
 	if err := cursor.All(context.TODO(), &results); err != nil {
 		panic(err)
 	}
+
 	return results
 }
 
-func GetClassSpellsZeroLevel() []string {
-	spells := GetSpellsFormDB("spells_zero_lvl")
-	spellCount := classes.GetClassZeroSpellCount()
-
-	var spellList = make(map[string]string)
-	var spellAnswer []string
-
-	for _, spell := range spells {
-		for _, clas := range spell.Classes {
-			if clas == classes.ClassNameGlobalRu {
-				spellList[spell.SpellNameRu] = "<a href=" + spell.URL + ">" + spell.SpellNameRu + " [" + spell.SpellName + "]" + "</a>"
-			}
-		}
-	}
-
-	var iter int
-	for _, s2 := range spellList {
-		spellAnswer = append(spellAnswer, s2)
-		iter++
-		if iter >= spellCount {
-			break
-		}
-	}
-	return spellAnswer
-}
-
 func GetSpellsZeroLevelForCharacter() []string {
-	classSpells := GetClassSpellsZeroLevel()
+	classSpells := GetHtmlFormattedClassSpells(0)
 	raceSpells := GetRaceSpellsZeroLevel()
 
 	spellList := append(classSpells, raceSpells...)
 	return spellList
 }
 
-func GetSpellsOneLevelForCharacter() []string {
-	classSpells := classes.GetClassOneSpellsList()
-	raceSpells := races.GetRaceSpellsOneLevel()
+func GetHtmlFormattedClassSpells(lvl int) []string {
+	spells := GetSpellsFormDB("spells_all")
+	classSpells := classes.GetClassSpells(lvl)
 
-	spellList := append(raceSpells, classSpells...)
-	spellList = append(spellList, classes.ClassSpecialSpells...)
-	return spellList
+	var spellAnswer []string
+
+	for _, spell := range spells {
+		for _, classSpell := range classSpells {
+			if classSpell == spell.SpellNameRu && spell.SpellLevel == lvl {
+				spellAnswer = append(spellAnswer, "<a href="+spell.URL+">"+spell.SpellNameRu+" ["+spell.SpellName+"]"+"</a>")
+			}
+		}
+	}
+	return spellAnswer
 }
 
 func GetRaceSpellsZeroLevel() []string {
-	zeroSpellsListFromBD := GetSpellsFormDB("spells_zero_lvl")
+	spellsListFromBD := GetSpellsFormDB("spells_all")
 
 	var raceZeroSpellsList []races.RaceZeroLvLSpells
 	var raceSpells []string
@@ -73,8 +55,46 @@ func GetRaceSpellsZeroLevel() []string {
 		}
 	}
 
-	for _, ZeroDBSpl := range zeroSpellsListFromBD {
+	for _, ZeroDBSpl := range spellsListFromBD {
 		for _, raceZeroSpl := range raceZeroSpellsList {
+			if ZeroDBSpl.SpellNameRu == raceZeroSpl.SpellName {
+				if raceZeroSpl.SpellName == "" {
+					break
+				}
+				spl := "<a href=" + ZeroDBSpl.URL + ">" + ZeroDBSpl.SpellNameRu + " [" + ZeroDBSpl.SpellName + "]" + "</a>"
+				raceSpells = append(raceSpells, spl)
+			}
+		}
+	}
+
+	return raceSpells
+}
+
+func GetSpellsOneLevelForCharacter() []string {
+	classSpells := GetHtmlFormattedClassSpells(1)
+	raceSpells := GetRaceSpellsOneLevel()
+
+	spellList := append(raceSpells, classSpells...)
+	spellList = append(spellList, classes.ClassSpecialSpells...)
+	return spellList
+}
+
+func GetRaceSpellsOneLevel() []string {
+	spellsListFromBD := GetSpellsFormDB("spells_all")
+
+	var raceOneSpellsList []races.RaceOneLvLSpells
+	var raceSpells []string
+
+	for _, race := range races.RaceData {
+		for _, rType := range race.Type {
+			if races.RaceTypeGlobalRu == rType.TypeRaceNameRu {
+				raceOneSpellsList = rType.RaceOneLvLSpells
+			}
+		}
+	}
+
+	for _, ZeroDBSpl := range spellsListFromBD {
+		for _, raceZeroSpl := range raceOneSpellsList {
 			if ZeroDBSpl.SpellNameRu == raceZeroSpl.SpellName {
 				if raceZeroSpl.SpellName == "" {
 					break

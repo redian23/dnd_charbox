@@ -8,6 +8,8 @@ import (
 )
 
 func GenerateFullCharacter(className, raceName string, lvl int) *Character {
+
+	classes.CharacterLevelGlobal = lvl
 	return &Character{
 		Level:            lvl,
 		Experience:       getExpCount(lvl),
