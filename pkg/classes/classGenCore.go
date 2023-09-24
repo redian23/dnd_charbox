@@ -12,7 +12,6 @@ import (
 	"pregen/pkg/races"
 	"reflect"
 	"sort"
-	"time"
 )
 
 var (
@@ -27,7 +26,7 @@ func GetClassCharactsFormDB() ClassesBSON {
 	var results ClassesBSON
 
 	client := db.ConnectToDB()
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx := context.Background()
 
 	coll := client.Database(db.DBNAME).Collection("classes")
 	cursor, err := coll.Find(ctx, bson.D{})
@@ -52,7 +51,7 @@ func GetArmorFormDB() []ArmorAnswer {
 	var results []ArmorAnswer
 
 	client := db.ConnectToDB()
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx := context.Background()
 
 	coll := client.Database(db.DBNAME).Collection("armor")
 	cursor, err := coll.Find(ctx, bson.D{})
@@ -77,7 +76,7 @@ func GetWeaponFormDB() []WeaponAnswer {
 	var results []WeaponAnswer
 
 	client := db.ConnectToDB()
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx := context.Background()
 
 	coll := client.Database(db.DBNAME).Collection("weapons")
 	cursor, err := coll.Find(ctx, bson.D{})

@@ -8,14 +8,13 @@ import (
 	"pregen/pkg/classes"
 	"pregen/pkg/db"
 	"pregen/pkg/races"
-	"time"
 )
 
 func GetSpellsFormDB() []SpellsBSON {
 	var results []SpellsBSON
 	client := db.ConnectToDB()
 
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx := context.Background()
 
 	coll := client.Database(db.DBNAME).Collection("spells_all")
 	cursor, err := coll.Find(ctx, bson.D{})

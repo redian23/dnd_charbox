@@ -10,7 +10,6 @@ import (
 	"log"
 	"os"
 	"pregen/pkg/db"
-	"time"
 )
 
 var (
@@ -96,7 +95,7 @@ func getRacesFormDB() []RacesBSON {
 	var results []RacesBSON
 
 	client := db.ConnectToDB()
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx := context.Background()
 
 	coll := client.Database(db.DBNAME).Collection("races")
 	cursor, err := coll.Find(ctx, bson.D{})
