@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	address, dbname string
+	address, DBNAME string
 	login, passwd   string
 )
 
@@ -29,7 +29,7 @@ func InitMongoENV(path string) {
 	}
 
 	address = viper.GetString("address")
-	dbname = viper.Get("dbname").(string)
+	DBNAME = viper.Get("dbname").(string)
 	login = viper.Get("login").(string)
 	passwd = viper.Get("passwd").(string)
 }
@@ -41,13 +41,14 @@ func ConnectToDB() *mongo.Client {
 	}
 	// Use the SetServerAPIOptions() method to set the Stable API version to 1
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	opts := options.Client().ApplyURI("mongodb://" + address + "/" + dbname).
+	opts := options.Client().ApplyURI("mongodb://" + address + "/" + DBNAME).
 		SetServerAPIOptions(serverAPI).SetAuth(cred).SetMaxPoolSize(100000)
 	// Create a new client and connect to the server
 	client, err := mongo.Connect(context.TODO(), opts)
 	if err != nil {
 		panic(err)
 	}
+
 	return client
 }
 
@@ -55,7 +56,7 @@ func PingMongoDB() {
 	var client = ConnectToDB()
 	// Send a ping to confirm a successful connection
 	var result bson.M
-	if err := client.Database(dbname).RunCommand(context.TODO(), bson.D{{"ping", 1}}).Decode(&result); err != nil {
+	if err := client.Database(DBNAME).RunCommand(context.TODO(), bson.D{{"ping", 1}}).Decode(&result); err != nil {
 		panic(err)
 	}
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
@@ -90,25 +91,4 @@ func StatusMongoDB() {
 	}
 
 	log.Printf("Db version: %+v\n", commandResult["connections"])
-}
-
-func ReadFromDB(collectionName string) *mongo.Cursor {
-	client := ConnectToDB()
-	_, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-
-	coll := client.Database(dbname).Collection(collectionName)
-
-	cursor, err := coll.Find(context.TODO(), bson.D{})
-	if err != nil {
-		panic(err)
-	}
-	defer cancel()
-	//defer func(client *mongo.Client, ctx context.Context) {
-	//	err = client.Disconnect(ctx)
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//}(client, ctx)
-
-	return cursor
 }

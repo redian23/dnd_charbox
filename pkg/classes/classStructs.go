@@ -83,8 +83,9 @@ type ClassesBSON []struct {
 }
 
 type hits struct {
-	HitDice  string `json:"hit_dice"`
-	HitCount int    `json:"hit_count"`
+	HitDice      string `json:"hit_dice"`
+	HitDiceCount int    `json:"hit_dice_count"`
+	HitCount     int    `json:"hit_count"`
 }
 
 type skillsInDB struct {

@@ -5,9 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/mazen160/go-random"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"os"
 	"pregen/pkg/db"
+	"time"
 )
 
 var (
@@ -91,11 +94,27 @@ func InsertRacesToDB() {
 
 func getRacesFormDB() []RacesBSON {
 	var results []RacesBSON
-	var cursor = db.ReadFromDB("races")
 
-	if err := cursor.All(context.TODO(), &results); err != nil {
+	client := db.ConnectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	coll := client.Database(db.DBNAME).Collection("races")
+	cursor, err := coll.Find(ctx, bson.D{})
+	if err != nil {
 		panic(err)
 	}
+
+	if err = cursor.All(ctx, &results); err != nil {
+		panic(err)
+	}
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err = client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
+
 	return results
 }
 

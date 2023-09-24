@@ -35,6 +35,9 @@ func GetCurrentCharacter(c *gin.Context) {
 		chr.RaceName = raceArray[randNum]
 	}
 
+	if chr.Level > 8 {
+		chr.Level = 8
+	}
 	c.JSONP(http.StatusOK, characterCore.GenerateFullCharacter(chr.ClassName, chr.RaceName, chr.Level))
 
 }

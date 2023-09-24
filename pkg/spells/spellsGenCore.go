@@ -2,19 +2,37 @@ package spells
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"log"
 	"pregen/pkg/classes"
 	"pregen/pkg/db"
 	"pregen/pkg/races"
+	"time"
 )
 
-func GetSpellsFormDB(collName string) []SpellsBSON {
+func GetSpellsFormDB() []SpellsBSON {
 	var results []SpellsBSON
-	var cursor = db.ReadFromDB(collName)
+	client := db.ConnectToDB()
 
-	if err := cursor.All(context.TODO(), &results); err != nil {
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	coll := client.Database(db.DBNAME).Collection("spells_all")
+	cursor, err := coll.Find(ctx, bson.D{})
+	if err != nil {
 		panic(err)
 	}
 
+	if err = cursor.All(ctx, &results); err != nil {
+		panic(err)
+	}
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err = client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
 	return results
 }
 
@@ -27,7 +45,7 @@ func GetSpellsZeroLevelForCharacter() []string {
 }
 
 func GetHtmlFormattedClassSpells(lvl int) []string {
-	spells := GetSpellsFormDB("spells_all")
+	spells := GetSpellsFormDB()
 	classSpells := classes.GetClassSpells(lvl)
 
 	var spellAnswer []string
@@ -43,7 +61,7 @@ func GetHtmlFormattedClassSpells(lvl int) []string {
 }
 
 func GetRaceSpellsZeroLevel() []string {
-	spellsListFromBD := GetSpellsFormDB("spells_all")
+	spellsListFromBD := GetSpellsFormDB()
 
 	var raceZeroSpellsList []races.RaceZeroLvLSpells
 	var raceSpells []string
@@ -80,7 +98,7 @@ func GetSpellsOneLevelForCharacter() []string {
 }
 
 func GetRaceSpellsOneLevel() []string {
-	spellsListFromBD := GetSpellsFormDB("spells_all")
+	spellsListFromBD := GetSpellsFormDB()
 
 	var raceOneSpellsList []races.RaceOneLvLSpells
 	var raceSpells []string

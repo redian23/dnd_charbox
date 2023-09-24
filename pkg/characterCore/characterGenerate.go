@@ -28,17 +28,16 @@ func GenerateFullCharacter(className, raceName string, lvl int) *Character {
 }
 
 func getExpCount(lvl int) int {
+
 	var expCountMap = map[int]int{
-		1:  0,
-		2:  300,
-		3:  900,
-		4:  2700,
-		5:  6500,
-		6:  14000,
-		7:  23000,
-		8:  34000,
-		9:  48000,
-		10: 64000,
+		1: 0,
+		2: 300,
+		3: 900,
+		4: 2700,
+		5: 6500,
+		6: 14000,
+		7: 23000,
+		8: 34000,
 	}
 	return expCountMap[lvl]
 }

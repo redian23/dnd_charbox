@@ -3,12 +3,16 @@ package classes
 import (
 	"context"
 	"github.com/mazen160/go-random"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"log"
 	"math"
 	"pregen/pkg/db"
 	"pregen/pkg/dice"
 	"pregen/pkg/races"
 	"reflect"
 	"sort"
+	"time"
 )
 
 var (
@@ -21,31 +25,76 @@ var (
 
 func GetClassCharactsFormDB() ClassesBSON {
 	var results ClassesBSON
-	var cursor = db.ReadFromDB("classes")
-	if err := cursor.All(context.TODO(), &results); err != nil {
+
+	client := db.ConnectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	coll := client.Database(db.DBNAME).Collection("classes")
+	cursor, err := coll.Find(ctx, bson.D{})
+	if err != nil {
 		panic(err)
 	}
 
+	if err = cursor.All(ctx, &results); err != nil {
+		panic(err)
+	}
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err = client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
 	return results
 }
 
 func GetArmorFormDB() []ArmorAnswer {
 	var results []ArmorAnswer
-	var cursor = db.ReadFromDB("armor")
-	if err := cursor.All(context.TODO(), &results); err != nil {
+
+	client := db.ConnectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	coll := client.Database(db.DBNAME).Collection("armor")
+	cursor, err := coll.Find(ctx, bson.D{})
+	if err != nil {
 		panic(err)
 	}
 
+	if err = cursor.All(ctx, &results); err != nil {
+		panic(err)
+	}
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err = client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
 	return results
 }
 
 func GetWeaponFormDB() []WeaponAnswer {
 	var results []WeaponAnswer
-	var cursor = db.ReadFromDB("weapons")
-	if err := cursor.All(context.TODO(), &results); err != nil {
+
+	client := db.ConnectToDB()
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+
+	coll := client.Database(db.DBNAME).Collection("weapons")
+	cursor, err := coll.Find(ctx, bson.D{})
+	if err != nil {
 		panic(err)
 	}
 
+	if err = cursor.All(ctx, &results); err != nil {
+		panic(err)
+	}
+
+	defer func(client *mongo.Client, ctx context.Context) {
+		err = client.Disconnect(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(client, ctx)
 	return results
 }
 
@@ -234,16 +283,50 @@ func setHitDice() string {
 	}
 	return hitDice
 }
-func setHitCount(modBody int) int {
-	var hitCount int
+
+func getHitDiceNum() int {
+	var hitDice string
 	for _, char := range chars {
 		if char.ClassNameRU == ClassNameGlobalRu {
-			hitCount = char.Hits.HitCount + modBody
-		}
-		if races.RaceTypeGlobalRu == "Холмовой Дворф" {
-			HitsCountGlobal += 1
+			hitDice = char.Hits.HitDice
 		}
 	}
+
+	var hitDiceNum int
+	switch hitDice {
+	case "1к4":
+		hitDiceNum = 4
+	case "1к6":
+		hitDiceNum = 6
+	case "1к8":
+		hitDiceNum = 8
+	case "1к10":
+		hitDiceNum = 10
+	case "1к12":
+		hitDiceNum = 12
+	}
+	return hitDiceNum
+}
+
+func setHitCount(modBody int) int {
+	var hitCount int
+
+	for _, char := range chars {
+		for i := 1; i <= CharacterLevelGlobal; i++ {
+			if char.ClassNameRU == ClassNameGlobalRu && i == 1 {
+				hitCount = char.Hits.HitCount + modBody
+			}
+			if char.ClassNameRU == ClassNameGlobalRu && i != 1 {
+				diceroll, _ := random.IntRange(0, getHitDiceNum()+1)
+				hitCount += diceroll + modBody
+			}
+		}
+	}
+
+	if races.RaceTypeGlobalRu == "Холмовой Дворф" {
+		hitCount += 1
+	}
+	HitsCountGlobal = hitCount
 	return hitCount
 }
 
