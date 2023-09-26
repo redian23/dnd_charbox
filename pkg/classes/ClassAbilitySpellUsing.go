@@ -1,6 +1,7 @@
 package classes
 
 var CharacterLevelGlobal int
+var ProficiencyBonus int
 
 func GetClassSpells(level int) []string {
 
@@ -234,39 +235,200 @@ func GetClassSpells(level int) []string {
 	return classSpellsAnswer
 }
 
-func getClassSpellBasicCharacteristic() spellUsing {
-	var su spellUsing
+func getClassSpellBasicCharacteristic() Spellcasting {
+	var cast Spellcasting
 
 	switch ClassNameGlobalRu {
 	case "Друид":
-		su.BasicSpellCharacteristics = "Мудрость"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Wisdom
-		su.SpellDamageModifier = 2 + ModifierGlobal.Wisdom
+		cast.BasicSpellCharacteristics = "Мудрость"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+		}
 	case "Жрец":
-		su.BasicSpellCharacteristics = "Мудрость"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Wisdom
-		su.SpellDamageModifier = 2 + ModifierGlobal.Wisdom
+		cast.BasicSpellCharacteristics = "Мудрость"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+		}
+	case "Следопыт":
+		if CharacterLevelGlobal > 1 {
+			cast.BasicSpellCharacteristics = "Мудрость"
+			cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
+			cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
+		}
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		}
+
 	case "Изобретатель":
-		su.BasicSpellCharacteristics = "Интеллект"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Intelligence
-		su.SpellDamageModifier = 2 + ModifierGlobal.Intelligence
+		cast.BasicSpellCharacteristics = "Интеллект"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Intelligence
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Intelligence
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		}
 	case "Волшебник":
-		su.BasicSpellCharacteristics = "Интеллект"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Intelligence
-		su.SpellDamageModifier = 2 + ModifierGlobal.Intelligence
+		cast.BasicSpellCharacteristics = "Интеллект"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Intelligence
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Intelligence
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+		}
 	case "Колдун":
-		su.BasicSpellCharacteristics = "Харизма"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Charisma
-		su.SpellDamageModifier = 2 + ModifierGlobal.Charisma
+		cast.BasicSpellCharacteristics = "Харизма"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
 	case "Бард":
-		su.BasicSpellCharacteristics = "Харизма"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Charisma
-		su.SpellDamageModifier = 2 + ModifierGlobal.Charisma
+		cast.BasicSpellCharacteristics = "Харизма"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+		}
 	case "Чародей":
-		su.BasicSpellCharacteristics = "Харизма"
-		su.SavingThrowDifficulty = 8 + 2 + ModifierGlobal.Charisma
-		su.SpellDamageModifier = 2 + ModifierGlobal.Charisma
+		cast.BasicSpellCharacteristics = "Харизма"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+		}
+	case "Паладин":
+		if CharacterLevelGlobal > 1 {
+			cast.BasicSpellCharacteristics = "Харизма"
+			cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
+			cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
+		}
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+		}
 	}
 
-	return su
+	return cast
 }

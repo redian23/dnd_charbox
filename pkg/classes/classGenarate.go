@@ -39,7 +39,7 @@ func GenerateClass(classNameRU string, lvl int) *ClassAnswer {
 		Armor:          setArmor(classNameRU),
 		Weapon:         setWeapons(),
 		Initiative:     setInitiative(),
-		SpellUsing:     getClassSpellBasicCharacteristic(),
+		Spellcasting:   getClassSpellBasicCharacteristic(),
 		ClassAbilities: getClassAbilities(),
 	}
 }

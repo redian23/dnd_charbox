@@ -85,13 +85,13 @@
                 <label>
                     <select id="select_char_level">
                         <option value=1 selected="selected">1 уровень</option>
-<!--                        <option value=2>2 уровень</option>-->
-<!--                        <option value=3>3 уровень</option>-->
-<!--                        <option value=4>4 уровень</option>-->
-<!--                        <option value=5>5 уровень</option>-->
-<!--                        <option value=6>6 уровень</option>-->
-<!--                        <option value=7>7 уровень</option>-->
-<!--                        <option value=8>8 уровень</option>-->
+                        <option value=2>2 уровень</option>
+                        <option value=3>3 уровень</option>
+                        <option value=4>4 уровень</option>
+                        <option value=5>5 уровень</option>
+                        <option value=6>6 уровень</option>
+                        <option value=7>7 уровень</option>
+                        <option value=8>8 уровень</option>
                     </select>
                 </label>
             </div>
@@ -244,7 +244,7 @@
                     <article class="tile is-child box">
                         <p class="title">Хиты: [ <label id="lbl_hitsCount"></label> ]</p>
                         <p class="subtitle-text"><strong>Кость Хитов:</strong> [ <label id="lbl_hitsDice"></label> ]</p>
-                        <p class="subtitle-text"><strong>Всего Костей Хитов:</strong> [ 1 ]</p>
+                        <p class="subtitle-text"><strong>Всего Костей Хитов:</strong>[ <label id="lbl_hit_dice_count"></label> ]</p>
                     </article>
                     <article class="tile is-child box">
                         <p class="subtitle-text"><strong>Вдохновение:</strong> [ <label id="lbl_inspiration"> </label> ]</p>
@@ -433,7 +433,9 @@
                 <article class="tile is-child box">
                     <article class="tile is-child">
                         <p class="title">Заклинания:<label></label></p>
-                        <p class="subtitle"><label id="lbl_spells_one_lvl"></label></p>
+                        <p class="subtitle">
+                            <label><strong>1й Уровень:</strong></label><br>
+                            <label id="lbl_spells_one_lvl"></label></p>
                         <div id="div_caster_info">
                             <p class="subtitle">
                                 <label>

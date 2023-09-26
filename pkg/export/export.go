@@ -42,9 +42,9 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Hair:   Hair{Name: "hair", Label: "волосы", Value: lc.Race.Hair},                    //var
 		},
 		SpellsInfo: SpellsInfo{
-			Base: Base{Name: "base", Label: "Базовая характеристика заклинаний", Value: lc.Class.SpellUsing.BasicSpellCharacteristics}, //var
-			Save: Save{Name: "save", Label: "Сложность спасброска", Value: strconv.Itoa(lc.Class.SpellUsing.SavingThrowDifficulty)},    //var
-			Mod:  Mod{Name: "mod", Label: "Бонус атаки заклинанием", Value: strconv.Itoa(lc.Class.SpellUsing.SpellDamageModifier)},     //var                                               //var
+			Base: Base{Name: "base", Label: "Базовая характеристика заклинаний", Value: lc.Class.Spellcasting.BasicSpellCharacteristics}, //var
+			Save: Save{Name: "save", Label: "Сложность спасброска", Value: strconv.Itoa(lc.Class.Spellcasting.SavingThrowDifficulty)},    //var
+			Mod:  Mod{Name: "mod", Label: "Бонус атаки заклинанием", Value: strconv.Itoa(lc.Class.Spellcasting.SpellDamageModifier)},     //var                                               //var
 		},
 		Spells: Spells{
 			Slots1:  Slots1{Value: "2"},

@@ -17,16 +17,24 @@ type ClassAnswer struct {
 	Armor          []ArmorAnswer  `json:"armor"`
 	Weapon         []WeaponAnswer `json:"weapon"`
 	Initiative     string         `json:"initiative"`
-	SpellUsing     spellUsing     `json:"spell_using"`
+	Spellcasting   Spellcasting   `json:"spell_using"`
 	ClassAbilities []ClassAbility `json:"class_abilities"`
 }
 
-type spellUsing struct {
-	BasicSpellCharacteristics string `json:"basic_spell_characteristics"`
-	SpellDamageModifier       int    `json:"spell_damage_modifier"`
-	SavingThrowDifficulty     int    `json:"saving_throw_difficulty"`
+type Spellcasting struct {
+	BasicSpellCharacteristics string      `json:"basic_spell_characteristics"`
+	SpellDamageModifier       int         `json:"spell_damage_modifier"`
+	SavingThrowDifficulty     int         `json:"saving_throw_difficulty"`
+	SpellsSlots               spellsSlots `json:"spells_slots"`
 }
 
+type spellsSlots struct {
+	OneLevel  int `json:"one_level"`
+	TwoLevel  int `json:"two_level"`
+	TreeLevel int `json:"tree_level"`
+	FourLevel int `json:"four_level"`
+	FiveLevel int `json:"five_level"`
+}
 type Proficiencies struct {
 	Armor       string `json:"armor"`
 	Weapons     string `json:"weapons"`

@@ -72,7 +72,7 @@ async function WriteAllLabels(data) {
     await writeArmorLabels(data)
     await writeWeaponLabels(data)
     await writeSpellsLabels(data)
-    await writeSpellUsingLabels(data)
+    await writeSpellcastingLabels(data)
 }
 
 function writeToAbilitiesLabels(data) {
@@ -289,18 +289,27 @@ function writeToSkillsLabels(data) {
     if (skills["survival"]["double_proficiency"] === true){
         document.getElementById("rd_Survival_dbl_prof").checked=true;
     }
-
-
 }
 
 function writeOtherLabels(data) {
+
+    document.getElementById("lbl_languages").innerHTML = "" //clear line
+
     document.getElementById("lbl_level").innerHTML =  JSON.parse(data)["level"];
+    document.getElementById("lbl_hit_dice_count").innerHTML =  JSON.parse(data)["level"];
     document.getElementById("lbl_exp_count").innerHTML =  JSON.parse(data)["experience"];
     document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
-
-
     document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
-    document.getElementById("lbl_languages").innerHTML =  JSON.parse(data)["langs"];
+
+    let langs =  JSON.parse(data)["langs"];
+    for(let i = 0; i < langs.length; i++){
+        if (i !== langs.length-1){
+            comma = ", "
+        }else {
+            comma = ""
+        }
+        document.getElementById("lbl_languages").innerHTML += JSON.parse(JSON.stringify(langs[i])) + comma;
+    }
 
     let clas = JSON.parse(data)["class"]
     document.getElementById("lbl_initiative").innerHTML = clas["initiative"];
@@ -502,7 +511,7 @@ function writeSpellsLabels(data) {
     }
 }
 
-function writeSpellUsingLabels(data) {
+function writeSpellcastingLabels(data) {
     let spell_using = JSON.parse(data)["class"]["spell_using"];
 
     if (spell_using["spell_damage_modifier"] === 0 ){

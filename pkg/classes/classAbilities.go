@@ -87,7 +87,14 @@ func setFighterClassAbilities() []ClassAbility {
 		},
 	}
 
-	return classAbilityList
+	var classAbilityListAnswer []ClassAbility
+	for _, ability := range classAbilityList {
+		if ability.Level <= CharacterLevelGlobal {
+			classAbilityListAnswer = append(classAbilityListAnswer, ability)
+		}
+	}
+
+	return classAbilityListAnswer
 }
 
 func setBarbarianClassAbilities() []ClassAbility {

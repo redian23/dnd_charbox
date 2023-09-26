@@ -138,6 +138,7 @@ func sortMapCustom(statMap map[string]int) ([]string, map[string]int) {
 	sort.SliceStable(keys, func(i, j int) bool {
 		return statMap[keys[i]] > statMap[keys[j]]
 	})
+
 	return keys, statMap
 }
 func extractStats(abil Ability) []string {
@@ -164,7 +165,7 @@ func statAnalyze(needClass string) (string, string, Ability) {
 	var name, nameRu string
 	var abilities Ability
 
-	for i := 0; i < 100; i++ { //если юзать бесконечный for, то cpu взлетает до 100% под нагрузкой
+	for i := 0; i < 200; i++ { //если юзать бесконечный for, то cpu взлетает до 100% под нагрузкой
 		abilities = rerollClassAbilitiesStats()
 		stats := extractStats(abilities)
 
@@ -173,11 +174,21 @@ func statAnalyze(needClass string) (string, string, Ability) {
 				if reflect.DeepEqual(stats, cla) && needClass == char.ClassNameRU {
 					name = char.ClassName
 					nameRu = char.ClassNameRU
+					return name, nameRu, abilities
 				}
 			}
 		}
 	}
-	return name, nameRu, abilities
+	return name, nameRu, Ability{
+		Strength:       10,
+		Dexterity:      10,
+		BodyDifficulty: 10,
+		Intelligence:   10,
+		Wisdom:         10,
+		Charisma:       10,
+	}
+	//на случай если за 200 попыток не получится подобрать статы для класса
+	//редко, но бывает
 }
 
 func setModifiersForClass(ab Ability) Modifier {
@@ -291,19 +302,15 @@ func getHitDiceNum() int {
 		}
 	}
 
-	var hitDiceNum int
-	switch hitDice {
-	case "1к4":
-		hitDiceNum = 4
-	case "1к6":
-		hitDiceNum = 6
-	case "1к8":
-		hitDiceNum = 8
-	case "1к10":
-		hitDiceNum = 10
-	case "1к12":
-		hitDiceNum = 12
+	hitDiceMap := map[string]int{
+		"1к4":  4,
+		"1к6":  6,
+		"1к8":  8,
+		"1к10": 10,
+		"1к12": 12,
 	}
+
+	hitDiceNum := hitDiceMap[hitDice]
 	return hitDiceNum
 }
 
@@ -316,7 +323,7 @@ func setHitCount(modBody int) int {
 				hitCount = char.Hits.HitCount + modBody
 			}
 			if char.ClassNameRU == ClassNameGlobalRu && i != 1 {
-				diceroll, _ := random.IntRange(0, getHitDiceNum()+1)
+				diceroll, _ := random.IntRange(1, getHitDiceNum()+1)
 				hitCount += diceroll + modBody
 			}
 		}
