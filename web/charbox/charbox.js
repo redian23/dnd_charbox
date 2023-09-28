@@ -1,4 +1,5 @@
 let charData
+localStorage.setItem('genButtonClickCount',1)
 window.onload = winOnloadGenerate()
 
 function getSelectClassNameValue() {
