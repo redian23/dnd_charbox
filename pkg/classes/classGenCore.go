@@ -161,8 +161,8 @@ func extractStats(abil Ability) []string {
 	return statsForFindClassSpec
 }
 
-func statAnalyze(needClass string) (string, string, Ability) {
-	var name, nameRu string
+func statAnalyze(needClass string) (string, Ability) {
+	var nameEng string
 	var abilities Ability
 
 	for i := 0; i < 200; i++ { //если юзать бесконечный for, то cpu взлетает до 100% под нагрузкой
@@ -172,23 +172,56 @@ func statAnalyze(needClass string) (string, string, Ability) {
 		for _, char := range chars {
 			for _, cla := range char.CharReq {
 				if reflect.DeepEqual(stats, cla) && needClass == char.ClassNameRU {
-					name = char.ClassName
-					nameRu = char.ClassNameRU
-					return name, nameRu, abilities
+					nameEng = char.ClassName
+					return nameEng, abilities
 				}
 			}
 		}
 	}
-	return name, nameRu, Ability{
-		Strength:       10,
-		Dexterity:      10,
-		BodyDifficulty: 10,
-		Intelligence:   10,
-		Wisdom:         10,
-		Charisma:       10,
+	return getDefaultCharacterStats(needClass)
+	//если за 200 траев не смогло найти подходящие статы для класса
+	//от отдает дефолт статы для класса по системе (15,14,13,12,10,8)
+}
+
+func getDefaultCharacterStats(needClass string) (string, Ability) {
+
+	classNameList := map[string]string{
+		"Волшебник":    "Wizard",
+		"Воин":         "Fighter",
+		"Варвар":       "Barbarian",
+		"Паладин":      "Paladin",
+		"Монах":        "Monk",
+		"Плут":         "Rogue",
+		"Следопыт":     "Ranger",
+		"Друид":        "Druid",
+		"Жрец":         "Cleric",
+		"Чародей":      "Sorcerer",
+		"Бард":         "Bard",
+		"Изобретатель": "Artificer",
+		"Колдун":       "Warlock",
 	}
-	//на случай если за 200 попыток не получится подобрать статы для класса
-	//редко, но бывает
+
+	defaultCharactersMap := map[string]Ability{
+		"Wizard":    {Strength: 8, Dexterity: 13, BodyDifficulty: 14, Intelligence: 15, Wisdom: 12, Charisma: 10, Total: 72},
+		"Barbarian": {Strength: 15, Dexterity: 13, BodyDifficulty: 14, Intelligence: 8, Wisdom: 12, Charisma: 10, Total: 72},
+		"Paladin":   {Strength: 15, Dexterity: 10, BodyDifficulty: 13, Intelligence: 8, Wisdom: 12, Charisma: 14, Total: 72},
+		"Monk":      {Strength: 8, Dexterity: 15, BodyDifficulty: 13, Intelligence: 10, Wisdom: 14, Charisma: 12, Total: 72},
+		"Rogue":     {Strength: 8, Dexterity: 15, BodyDifficulty: 13, Intelligence: 10, Wisdom: 12, Charisma: 14, Total: 72},
+		"Ranger":    {Strength: 8, Dexterity: 15, BodyDifficulty: 12, Intelligence: 13, Wisdom: 14, Charisma: 10, Total: 72},
+		"Druid":     {Strength: 8, Dexterity: 14, BodyDifficulty: 13, Intelligence: 12, Wisdom: 15, Charisma: 10, Total: 72},
+		"Sorcerer":  {Strength: 8, Dexterity: 13, BodyDifficulty: 14, Intelligence: 12, Wisdom: 10, Charisma: 15, Total: 72},
+		"Bard":      {Strength: 8, Dexterity: 14, BodyDifficulty: 13, Intelligence: 10, Wisdom: 12, Charisma: 15, Total: 72},
+		"Warlock":   {Strength: 8, Dexterity: 14, BodyDifficulty: 13, Intelligence: 12, Wisdom: 10, Charisma: 15, Total: 72},
+
+		"Cleric":    {Strength: 13, Dexterity: 12, BodyDifficulty: 14, Intelligence: 8, Wisdom: 15, Charisma: 10, Total: 72},
+		"Artificer": {Strength: 10, Dexterity: 14, BodyDifficulty: 13, Intelligence: 15, Wisdom: 12, Charisma: 8, Total: 72},
+		"Fighter":   {Strength: 15, Dexterity: 13, BodyDifficulty: 14, Intelligence: 8, Wisdom: 12, Charisma: 10, Total: 72},
+		// перебрать вариации
+	}
+
+	classNameEng := classNameList[needClass]
+
+	return classNameEng, defaultCharactersMap[classNameEng]
 }
 
 func setModifiersForClass(ab Ability) Modifier {
@@ -294,7 +327,7 @@ func setHitDice() string {
 	return hitDice
 }
 
-func getHitDiceNum() int {
+func getHitDiceAverageCount() int {
 	var hitDice string
 	for _, char := range chars {
 		if char.ClassNameRU == ClassNameGlobalRu {
@@ -303,11 +336,10 @@ func getHitDiceNum() int {
 	}
 
 	hitDiceMap := map[string]int{
-		"1к4":  4,
-		"1к6":  6,
-		"1к8":  8,
-		"1к10": 10,
-		"1к12": 12,
+		"1к6":  4,
+		"1к8":  5,
+		"1к10": 6,
+		"1к12": 7,
 	}
 
 	hitDiceNum := hitDiceMap[hitDice]
@@ -323,8 +355,7 @@ func setHitCount(modBody int) int {
 				hitCount = char.Hits.HitCount + modBody
 			}
 			if char.ClassNameRU == ClassNameGlobalRu && i != 1 {
-				diceroll, _ := random.IntRange(1, getHitDiceNum()+1)
-				hitCount += diceroll + modBody
+				hitCount += getHitDiceAverageCount() + modBody
 			}
 		}
 	}
