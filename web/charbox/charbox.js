@@ -558,7 +558,7 @@ function genButtonBlock() {
 
     let count = parseInt(localStorage.getItem('genButtonClickCount'))
 
-    if ( count <= 10 ){
+    if ( count >= 10 ){
         document.getElementById("btn_get_class").disabled = true;
         setTimeout(
             function(){
