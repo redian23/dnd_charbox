@@ -55,6 +55,8 @@ async function getCharacter() {
 
     charData = data
     WriteAllLabels(data)
+
+    genButtonBlock()
 }
 
 async function WriteAllLabels(data) {
@@ -550,4 +552,25 @@ function exportToLSS() {
 
 function gotoFAQ(){
     window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/faq`;
+}
+
+function genButtonBlock() {
+
+    let count = parseInt(localStorage.getItem('genButtonClickCount'))
+
+    if ( count <= 10 ){
+        document.getElementById("btn_get_class").disabled = true;
+        setTimeout(
+            function(){
+                document.getElementById("btn_get_class").removeAttribute('disabled');
+                count = 0
+                localStorage.setItem('genButtonClickCount', count)
+            },
+            30000);
+    }else {
+        count += 1
+        localStorage.setItem('genButtonClickCount', count)
+    }
+
+    console.log(count)
 }
