@@ -60,6 +60,9 @@ func main() {
 	router.GET("/s_map.xml", func(c *gin.Context) {
 		c.File(filePath + "/charbox/s_map.xml")
 	})
+	router.GET("/robots.txt", func(c *gin.Context) {
+		c.File(filePath + "/charbox/robots.txt")
+	})
 
 	if ProdStatus == true {
 		router.RunTLS(":420",

@@ -1,5 +1,4 @@
 let charData
-localStorage.setItem('genButtonClickCount',1)
 window.onload = winOnloadGenerate()
 
 function getSelectClassNameValue() {
@@ -555,8 +554,9 @@ function gotoFAQ(){
     window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/faq`;
 }
 
-function genButtonBlock() {
+localStorage.setItem('genButtonClickCount',0)
 
+function genButtonBlock() {
     let count = parseInt(localStorage.getItem('genButtonClickCount'))
 
     if ( count >= 10 ){
