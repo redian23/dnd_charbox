@@ -122,11 +122,6 @@ func rerollClassAbilitiesStats() Ability {
 		Wisdom:         RandomRollPoints() + raceAbilities.Wisdom,
 		Charisma:       RandomRollPoints() + raceAbilities.Charisma,
 	}
-
-	TargetClassAbilities.Total = TargetClassAbilities.Strength + TargetClassAbilities.Dexterity +
-		TargetClassAbilities.BodyDifficulty + TargetClassAbilities.Intelligence +
-		TargetClassAbilities.Wisdom + TargetClassAbilities.Charisma
-
 	return TargetClassAbilities
 }
 
