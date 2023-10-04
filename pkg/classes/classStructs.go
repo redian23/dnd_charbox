@@ -1,6 +1,8 @@
 package classes
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 type ClassAnswer struct {
 	ClassName      string         `json:"class_name"`
@@ -25,6 +27,12 @@ type Spellcasting struct {
 	BasicSpellCharacteristics string      `json:"basic_spell_characteristics"`
 	SpellDamageModifier       int         `json:"spell_damage_modifier"`
 	SavingThrowDifficulty     int         `json:"saving_throw_difficulty"`
+	ZeroLevelSpellsKnownCount int         `json:"zero_level_spells_known_count"`
+	OneLevelSpellsKnownCount  int         `json:"one_level_spells_known_count"`
+	TwoLevelSpellsKnownCount  int         `json:"two_level_spells_known_count"`
+	TreeLevelSpellsKnownCount int         `json:"tree_level_spells_known_count"`
+	FourLevelSpellsKnownCount int         `json:"four_level_spells_known_count"`
+	TotalSpellCount           int         `json:"total_spell_count"`
 	SpellsSlots               spellsSlots `json:"spells_slots"`
 }
 

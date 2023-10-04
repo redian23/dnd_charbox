@@ -35,17 +35,60 @@ func GetSpellsFormDB() []SpellsBSON {
 	return results
 }
 
-func GetSpellsZeroLevelForCharacter() []string {
-	classSpells := GetHtmlFormattedClassSpells(0)
-	raceSpells := GetRaceSpellsZeroLevel()
+func GetSpellsForCharacter(lvl int) []string {
+	var raceSpells []string
+
+	classSpells := GetHtmlFormattedClassSpells(lvl)
+	raceSpells = GetHtmlFormattedRaceSpells(lvl)
 
 	spellList := append(classSpells, raceSpells...)
 	return spellList
 }
 
+func GetClassSpells(level int) []string {
+	var castCount int
+
+	var casting = classes.GetClassSpellBasicCharacteristic()
+	var spellData = GetSpellsFormDB()
+
+	switch level {
+	case 0:
+		castCount = casting.ZeroLevelSpellsKnownCount
+	case 1:
+		castCount = casting.OneLevelSpellsKnownCount
+	case 2:
+		castCount = casting.TwoLevelSpellsKnownCount
+	case 3:
+		castCount = casting.TreeLevelSpellsKnownCount
+	case 4:
+		castCount = casting.FourLevelSpellsKnownCount
+	}
+
+	var classSpellsMap = make(map[string]string)
+	var classSpellsAnswer []string
+	for _, classSpellValue := range spellData {
+		for _, className := range classSpellValue.Classes {
+			if classes.ClassNameGlobalRu == className && classSpellValue.SpellLevel == level {
+				classSpellsMap[classSpellValue.SpellName] = classSpellValue.SpellNameRu
+			}
+		}
+	}
+	var iter int
+	for _, clSpell := range classSpellsMap {
+		if iter < castCount {
+			iter++
+			classSpellsAnswer = append(classSpellsAnswer, clSpell)
+		} else {
+			break
+		}
+	}
+
+	return classSpellsAnswer
+}
+
 func GetHtmlFormattedClassSpells(lvl int) []string {
 	spells := GetSpellsFormDB()
-	classSpells := classes.GetClassSpells(lvl)
+	classSpells := GetClassSpells(lvl)
 
 	var spellAnswer []string
 
@@ -59,68 +102,31 @@ func GetHtmlFormattedClassSpells(lvl int) []string {
 	return spellAnswer
 }
 
-func GetRaceSpellsZeroLevel() []string {
-	spellsListFromBD := GetSpellsFormDB()
+func GetHtmlFormattedRaceSpells(lvl int) []string {
+	spells := GetSpellsFormDB()
 
-	var raceZeroSpellsList []races.RaceZeroLvLSpells
-	var raceSpells []string
-	for _, race := range races.RaceData {
-		for _, rType := range race.Type {
-			if races.RaceTypeGlobalRu == rType.TypeRaceNameRu {
-				raceZeroSpellsList = rType.RaceZeroLvLSpells
-			}
-		}
-	}
-
-	for _, ZeroDBSpl := range spellsListFromBD {
-		for _, raceZeroSpl := range raceZeroSpellsList {
-			if ZeroDBSpl.SpellNameRu == raceZeroSpl.SpellName {
-				if raceZeroSpl.SpellName == "" {
-					break
-				}
-				spl := "<a href=" + ZeroDBSpl.URL + ">" + ZeroDBSpl.SpellNameRu + " [" + ZeroDBSpl.SpellName + "]" + "</a>"
-				raceSpells = append(raceSpells, spl)
-			}
-		}
-	}
-
-	return raceSpells
-}
-
-func GetSpellsOneLevelForCharacter() []string {
-	classSpells := GetHtmlFormattedClassSpells(1)
-	raceSpells := GetRaceSpellsOneLevel()
-
-	spellList := append(raceSpells, classSpells...)
-	spellList = append(spellList, classes.ClassSpecialSpells...)
-	return spellList
-}
-
-func GetRaceSpellsOneLevel() []string {
-	spellsListFromBD := GetSpellsFormDB()
-
-	var raceOneSpellsList []races.RaceOneLvLSpells
-	var raceSpells []string
+	var spellAnswer []string
+	var raceSpells []races.RaceLvLSpells
 
 	for _, race := range races.RaceData {
 		for _, rType := range race.Type {
 			if races.RaceTypeGlobalRu == rType.TypeRaceNameRu {
-				raceOneSpellsList = rType.RaceOneLvLSpells
-			}
-		}
-	}
-
-	for _, ZeroDBSpl := range spellsListFromBD {
-		for _, raceZeroSpl := range raceOneSpellsList {
-			if ZeroDBSpl.SpellNameRu == raceZeroSpl.SpellName {
-				if raceZeroSpl.SpellName == "" {
-					break
+				if lvl == 0 {
+					raceSpells = rType.RaceZeroLvLSpells
 				}
-				spl := "<a href=" + ZeroDBSpl.URL + ">" + ZeroDBSpl.SpellNameRu + " [" + ZeroDBSpl.SpellName + "]" + "</a>"
-				raceSpells = append(raceSpells, spl)
+				if lvl == 1 {
+					raceSpells = rType.RaceOneLvLSpells
+				}
 			}
 		}
 	}
 
-	return raceSpells
+	for _, spell := range spells {
+		for _, rSpell := range raceSpells {
+			if rSpell.SpellName == spell.SpellNameRu && spell.SpellLevel == lvl {
+				spellAnswer = append(spellAnswer, "<a href="+spell.URL+">"+spell.SpellNameRu+" ["+spell.SpellName+"]"+"</a>")
+			}
+		}
+	}
+	return spellAnswer
 }

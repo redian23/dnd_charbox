@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <meta name="description" content="Генератор персонажей для DnD 5й редакции (5e)." />
+    
+    <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
+    <meta content='true' name='HandheldFriendly'/>
+    <meta content='width' name='MobileOptimized'/>
+    <meta content='yes' name='apple-mobile-web-app-capable'/>
+
+    <meta name="yandex-verification" content="2bbd73e45c453573" />
+    <meta name="google-site-verification" content="UmkWSkfoFNxgbCTCX-nVQMydwsNiDW730S-1fy_sChk" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>{{.title}}</title>
+    <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
+    <style> @import url("/charbox.css");</style>
+    <section class="hero is-small is-info">
+        <div class="hero-body">
+            <p class="title">Добро пожаловать в Шкатулку Персонажей.</p>
+            <p class="subtitle">Желаю удачи в поисках Вашего идеального DnD персонажа.</p>
+            <button class="button is-primary" id="btn_gotoHome" onclick="gotoHome()">Обратно на главную страницу</button>
+        </div>
+    </section>
+    <script>
+        function gotoHome(){
+            window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/`;
+        }
+    </script>
+</head>
+<body>
+<section class="section">
+    <h1 class="title">Section</h1>
+    <h2 class="subtitle">
+        A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
+    </h2>
+</section>
+</body>
+<footer class="footer-distributed">
+<!--    <div class="footer-right">-->
+<!--        <a href="#"><i class="fa fa-telegram"></i></a>-->
+<!--        <a href="#"><i class="fa fa-linkedin"></i></a>-->
+<!--        <a href="#"><i class="fa fa-github"></i></a>-->
+<!--    </div>-->
+    <div class="footer-left">
+        <p class="footer-links">
+            <a class="/" href="#">Home</a>
+            <a href="/about">About</a>
+            <a href="#">Contact</a>
+        </p>
+        <p>CharBox &copy; 2023</p>
+    </div>
+</footer>
+</html>

@@ -15,11 +15,12 @@ import (
 )
 
 var (
-	chars          ClassesBSON
-	armorData      []ArmorAnswer
-	weaponData     []WeaponAnswer
-	equipmentList  []Variants
-	ModifierGlobal Modifier
+	chars                   ClassesBSON
+	armorData               []ArmorAnswer
+	weaponData              []WeaponAnswer
+	equipmentList           []Variants
+	ModifierGlobal          Modifier
+	CharProficienciesGlobal Proficiencies
 )
 
 func GetClassCharactsFormDB() ClassesBSON {
@@ -159,6 +160,111 @@ func extractStats(abil Ability) []string {
 		}
 	}
 	return statsForFindClassSpec
+}
+
+func AbilitiesWithLevelUp() (string, Ability) {
+	classNameEng, classAbilityStats := statAnalyze(ClassNameGlobalRu)
+	classAbilityStatsList := map[string]int{ //просто мне надо такая мапа // чтобы синхронить обьект и получать рандом без повторений
+		"Strength":       0,
+		"Dexterity":      0,
+		"BodyDifficulty": 0,
+		"Intelligence":   0,
+		"Wisdom":         0,
+		"Charisma":       0,
+	}
+
+	if CharacterLevelGlobal >= 4 && CharacterLevelGlobal < 8 {
+		randNum, _ := random.IntRange(0, 2)
+		if randNum == 0 {
+			for key, _ := range classAbilityStatsList {
+				switch key {
+				case "Strength":
+					classAbilityStats.Strength += 2
+				case "Dexterity":
+					classAbilityStats.Dexterity += 2
+				case "BodyDifficulty":
+					classAbilityStats.BodyDifficulty += 2
+				case "Intelligence":
+					classAbilityStats.Intelligence += 2
+				case "Wisdom":
+					classAbilityStats.Wisdom += 2
+				case "Charisma":
+					classAbilityStats.Charisma += 2
+				}
+				break
+			}
+		} else {
+			var iter int
+			for key, _ := range classAbilityStatsList {
+				iter++
+				switch key {
+				case "Strength":
+					classAbilityStats.Strength += 1
+				case "Dexterity":
+					classAbilityStats.Dexterity += 1
+				case "BodyDifficulty":
+					classAbilityStats.BodyDifficulty += 1
+				case "Intelligence":
+					classAbilityStats.Intelligence += 1
+				case "Wisdom":
+					classAbilityStats.Wisdom += 1
+				case "Charisma":
+					classAbilityStats.Charisma += 1
+				}
+				if iter > 1 {
+					break
+				}
+			}
+		}
+	}
+	if CharacterLevelGlobal > 7 {
+		for i := 0; i < 2; i++ {
+			randNum, _ := random.IntRange(0, 2)
+			if randNum == 0 {
+				for key, _ := range classAbilityStatsList {
+					switch key {
+					case "Strength":
+						classAbilityStats.Strength += 2
+					case "Dexterity":
+						classAbilityStats.Dexterity += 2
+					case "BodyDifficulty":
+						classAbilityStats.BodyDifficulty += 2
+					case "Intelligence":
+						classAbilityStats.Intelligence += 2
+					case "Wisdom":
+						classAbilityStats.Wisdom += 2
+					case "Charisma":
+						classAbilityStats.Charisma += 2
+					}
+					break
+				}
+			} else {
+				var iter int
+				for key, _ := range classAbilityStatsList {
+					iter++
+					switch key {
+					case "Strength":
+						classAbilityStats.Strength += 1
+					case "Dexterity":
+						classAbilityStats.Dexterity += 1
+					case "BodyDifficulty":
+						classAbilityStats.BodyDifficulty += 1
+					case "Intelligence":
+						classAbilityStats.Intelligence += 1
+					case "Wisdom":
+						classAbilityStats.Wisdom += 1
+					case "Charisma":
+						classAbilityStats.Charisma += 1
+					}
+					if iter > 1 {
+						break
+					}
+				}
+			}
+		}
+	}
+
+	return classNameEng, classAbilityStats
 }
 
 func statAnalyze(needClass string) (string, Ability) {
@@ -370,6 +476,7 @@ func setHitCount(modBody int) int {
 func setProficiencies() Proficiencies {
 	for _, char := range chars {
 		if char.ClassNameRU == ClassNameGlobalRu {
+			CharProficienciesGlobal = char.Proficiencies
 			return char.Proficiencies
 		}
 	}

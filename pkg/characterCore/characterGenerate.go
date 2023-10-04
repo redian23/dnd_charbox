@@ -16,14 +16,17 @@ func GenerateFullCharacter(className, raceName string, lvl int) *Character {
 		Experience:       getExpCount(lvl),
 		ProficiencyBonus: getProfBonus(lvl),
 		Race:             races.GenerateRaceForCharacter(raceName),
-		Class:            classes.GenerateClass(className, lvl),
+		Class:            classes.GenerateClass(className),
 		Background:       backgrounds.GenerateBackground(),
 		Skills:           SetSkillsForCharacter(),
 		PassiveWisdom:    PassWisdom,
 		Langs:            GetCharLangs(),
 		SpellsList: spellsList{
-			ZeroLevelSpells: spells.GetSpellsZeroLevelForCharacter(),
-			OneLevelSpells:  spells.GetSpellsOneLevelForCharacter(),
+			ZeroLevelSpells: spells.GetSpellsForCharacter(0),
+			OneLevelSpells:  spells.GetSpellsForCharacter(1),
+			TwoLevelSpells:  spells.GetSpellsForCharacter(2),
+			TreeLevelSpells: spells.GetSpellsForCharacter(3),
+			FourLevelSpells: spells.GetSpellsForCharacter(4),
 		},
 	}
 }

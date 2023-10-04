@@ -37,6 +37,7 @@ async function winOnloadGenerate() {
 
     charData = data
     WriteAllLabels(data)
+    restartButtonClickCountTimer()
 }
 
 async function getCharacter() {
@@ -492,25 +493,45 @@ function writeRacePhotoLabels(data) {
 }
 
 function writeSpellsLabels(data) {
-    document.getElementById("lbl_spells_zero_lvl").innerHTML = ""
-    document.getElementById("lbl_spells_one_lvl").innerHTML = ""
+    var labels = ["lbl_spells_zero_lvl","lbl_spells_one_lvl","lbl_spells_two_lvl","lbl_spells_tree_lvl", "lbl_spells_four_lvl"]
+
+    for (const labelsKey of labels) {
+        document.getElementById(labelsKey).innerHTML = ""
+    }
+
     let spells_0_lvl = JSON.parse(data)["spells"]["zero_level_spells"];
     let spells_1_lvl = JSON.parse(data)["spells"]["one_level_spells"];
+    let spells_2_lvl = JSON.parse(data)["spells"]["two_level_spells"];
+    let spells_3_lvl = JSON.parse(data)["spells"]["tree_level_spells"];
+    let spells_4_lvl = JSON.parse(data)["spells"]["four_level_spells"];
 
-    if (spells_0_lvl === null){
-        document.getElementById("lbl_spells_zero_lvl").innerHTML = "Не владеет заговорами"
-    }else {
-        for(let i = 0; i < spells_0_lvl.length; i++) {
-            document.getElementById("lbl_spells_zero_lvl").innerHTML += "* " + spells_0_lvl[i] + "</br>"
+    for (const labelsKey of labels) {
+        switch (labelsKey) {
+            case "lbl_spells_zero_lvl":
+                spell_array = spells_0_lvl
+                break;
+            case "lbl_spells_one_lvl":
+                spell_array = spells_1_lvl
+                break;
+            case "lbl_spells_two_lvl":
+                spell_array = spells_2_lvl
+                break;
+            case "lbl_spells_tree_lvl":
+                spell_array = spells_3_lvl
+                break;
+            case "lbl_spells_four_lvl":
+                spell_array = spells_4_lvl
+                break;
+        }
+        if (spell_array === null){
+            document.getElementById(labelsKey).innerHTML = "Не владеет заговорами"
+        }else {
+            for(let i = 0; i < spell_array.length; i++) {
+                document.getElementById(labelsKey).innerHTML += "* " + spell_array[i] + "</br>"
+            }
         }
     }
-    if (spells_1_lvl === null){
-        document.getElementById("lbl_spells_one_lvl").innerHTML = "Не владеет заклинаниями"
-    }else {
-        for(let i = 0; i < spells_1_lvl.length; i++) {
-            document.getElementById("lbl_spells_one_lvl").innerHTML += "* " + spells_1_lvl[i] + "</br>"
-        }
-    }
+
 }
 
 function writeSpellcastingLabels(data) {
@@ -559,10 +580,12 @@ localStorage.setItem('genButtonClickCount',0)
 function genButtonBlock() {
     let count = parseInt(localStorage.getItem('genButtonClickCount'))
 
-    if ( count >= 10 ){
+    if ( count >= 20 ){
         document.getElementById("btn_get_class").disabled = true;
+        document.getElementById("lbl_wait_plz").style.display = "block"
         setTimeout(
             function(){
+                document.getElementById("lbl_wait_plz").style.display = "none"
                 document.getElementById("btn_get_class").removeAttribute('disabled');
                 count = 0
                 localStorage.setItem('genButtonClickCount', count)
@@ -574,4 +597,12 @@ function genButtonBlock() {
     }
 
     console.log(count)
+}
+
+function restartButtonClickCountTimer() {
+    setTimeout(
+        function(){
+            localStorage.setItem('genButtonClickCount', 0)
+        },
+        20000);
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
     <meta name="description" content="Генератор персонажей для DnD 5й редакции (5e). Лучший помощник как начинающему игроку,
-    так и опытному ГМу. Множество классов, рас, предысторий, вариаций персонажей на любой случай в далеком путешествии. "/>
+    так и опытному ГМу. Множество классов, рас, предысторий, вариаций персонажей на любой случай в далеком путешествии."/>
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
@@ -97,6 +97,7 @@
                 </label>
             </div>
             <button class="button is-medium is-success" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
+            <label class="subtitle-text" style="display: none" id="lbl_wait_plz">Подождите 30 секунд. Кнопка генерации устала.</label>
         </div>
     </div>
     <div name="Character_list_header" class="tile is-parent is-vertical box head">
@@ -436,7 +437,20 @@
                         <p class="title">Заклинания:<label></label></p>
                         <p class="subtitle">
                             <label><strong>1й Уровень:</strong></label><br>
-                            <label id="lbl_spells_one_lvl"></label></p>
+                            <label id="lbl_spells_one_lvl"></label>
+                        </p>
+                        <p class="subtitle">
+                            <label><strong>2й Уровень:</strong></label><br>
+                            <label id="lbl_spells_two_lvl"></label>
+                        </p>
+                        <p class="subtitle">
+                            <label><strong>3й Уровень:</strong></label><br>
+                            <label id="lbl_spells_tree_lvl"></label>
+                        </p>
+                        <p class="subtitle">
+                            <label><strong>4й Уровень:</strong></label><br>
+                            <label id="lbl_spells_four_lvl"></label>
+                        </p>
                         <div id="div_caster_info">
                             <p class="subtitle">
                                 <label>

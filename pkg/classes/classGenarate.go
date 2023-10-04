@@ -6,14 +6,15 @@ var (
 	ArmorInfoGlobal   []ArmorAnswer
 )
 
-func GenerateClass(classNameRU string, lvl int) *ClassAnswer {
+func GenerateClass(classNameRU string) *ClassAnswer {
 	ClassNameGlobalRu = ""
+
+	ClassNameGlobalRu = classNameRU
 	chars = GetClassCharactsFormDB()
 	armorData = GetArmorFormDB()
 	weaponData = GetWeaponFormDB()
 
-	classNameEng, classAbilityStats := statAnalyze(classNameRU)
-	ClassNameGlobalRu = classNameRU
+	classNameEng, classAbilityStats := AbilitiesWithLevelUp()
 
 	armor := setArmor(classNameRU)
 	ArmorInfoGlobal = armor
@@ -39,7 +40,7 @@ func GenerateClass(classNameRU string, lvl int) *ClassAnswer {
 		Armor:          setArmor(classNameRU),
 		Weapon:         setWeapons(),
 		Initiative:     setInitiative(),
-		Spellcasting:   getClassSpellBasicCharacteristic(),
+		Spellcasting:   GetClassSpellBasicCharacteristic(),
 		ClassAbilities: getClassAbilities(),
 	}
 }

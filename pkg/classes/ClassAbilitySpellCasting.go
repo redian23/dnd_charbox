@@ -3,335 +3,67 @@ package classes
 var CharacterLevelGlobal int
 var ProficiencyBonus int
 
-func GetClassSpells(level int) []string {
-
-	type spellList struct {
-		Level int
-		List  []string
-		Count int
-	}
-	type classSpell struct {
-		ClassName string
-		Spells    []spellList
-	}
-
-	spellData := []classSpell{
-		{ClassName: "Волшебник",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Пляшущие огоньки", "Леденящее прикосновение", "Луч холода", "Сообщение", "Брызги кислоты", "Малая иллюзия", "Свет", "Электрошок", "Ядовитые брызги", "Фокусы", "Защита от оружия", "Меткий удар", "Огненный снаряд", "Починка", "Волшебная рука"},
-					Count: 3,
-				},
-				{
-					Level: 1,
-					List:  []string{"Безмолвный образ", "Ведьмин снаряд", "Волна грома", "Волшебная стрела", "Доспехи мага", "Жуткий смех Таши", "Защита от зла и добра", "Луч болезни", "Маскировка", "Невидимое письмо", "Невидимый слуга", "Обнаружение магии", "Огненные ладони", "Опознание", "Очарование личности", "Падение пёрышком", "Поиск фамильяра", "Понимание языков", "Поспешное отступление", "Прыжок", "Псевдожизнь", "Сверкающие брызги", "Сигнал тревоги", "Скольжение", "Скороход", "Тензеров парящий диск", "Туманное облако", "Усыпление", "Цветной шарик", "Щит"},
-					Count: 6,
-				},
-			},
-		},
-		{
-			ClassName: "Воин",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{},
-					Count: 0,
-				},
-				{
-					Level: 1,
-					List:  []string{},
-					Count: 0,
-				},
-			},
-		},
-		{
-			ClassName: "Варвар",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{},
-					Count: 0,
-				},
-				{
-					Level: 1,
-					List:  []string{},
-					Count: 0,
-				},
-			},
-		},
-		{
-			ClassName: "Паладин",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{},
-					Count: 0,
-				},
-				{
-					Level: 1,
-					List:  []string{},
-					Count: 0,
-				},
-			},
-		},
-		{
-			ClassName: "Монах",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{},
-					Count: 0,
-				},
-				{
-					Level: 1,
-					List:  []string{},
-					Count: 0,
-				},
-			},
-		},
-		{
-			ClassName: "Плут",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{},
-					Count: 0,
-				},
-				{
-					Level: 1,
-					List:  []string{},
-					Count: 0,
-				},
-			},
-		},
-		{
-			ClassName: "Следопыт",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{},
-					Count: 0,
-				},
-				{
-					Level: 1,
-					List:  []string{},
-					Count: 0,
-				},
-			},
-		},
-		{
-			ClassName: "Друид",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Сотворение пламени", "Указание", "Сопротивление", "Искусство друидов", "Починка", "Свет", "Ядовитые брызги", "Терновый кнут", "Дубинка"},
-					Count: 2,
-				},
-				{
-					Level: 1,
-					List:  []string{"Волна грома", "Дружба с животными", "Защита от зла и добра", "Лечащее слово", "Лечение ран", "Обнаружение болезней и яда", "Обнаружение магии", "Огонь фей", "Опутывание", "Очарование личности", "Очищение пищи и питья", "Прыжок", "Разговор с животными", "Скороход", "Сотворение или уничтожение воды", "Туманное облако", "Чудо-ягоды"},
-					Count: ModifierGlobal.Wisdom + CharacterLevelGlobal,
-				},
-			},
-		},
-		{
-			ClassName: "Жрец",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Починка", "Свет", "Священное пламя", "Сопротивление", "Указание", "Уход за умирающим", "Чудотворство"},
-					Count: 3,
-				},
-				{
-					Level: 1,
-					List:  []string{"Благословение", "Защита от зла и добра", "Лечащее слово", "Лечение ран", "Нанесение ран", "Направляющий снаряд", "Обнаружение болезней и яда", "Обнаружение зла и добра", "Обнаружение магии", "Очищение пищи и питья", "Порча", "Приказ", "Сотворение или уничтожение воды", "Убежище", "Щит веры"},
-					Count: ModifierGlobal.Wisdom + CharacterLevelGlobal,
-				},
-			},
-		},
-		{
-			ClassName: "Чародей",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Волшебная рука", "Огненный снаряд", "Пляшущие огоньки", "Фокусы", "Брызги кислоты", "Защита от оружия", "Починка", "Свет", "Дружба", "Леденящее прикосновение", "Луч холода", "Меткий удар", "Сообщение", "Малая иллюзия", "Электрошок", "Ядовитые брызги"},
-					Count: 4,
-				},
-				{
-					Level: 1,
-					List:  []string{"Безмолвный образ", "Ведьмин снаряд", "Волна грома", "Волшебная стрела", "Доспехи мага", "Луч болезни", "Маскировка", "Обнаружение магии", "Огненные ладони", "Очарование личности", "Падение пёрышком", "Понимание языков", "Поспешное отступление", "Прыжок", "Псевдожизнь", "Сверкающие брызги", "Скольжение", "Туманное облако", "Усыпление", "Цветной шарик", "Щит"},
-					Count: 2,
-				},
-			},
-		},
-		{
-			ClassName: "Бард",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Защита от оружия", "Злая насмешка", "Малая иллюзия", "Починка", "Сообщение", "Волшебная рука", "Дружба", "Меткий удар", "Пляшущие огоньки", "Свет", "Фокусы"},
-					Count: 2,
-				},
-				{
-					Level: 1,
-					List:  []string{"Безмолвный образ", "Волна грома", "Героизм", "Диссонирующий шёпот", "Дружба с животными", "Жуткий смех Таши", "Лечащее слово", "Лечение ран", "Маскировка", "Невидимое письмо", "Невидимый слуга", "Обнаружение магии", "Огонь фей", "Опознание", "Очарование личности", "Падение пёрышком", "Понимание языков", "Порча", "Приказ", "Разговор с животными", "Сверкающие брызги", "Скороход", "Усыпление"},
-					Count: 4,
-				},
-			},
-		},
-		{
-			ClassName: "Изобретатель",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Свет", "Электрошок", "Сопротивление", "Терновый кнут", "Луч холода", "Пляшущие огоньки", "Уход за умирающим", "Фокусы", "Огненный снаряд", "Сообщение", "Починка", "Указание", "Брызги кислоты", "Волшебная рука", "Ядовитые брызги"},
-					Count: 2,
-				},
-				{
-					Level: 1,
-					List:  []string{"Лечение ран", "Маскировка", "Обнаружение магии", "Огонь фей", "Опознание", "Очищение пищи и питья", "Падение пёрышком", "Поспешное отступление", "Прыжок", "Псевдожизнь", "Сигнал тревоги", "Скольжение", "Скороход", "Убежище"},
-					Count: ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2),
-				},
-			},
-		},
-		{
-			ClassName: "Колдун",
-			Spells: []spellList{
-				{
-					Level: 0,
-					List:  []string{"Малая иллюзия", "Мистический заряд", "Ядовитые брызги", "Волшебная рука", "Леденящее прикосновение", "Меткий удар", "Фокусы", "Дружба", "Защита от оружия"},
-					Count: 2,
-				},
-				{
-					Level: 1,
-					List:  []string{"Адское возмездие", "Ведьмин снаряд", "Доспех Агатиса", "Защита от зла и добра", "Невидимое письмо", "Невидимый слуга", "Очарование личности", "Понимание языков", "Поспешное отступление", "Руки Хадара", "Сглаз"},
-					Count: 2,
-				},
-			},
-		},
-	}
-
-	var allClassSpells []spellList
-	var classSpellsAnswer []string
-	for _, classSpellValue := range spellData {
-		if ClassNameGlobalRu == classSpellValue.ClassName {
-			allClassSpells = classSpellValue.Spells
-		}
-	}
-
-	var iter int
-	for _, spells := range allClassSpells {
-		if spells.Level == level {
-			for _, sp := range spells.List {
-				classSpellsAnswer = append(classSpellsAnswer, sp)
-				iter++
-				if iter >= spells.Count {
-					break
-				}
-			}
-		}
-	}
-	return classSpellsAnswer
-}
-
-func getClassSpellBasicCharacteristic() Spellcasting {
+func GetClassSpellBasicCharacteristic() Spellcasting {
 	var cast Spellcasting
 
 	switch ClassNameGlobalRu {
-	case "Друид":
-		cast.BasicSpellCharacteristics = "Мудрость"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
-		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
-
+	case "Бард":
+		cast.BasicSpellCharacteristics = "Харизма"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
 		switch CharacterLevelGlobal {
 		case 1:
 			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = 4
+			cast.TotalSpellCount = 4
 		case 2:
 			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TotalSpellCount = 5
 		case 3:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 6
 		case 4:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 7
 		case 5:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 8
 		case 6:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 9
 		case 7:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 10
 		case 8:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
-		}
-	case "Жрец":
-		cast.BasicSpellCharacteristics = "Мудрость"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
-		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
-
-		switch CharacterLevelGlobal {
-		case 1:
-			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
-		case 2:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
-		case 3:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
-		case 4:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
-		case 5:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
-		case 6:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
-		case 7:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
-		case 8:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
-		}
-	case "Следопыт":
-		if CharacterLevelGlobal > 1 {
-			cast.BasicSpellCharacteristics = "Мудрость"
-			cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
-			cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
-		}
-		switch CharacterLevelGlobal {
-		case 1:
-			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
-		case 2:
-			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
-		case 3:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
-		case 4:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
-		case 5:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
-		case 6:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
-		case 7:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
-		case 8:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
-		}
-
-	case "Изобретатель":
-		cast.BasicSpellCharacteristics = "Интеллект"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Intelligence
-		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Intelligence
-
-		switch CharacterLevelGlobal {
-		case 1:
-			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
-		case 2:
-			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
-		case 3:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
-		case 4:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
-		case 5:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
-		case 6:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
-		case 7:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
-		case 8:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 11
 		}
 	case "Волшебник":
 		cast.BasicSpellCharacteristics = "Интеллект"
@@ -341,68 +73,286 @@ func getClassSpellBasicCharacteristic() Spellcasting {
 		switch CharacterLevelGlobal {
 		case 1:
 			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 6
+			cast.TotalSpellCount = 6
 		case 2:
 			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TotalSpellCount = 7
 		case 3:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 8
 		case 4:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 9
 		case 5:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 10
 		case 6:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 11
 		case 7:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 12
 		case 8:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 7
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 13
+		}
+	case "Друид":
+		cast.BasicSpellCharacteristics = "Мудрость"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 1
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 4
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 6
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		}
+	case "Жрец":
+		cast.BasicSpellCharacteristics = "Мудрость"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 1
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 4
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 5
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = (ModifierGlobal.Wisdom + CharacterLevelGlobal) - 6
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Wisdom + CharacterLevelGlobal
+		}
+	case "Изобретатель":
+		cast.BasicSpellCharacteristics = "Интеллект"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Intelligence
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Intelligence
+
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2) - 1
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2) - 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2) - 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2) - 3
+			cast.TwoLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = ModifierGlobal.Intelligence + (CharacterLevelGlobal / 2)
 		}
 	case "Колдун":
 		cast.BasicSpellCharacteristics = "Харизма"
 		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
 		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
-	case "Бард":
-		cast.BasicSpellCharacteristics = "Харизма"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
-		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
+
 		switch CharacterLevelGlobal {
 		case 1:
-			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.SpellsSlots = spellsSlots{OneLevel: 1, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 2
 		case 2:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
-		case 3:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
-		case 4:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
-		case 5:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
-		case 6:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
-		case 7:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
-		case 8:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
-		}
-	case "Чародей":
-		cast.BasicSpellCharacteristics = "Харизма"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
-		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
-		switch CharacterLevelGlobal {
-		case 1:
 			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
-		case 2:
-			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = 3
 		case 3:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 2
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 4
 		case 4:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 2, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 5
 		case 5:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 2, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 6
 		case 6:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 2, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 6
 		case 7:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 2, TreeLevel: 2, FourLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 7
 		case 8:
-			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 2, TreeLevel: 2, FourLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.ZeroLevelSpellsKnownCount = 3
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 8
 		}
 	case "Паладин":
 		if CharacterLevelGlobal > 1 {
@@ -413,20 +363,145 @@ func getClassSpellBasicCharacteristic() Spellcasting {
 		switch CharacterLevelGlobal {
 		case 1:
 			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
+
+			cast.TotalSpellCount = 0
 		case 2:
 			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
 		case 3:
 			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
 		case 4:
 			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
 		case 5:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2) - 1
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
 		case 6:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2) - 2
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
 		case 7:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2) - 3
+			cast.TwoLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
 		case 8:
 			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.OneLevelSpellsKnownCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2) - 3
+			cast.TwoLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = ModifierGlobal.Charisma + (CharacterLevelGlobal / 2)
+		}
+	case "Следопыт":
+		if CharacterLevelGlobal > 1 {
+			cast.BasicSpellCharacteristics = "Мудрость"
+			cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Wisdom
+			cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Wisdom
+		}
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 0, TwoLevel: 0}
+			cast.TotalSpellCount = 0
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 2
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = 3
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = 3
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 4
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 4
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 5
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 5
+		}
+	case "Чародей":
+		cast.BasicSpellCharacteristics = "Харизма"
+		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + ModifierGlobal.Charisma
+		cast.SpellDamageModifier = ProficiencyBonus + ModifierGlobal.Charisma
+		switch CharacterLevelGlobal {
+		case 1:
+			cast.SpellsSlots = spellsSlots{OneLevel: 2, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 2
+		case 2:
+			cast.SpellsSlots = spellsSlots{OneLevel: 3, TwoLevel: 0}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TotalSpellCount = 3
+		case 3:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 4
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 4
+		case 4:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 5
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 5
+		case 5:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 5
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 6
+		case 6:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3}
+			cast.ZeroLevelSpellsKnownCount = 5
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 7
+		case 7:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 1}
+			cast.ZeroLevelSpellsKnownCount = 5
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 1
+			cast.TotalSpellCount = 8
+		case 8:
+			cast.SpellsSlots = spellsSlots{OneLevel: 4, TwoLevel: 3, TreeLevel: 3, FourLevel: 2}
+			cast.ZeroLevelSpellsKnownCount = 5
+			cast.OneLevelSpellsKnownCount = 3
+			cast.TwoLevelSpellsKnownCount = 2
+			cast.TreeLevelSpellsKnownCount = 2
+			cast.FourLevelSpellsKnownCount = 2
+			cast.TotalSpellCount = 9
 		}
 	}
 
