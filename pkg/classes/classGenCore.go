@@ -264,6 +264,10 @@ func AbilitiesWithLevelUp() (string, Ability) {
 		}
 	}
 
+	classAbilityStats.Total = classAbilityStats.Strength + classAbilityStats.Dexterity +
+		classAbilityStats.BodyDifficulty + classAbilityStats.Intelligence +
+		classAbilityStats.Wisdom + classAbilityStats.Charisma
+
 	return classNameEng, classAbilityStats
 }
 
