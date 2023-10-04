@@ -61,7 +61,6 @@ func SetSkillsForCharacter() Skills {
 			}
 		}
 	}
-
 	sk = setDoubleSkillProficiency(doubleSkillProf, sk)
 	return sk
 }
@@ -208,6 +207,7 @@ func setSkillProficiency(skillMap []string, sk Skills) Skills {
 			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + classes.ProficiencyBonus
 		}
 	}
+
 	setPassiveWisdom(sk)
 	return sk
 }
@@ -219,57 +219,75 @@ func setDoubleSkillProficiency(dblMap []string, sk Skills) Skills {
 		case sk.Athletics.SkillName:
 			sk.Athletics.DoubleProficiency = true
 			sk.Athletics.ProfLSS = 2
+			sk.Athletics.ModifierValue += classes.ProficiencyBonus
 		case sk.Acrobatics.SkillName:
 			sk.Acrobatics.DoubleProficiency = true
 			sk.Acrobatics.ProfLSS = 2
+			sk.Acrobatics.ModifierValue += classes.ProficiencyBonus
 		case sk.SleightOfHand.SkillName:
 			sk.SleightOfHand.DoubleProficiency = true
 			sk.SleightOfHand.ProfLSS = 2
+			sk.SleightOfHand.ModifierValue += classes.ProficiencyBonus
 		case sk.Stealth.SkillName:
 			sk.Stealth.DoubleProficiency = true
 			sk.Stealth.ProfLSS = 2
+			sk.Stealth.ModifierValue += classes.ProficiencyBonus
 		case sk.Arcana.SkillName:
 			sk.Arcana.DoubleProficiency = true
 			sk.Arcana.ProfLSS = 2
+			sk.Arcana.ModifierValue += classes.ProficiencyBonus
 		case sk.History.SkillName:
 			sk.History.DoubleProficiency = true
 			sk.History.ProfLSS = 2
+			sk.History.ModifierValue += classes.ProficiencyBonus
 		case sk.Investigation.SkillName:
 			sk.Investigation.DoubleProficiency = true
 			sk.Investigation.ProfLSS = 2
+			sk.Investigation.ModifierValue += classes.ProficiencyBonus
 		case sk.Nature.SkillName:
 			sk.Nature.DoubleProficiency = true
 			sk.Nature.ProfLSS = 2
+			sk.Nature.ModifierValue += classes.ProficiencyBonus
 		case sk.Religion.SkillName:
 			sk.Religion.DoubleProficiency = true
 			sk.Religion.ProfLSS = 2
+			sk.Religion.ModifierValue += classes.ProficiencyBonus
 		case sk.AnimalHandling.SkillName:
 			sk.AnimalHandling.DoubleProficiency = true
 			sk.AnimalHandling.ProfLSS = 2
+			sk.AnimalHandling.ModifierValue += classes.ProficiencyBonus
 		case sk.Insight.SkillName:
 			sk.Insight.DoubleProficiency = true
 			sk.Insight.ProfLSS = 2
+			sk.Insight.ModifierValue += classes.ProficiencyBonus
 		case sk.Medicine.SkillName:
 			sk.Medicine.DoubleProficiency = true
 			sk.Medicine.ProfLSS = 2
+			sk.Medicine.ModifierValue += classes.ProficiencyBonus
 		case sk.Perception.SkillName:
 			sk.Perception.DoubleProficiency = true
 			sk.Perception.ProfLSS = 2
+			sk.Perception.ModifierValue += classes.ProficiencyBonus
 		case sk.Survival.SkillName:
 			sk.Survival.DoubleProficiency = true
 			sk.Survival.ProfLSS = 2
+			sk.Survival.ModifierValue += classes.ProficiencyBonus
 		case sk.Deception.SkillName:
 			sk.Deception.DoubleProficiency = true
 			sk.Deception.ProfLSS = 2
+			sk.Deception.ModifierValue += classes.ProficiencyBonus
 		case sk.Intimidation.SkillName:
 			sk.Intimidation.DoubleProficiency = true
 			sk.Intimidation.ProfLSS = 2
+			sk.Intimidation.ModifierValue += classes.ProficiencyBonus
 		case sk.Performance.SkillName:
 			sk.Performance.DoubleProficiency = true
 			sk.Performance.ProfLSS = 2
+			sk.Performance.ModifierValue += classes.ProficiencyBonus
 		case sk.Persuasion.SkillName:
 			sk.Persuasion.DoubleProficiency = true
 			sk.Persuasion.ProfLSS = 2
+			sk.Persuasion.ModifierValue += classes.ProficiencyBonus
 		}
 	}
 	return sk
