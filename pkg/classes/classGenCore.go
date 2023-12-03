@@ -475,7 +475,6 @@ func setHitCount(modBody int) int {
 func setProficiencies() Proficiencies {
 	for _, char := range chars {
 		if char.ClassNameRU == ClassNameGlobalRu {
-			CharProficienciesGlobal = char.Proficiencies
 			return char.Proficiencies
 		}
 	}
@@ -490,7 +489,6 @@ func setClassEquipmentList() []Variants {
 		if char.ClassNameRU == ClassNameGlobalRu {
 			equipP = char.PicksEquipment
 			equipB = char.BasicEquipment
-
 		}
 	}
 

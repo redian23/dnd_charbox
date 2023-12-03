@@ -21,6 +21,8 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 	classSkills, _ := setClassSkills()
 	modif := setModifiersForClass(classAbilityStats)
 
+	CharProficienciesGlobal = setProficiencies()
+
 	HitsCountGlobal = setHitCount(modif.BodyDifficulty)
 
 	return &ClassAnswer{
@@ -29,7 +31,7 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		Ability:       classAbilityStats,
 		Modifier:      modif,
 		Inspiration:   false,
-		Proficiencies: setProficiencies(),
+		Proficiencies: CharProficienciesGlobal,
 		SkillsOfClass: classSkills,
 		SavingThrows:  setSaveThrowsForClass(modif),
 		Hits: hits{

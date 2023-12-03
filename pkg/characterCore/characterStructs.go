@@ -14,7 +14,7 @@ type Character struct {
 	Background       *backgrounds.BackgroundAnswer `json:"background"`
 	Race             *races.RacesAnswer            `json:"race"`
 	Class            *classes.ClassAnswer          `json:"class"`
-	Skills           Skills                        `json:"skills"`
+	Skills           classes.Skills                `json:"skills"`
 	Langs            []string                      `json:"langs"`
 	SpellsList       spellsList                    `json:"spells"`
 }

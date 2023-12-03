@@ -366,8 +366,6 @@ function writeAppearanceLabels(data) {
     document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
     document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
 
-    document.getElementById("lbl_charFirstName2").innerHTML =  race["first_name"];
-    document.getElementById("lbl_charLastName2").innerHTML =  race["last_name"];
     document.getElementById("lbl_resist").innerHTML =  race["resist"];
     document.getElementById("lbl_bodySize").innerHTML =  race["body_size"];
 

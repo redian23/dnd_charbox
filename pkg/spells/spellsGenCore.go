@@ -35,7 +35,7 @@ func GetSpellsFormDB() []SpellsBSON {
 	return results
 }
 
-func GetSpellsForCharacter(lvl int) []string {
+func SetSpellsForCharacter(lvl int) []string {
 	var raceSpells []string
 
 	classSpells := GetHtmlFormattedClassSpells(lvl)
@@ -45,7 +45,7 @@ func GetSpellsForCharacter(lvl int) []string {
 	return spellList
 }
 
-func GetClassSpells(level int) []string {
+func GetClassSpells(level int, classNameReq string) []string {
 	var castCount int
 
 	var casting = classes.GetClassSpellBasicCharacteristic()
@@ -68,7 +68,7 @@ func GetClassSpells(level int) []string {
 	var classSpellsAnswer []string
 	for _, classSpellValue := range spellData {
 		for _, className := range classSpellValue.Classes {
-			if classes.ClassNameGlobalRu == className && classSpellValue.SpellLevel == level {
+			if classNameReq == className && classSpellValue.SpellLevel == level {
 				classSpellsMap[classSpellValue.SpellName] = classSpellValue.SpellNameRu
 			}
 		}
@@ -88,7 +88,7 @@ func GetClassSpells(level int) []string {
 
 func GetHtmlFormattedClassSpells(lvl int) []string {
 	spells := GetSpellsFormDB()
-	classSpells := GetClassSpells(lvl)
+	classSpells := GetClassSpells(lvl, classes.ClassNameGlobalRu)
 
 	var spellAnswer []string
 
@@ -125,6 +125,26 @@ func GetHtmlFormattedRaceSpells(lvl int) []string {
 		for _, rSpell := range raceSpells {
 			if rSpell.SpellName == spell.SpellNameRu && spell.SpellLevel == lvl {
 				spellAnswer = append(spellAnswer, "<a href="+spell.URL+">"+spell.SpellNameRu+" ["+spell.SpellName+"]"+"</a>")
+			}
+		}
+	}
+	return spellAnswer
+}
+
+func GetHtmlFormattedAddictionSpells(lvl, count int) []string {
+	spells := GetSpellsFormDB()
+	classSpells := GetClassSpells(lvl, classes.ClassNameGlobalRu)
+
+	var spellAnswer []string
+
+	var iter int
+	for _, spell := range spells {
+		for _, classSpell := range classSpells {
+			if classSpell == spell.SpellNameRu && spell.SpellLevel == lvl {
+				spellAnswer = append(spellAnswer, "<a href="+spell.URL+">"+spell.SpellNameRu+" ["+spell.SpellName+"]"+"</a>")
+			}
+			if iter == count {
+				break
 			}
 		}
 	}

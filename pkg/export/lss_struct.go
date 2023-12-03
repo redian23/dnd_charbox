@@ -135,19 +135,16 @@ type SpellsInfo struct {
 	Save Save `json:"save"`
 	Mod  Mod  `json:"mod"`
 }
-type Slots1 struct {
+type Slots struct {
 	Value string `json:"value"`
 }
-type Spell10 struct {
-	IsReady bool `json:"isReady"`
-}
-type Spell11 struct {
-	IsReady bool `json:"isReady"`
-}
+
 type Spells struct {
-	Slots1  Slots1  `json:"slots-1"`
-	Spell10 Spell10 `json:"spell-1-0"`
-	Spell11 Spell11 `json:"spell-1-1"`
+	Slots1 Slots `json:"slots-1"`
+	Slots2 Slots `json:"slots-2"`
+	Slots3 Slots `json:"slots-3"`
+	Slots4 Slots `json:"slots-4"`
+	Slots5 Slots `json:"slots-5"`
 }
 type StrStat struct {
 	Name     string `json:"name"`

@@ -22,8 +22,8 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 	return &ExportToLss{
 		JSONType:   "character",
 		Template:   "default",
-		Name:       Name{Value: lc.Race.CharacterName}, //var
-		HiddenName: getHiddenName(),                    //var
+		Name:       Name{Value: lc.Race.FirstName + " " + lc.Race.LastName}, //var
+		HiddenName: getHiddenName(),                                         //var
 		Info: Info{
 			CharClass:  CharClass{Name: "charClass", Label: "класс и уровень", Value: lc.Class.ClassNameRU},             //var
 			Level:      Level{Name: "level", Label: "уровень", Value: 1},                                                //var
@@ -41,15 +41,16 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Skin:   Skin{Name: "skin", Label: "кожа", Value: ""},                                //FIX var
 			Hair:   Hair{Name: "hair", Label: "волосы", Value: lc.Race.Hair},                    //var
 		},
+		Spells: Spells{
+			Slots1: Slots{strconv.Itoa(lc.Class.Spellcasting.OneLevelSpellsKnownCount)},
+			Slots2: Slots{strconv.Itoa(lc.Class.Spellcasting.TwoLevelSpellsKnownCount)},
+			Slots3: Slots{strconv.Itoa(lc.Class.Spellcasting.TreeLevelSpellsKnownCount)},
+			Slots4: Slots{strconv.Itoa(lc.Class.Spellcasting.FourLevelSpellsKnownCount)},
+		},
 		SpellsInfo: SpellsInfo{
 			Base: Base{Name: "base", Label: "Базовая характеристика заклинаний", Value: lc.Class.Spellcasting.BasicSpellCharacteristics}, //var
 			Save: Save{Name: "save", Label: "Сложность спасброска", Value: strconv.Itoa(lc.Class.Spellcasting.SavingThrowDifficulty)},    //var
 			Mod:  Mod{Name: "mod", Label: "Бонус атаки заклинанием", Value: strconv.Itoa(lc.Class.Spellcasting.SpellDamageModifier)},     //var                                               //var
-		},
-		Spells: Spells{
-			Slots1:  Slots1{Value: "2"},
-			Spell10: Spell10{IsReady: true},
-			Spell11: Spell11{IsReady: false},
 		},
 		Proficiency: 2,
 		Stats: Stats{
@@ -112,13 +113,17 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 				"<strong>Совет:</strong> " + lc.Background.Advice}},
 			Features: Features{Value: Value{Data: "<p><strong>" + lc.Background.BackgroundAbility.AbilityName + "</strong>: " +
 				lc.Background.BackgroundAbility.Description}},
-			SpellsLevel0: SpellsLevel{Value: Value{Data: getZeroLvlSpells(lc)}},
-			SpellsLevel1: SpellsLevel{Value: Value{Data: ""}},
+			SpellsLevel0: SpellsLevel{Value: Value{Data: getLvlSpells(0, lc)}},
+			SpellsLevel1: SpellsLevel{Value: Value{Data: getLvlSpells(1, lc)}},
+			SpellsLevel2: SpellsLevel{Value: Value{Data: getLvlSpells(2, lc)}},
+			SpellsLevel3: SpellsLevel{Value: Value{Data: getLvlSpells(3, lc)}},
+			SpellsLevel4: SpellsLevel{Value: Value{Data: getLvlSpells(4, lc)}},
 		},
 		Avatar: Avatar{
 			Jpeg: "https://charbox.swn.by/imgs/" + lc.Race.RacePhoto.Path + lc.Race.RacePhoto.FileName,
 			Webp: "",
 		},
+		CasterClass: CasterClass{Value: getCasterClass(lc)},
 		Coins: Coins{
 			Total: Total{Value: float64(lc.Background.Gold)},
 			Gp:    Gp{Value: lc.Background.Gold},
@@ -220,16 +225,36 @@ func getRaceAbil(lc characterCore.Character) string {
 	return raseAbilities
 }
 
-func getZeroLvlSpells(lc characterCore.Character) string {
-	var zeroSpellList string
+func getLvlSpells(spellLVL int, lc characterCore.Character) string {
+	var spellListLSS string
+	var lolSpellListFromCharacter []string
+	switch spellLVL {
+	case 0:
+		lolSpellListFromCharacter = lc.SpellsList.ZeroLevelSpells
+	case 1:
+		lolSpellListFromCharacter = lc.SpellsList.OneLevelSpells
+	case 2:
+		lolSpellListFromCharacter = lc.SpellsList.TwoLevelSpells
+	case 3:
+		lolSpellListFromCharacter = lc.SpellsList.TreeLevelSpells
+	case 4:
+		lolSpellListFromCharacter = lc.SpellsList.FourLevelSpells
+	}
 
-	if len(lc.SpellsList.ZeroLevelSpells) == 0 {
-		zeroSpellList = "Не владеет заговорами."
-		return zeroSpellList
+	if len(lolSpellListFromCharacter) == 0 {
+		spellListLSS = "Не владеет заговорами."
+		return spellListLSS
 	}
 	for _, sp := range lc.SpellsList.ZeroLevelSpells {
-		zeroSpellList += "<p>" + sp + "</p>"
-
+		spellListLSS += "<p>" + sp + "</p>"
 	}
-	return zeroSpellList
+	return spellListLSS
+}
+
+func getCasterClass(lc characterCore.Character) string {
+	if lc.Class.ClassNameRU != "Воин" || lc.Class.ClassNameRU != "Варвар" ||
+		lc.Class.ClassNameRU != "Монах" || lc.Class.ClassNameRU != "Плут" {
+		return lc.Class.ClassNameRU
+	}
+	return ""
 }
