@@ -26,12 +26,12 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 		HiddenName: getHiddenName(),                                         //var
 		Info: Info{
 			CharClass:  CharClass{Name: "charClass", Label: "класс и уровень", Value: lc.Class.ClassNameRU},             //var
-			Level:      Level{Name: "level", Label: "уровень", Value: 1},                                                //var
+			Level:      Level{Name: "level", Label: "уровень", Value: lc.Level},                                         //var
 			Background: BackgroundInfo{Name: "background", Label: "предыстория", Value: lc.Background.BackgroundNameRu}, //var
-			PlayerName: PlayerName{Name: "playerName", Label: "имя игрока", Value: "Generated"},                         //var
+			PlayerName: PlayerName{Name: "playerName", Label: "имя игрока", Value: "Player"},                            //var
 			Race:       Race{Name: "race", Label: "раса", Value: lc.Race.RaceNameRu},                                    //var
 			Alignment:  Alignment{Name: "alignment", Label: "мировоззрение", Value: lc.Background.Worldview},            //var
-			Experience: Experience{Name: "experience", Label: "опыт", Value: "0"},                                       //var
+			Experience: Experience{Name: "experience", Label: "опыт", Value: strconv.Itoa(lc.Experience)},               //var
 		},
 		SubInfo: SubInfo{
 			Age:    Age{Name: "age", Label: "возраст", Value: strconv.Itoa(lc.Race.Age)},        //var
