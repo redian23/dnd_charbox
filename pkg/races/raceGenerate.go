@@ -8,7 +8,7 @@ import (
 var (
 	raceType, raceTypeRu     string
 	raceName                 string
-	raceAge, raceSpeed       int
+	raceAge                  int
 	raceHeight               int
 	raceHeightFt             string
 	raceWeight, raceWeightLb int
@@ -31,8 +31,8 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 			rollNum, _ = random.IntRange(0, len(race.Type))
 			raceType = race.Type[rollNum].TypeRaceName
 			raceTypeRu = race.Type[rollNum].TypeRaceNameRu
-			raceSpeed = race.Type[rollNum].Speed
 
+			RaceSpeedGlobal = race.Type[rollNum].Speed
 			RaceTypeGlobalRu = raceTypeRu
 
 			maxAge := (race.MaxAge * 75) / 100
@@ -92,7 +92,7 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 		CharacterName: firstName,
 		FirstName:     firstName,
 		LastName:      lastName,
-		Speed:         raceSpeed,
+		Speed:         &RaceSpeedGlobal,
 		Resist:        resist,
 		RaceAbilities: raceAbil,
 		Other: other{

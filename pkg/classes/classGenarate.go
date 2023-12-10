@@ -22,7 +22,6 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 	modif := setModifiersForClass(classAbilityStats)
 
 	CharProficienciesGlobal = setProficiencies()
-
 	HitsCountGlobal = setHitCount(modif.BodyDifficulty)
 
 	return &ClassAnswer{

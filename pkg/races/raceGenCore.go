@@ -15,6 +15,7 @@ import (
 var (
 	RaceData         []RacesBSON
 	RaceNameGlobalRu string
+	RaceSpeedGlobal  int
 
 	RaceTypeGlobalRu string
 	RacePhotoPath    string

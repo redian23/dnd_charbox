@@ -17,7 +17,7 @@ type RacesAnswer struct {
 	BodySize      string        `json:"body_size"`
 	Eyes          string        `json:"eyes"`
 	Hair          string        `json:"hair"`
-	Speed         int           `json:"speed"`
+	Speed         *int          `json:"speed"`
 	RaceSkill     []string      `json:"race_skill"`
 	FirstName     string        `json:"first_name"`
 	LastName      string        `json:"last_name"`

@@ -255,7 +255,7 @@ type HpDiceCurrent struct {
 type HpDiceMulti struct {
 }
 type Speed struct {
-	Value string `json:"value"`
+	Value *int `json:"value"`
 }
 type HpMax struct {
 	Value string `json:"value"`

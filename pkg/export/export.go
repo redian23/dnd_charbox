@@ -95,11 +95,11 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			HitDie:        HitDie{Value: lc.Class.Hits.HitDice},
 			HpDiceCurrent: HpDiceCurrent{Value: 1},
 			Ac:            Ac{Value: strconv.Itoa(lc.Class.Armor[0].ArmorClassCount)},
-			Speed:         Speed{Value: strconv.Itoa(lc.Race.Speed)},
+			Speed:         Speed{Value: lc.Race.Speed},
 		},
 		WeaponsList: getWeaponList(lc),
 		Text: Text{
-			Attacks:   Attacks{Value: Value{Data: ""}}, //spells
+			Attacks:   Attacks{Value: Value{Data: ""}}, //Атаки и заклинания (хз как юзать)
 			Equipment: Equipment{Value: Value{getEquipString(lc)}},
 			Prof:      Prof{Value: Value{getProfs(lc)}},
 			Traits: Traits{Value: Value{Data: "<strong>Умения от класса:</strong> " + getClassAbil(lc) +
