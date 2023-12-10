@@ -520,7 +520,7 @@ func choiceFighterArchetype() (string, string, []ClassAbility) {
 		if CharacterLevelGlobal > 2 && ability.Level == 3 {
 			fighterArchetypeAbilitiesList = append(fighterArchetypeAbilitiesList, ability)
 		}
-		if CharacterLevelGlobal > 5 && ability.Level == 6 {
+		if CharacterLevelGlobal > 5 && ability.Level == 7 {
 			fighterArchetypeAbilitiesList = append(fighterArchetypeAbilitiesList, ability)
 		}
 	}
