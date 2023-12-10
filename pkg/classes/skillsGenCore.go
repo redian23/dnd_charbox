@@ -59,6 +59,31 @@ func SetSkillsForCharacter(bk []string) *Skills {
 		}
 	}
 
+	if FighterArchetypeName == "Самурай" {
+
+		switch {
+		case sk.Persuasion.Proficiency == false:
+			sk.Persuasion.Proficiency = true
+			sk.Persuasion.ProfLSS = 1
+			sk.Persuasion.ModifierValue = sk.Persuasion.ModifierValue + ProficiencyBonus
+			break
+		case sk.Perception.Proficiency == false:
+			sk.Perception.Proficiency = true
+			sk.Perception.ProfLSS = 1
+			sk.Perception.ModifierValue = sk.Perception.ModifierValue + ProficiencyBonus
+			break
+		case sk.History.Proficiency == false:
+			sk.History.ProfLSS = 1
+			sk.History.ModifierValue = sk.History.ModifierValue + ProficiencyBonus
+			break
+		case sk.Performance.Proficiency == false:
+			sk.Performance.Proficiency = true
+			sk.Performance.ProfLSS = 1
+			sk.Performance.ModifierValue = sk.Performance.ModifierValue + ProficiencyBonus
+			break
+		}
+	}
+
 	sk = setDoubleSkillProficiency(doubleSkillProf, sk)
 
 	SkillsListGlobal = sk

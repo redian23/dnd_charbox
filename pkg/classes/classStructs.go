@@ -21,8 +21,14 @@ type ClassAnswer struct {
 	Initiative     string         `json:"initiative"`
 	Spellcasting   Spellcasting   `json:"spell_using"`
 	ClassAbilities []ClassAbility `json:"class_abilities"`
+	ClassSpecific  ClassSpecific  `json:"class_specific"`
 }
 
+type ClassSpecific struct {
+	Parameter1 string `json:"parameter_1"`
+	Parameter2 string `json:"parameter_2"`
+	Parameter3 string `json:"parameter_3"`
+}
 type Spellcasting struct {
 	BasicSpellCharacteristics string      `json:"basic_spell_characteristics"`
 	SpellDamageModifier       int         `json:"spell_damage_modifier"`

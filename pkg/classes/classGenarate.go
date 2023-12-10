@@ -4,6 +4,7 @@ var (
 	HitsCountGlobal   int
 	ClassNameGlobalRu string
 	ArmorInfoGlobal   []ArmorAnswer
+	ClassSpecificInfo ClassSpecific
 )
 
 func GenerateClass(classNameRU string) *ClassAnswer {
@@ -43,5 +44,6 @@ func GenerateClass(classNameRU string) *ClassAnswer {
 		Initiative:     setInitiative(),
 		Spellcasting:   GetClassSpellBasicCharacteristic(),
 		ClassAbilities: getClassAbilities(),
+		ClassSpecific:  ClassSpecificInfo,
 	}
 }

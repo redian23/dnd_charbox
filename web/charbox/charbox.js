@@ -303,7 +303,6 @@ function writeOtherLabels(data) {
     document.getElementById("lbl_exp_count").innerHTML =  JSON.parse(data)["experience"];
     document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
     document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
-
     let langs =  JSON.parse(data)["langs"];
     for(let i = 0; i < langs.length; i++){
         if (i !== langs.length-1){
