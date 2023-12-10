@@ -6,6 +6,7 @@ import (
 )
 
 var LanguageListGlobal []string
+var CountSkillsToAddToCharacter int
 
 func SetOtherSidePatrons(partnerName string) ([]ClassAbility, string, []string) {
 	var specAbilities []ClassAbility
@@ -292,6 +293,8 @@ func choiceBardCollegium() (string, string, []ClassAbility) {
 		}
 	}
 
+	CountSkillsToAddToCharacter = 0
+
 	switch collegiumName {
 	case "Коллегия доблести":
 		if CharacterLevelGlobal >= 3 {
@@ -300,7 +303,7 @@ func choiceBardCollegium() (string, string, []ClassAbility) {
 		}
 	case "Коллегия знаний":
 		if CharacterLevelGlobal >= 3 {
-			addMoreSkillsToCharacter(3)
+			CountSkillsToAddToCharacter = 3
 		}
 	}
 	return collegiumName, collegiumDescription[collegiumName], collegiumAbilitiesList

@@ -1,7 +1,5 @@
 package classes
 
-import "fmt"
-
 var (
 	PassWisdom       int
 	sk               Skills
@@ -38,7 +36,7 @@ type Skill struct {
 	ProfLSS           int    `json:"prof_lss"`
 }
 
-func SetSkillsForCharacter(bk []string) Skills {
+func SetSkillsForCharacter(bk []string) *Skills {
 	sk = Skills{}
 
 	// принимает нужный экземпляр обьекта и в себя же записывает новые данные
@@ -62,131 +60,10 @@ func SetSkillsForCharacter(bk []string) Skills {
 	}
 
 	sk = setDoubleSkillProficiency(doubleSkillProf, sk)
+
 	SkillsListGlobal = sk
-	return SkillsListGlobal
-}
 
-func getSkillsOfCharacter() Skills {
-	return SkillsListGlobal
-}
-
-func getArraySkillsOfCharacter() map[string]bool {
-	var skillArray = map[string]bool{
-		SkillsListGlobal.Athletics.SkillName:      SkillsListGlobal.Athletics.Proficiency,
-		SkillsListGlobal.Acrobatics.SkillName:     SkillsListGlobal.Acrobatics.Proficiency,
-		SkillsListGlobal.SleightOfHand.SkillName:  SkillsListGlobal.SleightOfHand.Proficiency,
-		SkillsListGlobal.Stealth.SkillName:        SkillsListGlobal.Stealth.Proficiency,
-		SkillsListGlobal.Arcana.SkillName:         SkillsListGlobal.Arcana.Proficiency,
-		SkillsListGlobal.History.SkillName:        SkillsListGlobal.History.Proficiency,
-		SkillsListGlobal.Investigation.SkillName:  SkillsListGlobal.Investigation.Proficiency,
-		SkillsListGlobal.Nature.SkillName:         SkillsListGlobal.Nature.Proficiency,
-		SkillsListGlobal.Religion.SkillName:       SkillsListGlobal.Religion.Proficiency,
-		SkillsListGlobal.AnimalHandling.SkillName: SkillsListGlobal.AnimalHandling.Proficiency,
-		SkillsListGlobal.Insight.SkillName:        SkillsListGlobal.Insight.Proficiency,
-		SkillsListGlobal.Medicine.SkillName:       SkillsListGlobal.Medicine.Proficiency,
-		SkillsListGlobal.Perception.SkillName:     SkillsListGlobal.Perception.Proficiency,
-		SkillsListGlobal.Survival.SkillName:       SkillsListGlobal.Survival.Proficiency,
-		SkillsListGlobal.Deception.SkillName:      SkillsListGlobal.Deception.Proficiency,
-		SkillsListGlobal.Intimidation.SkillName:   SkillsListGlobal.Intimidation.Proficiency,
-		SkillsListGlobal.Performance.SkillName:    SkillsListGlobal.Performance.Proficiency,
-		SkillsListGlobal.Persuasion.SkillName:     SkillsListGlobal.Persuasion.Proficiency,
-	}
-	return skillArray
-}
-
-func addMoreSkillsToCharacter(addSkillCount int) {
-	skillMap := getArraySkillsOfCharacter()
-
-	var iter int
-	var freeSkills []string
-
-	for skName, profStatus := range skillMap {
-		if profStatus == false {
-			freeSkills = append(freeSkills, skName)
-			iter++
-		}
-		if iter == addSkillCount {
-			break
-		}
-	}
-	fmt.Println(freeSkills)
-	for _, skName := range freeSkills {
-		switch skName {
-		case SkillsListGlobal.Athletics.SkillName:
-			SkillsListGlobal.Athletics.Proficiency = true
-			SkillsListGlobal.Athletics.ProfLSS = 1
-			SkillsListGlobal.Athletics.ModifierValue = SkillsListGlobal.Athletics.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Acrobatics.SkillName:
-			SkillsListGlobal.Acrobatics.Proficiency = true
-			SkillsListGlobal.Acrobatics.ProfLSS = 1
-			SkillsListGlobal.Acrobatics.ModifierValue = SkillsListGlobal.Acrobatics.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.SleightOfHand.SkillName:
-			SkillsListGlobal.SleightOfHand.Proficiency = true
-			SkillsListGlobal.SleightOfHand.ProfLSS = 1
-			SkillsListGlobal.SleightOfHand.ModifierValue = SkillsListGlobal.SleightOfHand.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Stealth.SkillName:
-			SkillsListGlobal.Stealth.Proficiency = true
-			SkillsListGlobal.Stealth.ProfLSS = 1
-			SkillsListGlobal.Stealth.ModifierValue = SkillsListGlobal.Stealth.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Arcana.SkillName:
-			SkillsListGlobal.Arcana.Proficiency = true
-			SkillsListGlobal.Arcana.ProfLSS = 1
-			SkillsListGlobal.Arcana.ModifierValue = SkillsListGlobal.Arcana.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.History.SkillName:
-			SkillsListGlobal.History.Proficiency = true
-			SkillsListGlobal.History.ProfLSS = 1
-			SkillsListGlobal.History.ModifierValue = SkillsListGlobal.History.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Investigation.SkillName:
-			SkillsListGlobal.Investigation.Proficiency = true
-			SkillsListGlobal.Investigation.ProfLSS = 1
-			SkillsListGlobal.Investigation.ModifierValue = SkillsListGlobal.Investigation.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Nature.SkillName:
-			SkillsListGlobal.Nature.Proficiency = true
-			SkillsListGlobal.Nature.ProfLSS = 1
-			SkillsListGlobal.Nature.ModifierValue = SkillsListGlobal.Nature.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Religion.SkillName:
-			SkillsListGlobal.Religion.Proficiency = true
-			SkillsListGlobal.Religion.ProfLSS = 1
-			SkillsListGlobal.Religion.ModifierValue = SkillsListGlobal.Religion.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.AnimalHandling.SkillName:
-			SkillsListGlobal.AnimalHandling.Proficiency = true
-			SkillsListGlobal.AnimalHandling.ProfLSS = 1
-			SkillsListGlobal.AnimalHandling.ModifierValue = SkillsListGlobal.AnimalHandling.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Insight.SkillName:
-			SkillsListGlobal.Insight.Proficiency = true
-			SkillsListGlobal.Insight.ProfLSS = 1
-			SkillsListGlobal.Insight.ModifierValue = SkillsListGlobal.Insight.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Medicine.SkillName:
-			SkillsListGlobal.Medicine.Proficiency = true
-			SkillsListGlobal.Medicine.ProfLSS = 1
-			SkillsListGlobal.Medicine.ModifierValue = SkillsListGlobal.Medicine.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Perception.SkillName:
-			SkillsListGlobal.Perception.Proficiency = true
-			SkillsListGlobal.Perception.ProfLSS = 1
-			SkillsListGlobal.Perception.ModifierValue = SkillsListGlobal.Perception.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Survival.SkillName:
-			SkillsListGlobal.Survival.Proficiency = true
-			SkillsListGlobal.Survival.ProfLSS = 1
-			SkillsListGlobal.Survival.ModifierValue = SkillsListGlobal.Survival.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Deception.SkillName:
-			SkillsListGlobal.Deception.Proficiency = true
-			SkillsListGlobal.Deception.ProfLSS = 1
-			SkillsListGlobal.Deception.ModifierValue = SkillsListGlobal.Deception.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Intimidation.SkillName:
-			SkillsListGlobal.Intimidation.Proficiency = true
-			SkillsListGlobal.Intimidation.ProfLSS = 1
-			SkillsListGlobal.Intimidation.ModifierValue = SkillsListGlobal.Intimidation.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Performance.SkillName:
-			SkillsListGlobal.Performance.Proficiency = true
-			SkillsListGlobal.Performance.ProfLSS = 1
-			SkillsListGlobal.Performance.ModifierValue = SkillsListGlobal.Performance.ModifierValue + ProficiencyBonus
-		case SkillsListGlobal.Persuasion.SkillName:
-			SkillsListGlobal.Persuasion.Proficiency = true
-			SkillsListGlobal.Persuasion.ProfLSS = 1
-			SkillsListGlobal.Persuasion.ModifierValue = SkillsListGlobal.Persuasion.ModifierValue + ProficiencyBonus
-		}
-	}
-	fmt.Println(SkillsListGlobal)
+	return &SkillsListGlobal
 }
 
 func setSkillsNames(sk Skills) Skills {

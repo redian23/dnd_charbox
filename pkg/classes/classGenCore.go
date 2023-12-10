@@ -587,7 +587,7 @@ func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
 	raceSkills, raceSkillsCount := races.GetRaceSkill()
 	classSkills, classSkillsCount := setClassSkills()
 
-	totalSkillCount := classSkillsCount + raceSkillsCount + backgroundSkillsCount
+	totalSkillCount := classSkillsCount + raceSkillsCount + backgroundSkillsCount + CountSkillsToAddToCharacter
 
 	allSkillsSliceTmp := append(backgroundSkills, classSkills...)
 	allSkillsSlice := append(allSkillsSliceTmp, raceSkills...)

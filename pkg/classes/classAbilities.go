@@ -439,7 +439,7 @@ func setBardClassAbilities() []ClassAbility {
 		{
 			Level: 3,
 			Name:  "Коллегия бардов",
-			Description: "Вы углубляетесь в традиции выбранной вами коллегии бардов. Ваша коллегия - " + collegiumName + "." +
+			Description: "Вы углубляетесь в традиции выбранной вами коллегии бардов. Ваша коллегия - <strong>" + collegiumName + "</strong>." +
 				collegiumDescription + ".<br>",
 		},
 		{
