@@ -13,7 +13,7 @@ type ClassAnswer struct {
 	Inspiration    bool           `json:"inspiration"`
 	Proficiencies  Proficiencies  `json:"proficiencies"`
 	SkillsOfClass  []string       `json:"skills_of_class"`
-	SavingThrows   SavingThrows   `json:"saving_throws"`
+	SavingThrows   *SavingThrows  `json:"saving_throws"`
 	Hits           hits           `json:"hits"`
 	ClassEquipment []Variants     `json:"class_equipment"`
 	Armor          []ArmorAnswer  `json:"armor"`

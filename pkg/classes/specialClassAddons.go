@@ -432,9 +432,9 @@ func choiceFighterArchetype() (string, string, []ClassAbility) {
 	randTool, _ := random.IntRange(0, len(manufTolls))
 	manufTollName := manufTolls[randTool]
 
-	if CharacterLevelGlobal <= 3 {
+	if CharacterLevelGlobal >= 3 && CharacterLevelGlobal <= 6 {
 		maneuversCount = 3
-	} else {
+	} else if CharacterLevelGlobal >= 7 {
 		maneuversCount = 5
 	}
 
@@ -525,6 +525,10 @@ func choiceFighterArchetype() (string, string, []ClassAbility) {
 		}
 	}
 
+	if FighterArchetypeName == "Самурай" && CharacterLevelGlobal > 7 {
+		CharSavingThrowsGlobal.Wisdom.Point += 2
+		CharSavingThrowsGlobal.Wisdom.Mastery = true
+	}
 	if FighterArchetypeName == "Мастер боевых искусств" {
 		CharProficienciesGlobal.Instruments = manufTollName
 	}

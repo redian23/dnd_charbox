@@ -21,6 +21,7 @@ var (
 	equipmentList           []Variants
 	ModifierGlobal          Modifier
 	CharProficienciesGlobal Proficiencies
+	CharSavingThrowsGlobal  SavingThrows
 )
 
 func GetClassCharactsFormDB() ClassesBSON {
@@ -353,7 +354,7 @@ func setModifiersForClass(ab Ability) Modifier {
 	return modifier
 }
 
-func setSaveThrowsForClass(mod Modifier) SavingThrows {
+func setSaveThrowsForClass(mod Modifier) *SavingThrows {
 
 	var modifierMap = map[string]int{
 		"Strength":       mod.Strength,
@@ -418,8 +419,8 @@ func setSaveThrowsForClass(mod Modifier) SavingThrows {
 			saveTh.Charisma.Mastery = true
 		}
 	}
-	//fmt.Println("2 - ", saveTh)
-	return saveTh
+	CharSavingThrowsGlobal = saveTh
+	return &CharSavingThrowsGlobal
 }
 
 func setHitDice() string {
