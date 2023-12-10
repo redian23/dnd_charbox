@@ -95,7 +95,7 @@ func setFighterClassAbilities() []ClassAbility {
 		},
 		{
 			Level: 3,
-			Name:  "Воинский Архитип",
+			Name:  "Воинский Архетип",
 			Description: "Выбранный вами архетип предоставляет вам умения на 3-м, 7-м, 10-м, 15-м и 18-м уровнях.<br>" +
 				"Ваш архетип- " + "<strong>" + fighterArchetypeName + "</strong>. <br>" +
 				"Описание: " + fighterArchetypeDescription,
