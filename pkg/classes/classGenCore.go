@@ -583,19 +583,20 @@ func setClassSkills() ([]string, int) {
 func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
 	var skillMap = make(map[string]string)
 	var skills []string
-	var backgroundSkillsCount = 2
 
 	raceSkills, raceSkillsCount := races.GetRaceSkill()
 	classSkills, classSkillsCount := setClassSkills()
 
-	totalSkillCount := classSkillsCount + raceSkillsCount + backgroundSkillsCount + CountSkillsToAddToCharacter
-
-	allSkillsSliceTmp := append(backgroundSkills, classSkills...)
-	allSkillsSlice := append(allSkillsSliceTmp, raceSkills...)
+	totalSkillCount := classSkillsCount + raceSkillsCount + CountSkillsToAddToCharacter
+	allSkillsSlice := append(classSkills, raceSkills...)
 
 	for _, skillName := range allSkillsSlice {
 		skillMap[skillName] = skillName
 	} //да я так удаляю дубликаты навыков
+
+	for _, backSkillName := range backgroundSkills {
+		delete(skillMap, backSkillName)
+	} //удаляю скиллы бекграунда чтобы они были добавлены потом и не дублировались
 
 	var iter int
 	for _, skl := range skillMap {
@@ -605,9 +606,7 @@ func GetAnalyzedSkillSlice(backgroundSkills []string) []string {
 			break
 		}
 	}
-
-	//fmt.Println(skills)
-	//fmt.Println("----------------------------------------------------")
+	skills = append(skills, backgroundSkills...)
 	return skills
 }
 

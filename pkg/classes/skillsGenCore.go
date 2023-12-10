@@ -60,7 +60,6 @@ func SetSkillsForCharacter(bk []string) *Skills {
 	}
 
 	if FighterArchetypeName == "Самурай" {
-
 		switch {
 		case sk.Persuasion.Proficiency == false:
 			sk.Persuasion.Proficiency = true
@@ -73,6 +72,7 @@ func SetSkillsForCharacter(bk []string) *Skills {
 			sk.Perception.ModifierValue = sk.Perception.ModifierValue + ProficiencyBonus
 			break
 		case sk.History.Proficiency == false:
+			sk.History.Proficiency = true
 			sk.History.ProfLSS = 1
 			sk.History.ModifierValue = sk.History.ModifierValue + ProficiencyBonus
 			break
