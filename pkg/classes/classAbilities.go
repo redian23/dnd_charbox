@@ -111,7 +111,7 @@ func setFighterClassAbilities() []ClassAbility {
 	classAbilityListAnswer := getLevelAbilities(classAbilityList)
 
 	return classAbilityListAnswer
-}
+} //done
 
 func setBarbarianClassAbilities() []ClassAbility {
 	wayName, waysDescription, wayAbilitiesList := choiceBarbarianWayOfWild()
