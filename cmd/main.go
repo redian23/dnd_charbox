@@ -41,7 +41,8 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
-			"title": "Character Box | Шкатулку Персонажей | Генератор персонажей для DnD 5e",
+			"title":   "Character Box | Шкатулку Персонажей | Генератор персонажей для DnD 5e",
+			"version": Version,
 		})
 	})
 
