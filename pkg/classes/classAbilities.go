@@ -176,13 +176,13 @@ func setBarbarianClassAbilities() []ClassAbility {
 	}
 
 	if CharacterLevelGlobal <= 2 {
-		ClassSpecificInfo.Parameter1 = "Ячеек Ярости - [2]"
+		ClassSpecificInfo.Parameter1 = "Ячеек Ярости - [2] | "
 		ClassSpecificInfo.Parameter2 = "Урон Ярости - [+2]"
 	} else if CharacterLevelGlobal >= 3 {
-		ClassSpecificInfo.Parameter1 = "Ячеек Ярости - [3]"
+		ClassSpecificInfo.Parameter1 = "Ячеек Ярости - [3] | "
 		ClassSpecificInfo.Parameter2 = "Урон Ярости - [+2]"
 	} else if CharacterLevelGlobal >= 5 {
-		ClassSpecificInfo.Parameter1 = "Ячеек Ярости - [4]"
+		ClassSpecificInfo.Parameter1 = "Ячеек Ярости - [4] | "
 		ClassSpecificInfo.Parameter2 = "Урон Ярости - [+2]"
 	}
 

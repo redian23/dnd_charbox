@@ -9,6 +9,8 @@ var (
 
 func GenerateClass(classNameRU string) *ClassAnswer {
 	ClassNameGlobalRu = ""
+	ClassSpecificInfo.Parameter1 = ""
+	ClassSpecificInfo.Parameter2 = ""
 
 	ClassNameGlobalRu = classNameRU
 	chars = GetClassCharactsFormDB()
