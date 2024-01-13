@@ -1,6 +1,7 @@
 package export
 
 import (
+	"fmt"
 	"github.com/mazen160/go-random"
 	"pregen/pkg/characterCore"
 	"strconv"
@@ -18,6 +19,11 @@ func getHiddenName() string {
 }
 
 func RunExportToLSS(lc characterCore.Character) *ExportToLss {
+	fmt.Println(getLvlSpells(0, lc))
+	fmt.Println(getLvlSpells(1, lc))
+	fmt.Println(getLvlSpells(2, lc))
+	fmt.Println(getLvlSpells(3, lc))
+	fmt.Println(getLvlSpells(4, lc))
 
 	return &ExportToLss{
 		JSONType:   "character",
@@ -245,7 +251,7 @@ func getLvlSpells(spellLVL int, lc characterCore.Character) string {
 		spellListLSS = "Не владеет заговорами."
 		return spellListLSS
 	}
-	for _, sp := range lc.SpellsList.ZeroLevelSpells {
+	for _, sp := range lolSpellListFromCharacter {
 		spellListLSS += "<p>" + sp + "</p>"
 	}
 	return spellListLSS

@@ -65,6 +65,11 @@ input[type="radio"]:checked {
     margin-bottom: 0;
 }
 
+.tile.is-2 {
+    flex: none;
+    width: 16.66667%;
+    min-width: 377px;
+}
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 
