@@ -2,6 +2,7 @@ package spells
 
 import (
 	"context"
+	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"log"
@@ -35,13 +36,32 @@ func GetSpellsFormDB() []SpellsBSON {
 	return results
 }
 
+func removeDuplicates(slice []string) []string {
+	// Create a map to store unique elements
+	seen := make(map[string]bool)
+	var result []string
+
+	// Loop through the slice, adding elements to the map if they haven't been seen before
+	for _, val := range slice {
+		if _, ok := seen[val]; !ok {
+			seen[val] = true
+			result = append(result, val)
+		}
+	}
+	return result
+}
+
 func SetSpellsForCharacter(lvl int) []string {
 	var raceSpells []string
 
 	classSpells := GetHtmlFormattedClassSpells(lvl)
+	fmt.Println("class - ", classSpells)
 	raceSpells = GetHtmlFormattedRaceSpells(lvl)
+	fmt.Println("race - ", raceSpells)
 
 	spellList := append(classSpells, raceSpells...)
+	spellList = removeDuplicates(spellList)
+
 	return spellList
 }
 
