@@ -2,7 +2,6 @@ package spells
 
 import (
 	"context"
-	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"log"
@@ -55,9 +54,7 @@ func SetSpellsForCharacter(lvl int) []string {
 	var raceSpells []string
 
 	classSpells := GetHtmlFormattedClassSpells(lvl)
-	fmt.Println("class - ", classSpells)
 	raceSpells = GetHtmlFormattedRaceSpells(lvl)
-	fmt.Println("race - ", raceSpells)
 
 	spellList := append(classSpells, raceSpells...)
 	spellList = removeDuplicates(spellList)
