@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-const Version = "0.9.4.5 Beta build"
+const Version = "0.9.4.7 Beta build"
 
 func main() {
 	ProdStatus = true
@@ -43,9 +43,8 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
-			"title":         "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
-			"version":       Version,
-			c.ContentType(): "text/html",
+			"title":   "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
+			"version": Version,
 		})
 	})
 
