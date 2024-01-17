@@ -3,7 +3,9 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"html/template"
+	"io"
 	"net/http"
+	"os"
 	"pregen/api"
 	"pregen/pkg/db"
 	"strings"
@@ -41,8 +43,9 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
-			"title":   "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
-			"version": Version,
+			"title":         "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
+			"version":       Version,
+			c.ContentType(): "text/html",
 		})
 	})
 
@@ -67,6 +70,10 @@ func main() {
 	})
 
 	if ProdStatus == true {
+		// Logging to a file.
+		f, _ := os.Create(logPath + "charbox.log")
+		gin.DefaultWriter = io.MultiWriter(f)
+
 		router.RunTLS(":420",
 			"/etc/letsencrypt/live/charbox.swn.by/fullchain.pem",
 			"/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
