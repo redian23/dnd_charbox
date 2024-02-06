@@ -22,10 +22,6 @@ func main() {
 	// api method
 	v1 := router.Group("api/v1/")
 	{
-		//v1.GET("/dice:number", func(c *gin.Context) {
-		//	number := c.Param("number")
-		//	api.GetDice(c, number)
-		//})
 		v1.GET("/roll", func(c *gin.Context) {
 			api.GetMultiRoll(c)
 		})
@@ -54,6 +50,6 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	router.Run(":8080") //local
-	//router.RunTLS(":410", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	//router.Run(":8080") //local
+	router.RunTLS(":410", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
