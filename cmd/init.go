@@ -31,6 +31,6 @@ func InitServerPathVars(status bool) {
 	if status == true {
 		InitGinENV("/etc/pregen.d/", "prod.cnf")
 	} else {
-		InitGinENV("../configs/", "test.cnf")
+		InitGinENV("./configs/", "test.cnf")
 	}
 }
