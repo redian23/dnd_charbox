@@ -50,6 +50,5 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	//router.Run(":8080") //local
-	router.RunTLS(":8080", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
+	router.RunTLS(":80", "/etc/letsencrypt/live/diceroll.swn.by/fullchain.pem", "/etc/letsencrypt/live/diceroll.swn.by/privkey.pem") //prod
 }
