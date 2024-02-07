@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://diceroll.swn.by/s_map.xml
+Host: diceroll.swn.by

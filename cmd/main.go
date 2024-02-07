@@ -41,6 +41,12 @@ func main() {
 			"path":  "./f/diceroll",
 		})
 	})
+	router.GET("/s_map.xml", func(c *gin.Context) {
+		c.File(filePath + "/diceroll/s_map.xml")
+	})
+	router.GET("/robots.txt", func(c *gin.Context) {
+		c.File(filePath + "/diceroll/robots.txt")
+	})
 	router.NoRoute(func(c *gin.Context) {
 		c.JSON(404, gin.H{"code": "PAGE_NOT_FOUND", "message": "Page not found"})
 	})
@@ -50,5 +56,6 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
+
 	router.Run(":4040")
 }
