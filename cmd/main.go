@@ -10,10 +10,10 @@ import (
 	"strings"
 )
 
-const Version = "0.7.5 Beta build <DICE_Roll>"
+const Version = "1.0 Stable build <DICE_Roll>"
 
 func main() {
-	InitServerPathVars(false)
+	InitServerPathVars(true)
 	f, _ := os.Create(logPath + "diceroll_gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 
@@ -37,7 +37,7 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "dices.html", gin.H{
-			"title": "Dice Roller",
+			"title": "Dice Roller | Генератор броска кубика DnD 5e",
 			"path":  "./f/diceroll",
 		})
 	})
