@@ -68,8 +68,32 @@ function writeResultInLabel(data) {
 }
 
 function writeToHistory(data) {
-    document.getElementById("historyList").innerHTML =count++ +". "+ diceCount()+"x"+ selectDice()
-        + " Result: " + JSON.parse(data)["total"] + "<br>" + document.getElementById("historyList").innerHTML;
+    var diceType = ""
+    switch (selectDice()) {
+        case "D4":
+            diceType = "К4"
+            break
+        case "D6":
+            diceType = "К6"
+            break
+        case "D8":
+            diceType = "К8"
+            break
+        case "D10":
+            diceType = "К10"
+            break
+        case "D12":
+            diceType = "К12"
+            break
+        case "D20":
+            diceType = "К20"
+            break
+        case "D100":
+            diceType = "К100"
+            break
+    }
+    document.getElementById("historyList").innerHTML =count++ +". "+ diceCount()+"x"+ diceType
+        + " = [" + JSON.parse(data)["total"] +"] "+ "<br>" + document.getElementById("historyList").innerHTML;
 }
 
 function getRollSumStepsList(data) {
