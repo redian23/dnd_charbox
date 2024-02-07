@@ -50,5 +50,5 @@ func main() {
 	router.GET("/version", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain; charset=utf-8", []byte(Version+" VK_RED23"+"\n"))
 	})
-	router.Run(":1488")
+	router.Run(":4040")
 }
