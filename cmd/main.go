@@ -13,7 +13,7 @@ import (
 const Version = "1.0 Stable build <DICE_Roll>"
 
 func main() {
-	InitServerPathVars(false)
+	InitServerPathVars(true)
 	f, _ := os.Create(logPath + "diceroll_gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 
