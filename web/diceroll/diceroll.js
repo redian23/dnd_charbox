@@ -39,7 +39,31 @@ function showElements() {
 }
 
 function writeResultInLabel(data) {
-    document.getElementById("diceRequest").innerHTML = diceCount() +"x"+ selectDice();
+    var diceType = ""
+    switch (selectDice()) {
+        case "D4":
+            diceType = "К4"
+            break
+        case "D6":
+            diceType = "К6"
+            break
+        case "D8":
+            diceType = "К8"
+            break
+        case "D10":
+            diceType = "К10"
+            break
+        case "D12":
+            diceType = "К12"
+            break
+        case "D20":
+            diceType = "К20"
+            break
+        case "D100":
+            diceType = "К100"
+            break
+    }
+    document.getElementById("diceRequest").innerHTML = diceCount() +"x"+ diceType;
     document.getElementById("diceResult").innerHTML = JSON.parse(data)["total"];
 }
 

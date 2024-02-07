@@ -13,7 +13,7 @@ import (
 const Version = "1.0 Stable build <DICE_Roll>"
 
 func main() {
-	InitServerPathVars(true)
+	InitServerPathVars(false)
 	f, _ := os.Create(logPath + "diceroll_gin_errors.log")
 	gin.DefaultErrorWriter = io.MultiWriter(f)
 
@@ -35,9 +35,15 @@ func main() {
 	router.LoadHTMLGlob(htmlSitePath)
 	router.StaticFS("/f", http.Dir(filePath))
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "dices.html", gin.H{
+	router.GET("/ru", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "dices_ru.html", gin.H{
 			"title": "Dice Roller | Генератор броска кубика DnD 5e",
+			"path":  "./f/diceroll",
+		})
+	})
+	router.GET("/eng", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "dices_eng.html", gin.H{
+			"title": "Dice Roller | DnD 5e die roll generator",
 			"path":  "./f/diceroll",
 		})
 	})
