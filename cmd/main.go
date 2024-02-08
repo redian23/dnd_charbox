@@ -3,9 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"html/template"
-	"io"
 	"net/http"
-	"os"
 	"pregen/api"
 	"pregen/pkg/db"
 	"strings"
@@ -68,15 +66,5 @@ func main() {
 		c.File(filePath + "/charbox/robots.txt")
 	})
 
-	if ProdStatus == true {
-		// Logging to a file.
-		f, _ := os.Create(logPath + "charbox.log")
-		gin.DefaultWriter = io.MultiWriter(f)
-
-		router.RunTLS(":420",
-			"/etc/letsencrypt/live/charbox.swn.by/fullchain.pem",
-			"/etc/letsencrypt/live/charbox.swn.by/privkey.pem") //prod
-	} else {
-		router.Run(":8080") //local
-	}
+	router.Run(":4050")
 }
