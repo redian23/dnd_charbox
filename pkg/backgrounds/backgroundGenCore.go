@@ -12,12 +12,12 @@ var backgroundName string
 
 func getBackgroundsFormDB() []BackgroundBson {
 	var results []BackgroundBson
-	fileContent, err := os.Open("./pkg/db/backgrounds.json")
+	fileContent, err := os.Open("/etc/charbox/db/backgrounds.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("./pkg/db/backgrounds.json")
+	var byteResult, _ = os.ReadFile("/etc/charbox/db/backgrounds.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results

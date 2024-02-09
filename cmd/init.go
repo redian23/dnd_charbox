@@ -34,7 +34,7 @@ func InitGinENV(envPath, fileENV string) {
 
 func InitServerPathVars() {
 	if ProdStatus == true {
-		InitGinENV("/etc/pregen.d/", "prod.cnf")
+		InitGinENV("/etc/charbox.d/", "prod.cnf")
 	} else {
 		InitGinENV("./configs/", "test.cnf")
 	}

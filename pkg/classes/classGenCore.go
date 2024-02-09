@@ -24,12 +24,12 @@ var (
 
 func GetClassCharactsFormDB() ClassesBSON {
 	var results ClassesBSON
-	fileContent, err := os.Open("./pkg/db/classes.json")
+	fileContent, err := os.Open("/etc/charbox/db/classes.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("./pkg/db/classes.json")
+	var byteResult, _ = os.ReadFile("/etc/charbox/db/classes.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results
@@ -37,12 +37,12 @@ func GetClassCharactsFormDB() ClassesBSON {
 
 func GetArmorFormDB() []ArmorAnswer {
 	var results []ArmorAnswer
-	fileContent, err := os.Open("./pkg/db/armor.json")
+	fileContent, err := os.Open("/etc/charbox/db/armor.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("./pkg/db/armor.json")
+	var byteResult, _ = os.ReadFile("/etc/charbox/db/armor.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results
@@ -50,12 +50,12 @@ func GetArmorFormDB() []ArmorAnswer {
 
 func GetWeaponFormDB() []WeaponAnswer {
 	var results []WeaponAnswer
-	fileContent, err := os.Open("./pkg/db/weapons.json")
+	fileContent, err := os.Open("/etc/charbox/db/weapons.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("./pkg/db/weapons.json")
+	var byteResult, _ = os.ReadFile("/etc/charbox/db/weapons.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results

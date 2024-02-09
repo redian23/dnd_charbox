@@ -67,12 +67,12 @@ func setRacePhoto(raceName, gender string) racePhoto {
 
 func getRacesFormDB() []RacesBSON {
 	var results []RacesBSON
-	fileContent, err := os.Open("./pkg/db/races.json")
+	fileContent, err := os.Open("/etc/charbox/db/races.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("./pkg/db/races.json")
+	var byteResult, _ = os.ReadFile("/etc/charbox/db/races.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results

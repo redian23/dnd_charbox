@@ -10,12 +10,12 @@ import (
 
 func GetSpellsFormDB() []SpellsBSON {
 	var results []SpellsBSON
-	fileContent, err := os.Open("./pkg/db/spells_all.json")
+	fileContent, err := os.Open("/etc/charbox/db/spells_all.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("./pkg/db/spells_all.json")
+	var byteResult, _ = os.ReadFile("/etc/charbox/db/spells_all.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results
