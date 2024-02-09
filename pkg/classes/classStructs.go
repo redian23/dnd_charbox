@@ -90,18 +90,18 @@ type savingThrows struct {
 }
 
 type ClassesBSON []struct {
-	ID             primitive.ObjectID `bson:"_id"`
+	ID             primitive.ObjectID `json:"_id"`
 	ClassName      string             `json:"className"`
 	ClassNameRU    string             `json:"classNameRU"`
 	CharReq        [][]string         `json:"charReq"`
 	Background     []string           `json:"background"`
 	Hits           hits               `json:"hits"`
-	SkillsInDB     skillsInDB         `bson:"skills"`
+	SkillsInDB     skillsInDB         `json:"skills"`
 	SavingThrows   []string           `json:"saving_throws"`
 	Proficiencies  Proficiencies      `json:"proficiencies"`
-	PicksEquipment equipPicks         `bson:"equipPicks"`
-	BasicEquipment equipBasic         `bson:"equipBasic"`
-	Spells         Spells             `bson:"spells"`
+	PicksEquipment equipPicks         `json:"equipPicks"`
+	BasicEquipment equipBasic         `json:"equipBasic"`
+	Spells         Spells             `json:"spells"`
 }
 
 type hits struct {
@@ -112,23 +112,7 @@ type hits struct {
 
 type skillsInDB struct {
 	RandomCount int      `json:"random_count"`
-	SkillsList  []string `bson:"skilllist"`
-}
-
-type ClassWriteToBD []struct {
-	CharReq [][]string `json:"charReq"`
-	Hits    struct {
-		HitDice  string `json:"hit_dice"`
-		HitCount int    `json:"hit_count"`
-	} `json:"hits"`
-	SavingThrows []string `json:"saving_throws"`
-	Skills       struct {
-		RandomCount int      `json:"random_count"`
-		SkillList   []string `json:"skill_list"`
-	} `json:"skills"`
-	ClassName   string   `json:"className"`
-	ClassNameRU string   `json:"classNameRU"`
-	Background  []string `json:"background"`
+	SkillsList  []string `json:"skill_list"`
 }
 
 type Spells []struct {

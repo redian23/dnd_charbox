@@ -1,40 +1,25 @@
 package backgrounds
 
 import (
-	"context"
+	"encoding/json"
 	"github.com/mazen160/go-random"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"log"
+	"os"
 	"pregen/pkg/classes"
-	"pregen/pkg/db"
 )
 
 var backgroundName string
 
 func getBackgroundsFormDB() []BackgroundBson {
 	var results []BackgroundBson
-
-	client := db.ConnectToDB()
-	ctx := context.Background()
-
-	coll := client.Database(db.DBNAME).Collection("backgrounds")
-	cursor, err := coll.Find(ctx, bson.D{})
+	fileContent, err := os.Open("./pkg/db/backgrounds.json")
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
+	defer fileContent.Close()
+	var byteResult, _ = os.ReadFile("./pkg/db/backgrounds.json")
 
-	if err = cursor.All(ctx, &results); err != nil {
-		panic(err)
-	}
-
-	defer func(client *mongo.Client, ctx context.Context) {
-		err = client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
-
+	json.Unmarshal(byteResult, &results)
 	return results
 }
 

@@ -1,15 +1,11 @@
 package races
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/mazen160/go-random"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"os"
-	"pregen/pkg/db"
 )
 
 var (
@@ -42,6 +38,7 @@ func readDirectory(path string) ([]string, []string) {
 func setRacePhoto(raceName, gender string) racePhoto {
 	var photo racePhoto
 	var allRacesFolderList, _ = readDirectory(RacePhotoPath)
+	fmt.Println(allRacesFolderList)
 	for _, folderName := range allRacesFolderList {
 		if folderName == raceName {
 			if gender == "Мужской" {
@@ -68,53 +65,16 @@ func setRacePhoto(raceName, gender string) racePhoto {
 	return racePhoto{}
 }
 
-func InsertRacesToDB() {
-	client := db.ConnectToDB()
-	coll := client.Database("data").Collection("races")
-
-	var race RacesJsonStruct
-	json.Unmarshal([]byte{}, &race) // пока что ничего не записывает
-
-	docs := []interface{}{}
-
-	for _, cl := range race {
-		docs = append(docs, cl)
-	}
-
-	result, err := coll.InsertMany(context.TODO(), docs)
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("Documents inserted: %v\n", len(result.InsertedIDs))
-	for _, id := range result.InsertedIDs {
-		fmt.Printf("Inserted document with _id: %v\n", id)
-	}
-}
-
 func getRacesFormDB() []RacesBSON {
 	var results []RacesBSON
-
-	client := db.ConnectToDB()
-	ctx := context.Background()
-
-	coll := client.Database(db.DBNAME).Collection("races")
-	cursor, err := coll.Find(ctx, bson.D{})
+	fileContent, err := os.Open("./pkg/db/races.json")
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
+	defer fileContent.Close()
+	var byteResult, _ = os.ReadFile("./pkg/db/races.json")
 
-	if err = cursor.All(ctx, &results); err != nil {
-		panic(err)
-	}
-
-	defer func(client *mongo.Client, ctx context.Context) {
-		err = client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
-
+	json.Unmarshal(byteResult, &results)
 	return results
 }
 

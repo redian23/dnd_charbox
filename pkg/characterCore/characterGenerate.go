@@ -9,7 +9,6 @@ import (
 
 func GenerateFullCharacter(className, raceName string, lvl int) *Character {
 	classes.LanguageListGlobal = []string{} //очистка глоб переменной перед генерацией
-
 	classes.CharacterLevelGlobal = lvl
 	return &Character{
 		Level:            lvl,

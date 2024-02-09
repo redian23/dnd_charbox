@@ -1,0 +1,1082 @@
+[
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a1"},
+    "background": ["Guild artisan", "Sage", "Soldier", "Folk hero"],
+    "caster": true,
+    "charReq": [
+      ["Intelligence", "BodyDifficulty", "Charisma"],
+      ["Intelligence", "Dexterity", "Charisma"],
+      ["Intelligence", "Wisdom", "Charisma"]
+    ],
+    "className": "Wizard",
+    "classNameRu": "Волшебник",
+    "equipBasic": [
+      {
+        "itemName": "Книга заклинаний",
+        "type": "instrument",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Боевой посох",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Кинжал",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Мешочек с компонентами",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Магическая фокусировка",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор учёного",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к6",
+      "hit_count": 6
+    },
+    "proficiencies": {
+      "armor": "Нет",
+      "weapons": "Кинжалы, дротики, пращи, боевые посохи, лёгкие арбалеты",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Intelligence", "Wisdom"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["History", "Arcana", "Medicine", "Insight", "Investigation", "Religion"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a3"},
+    "background": ["Urchin", "Noble", "Sailor", "Knight", "Folk hero", "Soldier", "Outlander"],
+    "caster": false,
+    "charReq": [
+      ["Strength", "Dexterity", "Intelligence"],
+      ["Strength", "Dexterity", "BodyDifficulty"],
+      ["Strength", "Dexterity", "Charisma"]
+    ],
+    "className": "Fighter",
+    "classNameRu": "Воин",
+    "equipBasic": [],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Кольчуга",
+            "type": "armor",
+            "count": 1
+          },
+          {
+            "itemName": "Кожаный доспех",
+            "type": "armor",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Воинское оружие",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Воинское оружие",
+            "type": "weapon",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Щит",
+            "type": "armor",
+            "count": 1
+          },
+          {
+            "itemName": "Длинный лук",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Лёгкий арбалет",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Ручной топор",
+            "type": "weapon",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор исследователя подземелий",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к10",
+      "hit_count": 10
+    },
+    "proficiencies": {
+      "armor": "Все доспехи, щиты",
+      "weapons": "Простое оружие, воинское оружие",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Strength", "BodyDifficulty"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Acrobatics", "Athletics", "Perception", "Survival", "Intimidation", "History", "Insight", "Animal Handling"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a4"},
+    "background": ["Sailor", "Folk hero", "Pirate", "Soldier", "Outlander", "Gladiator"],
+    "caster": false,
+    "charReq": [
+      ["Strength", "BodyDifficulty", "Wisdom"],
+      ["Strength", "BodyDifficulty", "Charisma"],
+      ["Strength", "BodyDifficulty", "Intelligence"]
+    ],
+    "className": "Barbarian",
+    "classNameRu": "Варвар",
+    "equipBasic": [
+      {
+        "itemName": "Метательное копьё",
+        "type": "weapon",
+        "count": 4
+      },
+      {
+        "itemName": "Набор путешественника",
+        "type": "instrument",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Секира",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Воинское рукопашное оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Ручной топор",
+            "type": "weapon",
+            "count": 2
+          },
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к12",
+      "hit_count": 12
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи, средние доспехи, щиты",
+      "weapons": "Простое оружие, воинское оружие",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Strength", "BodyDifficulty"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Athletics", "Perception", "Survival", "Intimidation", "Nature", "Animal Handling"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a5"},
+    "background": ["Noble", "Hermit", "Knight", "Soldier"],
+    "caster": false,
+    "charReq": [
+      ["Strength", "Charisma", "BodyDifficulty"],
+      ["Strength", "Charisma", "Wisdom"]
+    ],
+    "className": "Paladin",
+    "classNameRu": "Паладин",
+    "equipBasic": [
+      {
+        "itemName": "Кольчуга",
+        "type": "armor",
+        "count": 1
+      },
+      {
+        "itemName": "Священный символ",
+        "type": "instrument",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Воинское оружие",
+            "type": "weapon",
+            "count": 2
+          },
+          {
+            "itemName": "Щит",
+            "type": "armor",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Метательное копьё",
+            "type": "weapon",
+            "count": 5
+          },
+          {
+            "itemName": "Простое рукопашное оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор священника",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к10",
+      "hit_count": 10
+    },
+    "proficiencies": {
+      "armor": "Все виды доспехов, щиты",
+      "weapons": "Простое оружие, воинское оружие",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Wisdom", "Charisma"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Athletics", "Intimidation", "Medicine", "Insight", "Religion", "Persuasion"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a6"},
+    "background": ["Folk hero", "Hermit", "Acolyte"],
+    "caster": false,
+    "charReq": [
+      ["Dexterity", "Wisdom", "Strength"],
+      ["Dexterity", "BodyDifficulty", "Charisma"],
+      ["Dexterity", "BodyDifficulty", "Wisdom"]
+    ],
+    "className": "Monk",
+    "classNameRu": "Монах",
+    "equipBasic": [
+      {
+        "itemName": "Дротик",
+        "type": "weapon",
+        "count": 10
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Короткий меч",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Простое рукопашное оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор исследователя подземелий",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Нет",
+      "weapons": "Простое оружие, короткие мечи",
+      "instruments": "Выберите один вид инструмента ремесленников, либо музыкального инструмента."
+    },
+    "saving_throws": ["Strength", "Dexterity"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a7"},
+    "background": ["Urchin", "Pirate", "Criminal", "Charlatan", "Outlander"],
+    "caster": false,
+    "charReq": [
+      ["Dexterity", "Intelligence", "Charisma"],
+      ["Dexterity", "Intelligence", "Wisdom"]
+    ],
+    "className": "Rogue",
+    "classNameRu": "Плут",
+    "equipBasic": [
+      {
+        "itemName": "Кожаный доспех",
+        "type": "armor",
+        "count": 1
+      },
+      {
+        "itemName": "Кинжал",
+        "type": "weapon",
+        "count": 2
+      },
+      {
+        "itemName": "Воровские инструменты",
+        "type": "instrument",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Рапира",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Короткий меч",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Короткий лук",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Короткий меч",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор взломщика",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор исследователя подземелий",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи",
+      "weapons": "Простое оружие, ручные арбалеты, длинные мечи, рапиры, короткие мечи",
+      "instruments": "Воровские инструменты"
+    },
+    "saving_throws": ["Dexterity", "Intelligence"],
+    "skills": {
+      "random_count": 4,
+      "skill_list": ["Acrobatics", "Athletics", "Perception", "Performance", "Intimidation", "Sleight Of Hand", "Deception", "Insight", "Investigation", "Stealth", "Persuasion"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a8"},
+    "background": ["Guild artisan", "Folk hero", "Criminal", "Outlander"],
+    "caster": false,
+    "charReq": [
+      ["Dexterity", "Wisdom", "Charisma"],
+      ["Strength", "Wisdom", "Dexterity"]
+    ],
+    "className": "Ranger",
+    "classNameRu": "Следопыт",
+    "equipBasic": [
+      {
+        "itemName": "Длинный лук",
+        "type": "weapon",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 2
+          },
+          {
+            "itemName": "Короткий меч",
+            "type": "weapon",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Чешуйчатый доспех",
+            "type": "armor",
+            "count": 1
+          },
+          {
+            "itemName": "Кожаный доспех",
+            "type": "armor",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор исследователя подземелий",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к10",
+      "hit_count": 10
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи, средние доспехи, щиты",
+      "weapons": "Простое оружие, воинское оружие",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Strength", "Dexterity"],
+    "skills": {
+      "random_count": 3,
+      "skill_list": ["Athletics", "Perception", "Survival", "Nature", "Insight", "Investigation", "Stealth", "Animal Handling"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652a9"},
+    "background": ["Guild artisan", "Folk hero", "Hermit", "Acolyte", "Outlander"],
+    "caster": true,
+    "charReq": [
+      ["Wisdom", "BodyDifficulty", "Dexterity"],
+      ["Wisdom", "BodyDifficulty", "Strength"],
+      ["Wisdom", "BodyDifficulty", "Intelligence"]
+    ],
+    "className": "Druid",
+    "classNameRu": "Друид",
+    "equipBasic": [
+      {
+        "itemName": "Кожаный доспех",
+        "type": "armor",
+        "count": 1
+      },
+      {
+        "itemName": "Фокусировка друидов",
+        "type": "instrument",
+        "count": 1
+      },
+      {
+        "itemName": "Набор путешественника",
+        "type": "instrument",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Щит",
+            "type": "armor",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Cкимитар",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Простое рукопашное оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи, средние доспехи, щиты (друиды не носят доспехи и щиты из металла)",
+      "weapons": "Боевые посохи, булавы, дротики, дубинки, кинжалы, копья, метательные копья, пращи, серпы, скимитары",
+      "instruments": "Набор травника"
+    },
+    "saving_throws": ["Intelligence", "Wisdom"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Perception", "Survival", "Arcana", "Medicine", "Animal Handling", "Nature", "Insight", "Religion"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652aa"},
+    "background": ["Sage", "Folk hero", "Hermit", "Acolyte", "Charlatan"],
+    "caster": true,
+    "charReq": [
+      ["Wisdom", "BodyDifficulty", "Charisma"],
+      ["Wisdom", "Strength", "Charisma"]
+    ],
+    "className": "Cleric",
+    "classNameRu": "Жрец",
+    "equipBasic": [
+      {
+        "itemName": "Щит",
+        "type": "armor",
+        "count": 1
+      },
+      {
+        "itemName": "Священный символ",
+        "type": "instrument",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Булава",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Боевой молот",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Чешуйчатый доспех",
+            "type": "armor",
+            "count": 1
+          },
+          {
+            "itemName": "Кожаный доспех",
+            "type": "armor",
+            "count": 1
+          },
+          {
+            "itemName": "Кольчуга",
+            "type": "armor",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Лёгкий арбалет",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор священника",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи, средние доспехи, щиты",
+      "weapons": "Простое оружие",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Wisdom", "Charisma"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["History", "Medicine", "Insight", "Religion", "Persuasion"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652ac"},
+    "background": ["Guild artisan", "Sage", "Folk hero", "Hermit"],
+    "caster": true,
+    "charReq": [
+      ["Charisma", "BodyDifficulty", "Intelligence"],
+      ["Charisma", "BodyDifficulty", "Dexterity"]
+    ],
+    "className": "Sorcerer",
+    "classNameRu": "Чародей",
+    "equipBasic": [
+      {
+        "itemName": "Кинжал",
+        "type": "weapon",
+        "count": 2
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Лёгкий арбалет",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор исследователя подземелий",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор путешественника",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Мешочек с компонентами",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Магическая фокусировка",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к6",
+      "hit_count": 6
+    },
+    "proficiencies": {
+      "armor": "Нет",
+      "weapons": "Боевые посохи, дротики, кинжалы, лёгкие арбалеты, пращи",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["BodyDifficulty", "Charisma"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Intimidation", "Arcana", "Deception", "Insight", "Religion", "Persuasion"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652ad"},
+    "background": ["Artist", "Noble", "Urchin", "Charlatan"],
+    "caster": true,
+    "charReq": [
+      ["Charisma", "Dexterity", "Wisdom"],
+      ["Charisma", "Dexterity", "BodyDifficulty"],
+      ["Charisma", "Dexterity", "Intelligence"]
+    ],
+    "className": "Bard",
+    "classNameRu": "Бард",
+    "equipBasic": [
+      {
+        "itemName": "Кожаный доспех",
+        "type": "armor",
+        "count": 1
+      },
+      {
+        "itemName": "Кинжал",
+        "type": "weapon",
+        "count": 1
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Рапира",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Длинный меч",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор дипломата",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор артиста",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Барабан",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Виола",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Волынка",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Лира",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Лютня",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Рожок",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Свирель",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Флейта",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Шалмей",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Гитара",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи",
+      "weapons": "Простое оружие, длинные мечи, короткие мечи, рапиры, ручные арбалеты",
+      "instruments": "Три музыкальных инструмента на ваш выбор"
+    },
+    "saving_throws": ["Dexterity", "Charisma"],
+    "skills": {
+      "random_count": 3,
+      "skill_list": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight Of Hand", "Stealth", "Survival"]
+    }
+  },
+  {
+    "_id": {"$oid": "64ac427ac28416e8d8b652ae"},
+    "background": ["Guild artisan", "Sage", "Folk hero"],
+    "caster": true,
+    "charReq": [
+      ["Intelligence", "BodyDifficulty", "Wisdom"],
+      ["Intelligence", "BodyDifficulty", "Dexterity"]
+    ],
+    "className": "Artificer",
+    "classNameRu": "Изобретатель",
+    "equipBasic": [
+      {
+        "itemName": "Лёгкий арбалет",
+        "type": "weapon",
+        "count": 1
+      },
+      {
+        "itemName": "Воровские инструменты",
+        "type": "instrument",
+        "count": 1
+      },
+      {
+        "itemName": "Набор исследователя подземелий",
+        "type": "instrument",
+        "count": 1
+      },
+      {
+        "itemName": "Простое оружие",
+        "type": "weapon",
+        "count": 2
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Проклёпанная кожа",
+            "type": "armor",
+            "count": 1
+          },
+          {
+            "itemName": "Чешуйчатый доспех",
+            "type": "armor",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи, средние доспехи, щиты",
+      "weapons": "Простое оружие",
+      "instruments": "Воровские инструменты, инструменты ремонтника, а также один тип инструментов ремесленника на ваш выбор"
+    },
+    "saving_throws": ["BodyDifficulty", "Intelligence"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Perception", "History", "Sleight Of Hand", "Arcana", "Medicine", "Nature", "Investigation"]
+    }
+  },
+  {
+    "_id": {"$oid": "64eb9dfc5d051d21a46208ae"},
+    "background": ["Hermit", "Sage", "Charlatan"],
+    "caster": true,
+    "charReq": [
+      ["Charisma", "BodyDifficulty", "Wisdom"],
+      ["Charisma", "BodyDifficulty", "Strength"]
+    ],
+    "className": "Warlock",
+    "classNameRu": "Колдун",
+    "equipBasic": [
+      {
+        "itemName": "Кожаный доспех",
+        "type": "armor",
+        "count": 1
+      },
+      {
+        "itemName": "Простое оружие",
+        "type": "weapon",
+        "count": 1
+      },
+      {
+        "itemName": "Кинжал",
+        "type": "weapon",
+        "count": 2
+      }
+    ],
+    "equipPicks": [
+      {
+        "variants": [
+          {
+            "itemName": "Лёгкий арбалет",
+            "type": "weapon",
+            "count": 1
+          },
+          {
+            "itemName": "Простое оружие",
+            "type": "weapon",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Набор исследователя подземелий",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Набор учёного",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "variants": [
+          {
+            "itemName": "Мешочек с компонентами",
+            "type": "instrument",
+            "count": 1
+          },
+          {
+            "itemName": "Магическая фокусировка",
+            "type": "instrument",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hits": {
+      "hit_dice": "1к8",
+      "hit_count": 8
+    },
+    "proficiencies": {
+      "armor": "Лёгкие доспехи",
+      "weapons": "Простое оружие",
+      "instruments": "Нет"
+    },
+    "saving_throws": ["Wisdom", "Charisma"],
+    "skills": {
+      "random_count": 2,
+      "skill_list": ["Intimidation", "History", "Arcana", "Deception", "Nature", "Investigation", "Religion"]
+    }
+  }
+]

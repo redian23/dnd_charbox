@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/spf13/viper"
 	"log"
-	"pregen/pkg/db"
 	"pregen/pkg/races"
 )
 
@@ -35,10 +34,8 @@ func InitGinENV(envPath, fileENV string) {
 
 func InitServerPathVars() {
 	if ProdStatus == true {
-		db.InitMongoENV("/etc/pregen.d/")
 		InitGinENV("/etc/pregen.d/", "prod.cnf")
 	} else {
-		db.InitMongoENV("./pkg/db/")
 		InitGinENV("./configs/", "test.cnf")
 	}
 }

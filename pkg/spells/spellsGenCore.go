@@ -1,37 +1,23 @@
 package spells
 
 import (
-	"context"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
+	"encoding/json"
 	"log"
+	"os"
 	"pregen/pkg/classes"
-	"pregen/pkg/db"
 	"pregen/pkg/races"
 )
 
 func GetSpellsFormDB() []SpellsBSON {
 	var results []SpellsBSON
-	client := db.ConnectToDB()
-
-	ctx := context.Background()
-
-	coll := client.Database(db.DBNAME).Collection("spells_all")
-	cursor, err := coll.Find(ctx, bson.D{})
+	fileContent, err := os.Open("./pkg/db/spells_all.json")
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
+	defer fileContent.Close()
+	var byteResult, _ = os.ReadFile("./pkg/db/spells_all.json")
 
-	if err = cursor.All(ctx, &results); err != nil {
-		panic(err)
-	}
-
-	defer func(client *mongo.Client, ctx context.Context) {
-		err = client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
+	json.Unmarshal(byteResult, &results)
 	return results
 }
 

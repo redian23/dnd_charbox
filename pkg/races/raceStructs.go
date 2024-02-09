@@ -39,7 +39,7 @@ type RacesBSON struct {
 	MinWeight     int                `json:"min_weight"`
 	MaxWeight     int                `json:"max_weight,omitempty"`
 	BodySize      string             `json:"body_size"`
-	RaceLanguages []string           `bson:"langs"`
+	RaceLanguages []string           `json:"langs"`
 	RaceSkill     skillsInDB         `json:"race_skill"`
 	Names         names              `bson:"names"`
 	LastNames     []interface{}      `json:"last_names"`
@@ -47,7 +47,7 @@ type RacesBSON struct {
 }
 type skillsInDB struct {
 	RandomCount int      `json:"random_count"`
-	SkillsList  []string `bson:"skilllist"`
+	SkillsList  []string `bson:"skill_list"`
 }
 type RacesJsonStruct []struct {
 	RaceName   string        `json:"race_name"`
@@ -69,8 +69,8 @@ type RacesJsonStruct []struct {
 }
 
 type raceAbility struct {
-	AbilityName string `bson:"ability_name"`
-	Description string `bson:"description"`
+	AbilityName string `json:"ability_name"`
+	Description string `json:"description"`
 }
 type StatsUp struct {
 	Strength       int `json:"strength"`
@@ -84,9 +84,9 @@ type Type struct {
 	TypeRaceName      string          `json:"type_race_name"`
 	TypeRaceNameRu    string          `json:"type_race_name_ru"`
 	StatsUp           StatsUp         `json:"stats_up"`
-	RaceAbilities     []raceAbility   `bson:"raceAbilities"`
-	RaceZeroLvLSpells []RaceLvLSpells `bson:"raceZeroLvLSpells"`
-	RaceOneLvLSpells  []RaceLvLSpells `bson:"raceOneLvLSpells"`
+	RaceAbilities     []raceAbility   `json:"raceAbilities"`
+	RaceZeroLvLSpells []RaceLvLSpells `json:"raceZeroLvLSpells"`
+	RaceOneLvLSpells  []RaceLvLSpells `json:"raceOneLvLSpells"`
 	Speed             int             `json:"speed"`
 }
 type names struct {
@@ -102,11 +102,6 @@ type other struct {
 type racePhoto struct {
 	Path     string `json:"path"`
 	FileName string `json:"file_name"`
-}
-
-type RaceAbilities struct {
-	AbilityName string `json:"ability_name"`
-	Description string `json:"description"`
 }
 
 type RaceLvLSpells struct {

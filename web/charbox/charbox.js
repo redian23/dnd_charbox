@@ -341,8 +341,8 @@ function writeBackgroundLabels(data) {
     document.getElementById("lbl_weakness").innerHTML = backgr["weakness"];
     document.getElementById("lbl_gold").innerHTML = backgr["gold"];
 
-    document.getElementById("lbl_background_ability").innerHTML = "<strong>"+ backgr["background_ability"]["AbilityName"]+"</strong>"
-        + " - " + backgr["background_ability"]["Description"];
+    document.getElementById("lbl_background_ability").innerHTML = "<strong>"+ backgr["background_ability"]["ability_name"]+"</strong>"
+        + " - " + backgr["background_ability"]["description"];
 
     backgrEquip = backgr["equipment"]
     for(let i = 0; i < backgrEquip.length; i++){
@@ -424,15 +424,15 @@ function writeClassAbilitiesLabels(data) {
 function writeRaceAbilitiesLabels(data) {
     document.getElementById("lbl_race_abilities").innerHTML = ""
         let race_abil = JSON.parse(data)["race"]["race_abilities"];
-
+console.log(JSON.parse(data)["race"]["race_abilities"])
     if (race_abil === null){
         document.getElementById("lbl_race_abilities").innerHTML = "Нет"
         return
     }
     for(let i = 0; i < race_abil.length; i++){
         document.getElementById("lbl_race_abilities").innerHTML +=
-            "<strong>"+ JSON.parse(JSON.stringify(race_abil[i]["AbilityName"]))+"</strong>" +": "
-                + JSON.parse(JSON.stringify(race_abil[i]["Description"])) + "<br>" ;
+            "<strong>"+ JSON.parse(JSON.stringify(race_abil[i]["ability_name"]))+"</strong>" +": "
+                + JSON.parse(JSON.stringify(race_abil[i]["description"])) + "<br>" ;
     }
 }
 

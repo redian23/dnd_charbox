@@ -1,11 +1,9 @@
 package backgrounds
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
-
 type BackgroundAnswer struct {
 	BackgroundName    string            `json:"background_name"`
 	BackgroundNameRu  string            `json:"background_name_ru"`
-	BackgroundAbility backgroundAbility `json:"background_ability"`
+	BackgroundAbility BackgroundAbility `json:"background_ability"`
 	MasteryOfTools    []string          `json:"mastery_of_tools"`
 	Equipment         []string          `json:"equipment"`
 	Description       string            `json:"description"`
@@ -21,46 +19,33 @@ type BackgroundAnswer struct {
 	Gold              int               `json:"gold"`
 }
 type BackgroundBson struct {
-	ID                primitive.ObjectID `bson:"_id"`
-	BackgroundName    string             `json:"background_name"`
-	BackgroundNameRu  string             `json:"background_name_ru"`
-	BackgroundAbility backgroundAbility  `bson:"backgroundAbility"`
-	Description       string             `json:"description"`
-	Equipment         []string           `json:"equipment"`
-	Personalization   string             `json:"personalization"`
-	Advice            string             `json:"advice"`
-	Gold              int                `json:"gold"`
-	SkillMastery      []string           `json:"skill_mastery"`
-	MasteryOfTools    []string           `bson:"masteryOfTools"`
-	Type              Type               `json:"type,omitempty"`
-	CharacterTrait    CharacterTrait     `json:"character_trait"`
-	Ideal             Ideal              `json:"ideal"`
-	Affection         Affection          `json:"affection"`
-	Weakness          Weakness           `json:"weakness"`
+	ID                ID                `json:"_id"`
+	Advice            string            `json:"advice"`
+	Affection         Affection         `json:"affection"`
+	BackgroundAbility BackgroundAbility `json:"background_ability"`
+	BackgroundName    string            `json:"background_name"`
+	BackgroundNameRu  string            `json:"background_name_ru"`
+	CharacterTrait    CharacterTrait    `json:"character_trait"`
+	Description       string            `json:"description"`
+	Equipment         []string          `json:"equipment"`
+	Gold              int               `json:"gold"`
+	Ideal             Ideal             `json:"ideal"`
+	MasteryOfTools    []string          `json:"mastery_of_tools"`
+	Personalization   string            `json:"personalization"`
+	SkillMastery      []string          `json:"skill_mastery"`
+	Type              Type              `json:"type"`
+	Weakness          Weakness          `json:"weakness"`
 }
-
-type backgroundAbility struct {
-	AbilityName string `bson:"ability_name"`
-	Description string `bson:"description"`
+type ID struct {
+	Oid string `json:"$oid"`
 }
-type BackgroundJson struct {
-	BackgroundName   string         `json:"background_name"`
-	BackgroundNameRu string         `json:"background_name_ru"`
-	Description      string         `json:"description"`
-	Personalization  string         `json:"personalization"`
-	Advice           string         `json:"advice"`
-	Gold             int            `json:"gold"`
-	SkillMastery     []string       `json:"skill_mastery"`
-	Type             Type           `json:"type,omitempty"`
-	CharacterTrait   CharacterTrait `json:"character_trait"`
-	Ideal            Ideal          `json:"ideal"`
-	Affection        Affection      `json:"affection"`
-	Weakness         Weakness       `json:"weakness"`
-}
-
-type Type struct {
+type Affection struct {
 	Dice  string   `json:"dice"`
 	Value []string `json:"value"`
+}
+type BackgroundAbility struct {
+	AbilityName string `json:"ability_name"`
+	Description string `json:"description"`
 }
 type CharacterTrait struct {
 	Dice  string   `json:"dice"`
@@ -75,7 +60,7 @@ type Ideal struct {
 	Dice  string  `json:"dice"`
 	Value []Value `json:"value"`
 }
-type Affection struct {
+type Type struct {
 	Dice  string   `json:"dice"`
 	Value []string `json:"value"`
 }

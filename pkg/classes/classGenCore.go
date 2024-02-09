@@ -1,13 +1,11 @@
 package classes
 
 import (
-	"context"
+	"encoding/json"
 	"github.com/mazen160/go-random"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"math"
-	"pregen/pkg/db"
+	"os"
 	"pregen/pkg/dice"
 	"pregen/pkg/races"
 	"reflect"
@@ -26,76 +24,40 @@ var (
 
 func GetClassCharactsFormDB() ClassesBSON {
 	var results ClassesBSON
-
-	client := db.ConnectToDB()
-	ctx := context.Background()
-
-	coll := client.Database(db.DBNAME).Collection("classes")
-	cursor, err := coll.Find(ctx, bson.D{})
+	fileContent, err := os.Open("./pkg/db/classes.json")
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
+	defer fileContent.Close()
+	var byteResult, _ = os.ReadFile("./pkg/db/classes.json")
 
-	if err = cursor.All(ctx, &results); err != nil {
-		panic(err)
-	}
-
-	defer func(client *mongo.Client, ctx context.Context) {
-		err = client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
+	json.Unmarshal(byteResult, &results)
 	return results
 }
 
 func GetArmorFormDB() []ArmorAnswer {
 	var results []ArmorAnswer
-
-	client := db.ConnectToDB()
-	ctx := context.Background()
-
-	coll := client.Database(db.DBNAME).Collection("armor")
-	cursor, err := coll.Find(ctx, bson.D{})
+	fileContent, err := os.Open("./pkg/db/armor.json")
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
+	defer fileContent.Close()
+	var byteResult, _ = os.ReadFile("./pkg/db/armor.json")
 
-	if err = cursor.All(ctx, &results); err != nil {
-		panic(err)
-	}
-
-	defer func(client *mongo.Client, ctx context.Context) {
-		err = client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
+	json.Unmarshal(byteResult, &results)
 	return results
 }
 
 func GetWeaponFormDB() []WeaponAnswer {
 	var results []WeaponAnswer
-
-	client := db.ConnectToDB()
-	ctx := context.Background()
-
-	coll := client.Database(db.DBNAME).Collection("weapons")
-	cursor, err := coll.Find(ctx, bson.D{})
+	fileContent, err := os.Open("./pkg/db/weapons.json")
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
+	defer fileContent.Close()
+	var byteResult, _ = os.ReadFile("./pkg/db/weapons.json")
 
-	if err = cursor.All(ctx, &results); err != nil {
-		panic(err)
-	}
-
-	defer func(client *mongo.Client, ctx context.Context) {
-		err = client.Disconnect(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}(client, ctx)
+	json.Unmarshal(byteResult, &results)
 	return results
 }
 

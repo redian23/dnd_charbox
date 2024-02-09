@@ -1,0 +1,93 @@
+[
+  {
+    "_id": {"$oid": "64c8e4508a512d5fe9f17dd1"},
+    "armorClassCount": 11,
+    "armorName": "Стёганый",
+    "armorType": "Лёгкий доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e4508a512d5fe9f17dd2"},
+    "armorClassCount": 11,
+    "armorName": "Кожаный доспех",
+    "armorType": "Лёгкий доспех",
+    "stealth": true
+  },
+  {
+    "_id": {"$oid": "64c8e48d8a512d5fe9f17dd3"},
+    "armorClassCount": 12,
+    "armorName": "Проклёпанная кожа",
+    "armorType": "Лёгкий доспех",
+    "stealth": true
+  },
+  {
+    "_id": {"$oid": "64c8e48d8a512d5fe9f17dd4"},
+    "armorClassCount": 12,
+    "armorName": "Шкурный",
+    "armorType": "Средний доспех",
+    "stealth": true
+  },
+  {
+    "_id": {"$oid": "64c8e48e8a512d5fe9f17dd5"},
+    "armorClassCount": 13,
+    "armorName": "Кольчужная рубаха",
+    "armorType": "Средний доспех",
+    "stealth": true
+  },
+  {
+    "_id": {"$oid": "64c8e48e8a512d5fe9f17dd6"},
+    "armorClassCount": 14,
+    "armorName": "Чешуйчатый доспех",
+    "armorType": "Средний доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e48e8a512d5fe9f17dd7"},
+    "armorClassCount": 14,
+    "armorName": "Кираса",
+    "armorType": "Средний доспех",
+    "stealth": true
+  },
+  {
+    "_id": {"$oid": "64c8e48e8a512d5fe9f17dd8"},
+    "armorClassCount": 15,
+    "armorName": "Полулаты",
+    "armorType": "Средний доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e48e8a512d5fe9f17dd9"},
+    "armorClassCount": 14,
+    "armorName": "Колечный",
+    "armorType": "Тяжёлый доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e48f8a512d5fe9f17dda"},
+    "armorClassCount": 16,
+    "armorName": "Кольчуга",
+    "armorType": "Тяжёлый доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e48f8a512d5fe9f17ddb"},
+    "armorClassCount": 17,
+    "armorName": "Наборный",
+    "armorType": "Тяжёлый доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e48f8a512d5fe9f17ddc"},
+    "armorClassCount": 18,
+    "armorName": "Латы",
+    "armorType": "Тяжёлый доспех",
+    "stealth": false
+  },
+  {
+    "_id": {"$oid": "64c8e48f8a512d5fe9f17ddd"},
+    "armorClassCount": 2,
+    "armorName": "Щит",
+    "armorType": "Щит",
+    "stealth": true
+  }
+]

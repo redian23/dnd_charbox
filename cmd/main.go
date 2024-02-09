@@ -5,16 +5,14 @@ import (
 	"html/template"
 	"net/http"
 	"pregen/api"
-	"pregen/pkg/db"
 	"strings"
 )
 
-const Version = "0.9.4.7 Beta build"
+const Version = "1.0 Beta build"
 
 func main() {
 	ProdStatus = true
 	InitServerPathVars()
-	db.PingMongoDB()
 
 	router := gin.Default()
 	// api method

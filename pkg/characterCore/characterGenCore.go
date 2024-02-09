@@ -75,6 +75,5 @@ func GetCharLangs() []string {
 	}
 
 	raceLangs = append(raceLangs, classes.LanguageListGlobal...)
-
 	return raceLangs
 }

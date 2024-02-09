@@ -1,0 +1,2477 @@
+[
+  {
+    "_id": {"$oid": "650f474495dcd8698549590c"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Acid splash",
+    "spellNameRu": "Брызги кислоты",
+    "url": "https://dnd.su/spells/13-acid_splash/"
+  },
+  {
+    "_id": {"$oid": "650f474495dcd8698549590d"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Mage hand",
+    "spellNameRu": "Волшебная рука",
+    "url": "https://dnd.su/spells/26-mage_hand/"
+  },
+  {
+    "_id": {"$oid": "650f474595dcd8698549590e"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Friends",
+    "spellNameRu": "Дружба",
+    "url": "https://dnd.su/spells/71-friends/"
+  },
+  {
+    "_id": {"$oid": "650f474595dcd8698549590f"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Shillelagh",
+    "spellNameRu": "Дубинка",
+    "url": "https://dnd.su/spells/73-shillelagh/"
+  },
+  {
+    "_id": {"$oid": "650f474595dcd86985495910"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Blade ward",
+    "spellNameRu": "Защита от оружия",
+    "url": "https://dnd.su/spells/101-blade_ward/"
+  },
+  {
+    "_id": {"$oid": "650f474595dcd86985495911"},
+    "classes": ["Бард"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Vicious mockery",
+    "spellNameRu": "Злая насмешка",
+    "url": "https://dnd.su/spells/112-vicious_mockery/"
+  },
+  {
+    "_id": {"$oid": "650f474595dcd86985495912"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Druidcraft",
+    "spellNameRu": "Искусство друидов",
+    "url": "https://dnd.su/spells/123-druidcraft/"
+  },
+  {
+    "_id": {"$oid": "650f474595dcd86985495913"},
+    "classes": ["Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Chill touch",
+    "spellNameRu": "Леденящее прикосновение",
+    "url": "https://dnd.su/spells/140-chill_touch/"
+  },
+  {
+    "_id": {"$oid": "650f474695dcd86985495914"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Ray of frost",
+    "spellNameRu": "Луч холода",
+    "url": "https://dnd.su/spells/149-ray_of_frost/"
+  },
+  {
+    "_id": {"$oid": "650f474695dcd86985495915"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Minor illusion",
+    "spellNameRu": "Малая иллюзия",
+    "url": "https://dnd.su/spells/154-minor_illusion/"
+  },
+  {
+    "_id": {"$oid": "650f474695dcd86985495916"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "True strike",
+    "spellNameRu": "Меткий удар",
+    "url": "https://dnd.su/spells/165-true_strike/"
+  },
+  {
+    "_id": {"$oid": "650f474695dcd86985495917"},
+    "classes": ["Колдун"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Eldritch blast",
+    "spellNameRu": "Мистический заряд",
+    "url": "https://dnd.su/spells/168-eldritch_blast/"
+  },
+  {
+    "_id": {"$oid": "650f474695dcd86985495918"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Fire bolt",
+    "spellNameRu": "Огненный снаряд",
+    "url": "https://dnd.su/spells/204-fire_bolt/"
+  },
+  {
+    "_id": {"$oid": "650f474795dcd86985495919"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Dancing lights",
+    "spellNameRu": "Пляшущие огоньки",
+    "url": "https://dnd.su/spells/234-dancing_lights/"
+  },
+  {
+    "_id": {"$oid": "650f474795dcd8698549591a"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Mending",
+    "spellNameRu": "Починка",
+    "url": "https://dnd.su/spells/258-mending/"
+  },
+  {
+    "_id": {"$oid": "650f474795dcd8698549591b"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Light",
+    "spellNameRu": "Свет",
+    "url": "https://dnd.su/spells/307-light/"
+  },
+  {
+    "_id": {"$oid": "650f474795dcd8698549591c"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Sacred flame",
+    "spellNameRu": "Священное пламя",
+    "url": "https://dnd.su/spells/311-sacred_flame/"
+  },
+  {
+    "_id": {"$oid": "650f474795dcd8698549591d"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Message",
+    "spellNameRu": "Сообщение",
+    "url": "https://dnd.su/spells/331-message/"
+  },
+  {
+    "_id": {"$oid": "650f474895dcd8698549591e"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Shocking grasp",
+    "spellNameRu": "Электрошок",
+    "url": "https://dnd.su/spells/66-shocking_grasp/"
+  },
+  {
+    "_id": {"$oid": "650f474895dcd8698549591f"},
+    "classes": ["Волшебник", "Друид", "Изобретатель", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Poison spray",
+    "spellNameRu": "Ядовитые брызги",
+    "url": "https://dnd.su/spells/63-poison_spray/"
+  },
+  {
+    "_id": {"$oid": "650f474895dcd86985495920"},
+    "classes": ["Друид", "Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Resistance",
+    "spellNameRu": "Сопротивление",
+    "url": "https://dnd.su/spells/332-resistance/"
+  },
+  {
+    "_id": {"$oid": "650f474895dcd86985495921"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Produce flame",
+    "spellNameRu": "Сотворение пламени",
+    "url": "https://dnd.su/spells/336-produce_flame/"
+  },
+  {
+    "_id": {"$oid": "650f474895dcd86985495922"},
+    "classes": ["Друид", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Thorn whip",
+    "spellNameRu": "Терновый кнут",
+    "url": "https://dnd.su/spells/348-thorn_whip/"
+  },
+  {
+    "_id": {"$oid": "650f474895dcd86985495923"},
+    "classes": ["Друид", "Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Guidance",
+    "spellNameRu": "Указание",
+    "url": "https://dnd.su/spells/105-guidance/"
+  },
+  {
+    "_id": {"$oid": "650f474995dcd86985495924"},
+    "classes": ["Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Spare the dying",
+    "spellNameRu": "Уход за умирающим",
+    "url": "https://dnd.su/spells/94-spare_the_dying/"
+  },
+  {
+    "_id": {"$oid": "650f474995dcd86985495925"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Prestidigitation",
+    "spellNameRu": "Фокусы",
+    "url": "https://dnd.su/spells/91-prestidigitation/"
+  },
+  {
+    "_id": {"$oid": "650f474995dcd86985495926"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 0,
+    "spellNameEng": "Thaumaturgy",
+    "spellNameRu": "Чудотворство",
+    "url": "https://dnd.su/spells/80-thaumaturgy/"
+  },
+  {
+    "_id": {"$oid": "650f4b4c95dcd8698549592b"},
+    "classes": ["Колдун"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Hellish rebuke",
+    "spellNameRu": "Адское возмездие",
+    "url": "https://dnd.su/spells/1-hellish_rebuke/"
+  },
+  {
+    "_id": {"$oid": "650f4b4d95dcd8698549592c"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Aura of vitality",
+    "spellNameRu": "Аура живучести",
+    "url": "https://dnd.su/spells/3-aura_of_vitality/"
+  },
+  {
+    "_id": {"$oid": "650f4b4d95dcd8698549592d"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Aura of life",
+    "spellNameRu": "Аура жизни",
+    "url": "https://dnd.su/spells/4-aura_of_life/"
+  },
+  {
+    "_id": {"$oid": "650f4b4d95dcd8698549592e"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Aura of purity",
+    "spellNameRu": "Аура очищения",
+    "url": "https://dnd.su/spells/5-aura_of_purity/"
+  },
+  {
+    "_id": {"$oid": "650f4b4d95dcd8698549592f"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Silent image",
+    "spellNameRu": "Безмолвный образ",
+    "url": "https://dnd.su/spells/7-silent_image/"
+  },
+  {
+    "_id": {"$oid": "650f4b4d95dcd86985495930"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Pass without trace",
+    "spellNameRu": "Бесследное передвижение",
+    "url": "https://dnd.su/spells/8-pass_without_trace/"
+  },
+  {
+    "_id": {"$oid": "650f4b4e95dcd86985495931"},
+    "classes": ["Паладин", "Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Bless",
+    "spellNameRu": "Благословение",
+    "url": "https://dnd.su/spells/9-bless/"
+  },
+  {
+    "_id": {"$oid": "650f4b4e95dcd86985495932"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Divine favor",
+    "spellNameRu": "Божественное благоволение",
+    "url": "https://dnd.su/spells/10-divine_favor/"
+  },
+  {
+    "_id": {"$oid": "650f4b4e95dcd86985495933"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Spiritual weapon",
+    "spellNameRu": "Божественное оружие",
+    "url": "https://dnd.su/spells/11-spiritual_weapon/"
+  },
+  {
+    "_id": {"$oid": "650f4b4e95dcd86985495935"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Swift quiver",
+    "spellNameRu": "Быстрый колчан",
+    "url": "https://dnd.su/spells/14-swift_quiver/"
+  },
+  {
+    "_id": {"$oid": "650f4b4e95dcd86985495936"},
+    "classes": ["Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Witch bolt",
+    "spellNameRu": "Ведьмин снаряд",
+    "url": "https://dnd.su/spells/15-witch_bolt/"
+  },
+  {
+    "_id": {"$oid": "650f4b4f95dcd86985495938"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Mordenkainen's faithful hound",
+    "spellNameRu": "Верный пёс Морденкайнена",
+    "url": "https://dnd.su/spells/17-mordenkainen_s_faithful_hound/"
+  },
+  {
+    "_id": {"$oid": "650f4b4f95dcd86985495939"},
+    "classes": ["Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Continual flame",
+    "spellNameRu": "Вечный огонь",
+    "url": "https://dnd.su/spells/18-continual_flame/"
+  },
+  {
+    "_id": {"$oid": "650f4b4f95dcd8698549593a"},
+    "classes": ["Бард", "Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Dream",
+    "spellNameRu": "Вещий сон",
+    "url": "https://dnd.su/spells/19-dream/"
+  },
+  {
+    "_id": {"$oid": "650f4b4f95dcd8698549593b"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "See invisibility",
+    "spellNameRu": "Видение невидимого",
+    "url": "https://dnd.su/spells/20-see_invisibility/"
+  },
+  {
+    "_id": {"$oid": "650f4b5095dcd8698549593c"},
+    "classes": ["Волшебник", "Друид", "Жрец"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Control water",
+    "spellNameRu": "Власть над водами",
+    "url": "https://dnd.su/spells/21-control_water/"
+  },
+  {
+    "_id": {"$oid": "650f4b5095dcd8698549593d"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Suggestion",
+    "spellNameRu": "Внушение",
+    "url": "https://dnd.su/spells/23-suggestion/"
+  },
+  {
+    "_id": {"$oid": "650f4b5095dcd8698549593e"},
+    "classes": ["Жрец", "Изобретатель", "Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Revivify",
+    "spellNameRu": "Возрождение",
+    "url": "https://dnd.su/spells/24-revivify/"
+  },
+  {
+    "_id": {"$oid": "650f4b5095dcd8698549593f"},
+    "classes": ["Бард", "Волшебник", "Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Thunderwave",
+    "spellNameRu": "Волна грома",
+    "url": "https://dnd.su/spells/25-thunderwave/"
+  },
+  {
+    "_id": {"$oid": "650f4b5095dcd86985495940"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Magic missile",
+    "spellNameRu": "Волшебная стрела",
+    "url": "https://dnd.su/spells/27-magic_missile/"
+  },
+  {
+    "_id": {"$oid": "650f4b5195dcd86985495941"},
+    "classes": ["Бард", "Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Magic mouth",
+    "spellNameRu": "Волшебные уста",
+    "url": "https://dnd.su/spells/28-magic_mouth/"
+  },
+  {
+    "_id": {"$oid": "650f4b5195dcd86985495942"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Arcane lock",
+    "spellNameRu": "Волшебный замок",
+    "url": "https://dnd.su/spells/29-arcane_lock/"
+  },
+  {
+    "_id": {"$oid": "650f4b5195dcd86985495944"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Phantasmal force",
+    "spellNameRu": "Воображаемая сила",
+    "url": "https://dnd.su/spells/31-phantasmal_force/"
+  },
+  {
+    "_id": {"$oid": "650f4b5195dcd86985495945"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Phantasmal killer",
+    "spellNameRu": "Воображаемый убийца",
+    "url": "https://dnd.su/spells/32-phantasmal_killer/"
+  },
+  {
+    "_id": {"$oid": "650f4b5295dcd86985495947"},
+    "classes": ["Волшебник", "Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Animate dead",
+    "spellNameRu": "Восставший труп",
+    "url": "https://dnd.su/spells/35-animate_dead/"
+  },
+  {
+    "_id": {"$oid": "650f4b5295dcd86985495948"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Compelled duel",
+    "spellNameRu": "Вызов на дуэль",
+    "url": "https://dnd.su/spells/37-compelled_duel/"
+  },
+  {
+    "_id": {"$oid": "650f4b5295dcd86985495949"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Greater invisibility",
+    "spellNameRu": "Высшая невидимость",
+    "url": "https://dnd.su/spells/38-greater_invisibility/"
+  },
+  {
+    "_id": {"$oid": "650f4b5295dcd8698549594a"},
+    "classes": ["Друид", "Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Greater restoration",
+    "spellNameRu": "Высшее восстановление",
+    "url": "https://dnd.su/spells/39-greater_restoration/"
+  },
+  {
+    "_id": {"$oid": "650f4b5395dcd8698549594b"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Augury",
+    "spellNameRu": "Гадание",
+    "url": "https://dnd.su/spells/40-augury/"
+  },
+  {
+    "_id": {"$oid": "650f4b5395dcd8698549594c"},
+    "classes": ["Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Gaseous form",
+    "spellNameRu": "Газообразная форма",
+    "url": "https://dnd.su/spells/41-gaseous_form/"
+  },
+  {
+    "_id": {"$oid": "650f4b5395dcd8698549594d"},
+    "classes": ["Паладин", "Бард"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Heroism",
+    "spellNameRu": "Героизм",
+    "url": "https://dnd.su/spells/42-heroism/"
+  },
+  {
+    "_id": {"$oid": "650f4b5395dcd8698549594e"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Giant insect",
+    "spellNameRu": "Гигантское насекомое",
+    "url": "https://dnd.su/spells/43-giant_insect/"
+  },
+  {
+    "_id": {"$oid": "650f4b5395dcd8698549594f"},
+    "classes": ["Бард", "Колдун", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Hypnotic pattern",
+    "spellNameRu": "Гипнотический узор",
+    "url": "https://dnd.su/spells/44-hypnotic_pattern/"
+  },
+  {
+    "_id": {"$oid": "650f4b5395dcd86985495950"},
+    "classes": ["Бард", "Волшебник", "Жрец", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Blindness/deafness",
+    "spellNameRu": "Глухота/слепота",
+    "url": "https://dnd.su/spells/45-blindness_deafness/"
+  },
+  {
+    "_id": {"$oid": "650f4b5495dcd86985495951"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Wrathful smite",
+    "spellNameRu": "Гневная кара",
+    "url": "https://dnd.su/spells/46-wrathful_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4b5495dcd86985495952"},
+    "classes": ["Колдун"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Hunger of Hadar",
+    "spellNameRu": "Голод Хадара",
+    "url": "https://dnd.su/spells/47-hunger_of_hadar/"
+  },
+  {
+    "_id": {"$oid": "650f4b5495dcd86985495953"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Flame blade",
+    "spellNameRu": "Горящий клинок",
+    "url": "https://dnd.su/spells/48-flame_blade/"
+  },
+  {
+    "_id": {"$oid": "650f4b5495dcd86985495954"},
+    "classes": ["Волшебник", "Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Ice storm",
+    "spellNameRu": "Град",
+    "url": "https://dnd.su/spells/49-ice_storm/"
+  },
+  {
+    "_id": {"$oid": "650f4b5495dcd86985495955"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Hail of thorns",
+    "spellNameRu": "Град шипов",
+    "url": "https://dnd.su/spells/50-hail_of_thorns/"
+  },
+  {
+    "_id": {"$oid": "650f4b5595dcd86985495956"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Thunderous smite",
+    "spellNameRu": "Громовая кара",
+    "url": "https://dnd.su/spells/52-thunderous_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4b5595dcd86985495958"},
+    "classes": ["Бард"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Dissonant whispers",
+    "spellNameRu": "Диссонирующий шёпот",
+    "url": "https://dnd.su/spells/56-dissonant_whispers/"
+  },
+  {
+    "_id": {"$oid": "650f4b5595dcd86985495959"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Bigby's hand",
+    "spellNameRu": "Длань Бигби",
+    "url": "https://dnd.su/spells/57-bigby_s_hand/"
+  },
+  {
+    "_id": {"$oid": "650f4b5595dcd8698549595a"},
+    "classes": ["Друид", "Жрец", "Паладин", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Daylight",
+    "spellNameRu": "Дневной свет",
+    "url": "https://dnd.su/spells/58-daylight/"
+  },
+  {
+    "_id": {"$oid": "650f4b5695dcd8698549595b"},
+    "classes": ["Колдун"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Armor of Agathys",
+    "spellNameRu": "Доспех Агатиса",
+    "url": "https://dnd.su/spells/59-armor_of_agathys/"
+  },
+  {
+    "_id": {"$oid": "650f4b5695dcd8698549595c"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Mage armor",
+    "spellNameRu": "Доспехи мага",
+    "url": "https://dnd.su/spells/60-mage_armor/"
+  },
+  {
+    "_id": {"$oid": "650f4bcd95dcd8698549595f"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Shatter",
+    "spellNameRu": "Дребезги",
+    "url": "https://dnd.su/spells/62-shatter/"
+  },
+  {
+    "_id": {"$oid": "650f4bcd95dcd86985495960"},
+    "classes": ["Следопыт", "Друид"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Tree stride",
+    "spellNameRu": "Древесный путь",
+    "url": "https://dnd.su/spells/65-tree_stride/"
+  },
+  {
+    "_id": {"$oid": "650f4bce95dcd86985495962"},
+    "classes": ["Следопыт", "Друид", "Бард"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Animal friendship",
+    "spellNameRu": "Дружба с животными",
+    "url": "https://dnd.su/spells/72-animal_friendship/"
+  },
+  {
+    "_id": {"$oid": "650f4bce95dcd86985495963"},
+    "classes": ["Следопыт", "Друид"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Barkskin",
+    "spellNameRu": "Дубовая кора",
+    "url": "https://dnd.su/spells/74-barkskin/"
+  },
+  {
+    "_id": {"$oid": "650f4bce95dcd86985495964"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Spirit guardians",
+    "spellNameRu": "Духовные стражи",
+    "url": "https://dnd.su/spells/75-spirit_guardians/"
+  },
+  {
+    "_id": {"$oid": "650f4bce95dcd86985495965"},
+    "classes": ["Следопыт", "Друид"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Beast sense",
+    "spellNameRu": "Животные чувства",
+    "url": "https://dnd.su/spells/76-beast_sense/"
+  },
+  {
+    "_id": {"$oid": "650f4bce95dcd86985495966"},
+    "classes": ["Бард", "Волшебник"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Tasha's hideous laughter",
+    "spellNameRu": "Жуткий смех Таши",
+    "url": "https://dnd.su/spells/79-tasha_s_hideous_laughter/"
+  },
+  {
+    "_id": {"$oid": "650f4bcf95dcd86985495967"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Cordon of arrows",
+    "spellNameRu": "Завеса стрел",
+    "url": "https://dnd.su/spells/81-cordon_of_arrows/"
+  },
+  {
+    "_id": {"$oid": "650f4bcf95dcd86985495969"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Slow",
+    "spellNameRu": "Замедление",
+    "url": "https://dnd.su/spells/83-slow/"
+  },
+  {
+    "_id": {"$oid": "650f4bd095dcd8698549596c"},
+    "classes": ["Друид", "Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Contagion",
+    "spellNameRu": "Заражение",
+    "url": "https://dnd.su/spells/92-contagion/"
+  },
+  {
+    "_id": {"$oid": "650f4bd095dcd8698549596d"},
+    "classes": ["Волшебник", "Друид", "Жрец", "Колдун", "Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Protection from evil and good",
+    "spellNameRu": "Защита от зла и добра",
+    "url": "https://dnd.su/spells/99-protection_from_evil_and_good/"
+  },
+  {
+    "_id": {"$oid": "650f4bd095dcd8698549596e"},
+    "classes": ["Паладин", "Жрец"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Death ward",
+    "spellNameRu": "Защита от смерти",
+    "url": "https://dnd.su/spells/104-death_ward/"
+  },
+  {
+    "_id": {"$oid": "650f4bd095dcd8698549596f"},
+    "classes": ["Волшебник", "Друид", "Жрец", "Изобретатель", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Protection from energy",
+    "spellNameRu": "Защита от энергии",
+    "url": "https://dnd.su/spells/106-protection_from_energy/"
+  },
+  {
+    "_id": {"$oid": "650f4bd095dcd86985495970"},
+    "classes": ["Друид", "Жрец", "Изобретатель", "Паладин", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Protection from poison",
+    "spellNameRu": "Защита от яда",
+    "url": "https://dnd.su/spells/108-protection_from_poison/"
+  },
+  {
+    "_id": {"$oid": "650f4bd195dcd86985495971"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Stinking cloud",
+    "spellNameRu": "Зловонное облако",
+    "url": "https://dnd.su/spells/113-stinking_cloud/"
+  },
+  {
+    "_id": {"$oid": "650f4bd195dcd86985495973"},
+    "classes": ["Бард", "Волшебник", "Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Legend lore",
+    "spellNameRu": "Знание легенд",
+    "url": "https://dnd.su/spells/115-legend_lore/"
+  },
+  {
+    "_id": {"$oid": "650f4bd195dcd86985495974"},
+    "classes": ["Волшебник", "Чародей", "Жрец", "Колдун", "Паладин"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Banishment",
+    "spellNameRu": "Изгнание",
+    "url": "https://dnd.su/spells/116-banishment/"
+  },
+  {
+    "_id": {"$oid": "650f4bd295dcd86985495975"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Banishing smite",
+    "spellNameRu": "Изгоняющая кара",
+    "url": "https://dnd.su/spells/117-banishing_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4bd295dcd86985495976"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Fabricate",
+    "spellNameRu": "Изготовление",
+    "url": "https://dnd.su/spells/118-fabricate/"
+  },
+  {
+    "_id": {"$oid": "650f4bd295dcd86985495977"},
+    "classes": ["Бард", "Волшебник"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Modify memory",
+    "spellNameRu": "Изменение памяти",
+    "url": "https://dnd.su/spells/119-modify_memory/"
+  },
+  {
+    "_id": {"$oid": "650f4bd295dcd86985495979"},
+    "classes": ["Волшебник", "Друид", "Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Stone shape",
+    "spellNameRu": "Изменение формы камня",
+    "url": "https://dnd.su/spells/121-stone_shape/"
+  },
+  {
+    "_id": {"$oid": "650f4bd395dcd8698549597c"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Mordenkainen's private sanctum",
+    "spellNameRu": "Кабинет Морденкайнена",
+    "url": "https://dnd.su/spells/128-mordenkainen_s_private_sanctum/"
+  },
+  {
+    "_id": {"$oid": "650f4bd395dcd8698549597d"},
+    "classes": ["Волшебник", "Друид", "Следопыт", "Чародей", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Stoneskin",
+    "spellNameRu": "Каменная кожа",
+    "url": "https://dnd.su/spells/129-stoneskin/"
+  },
+  {
+    "_id": {"$oid": "650f4bd495dcd8698549597e"},
+    "classes": ["Волшебник", "Друид", "Чародей", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Wall of stone",
+    "spellNameRu": "Каменная стена",
+    "url": "https://dnd.su/spells/130-wall_of_stone/"
+  },
+  {
+    "_id": {"$oid": "650f4bd495dcd8698549597f"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Branding smite",
+    "spellNameRu": "Клеймящая кара",
+    "url": "https://dnd.su/spells/131-branding_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4bd495dcd86985495980"},
+    "classes": ["Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Counterspell",
+    "spellNameRu": "Контрзаклинание",
+    "url": "https://dnd.su/spells/132-counterspell/"
+  },
+  {
+    "_id": {"$oid": "650f4bd495dcd86985495981"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Cone of cold",
+    "spellNameRu": "Конус холода",
+    "url": "https://dnd.su/spells/133-cone_of_cold/"
+  },
+  {
+    "_id": {"$oid": "650f4bd495dcd86985495982"},
+    "classes": ["Волшебник", "Колдун", "Чародей", "Бард"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Crown of madness",
+    "spellNameRu": "Корона безумия",
+    "url": "https://dnd.su/spells/134-crown_of_madness/"
+  },
+  {
+    "_id": {"$oid": "650f4bd595dcd86985495983"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Circle of power",
+    "spellNameRu": "Круг силы",
+    "url": "https://dnd.su/spells/135-circle_of_power/"
+  },
+  {
+    "_id": {"$oid": "650f4bd595dcd86985495985"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Teleportation circle",
+    "spellNameRu": "Круг телепортации",
+    "url": "https://dnd.su/spells/137-teleportation_circle/"
+  },
+  {
+    "_id": {"$oid": "650f4bd595dcd86985495986"},
+    "classes": ["Изобретатель", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Levitate",
+    "spellNameRu": "Левитация",
+    "url": "https://dnd.su/spells/139-levitate/"
+  },
+  {
+    "_id": {"$oid": "650f4bd695dcd86985495988"},
+    "classes": ["Изобретатель", "Волшебник"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Leomund's secret chest",
+    "spellNameRu": "Леомундов потайной сундук",
+    "url": "https://dnd.su/spells/142-leomund_s_secret_chest/"
+  },
+  {
+    "_id": {"$oid": "650f4bd695dcd86985495989"},
+    "classes": ["Бард", "Волшебник"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Leomund's tiny hut",
+    "spellNameRu": "Леомундова хижина",
+    "url": "https://dnd.su/spells/143-leomund_s_tiny_hut/"
+  },
+  {
+    "_id": {"$oid": "650f4bd695dcd8698549598a"},
+    "classes": ["Бард", "Друид", "Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Healing word",
+    "spellNameRu": "Лечащее слово",
+    "url": "https://dnd.su/spells/144-healing_word/"
+  },
+  {
+    "_id": {"$oid": "650f4bd695dcd8698549598b"},
+    "classes": ["Бард", "Друид", "Жрец", "Изобретатель", "Паладин", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Cure wounds",
+    "spellNameRu": "Лечение ран",
+    "url": "https://dnd.su/spells/145-cure_wounds/"
+  },
+  {
+    "_id": {"$oid": "650f4bd795dcd8698549598c"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Moonbeam",
+    "spellNameRu": "Лунный луч",
+    "url": "https://dnd.su/spells/146-moonbeam/"
+  },
+  {
+    "_id": {"$oid": "650f4bd795dcd8698549598d"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Ray of sickness",
+    "spellNameRu": "Луч болезни",
+    "url": "https://dnd.su/spells/147-ray_of_sickness/"
+  },
+  {
+    "_id": {"$oid": "650f4bd795dcd8698549598e"},
+    "classes": ["Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Ray of enfeeblement",
+    "spellNameRu": "Луч слабости",
+    "url": "https://dnd.su/spells/148-ray_of_enfeeblement/"
+  },
+  {
+    "_id": {"$oid": "650f4bd795dcd86985495990"},
+    "classes": ["Изобретатель", "Волшебник"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Arcane eye",
+    "spellNameRu": "Магический глаз",
+    "url": "https://dnd.su/spells/151-arcane_eye/"
+  },
+  {
+    "_id": {"$oid": "650f4bd895dcd86985495991"},
+    "classes": ["Волшебник", "Жрец", "Колдун", "Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Magic circle",
+    "spellNameRu": "Магический круг",
+    "url": "https://dnd.su/spells/152-magic_circle/"
+  },
+  {
+    "_id": {"$oid": "650f4bd895dcd86985495992"},
+    "classes": ["Паладин", "Изобретатель", "Волшебник"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Magic weapon",
+    "spellNameRu": "Магическое оружие",
+    "url": "https://dnd.su/spells/153-magic_weapon/"
+  },
+  {
+    "_id": {"$oid": "650f4bd895dcd86985495993"},
+    "classes": ["Бард", "Друид", "Жрец", "Изобретатель", "Паладин", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Lesser restoration",
+    "spellNameRu": "Малое восстановление",
+    "url": "https://dnd.su/spells/155-lesser_restoration/"
+  },
+  {
+    "_id": {"$oid": "650f4bd895dcd86985495994"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Crusader's mantle",
+    "spellNameRu": "Мантия крестоносца",
+    "url": "https://dnd.su/spells/156-crusader_s_mantle/"
+  },
+  {
+    "_id": {"$oid": "650f4bd895dcd86985495995"},
+    "classes": ["Бард", "Изобретатель", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Disguise self",
+    "spellNameRu": "Маскировка",
+    "url": "https://dnd.su/spells/157-disguise_self/"
+  },
+  {
+    "_id": {"$oid": "650f4bd895dcd86985495996"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Beacon of hope",
+    "spellNameRu": "Маяк надежды",
+    "url": "https://dnd.su/spells/158-beacon_of_hope/"
+  },
+  {
+    "_id": {"$oid": "650f4bd995dcd86985495997"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Melf's acid arrow",
+    "spellNameRu": "Мельфова кислотная стрела",
+    "url": "https://dnd.su/spells/159-melf_s_acid_arrow/"
+  },
+  {
+    "_id": {"$oid": "650f4bd995dcd86985495998"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Rary's telepathic bond",
+    "spellNameRu": "Ментальная связь Рэри",
+    "url": "https://dnd.su/spells/160-rary_s_telepathic_bond/"
+  },
+  {
+    "_id": {"$oid": "650f4bd995dcd86985495999"},
+    "classes": ["Изобретатель", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Blink",
+    "spellNameRu": "Мерцание",
+    "url": "https://dnd.su/spells/161-blink/"
+  },
+  {
+    "_id": {"$oid": "650f4bd995dcd8698549599a"},
+    "classes": ["Друид", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Sleet storm",
+    "spellNameRu": "Метель",
+    "url": "https://dnd.su/spells/162-sleet_storm/"
+  },
+  {
+    "_id": {"$oid": "650f4bd995dcd8698549599b"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Hunter's mark",
+    "spellNameRu": "Метка охотника",
+    "url": "https://dnd.su/spells/164-hunter_s_mark/"
+  },
+  {
+    "_id": {"$oid": "650f4bda95dcd8698549599d"},
+    "classes": ["Бард", "Волшебник", "Друид", "Колдун"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Hallucinatory terrain",
+    "spellNameRu": "Мираж",
+    "url": "https://dnd.su/spells/167-hallucinatory_terrain/"
+  },
+  {
+    "_id": {"$oid": "650f4bda95dcd8698549599f"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Mass healing word",
+    "spellNameRu": "Множественное лечащее слово",
+    "url": "https://dnd.su/spells/170-mass_healing_word/"
+  },
+  {
+    "_id": {"$oid": "650f4bda95dcd869854959a0"},
+    "classes": ["Бард", "Друид", "Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Mass cure wounds",
+    "spellNameRu": "Множественное лечение ран",
+    "url": "https://dnd.su/spells/171-mass_cure_wounds/"
+  },
+  {
+    "_id": {"$oid": "650f4bdb95dcd869854959a1"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Prayer of healing",
+    "spellNameRu": "Молебен лечения",
+    "url": "https://dnd.su/spells/173-prayer_of_healing/"
+  },
+  {
+    "_id": {"$oid": "650f4bdb95dcd869854959a2"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Lightning arrow",
+    "spellNameRu": "Молниевая стрела",
+    "url": "https://dnd.su/spells/174-lightning_arrow/"
+  },
+  {
+    "_id": {"$oid": "650f4bdb95dcd869854959a3"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Lightning bolt",
+    "spellNameRu": "Молния",
+    "url": "https://dnd.su/spells/175-lightning_bolt/"
+  },
+  {
+    "_id": {"$oid": "650f4bdb95dcd869854959a4"},
+    "classes": ["Бард", "Друид", "Жрец", "Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Scrying",
+    "spellNameRu": "Наблюдение",
+    "url": "https://dnd.su/spells/176-scrying/"
+  },
+  {
+    "_id": {"$oid": "650f4bdb95dcd869854959a5"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Inflict wounds",
+    "spellNameRu": "Нанесение ран",
+    "url": "https://dnd.su/spells/177-inflict_wounds/"
+  },
+  {
+    "_id": {"$oid": "650f4bdc95dcd869854959a6"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Guiding bolt",
+    "spellNameRu": "Направляющий снаряд",
+    "url": "https://dnd.su/spells/178-guiding_bolt/"
+  },
+  {
+    "_id": {"$oid": "650f4bdc95dcd869854959a7"},
+    "classes": ["Друид", "Жрец", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Insect plague",
+    "spellNameRu": "Нашествие насекомых",
+    "url": "https://dnd.su/spells/180-insect_plague/"
+  },
+  {
+    "_id": {"$oid": "650f4bdc95dcd869854959a8"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Flame strike",
+    "spellNameRu": "Небесный огонь",
+    "url": "https://dnd.su/spells/181-flame_strike/"
+  },
+  {
+    "_id": {"$oid": "650f4bdc95dcd869854959a9"},
+    "classes": ["Бард", "Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Illusory script",
+    "spellNameRu": "Невидимое письмо",
+    "url": "https://dnd.su/spells/182-illusory_script/"
+  },
+  {
+    "_id": {"$oid": "650f4bdc95dcd869854959aa"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Invisibility",
+    "spellNameRu": "Невидимость",
+    "url": "https://dnd.su/spells/183-invisibility/"
+  },
+  {
+    "_id": {"$oid": "650f4bdc95dcd869854959ab"},
+    "classes": ["Бард", "Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Unseen servant",
+    "spellNameRu": "Невидимый слуга",
+    "url": "https://dnd.su/spells/184-unseen_servant/"
+  },
+  {
+    "_id": {"$oid": "650f4bdd95dcd869854959ac"},
+    "classes": ["Бард", "Волшебник", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Nondetection",
+    "spellNameRu": "Необнаружимость",
+    "url": "https://dnd.su/spells/185-nondetection/"
+  },
+  {
+    "_id": {"$oid": "650f4bdd95dcd869854959ad"},
+    "classes": ["Волшебник", "Жрец"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Gentle repose",
+    "spellNameRu": "Нетленные останки",
+    "url": "https://dnd.su/spells/186-gentle_repose/"
+  },
+  {
+    "_id": {"$oid": "650f4bdd95dcd869854959af"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Nystul's magic aura",
+    "spellNameRu": "Нистулова ложная аура",
+    "url": "https://dnd.su/spells/188-nystul_s_magic_aura/"
+  },
+  {
+    "_id": {"$oid": "650f4bdd95dcd869854959b0"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Паладин"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Geas",
+    "spellNameRu": "Обет",
+    "url": "https://dnd.su/spells/189-geas/"
+  },
+  {
+    "_id": {"$oid": "650f4bde95dcd869854959b1"},
+    "classes": ["Бард", "Волшебник", "Чародей", "Колдун"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Cloud of daggers",
+    "spellNameRu": "Облако кинжалов",
+    "url": "https://dnd.su/spells/190-cloud_of_daggers/"
+  },
+  {
+    "_id": {"$oid": "650f4bde95dcd869854959b2"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Cloudkill",
+    "spellNameRu": "Облако смерти",
+    "url": "https://dnd.su/spells/191-cloudkill/"
+  },
+  {
+    "_id": {"$oid": "650f4bde95dcd869854959b3"},
+    "classes": ["Бард", "Жрец", "Паладин"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Zone of truth",
+    "spellNameRu": "Область истины",
+    "url": "https://dnd.su/spells/192-zone_of_truth/"
+  },
+  {
+    "_id": {"$oid": "650f4bde95dcd869854959b4"},
+    "classes": ["Бард", "Жрец", "Паладин", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Detect poison and disease",
+    "spellNameRu": "Обнаружение болезней и яда",
+    "url": "https://dnd.su/spells/193-detect_poison_and_disease/"
+  },
+  {
+    "_id": {"$oid": "650f4bde95dcd869854959b5"},
+    "classes": ["Жрец", "Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Detect evil and good",
+    "spellNameRu": "Обнаружение зла и добра",
+    "url": "https://dnd.su/spells/194-detect_evil_and_good/"
+  },
+  {
+    "_id": {"$oid": "650f4bdf95dcd869854959b6"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Изобретатель", "Паладин", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Detect magic",
+    "spellNameRu": "Обнаружение магии",
+    "url": "https://dnd.su/spells/195-detect_magic/"
+  },
+  {
+    "_id": {"$oid": "650f4bdf95dcd869854959b7"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Detect thoughts",
+    "spellNameRu": "Обнаружение мыслей",
+    "url": "https://dnd.su/spells/196-detect_thoughts/"
+  },
+  {
+    "_id": {"$oid": "650f4bdf95dcd869854959b8"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Major image",
+    "spellNameRu": "Образ",
+    "url": "https://dnd.su/spells/197-major_image/"
+  },
+  {
+    "_id": {"$oid": "650f4bdf95dcd869854959b9"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Commune",
+    "spellNameRu": "Общение",
+    "url": "https://dnd.su/spells/198-commune/"
+  },
+  {
+    "_id": {"$oid": "650f4bdf95dcd869854959ba"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Commune with nature",
+    "spellNameRu": "Общение с природой",
+    "url": "https://dnd.su/spells/199-commune_with_nature/"
+  },
+  {
+    "_id": {"$oid": "650f4be095dcd869854959bb"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Staggering smite",
+    "spellNameRu": "Оглушающая кара",
+    "url": "https://dnd.su/spells/200-staggering_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4be095dcd869854959bd"},
+    "classes": ["Волшебник", "Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Wall of fire",
+    "spellNameRu": "Огненная стена",
+    "url": "https://dnd.su/spells/202-wall_of_fire/"
+  },
+  {
+    "_id": {"$oid": "650f4be095dcd869854959be"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Burning hands",
+    "spellNameRu": "Огненные ладони",
+    "url": "https://dnd.su/spells/203-burning_hands/"
+  },
+  {
+    "_id": {"$oid": "650f4be095dcd869854959bf"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Fireball",
+    "spellNameRu": "Огненный шар",
+    "url": "https://dnd.su/spells/205-fireball/"
+  },
+  {
+    "_id": {"$oid": "650f4be095dcd869854959c0"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Fire shield",
+    "spellNameRu": "Огненный щит",
+    "url": "https://dnd.su/spells/206-fire_shield/"
+  },
+  {
+    "_id": {"$oid": "650f4be195dcd869854959c1"},
+    "classes": ["Бард", "Друид", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Faerie fire",
+    "spellNameRu": "Огонь фей",
+    "url": "https://dnd.su/spells/207-faerie_fire/"
+  },
+  {
+    "_id": {"$oid": "650f4be195dcd869854959c2"},
+    "classes": ["Бард", "Жрец", "Паладин"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Raise dead",
+    "spellNameRu": "Оживление",
+    "url": "https://dnd.su/spells/208-raise_dead/"
+  },
+  {
+    "_id": {"$oid": "650f4be195dcd869854959c3"},
+    "classes": ["Бард", "Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Animate objects",
+    "spellNameRu": "Оживление вещей",
+    "url": "https://dnd.su/spells/364-animate_objects/"
+  },
+  {
+    "_id": {"$oid": "650f4c2395dcd869854959c5"},
+    "classes": ["Бард", "Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Identify",
+    "spellNameRu": "Опознание",
+    "url": "https://dnd.su/spells/210-identify/"
+  },
+  {
+    "_id": {"$oid": "650f4c2495dcd869854959c6"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Entangle",
+    "spellNameRu": "Опутывание",
+    "url": "https://dnd.su/spells/211-entangle/"
+  },
+  {
+    "_id": {"$oid": "650f4c2495dcd869854959c7"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Ensnaring strike",
+    "spellNameRu": "Опутывающий удар",
+    "url": "https://dnd.su/spells/212-ensnaring_strike/"
+  },
+  {
+    "_id": {"$oid": "650f4c2495dcd869854959c8"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Blinding smite",
+    "spellNameRu": "Ослепляющая кара",
+    "url": "https://dnd.su/spells/213-blinding_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4c2495dcd869854959ca"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Otiluke’s resilient sphere",
+    "spellNameRu": "Отилюков упругий шар",
+    "url": "https://dnd.su/spells/216-otiluke_s_resilient_sphere/"
+  },
+  {
+    "_id": {"$oid": "650f4c2595dcd869854959cb"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Knock",
+    "spellNameRu": "Открывание",
+    "url": "https://dnd.su/spells/217-knock/"
+  },
+  {
+    "_id": {"$oid": "650f4c2595dcd869854959cc"},
+    "classes": ["Колдун", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Mirror image",
+    "spellNameRu": "Отражения",
+    "url": "https://dnd.su/spells/218-mirror_image/"
+  },
+  {
+    "_id": {"$oid": "650f4c2595dcd869854959cd"},
+    "classes": ["Бард", "Жрец", "Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Glyph of warding",
+    "spellNameRu": "Охранная руна",
+    "url": "https://dnd.su/spells/219-glyph_of_warding/"
+  },
+  {
+    "_id": {"$oid": "650f4c2595dcd869854959ce"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Warding bond",
+    "spellNameRu": "Охраняющая связь",
+    "url": "https://dnd.su/spells/220-warding_bond/"
+  },
+  {
+    "_id": {"$oid": "650f4c2695dcd869854959cf"},
+    "classes": ["Бард", "Волшебник", "Друид", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Charm person",
+    "spellNameRu": "Очарование личности",
+    "url": "https://dnd.su/spells/221-charm_person/"
+  },
+  {
+    "_id": {"$oid": "650f4c2695dcd869854959d0"},
+    "classes": ["Друид, Жрец, Изобретатель, Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Purify food and drink",
+    "spellNameRu": "Очищение пищи и питья",
+    "url": "https://dnd.su/spells/222-purify_food_and_drink/"
+  },
+  {
+    "_id": {"$oid": "650f4c2695dcd869854959d1"},
+    "classes": ["Бард", "Изобретатель", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Feather fall",
+    "spellNameRu": "Падение пёрышком",
+    "url": "https://dnd.su/spells/223-feather_fall/"
+  },
+  {
+    "_id": {"$oid": "650f4c2695dcd869854959d2"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Searing smite",
+    "spellNameRu": "Палящая кара",
+    "url": "https://dnd.su/spells/224-searing_smite/"
+  },
+  {
+    "_id": {"$oid": "650f4c2695dcd869854959d3"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Scorching ray",
+    "spellNameRu": "Палящий луч",
+    "url": "https://dnd.su/spells/225-scorching_ray/"
+  },
+  {
+    "_id": {"$oid": "650f4c2795dcd869854959d4"},
+    "classes": ["Колдун", "Изобретатель", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Spider climb",
+    "spellNameRu": "Паук",
+    "url": "https://dnd.su/spells/226-spider_climb/"
+  },
+  {
+    "_id": {"$oid": "650f4c2795dcd869854959d5"},
+    "classes": ["Изобретатель", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Web",
+    "spellNameRu": "Паутина",
+    "url": "https://dnd.su/spells/227-web/"
+  },
+  {
+    "_id": {"$oid": "650f4c2795dcd869854959d6"},
+    "classes": ["Бард", "Колдун", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Dimension door",
+    "spellNameRu": "Переносящая дверь",
+    "url": "https://dnd.su/spells/228-dimension_door/"
+  },
+  {
+    "_id": {"$oid": "650f4c2895dcd869854959d9"},
+    "classes": ["Бард", "Жрец", "Волшебник", "Друид"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Planar binding",
+    "spellNameRu": "Планарные узы",
+    "url": "https://dnd.su/spells/231-planar_binding/"
+  },
+  {
+    "_id": {"$oid": "650f4c2895dcd869854959dc"},
+    "classes": ["Изобретатель", "Чародей", "Следопыт", "Волшебник", "Друид"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Water breathing",
+    "spellNameRu": "Подводное дыхание",
+    "url": "https://dnd.su/spells/235-water_breathing/"
+  },
+  {
+    "_id": {"$oid": "650f4c2995dcd869854959dd"},
+    "classes": ["Жрец", "Паладин", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Aid",
+    "spellNameRu": "Подмога",
+    "url": "https://dnd.su/spells/236-aid/"
+  },
+  {
+    "_id": {"$oid": "650f4c2a95dcd869854959e2"},
+    "classes": ["Бард", "Волшебник", "Жрец", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Clairvoyance",
+    "spellNameRu": "Подсматривание",
+    "url": "https://dnd.su/spells/238-clairvoyance/"
+  },
+  {
+    "_id": {"$oid": "650f4c2a95dcd869854959e3"},
+    "classes": ["Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Dominate beast",
+    "spellNameRu": "Подчинение зверя",
+    "url": "https://dnd.su/spells/239-dominate_beast/"
+  },
+  {
+    "_id": {"$oid": "650f4c2a95dcd869854959e4"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Dominate person",
+    "spellNameRu": "Подчинение личности",
+    "url": "https://dnd.su/spells/240-dominate_person/"
+  },
+  {
+    "_id": {"$oid": "650f4c2a95dcd869854959e5"},
+    "classes": ["Бард", "Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Locate animals or plants",
+    "spellNameRu": "Поиск животных или растений",
+    "url": "https://dnd.su/spells/242-locate_animals_or_plants/"
+  },
+  {
+    "_id": {"$oid": "650f4c2a95dcd869854959e6"},
+    "classes": ["Бард", "Жрец", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Find traps",
+    "spellNameRu": "Поиск ловушек",
+    "url": "https://dnd.su/spells/243-find_traps/"
+  },
+  {
+    "_id": {"$oid": "650f4c2b95dcd869854959e7"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Паладин", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Locate object",
+    "spellNameRu": "Поиск предмета",
+    "url": "https://dnd.su/spells/244-locate_object/"
+  },
+  {
+    "_id": {"$oid": "650f4c2b95dcd869854959e9"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Find steed",
+    "spellNameRu": "Поиск скакуна",
+    "url": "https://dnd.su/spells/246-find_steed/"
+  },
+  {
+    "_id": {"$oid": "650f4c2b95dcd869854959ea"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Паладин", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Locate creature",
+    "spellNameRu": "Поиск существа",
+    "url": "https://dnd.su/spells/247-locate_creature/"
+  },
+  {
+    "_id": {"$oid": "650f4c2b95dcd869854959eb"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Find familiar",
+    "spellNameRu": "Поиск фамильяра",
+    "url": "https://dnd.su/spells/248-find_familiar/"
+  },
+  {
+    "_id": {"$oid": "650f4c2c95dcd869854959ec"},
+    "classes": ["Изобретатель", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Fly",
+    "spellNameRu": "Полёт",
+    "url": "https://dnd.su/spells/249-fly/"
+  },
+  {
+    "_id": {"$oid": "650f4c2c95dcd869854959ee"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Comprehend languages",
+    "spellNameRu": "Понимание языков",
+    "url": "https://dnd.su/spells/252-comprehend_languages/"
+  },
+  {
+    "_id": {"$oid": "650f4c2c95dcd869854959f0"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Bane",
+    "spellNameRu": "Порча",
+    "url": "https://dnd.su/spells/254-bane/"
+  },
+  {
+    "_id": {"$oid": "650f4c2d95dcd869854959f1"},
+    "classes": ["Волшебник", "Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Gust of wind",
+    "spellNameRu": "Порыв ветра",
+    "url": "https://dnd.su/spells/255-gust_of_wind/"
+  },
+  {
+    "_id": {"$oid": "650f4c2d95dcd869854959f2"},
+    "classes": ["Бард", "Волшебник", "Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Sending",
+    "spellNameRu": "Послание",
+    "url": "https://dnd.su/spells/256-sending/"
+  },
+  {
+    "_id": {"$oid": "650f4c2d95dcd869854959f3"},
+    "classes": ["Изобретатель", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Expeditious retreat",
+    "spellNameRu": "Поспешное отступление",
+    "url": "https://dnd.su/spells/257-expeditious_retreat/"
+  },
+  {
+    "_id": {"$oid": "650f4c2d95dcd869854959f4"},
+    "classes": ["Бард", "Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Animal messenger",
+    "spellNameRu": "Почтовое животное",
+    "url": "https://dnd.su/spells/259-animal_messenger/"
+  },
+  {
+    "_id": {"$oid": "650f4c7c95dcd869854959f5"},
+    "classes": ["Бард", "Волшебник", "Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Polymorph",
+    "spellNameRu": "Превращение",
+    "url": "https://dnd.su/spells/260-polymorph/"
+  },
+  {
+    "_id": {"$oid": "650f4c7c95dcd869854959f6"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Antilife shell",
+    "spellNameRu": "Преграда жизни",
+    "url": "https://dnd.su/spells/262-antilife_shell/"
+  },
+  {
+    "_id": {"$oid": "650f4c7d95dcd869854959f8"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Divination",
+    "spellNameRu": "Предсказание",
+    "url": "https://dnd.su/spells/266-divination/"
+  },
+  {
+    "_id": {"$oid": "650f4c7d95dcd869854959f9"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Phantom steed",
+    "spellNameRu": "Призрачный скакун",
+    "url": "https://dnd.su/spells/279-phantom_steed/"
+  },
+  {
+    "_id": {"$oid": "650f4c7d95dcd869854959fa"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Conjure animals",
+    "spellNameRu": "Призыв животных",
+    "url": "https://dnd.su/spells/267-conjure_animals/"
+  },
+  {
+    "_id": {"$oid": "650f4c7d95dcd869854959fb"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Conjure barrage",
+    "spellNameRu": "Призыв заграждения",
+    "url": "https://dnd.su/spells/268-conjure_barrage/"
+  },
+  {
+    "_id": {"$oid": "650f4c7d95dcd869854959fc"},
+    "classes": ["Следопыт"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Conjure volley",
+    "spellNameRu": "Призыв залпа",
+    "url": "https://dnd.su/spells/269-conjure_volley/"
+  },
+  {
+    "_id": {"$oid": "650f4c7e95dcd869854959fd"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Conjure woodland beings",
+    "spellNameRu": "Призыв лесных обитателей",
+    "url": "https://dnd.su/spells/270-conjure_woodland_beings/"
+  },
+  {
+    "_id": {"$oid": "650f4c7e95dcd869854959fe"},
+    "classes": ["Волшебник", "Друид"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Conjure minor elementals",
+    "spellNameRu": "Призыв малых элементалей",
+    "url": "https://dnd.su/spells/271-conjure_minor_elementals/"
+  },
+  {
+    "_id": {"$oid": "650f4c7e95dcd869854959ff"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Call lightning",
+    "spellNameRu": "Призыв молнии",
+    "url": "https://dnd.su/spells/272-call_lightning/"
+  },
+  {
+    "_id": {"$oid": "650f4c7f95dcd86985495a02"},
+    "classes": ["Волшебник", "Друид"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Conjure elemental",
+    "spellNameRu": "Призыв элементаля",
+    "url": "https://dnd.su/spells/275-conjure_elemental/"
+  },
+  {
+    "_id": {"$oid": "650f4c7f95dcd86985495a03"},
+    "classes": ["Жрец", "Паладин"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Command",
+    "spellNameRu": "Приказ",
+    "url": "https://dnd.su/spells/276-command/"
+  },
+  {
+    "_id": {"$oid": "650f4c7f95dcd86985495a04"},
+    "classes": ["Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Vampiric touch",
+    "spellNameRu": "Прикосновение вампира",
+    "url": "https://dnd.su/spells/277-vampiric_touch/"
+  },
+  {
+    "_id": {"$oid": "650f4c7f95dcd86985495a05"},
+    "classes": ["Бард"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Compulsion",
+    "spellNameRu": "Принуждение",
+    "url": "https://dnd.su/spells/278-compulsion/"
+  },
+  {
+    "_id": {"$oid": "650f4c7f95dcd86985495a06"},
+    "classes": ["Бард", "Волшебник", "Жрец", "Друид"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Feign death",
+    "spellNameRu": "Притворная смерть",
+    "url": "https://dnd.su/spells/280-feign_death/"
+  },
+  {
+    "_id": {"$oid": "650f4c8095dcd86985495a07"},
+    "classes": ["Бард", "Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Seeming",
+    "spellNameRu": "Притворство",
+    "url": "https://dnd.su/spells/281-seeming/"
+  },
+  {
+    "_id": {"$oid": "650f4c8095dcd86985495a08"},
+    "classes": ["Бард", "Друид"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Awaken",
+    "spellNameRu": "Пробуждение разума",
+    "url": "https://dnd.su/spells/282-awaken/"
+  },
+  {
+    "_id": {"$oid": "650f4c8095dcd86985495a0a"},
+    "classes": ["Бард", "Волшебник", "Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Bestow curse",
+    "spellNameRu": "Проклятие",
+    "url": "https://dnd.su/spells/285-bestow_curse/"
+  },
+  {
+    "_id": {"$oid": "650f4c8095dcd86985495a0b"},
+    "classes": ["Друид", "Волшебник", "Изобретатель", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Jump",
+    "spellNameRu": "Прыжок",
+    "url": "https://dnd.su/spells/286-jump/"
+  },
+  {
+    "_id": {"$oid": "650f4c8195dcd86985495a0c"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "False life",
+    "spellNameRu": "Псевдожизнь",
+    "url": "https://dnd.su/spells/287-false_life/"
+  },
+  {
+    "_id": {"$oid": "650f4c8195dcd86985495a0e"},
+    "classes": ["Волшебник", "Друид"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Flaming sphere",
+    "spellNameRu": "Пылающий шар",
+    "url": "https://dnd.su/spells/289-flaming_sphere/"
+  },
+  {
+    "_id": {"$oid": "650f4c8195dcd86985495a10"},
+    "classes": ["Бард", "Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Speak with animals",
+    "spellNameRu": "Разговор с животными",
+    "url": "https://dnd.su/spells/292-speak_with_animals/"
+  },
+  {
+    "_id": {"$oid": "650f4c8195dcd86985495a11"},
+    "classes": ["Бард", "Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Speak with dead",
+    "spellNameRu": "Разговор с мёртвыми",
+    "url": "https://dnd.su/spells/293-speak_with_dead/"
+  },
+  {
+    "_id": {"$oid": "650f4c8295dcd86985495a12"},
+    "classes": ["Бард", "Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Speak with plants",
+    "spellNameRu": "Разговор с растениями",
+    "url": "https://dnd.su/spells/294-speak_with_plants/"
+  },
+  {
+    "_id": {"$oid": "650f4c8295dcd86985495a13"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Blur",
+    "spellNameRu": "Размытый образ",
+    "url": "https://dnd.su/spells/295-blur/"
+  },
+  {
+    "_id": {"$oid": "650f4c8295dcd86985495a14"},
+    "classes": ["Паладин"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Destructive wave",
+    "spellNameRu": "Разрушительная волна",
+    "url": "https://dnd.su/spells/296-destructive_wave/"
+  },
+  {
+    "_id": {"$oid": "650f4c8295dcd86985495a16"},
+    "classes": ["Бард", "Друид", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Heat metal",
+    "spellNameRu": "Раскалённый металл",
+    "url": "https://dnd.su/spells/298-heat_metal/"
+  },
+  {
+    "_id": {"$oid": "650f4c8395dcd86985495a18"},
+    "classes": ["Паладин", "Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Dispel evil and good",
+    "spellNameRu": "Рассеивание зла и добра",
+    "url": "https://dnd.su/spells/300-dispel_evil_and_good/"
+  },
+  {
+    "_id": {"$oid": "650f4c8395dcd86985495a19"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Изобретатель", "Колдун", "Паладин", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Dispel magic",
+    "spellNameRu": "Рассеивание магии",
+    "url": "https://dnd.su/spells/301-dispel_magic/"
+  },
+  {
+    "_id": {"$oid": "650f4c8395dcd86985495a1b"},
+    "classes": ["Друид"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Reincarnate",
+    "spellNameRu": "Реинкарнация",
+    "url": "https://dnd.su/spells/365-reincarnate/"
+  },
+  {
+    "_id": {"$oid": "650f4c8495dcd86985495a1c"},
+    "classes": ["Бард", "Колдун"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Enthrall",
+    "spellNameRu": "Речь златоуста",
+    "url": "https://dnd.su/spells/303-enthrall/"
+  },
+  {
+    "_id": {"$oid": "650f4c8495dcd86985495a1d"},
+    "classes": ["Бард", "Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Plant growth",
+    "spellNameRu": "Рост растений",
+    "url": "https://dnd.su/spells/304-plant_growth/"
+  },
+  {
+    "_id": {"$oid": "650f4c8495dcd86985495a1e"},
+    "classes": ["Колдун"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Arms of Hadar",
+    "spellNameRu": "Руки Хадара",
+    "url": "https://dnd.su/spells/305-arms_of_hadar/"
+  },
+  {
+    "_id": {"$oid": "650f4c8495dcd86985495a1f"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Color spray",
+    "spellNameRu": "Сверкающие брызги",
+    "url": "https://dnd.su/spells/306-color_spray/"
+  },
+  {
+    "_id": {"$oid": "650f4c8495dcd86985495a20"},
+    "classes": ["Бард", "Друид", "Жрец", "Изобретатель", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Freedom of movement",
+    "spellNameRu": "Свобода перемещения",
+    "url": "https://dnd.su/spells/308-freedom_of_movement/"
+  },
+  {
+    "_id": {"$oid": "650f4c8595dcd86985495a21"},
+    "classes": ["Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Contact other plane",
+    "spellNameRu": "Связь с иным миром",
+    "url": "https://dnd.su/spells/309-contact_other_plane/"
+  },
+  {
+    "_id": {"$oid": "650f4c8595dcd86985495a22"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Hallow",
+    "spellNameRu": "Святилище",
+    "url": "https://dnd.su/spells/310-hallow/"
+  },
+  {
+    "_id": {"$oid": "650f4c8595dcd86985495a23"},
+    "classes": ["Колдун"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Hex",
+    "spellNameRu": "Сглаз",
+    "url": "https://dnd.su/spells/312-hex/"
+  },
+  {
+    "_id": {"$oid": "650f4c8595dcd86985495a24"},
+    "classes": ["Волшебник", "Изобретатель", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Alarm",
+    "spellNameRu": "Сигнал тревоги",
+    "url": "https://dnd.su/spells/313-alarm/"
+  },
+  {
+    "_id": {"$oid": "650f4c8595dcd86985495a25"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Wall of force",
+    "spellNameRu": "Силовая стена",
+    "url": "https://dnd.su/spells/314-wall_of_force/"
+  },
+  {
+    "_id": {"$oid": "650f4c8595dcd86985495a26"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Grease",
+    "spellNameRu": "Скольжение",
+    "url": "https://dnd.su/spells/315-grease/"
+  },
+  {
+    "_id": {"$oid": "650f4c8695dcd86985495a27"},
+    "classes": ["Бард", "Друид", "Жрец", "Изобретатель", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Longstrider",
+    "spellNameRu": "Скороход",
+    "url": "https://dnd.su/spells/316-longstrider/"
+  },
+  {
+    "_id": {"$oid": "650f4c8695dcd86985495a28"},
+    "classes": ["Друид", "Жрец"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Meld into stone",
+    "spellNameRu": "Слияние с камнем",
+    "url": "https://dnd.su/spells/318-meld_into_stone/"
+  },
+  {
+    "_id": {"$oid": "650f4c8695dcd86985495a2a"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Alter self",
+    "spellNameRu": "Смена обличья",
+    "url": "https://dnd.su/spells/323-alter_self/"
+  },
+  {
+    "_id": {"$oid": "650f4c8695dcd86985495a2b"},
+    "classes": ["Бард", "Волшебник", "Друид", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Confusion",
+    "spellNameRu": "Смятение",
+    "url": "https://dnd.su/spells/325-confusion/"
+  },
+  {
+    "_id": {"$oid": "650f4c8795dcd86985495a2c"},
+    "classes": ["Волшебник", "Жрец", "Колдун", "Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Remove curse",
+    "spellNameRu": "Снятие проклятия",
+    "url": "https://dnd.su/spells/326-remove_curse/"
+  },
+  {
+    "_id": {"$oid": "650f4c8795dcd86985495a2d"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Passwall",
+    "spellNameRu": "Создание прохода",
+    "url": "https://dnd.su/spells/327-passwall/"
+  },
+  {
+    "_id": {"$oid": "650f4c8795dcd86985495a2f"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Creation",
+    "spellNameRu": "Сотворение",
+    "url": "https://dnd.su/spells/366-creation/"
+  },
+  {
+    "_id": {"$oid": "650f4c8795dcd86985495a30"},
+    "classes": ["Друид", "Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Create or destroy water",
+    "spellNameRu": "Сотворение или уничтожение воды",
+    "url": "https://dnd.su/spells/333-create_or_destroy_water/"
+  },
+  {
+    "_id": {"$oid": "650f4c8895dcd86985495a32"},
+    "classes": ["Жрец", "Изобретатель", "Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Create food and water",
+    "spellNameRu": "Сотворение пищи и воды",
+    "url": "https://dnd.su/spells/335-create_food_and_water/"
+  },
+  {
+    "_id": {"$oid": "650f4c8895dcd86985495a33"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Wind wall",
+    "spellNameRu": "Стена ветров",
+    "url": "https://dnd.su/spells/337-wind_wall/"
+  },
+  {
+    "_id": {"$oid": "650f4c8895dcd86985495a35"},
+    "classes": ["Изобретатель", "Паладин"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Elemental weapon",
+    "spellNameRu": "Стихийное оружие",
+    "url": "https://dnd.su/spells/339-elemental_weapon/"
+  },
+  {
+    "_id": {"$oid": "650f4c8895dcd86985495a36"},
+    "classes": ["Жрец"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Guardian of faith",
+    "spellNameRu": "Страж веры",
+    "url": "https://dnd.su/spells/340-guardian_of_faith/"
+  },
+  {
+    "_id": {"$oid": "650f4c8995dcd86985495a3a"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Telekinesis",
+    "spellNameRu": "Телекинез",
+    "url": "https://dnd.su/spells/344-telekinesis/"
+  },
+  {
+    "_id": {"$oid": "650f4c8a95dcd86985495a3c"},
+    "classes": ["Волшебник", "Друид", "Изобретатель", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Darkvision",
+    "spellNameRu": "Тёмное зрение",
+    "url": "https://dnd.su/spells/368-darkvision/"
+  },
+  {
+    "_id": {"$oid": "650f4c8a95dcd86985495a3d"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Tenser’s floating disk",
+    "spellNameRu": "Тензеров парящий диск",
+    "url": "https://dnd.su/spells/346-tenser_s_floating_disk/"
+  },
+  {
+    "_id": {"$oid": "650f4c8a95dcd86985495a3f"},
+    "classes": ["Бард", "Жрец", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Silence",
+    "spellNameRu": "Тишина",
+    "url": "https://dnd.su/spells/349-silence/"
+  },
+  {
+    "_id": {"$oid": "650f4c8a95dcd86985495a40"},
+    "classes": ["Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Rope trick",
+    "spellNameRu": "Трюк с верёвкой",
+    "url": "https://dnd.su/spells/350-rope_trick/"
+  },
+  {
+    "_id": {"$oid": "650f4c8b95dcd86985495a41"},
+    "classes": ["Волшебник", "Друид", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Fog cloud",
+    "spellNameRu": "Туманное облако",
+    "url": "https://dnd.su/spells/351-fog_cloud/"
+  },
+  {
+    "_id": {"$oid": "650f4c8b95dcd86985495a42"},
+    "classes": ["Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Misty step",
+    "spellNameRu": "Туманный шаг",
+    "url": "https://dnd.su/spells/352-misty_step/"
+  },
+  {
+    "_id": {"$oid": "650f4c8b95dcd86985495a43"},
+    "classes": ["Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Darkness",
+    "spellNameRu": "Тьма",
+    "url": "https://dnd.su/spells/353-darkness/"
+  },
+  {
+    "_id": {"$oid": "650f4c8b95dcd86985495a44"},
+    "classes": ["Жрец", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Sanctuary",
+    "spellNameRu": "Убежище",
+    "url": "https://dnd.su/spells/354-sanctuary/"
+  },
+  {
+    "_id": {"$oid": "650f4c8b95dcd86985495a45"},
+    "classes": ["Чародей", "Волшебник", "Изобретатель"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Enlarge/reduce",
+    "spellNameRu": "Увеличение/уменьшение",
+    "url": "https://dnd.su/spells/355-enlarge_reduce/"
+  },
+  {
+    "_id": {"$oid": "650f4c8c95dcd86985495a46"},
+    "classes": ["Бард", "Волшебник", "Друид", "Жрец", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Hold person",
+    "spellNameRu": "Удержание личности",
+    "url": "https://dnd.su/spells/356-hold_person/"
+  },
+  {
+    "_id": {"$oid": "650f4c8c95dcd86985495a47"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Hold monster",
+    "spellNameRu": "Удержание чудовища",
+    "url": "https://dnd.su/spells/110-hold_monster/"
+  },
+  {
+    "_id": {"$oid": "650f4c8c95dcd86985495a48"},
+    "classes": ["Бард", "Волшебник", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Fear",
+    "spellNameRu": "Ужас",
+    "url": "https://dnd.su/spells/109-fear/"
+  },
+  {
+    "_id": {"$oid": "650f4c8c95dcd86985495a4a"},
+    "classes": ["Бард", "Друид", "Жрец", "Чародей"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Enhance ability",
+    "spellNameRu": "Улучшение характеристики",
+    "url": "https://dnd.su/spells/103-enhance_ability/"
+  },
+  {
+    "_id": {"$oid": "650f4c8c95dcd86985495a4b"},
+    "classes": ["Бард", "Жрец"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Calm emotions",
+    "spellNameRu": "Умиротворение",
+    "url": "https://dnd.su/spells/102-calm_emotions/"
+  },
+  {
+    "_id": {"$oid": "650f4c8d95dcd86985495a4c"},
+    "classes": ["Волшебник", "Изобретатель", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Haste",
+    "spellNameRu": "Ускорение",
+    "url": "https://dnd.su/spells/100-haste/"
+  },
+  {
+    "_id": {"$oid": "650f4c8d95dcd86985495a4d"},
+    "classes": ["Волшебник", "Бард", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Sleep",
+    "spellNameRu": "Усыпление",
+    "url": "https://dnd.su/spells/98-sleep/"
+  },
+  {
+    "_id": {"$oid": "650f4c8d95dcd86985495a4e"},
+    "classes": ["Волшебник", "Друид", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Blight",
+    "spellNameRu": "Усыхание",
+    "url": "https://dnd.su/spells/96-blight/"
+  },
+  {
+    "_id": {"$oid": "650f4c8d95dcd86985495a50"},
+    "classes": ["Бард", "Волшебник", "Колдун"],
+    "source": "PH",
+    "spellLevel": 5,
+    "spellNameEng": "Mislead",
+    "spellNameRu": "Фальшивый двойник",
+    "url": "https://dnd.su/spells/93-mislead/"
+  },
+  {
+    "_id": {"$oid": "650f4c8e95dcd86985495a52"},
+    "classes": ["Друид", "Жрец", "Изобретатель", "Следопыт", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Water walk",
+    "spellNameRu": "Хождение по воде [Water walk]",
+    "url": "https://dnd.su/spells/88-water_walk/"
+  },
+  {
+    "_id": {"$oid": "650f4c8e95dcd86985495a53"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Chromatic orb",
+    "spellNameRu": "Цветной шарик",
+    "url": "https://dnd.su/spells/86-chromatic_orb/"
+  },
+  {
+    "_id": {"$oid": "650f4c8e95dcd86985495a54"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Grasping vine",
+    "spellNameRu": "Цепкая лоза",
+    "url": "https://dnd.su/spells/85-grasping_vine/"
+  },
+  {
+    "_id": {"$oid": "650f4c8e95dcd86985495a55"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Goodberry",
+    "spellNameRu": "Чудо-ягоды",
+    "url": "https://dnd.su/spells/78-goodberry/"
+  },
+  {
+    "_id": {"$oid": "650f4c8f95dcd86985495a56"},
+    "classes": ["Друид", "Следопыт"],
+    "source": "PH",
+    "spellLevel": 2,
+    "spellNameEng": "Spike growth",
+    "spellNameRu": "Шипы",
+    "url": "https://dnd.su/spells/77-spike_growth/"
+  },
+  {
+    "_id": {"$oid": "650f4c8f95dcd86985495a57"},
+    "classes": ["Волшебник", "Чародей"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Shield",
+    "spellNameRu": "Щит",
+    "url": "https://dnd.su/spells/70-shield/"
+  },
+  {
+    "_id": {"$oid": "650f4c8f95dcd86985495a58"},
+    "classes": ["Паладин", "Жрец"],
+    "source": "PH",
+    "spellLevel": 1,
+    "spellNameEng": "Shield of faith",
+    "spellNameRu": "Щит веры",
+    "url": "https://dnd.su/spells/69-shield_of_faith/"
+  },
+  {
+    "_id": {"$oid": "650f4c8f95dcd86985495a59"},
+    "classes": ["Волшебник"],
+    "source": "PH",
+    "spellLevel": 4,
+    "spellNameEng": "Evard's black tentacles",
+    "spellNameRu": "Эвардовы чёрные щупальца",
+    "url": "https://dnd.su/spells/67-evard_s_black_tentacles/"
+  },
+  {
+    "_id": {"$oid": "650f4c9095dcd86985495a5b"},
+    "classes": ["Бард", "Волшебник", "Жрец", "Колдун", "Чародей"],
+    "source": "PH",
+    "spellLevel": 3,
+    "spellNameEng": "Tongues",
+    "spellNameRu": "Языки",
+    "url": "https://dnd.su/spells/61-tongues/"
+  }
+]

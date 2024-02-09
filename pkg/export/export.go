@@ -1,7 +1,6 @@
 package export
 
 import (
-	"fmt"
 	"github.com/mazen160/go-random"
 	"pregen/pkg/characterCore"
 	"strconv"
@@ -19,12 +18,6 @@ func getHiddenName() string {
 }
 
 func RunExportToLSS(lc characterCore.Character) *ExportToLss {
-	fmt.Println(getLvlSpells(0, lc))
-	fmt.Println(getLvlSpells(1, lc))
-	fmt.Println(getLvlSpells(2, lc))
-	fmt.Println(getLvlSpells(3, lc))
-	fmt.Println(getLvlSpells(4, lc))
-
 	return &ExportToLss{
 		JSONType:   "character",
 		Template:   "default",
