@@ -2,7 +2,6 @@ package races
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/mazen160/go-random"
 	"log"
 	"os"
@@ -38,7 +37,6 @@ func readDirectory(path string) ([]string, []string) {
 func setRacePhoto(raceName, gender string) racePhoto {
 	var photo racePhoto
 	var allRacesFolderList, _ = readDirectory(RacePhotoPath)
-	fmt.Println(allRacesFolderList)
 	for _, folderName := range allRacesFolderList {
 		if folderName == raceName {
 			if gender == "Мужской" {

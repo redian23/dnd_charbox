@@ -1,7 +1,6 @@
 package backgrounds
 
 import (
-	"fmt"
 	"github.com/mazen160/go-random"
 	"pregen/pkg/classes"
 )
@@ -28,12 +27,10 @@ var (
 
 func GenerateBackground() *BackgroundAnswer {
 	backData := getBackgroundsFormDB()
-	fmt.Println()
 	backgroundName = backgroundAnalyze(classes.ClassNameGlobalRu)
 
 	for _, background := range backData {
 		if background.BackgroundName == backgroundName {
-			fmt.Println(background)
 
 			backgroundNameRu = background.BackgroundNameRu
 			BackgroundNameRuGlobal = background.BackgroundNameRu
