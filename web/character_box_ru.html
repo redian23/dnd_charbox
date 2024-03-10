@@ -96,7 +96,15 @@
                 </select>
             </label>
         </div>
-        <button class="button is-medium is-success" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
+        <div class="select is-medium is-info">
+            <label>
+                <select id="select_gender">
+                    <option value="male" selected="selected">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+            </label>
+        </div>
+        <button class="button is-medium is-success generate" id="btn_get_class" onclick="getCharacter()">Тыкнуть и Сгенерировать</button>
         <label class="subtitle-text" style="display: none" id="lbl_wait_plz">Подождите 30 секунд. Кнопка генерации устала.</label>
     </div>
 </div>

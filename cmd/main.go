@@ -8,12 +8,7 @@ import (
 	"strings"
 )
 
-const Version = "1.0 Beta build"
-
 func main() {
-	ProdStatus = true
-	InitServerPathVars()
-
 	router := gin.Default()
 	// api method
 	v1 := router.Group("api/v1/")
@@ -31,11 +26,11 @@ func main() {
 		"upper": strings.ToUpper,
 	})
 
-	router.LoadHTMLGlob(htmlSitePath)
-	router.StaticFile("favicon.png", filePath+"/charbox/favicon.png")
-	router.StaticFile("charbox.js", filePath+"/charbox/charbox.js")
-	router.StaticFile("charbox.css", filePath+"/charbox/charbox.css")
-	router.StaticFS("/imgs", http.Dir(imgsPath))
+	router.LoadHTMLGlob(GlobPattern)
+	router.StaticFile("favicon.png", WebPagesPath+"/favicon.png")
+	router.StaticFile("charbox.js", WebPagesPath+"/charbox.js")
+	router.StaticFile("charbox.css", WebPagesPath+"/charbox.css")
+	router.StaticFS("/imgs", http.Dir(ImagePath))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_ru.html", gin.H{
@@ -58,10 +53,10 @@ func main() {
 		api.GetAbout(c)
 	})
 	router.GET("/s_map.xml", func(c *gin.Context) {
-		c.File(filePath + "/charbox/s_map.xml")
+		c.File(WebPagesPath + "/charbox/s_map.xml")
 	})
 	router.GET("/robots.txt", func(c *gin.Context) {
-		c.File(filePath + "/charbox/robots.txt")
+		c.File(WebPagesPath + "/charbox/robots.txt")
 	})
 
 	router.Run(":4050")

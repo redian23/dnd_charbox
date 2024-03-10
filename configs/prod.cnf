@@ -1,7 +1,0 @@
-# Gin .cnf
-
-htmlSitePath = "/usr/share/nginx/html/*/*.html"
-imgsPath = "/usr/share/nginx/html/charbox/img/"
-racePhotoPath = "/usr/share/nginx/html/charbox/img/race_imgs/"
-filePath = "/usr/share/nginx/html"
-logPath = "/var/logs/"

@@ -21,8 +21,12 @@ function getSelectLevelValue() {
     return document.getElementById("select_char_level").value;
 }
 
+function getSelectGenderValue() {
+    return document.getElementById("select_gender").value;
+}
+
 async function winOnloadGenerate() {
-    let req_json = `{"class":"random", "race":"random", "level":1 }`
+    let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"male"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
@@ -41,7 +45,7 @@ async function winOnloadGenerate() {
 }
 
 async function getCharacter() {
-    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()} }`
+    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
@@ -483,6 +487,8 @@ function writeWeaponLabels(data) {
 
 function writeRacePhotoLabels(data) {
     document.getElementById("img_Character_Preview").src = "";
+
+    console.log("imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] + JSON.parse(data)["race"]["race_photo"]["file_name"] )
 
     document.getElementById("img_Character_Preview").src = "imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
         JSON.parse(data)["race"]["race_photo"]["file_name"] ;
