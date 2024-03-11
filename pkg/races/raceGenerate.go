@@ -18,7 +18,7 @@ var (
 	firstName, resist        string
 )
 
-func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
+func GenerateRaceForCharacter(raceNameRu, gender string) *RacesAnswer {
 	RaceData = getRacesFormDB()
 	rollNum, _ := random.IntRange(0, len(RaceData))
 	var lastName string
@@ -46,16 +46,14 @@ func GenerateRaceForCharacter(raceNameRu string) *RacesAnswer {
 
 			raceBodySize = race.BodySize
 
-			genders := [2]string{"Мужской", "Женский"} //шах и мат феминистки
-			count, _ := random.IntRange(0, len(genders))
-			raceGender = genders[count]
-
-			if raceGender == "Мужской" {
+			if gender == "male" {
 				rollNum, _ = random.IntRange(0, len(race.Names.Man)-1)
 				firstName = race.Names.Man[rollNum]
+				raceGender = "Мужской"
 			} else {
 				rollNum, _ = random.IntRange(0, len(race.Names.Woman)-1)
 				firstName = race.Names.Woman[rollNum]
+				raceGender = "Женский"
 			}
 
 			if len(race.LastNames) != 0 {

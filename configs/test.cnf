@@ -1,7 +1,0 @@
-# Gin .cnf
-
-htmlSitePath = "./web/*/*.html"
-filePath = "./web"
-imgsPath = "./web/charbox/img/"
-racePhotoPath = "./web/charbox/img/race_imgs/"
-logPath = "./logs/"

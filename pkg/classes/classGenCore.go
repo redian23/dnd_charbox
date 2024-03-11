@@ -6,6 +6,7 @@ import (
 	"log"
 	"math"
 	"os"
+	"pregen/pkg/db"
 	"pregen/pkg/dice"
 	"pregen/pkg/races"
 	"reflect"
@@ -24,12 +25,12 @@ var (
 
 func GetClassCharactsFormDB() ClassesBSON {
 	var results ClassesBSON
-	fileContent, err := os.Open("/etc/charbox.d/db/classes.json")
+	fileContent, err := os.Open(db.DataBasePath + "classes.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("/etc/charbox.d/db/classes.json")
+	var byteResult, _ = os.ReadFile(db.DataBasePath + "classes.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results
@@ -37,12 +38,12 @@ func GetClassCharactsFormDB() ClassesBSON {
 
 func GetArmorFormDB() []ArmorAnswer {
 	var results []ArmorAnswer
-	fileContent, err := os.Open("/etc/charbox.d/db/armor.json")
+	fileContent, err := os.Open(db.DataBasePath + "armor.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("/etc/charbox.d/db/armor.json")
+	var byteResult, _ = os.ReadFile(db.DataBasePath + "armor.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results
@@ -50,12 +51,12 @@ func GetArmorFormDB() []ArmorAnswer {
 
 func GetWeaponFormDB() []WeaponAnswer {
 	var results []WeaponAnswer
-	fileContent, err := os.Open("/etc/charbox.d/db/weapons.json")
+	fileContent, err := os.Open(db.DataBasePath + "weapons.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("/etc/charbox.d/db/weapons.json")
+	var byteResult, _ = os.ReadFile(db.DataBasePath + "weapons.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results

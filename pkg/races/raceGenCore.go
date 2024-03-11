@@ -5,15 +5,15 @@ import (
 	"github.com/mazen160/go-random"
 	"log"
 	"os"
+	"pregen/pkg/db"
 )
 
 var (
 	RaceData         []RacesBSON
 	RaceNameGlobalRu string
-	RaceSpeedGlobal  int
-
 	RaceTypeGlobalRu string
-	RacePhotoPath    string
+	RaceSpeedGlobal  int
+	RacePhotoPath    = "/opt/charbox/web/img/race_imgs/"
 )
 
 func readDirectory(path string) ([]string, []string) {
@@ -65,12 +65,12 @@ func setRacePhoto(raceName, gender string) racePhoto {
 
 func getRacesFormDB() []RacesBSON {
 	var results []RacesBSON
-	fileContent, err := os.Open("/etc/charbox.d/db/races.json")
+	fileContent, err := os.Open(db.DataBasePath + "races.json")
 	if err != nil {
 		log.Println(err)
 	}
 	defer fileContent.Close()
-	var byteResult, _ = os.ReadFile("/etc/charbox.d/db/races.json")
+	var byteResult, _ = os.ReadFile(db.DataBasePath + "races.json")
 
 	json.Unmarshal(byteResult, &results)
 	return results
