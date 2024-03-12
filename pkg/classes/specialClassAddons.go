@@ -1,5 +1,7 @@
 package classes
 
+import "github.com/mazen160/go-random"
+
 var LanguageListGlobal []string
 var CountSkillsToAddToCharacter int
 var FighterArchetypeName string
