@@ -1,4 +1,4 @@
-package races
+package rcs
 
 import "github.com/mazen160/go-random"
 
@@ -21,7 +21,7 @@ func setAppearanceYuanti(race string) appearanceYuanti {
 		ap.ScaleColor = setScaleColor()
 		ap.ScalePattern = setScalePattern()
 		ap.TongueColor = setTongueColor()
-		ap.EyeColor = setEyesColor()
+		ap.EyeColor = "setEyesColor()"
 		ap.HeadShape = setHeadShape()
 		ap.PurebredsSpecialty = setPurebredsSpecialty()
 		return ap

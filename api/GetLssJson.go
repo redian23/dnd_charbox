@@ -3,8 +3,8 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"pregen/pkg/characterCore"
-	"pregen/pkg/export"
+	"pregen/old_pkg/characterCore"
+	"pregen/old_pkg/export"
 )
 
 func GetLSSJson(c *gin.Context) {

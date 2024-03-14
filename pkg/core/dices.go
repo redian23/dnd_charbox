@@ -1,4 +1,4 @@
-package dice
+package core
 
 import (
 	"github.com/mazen160/go-random"

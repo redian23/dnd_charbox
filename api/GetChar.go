@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mazen160/go-random"
 	"net/http"
-	"pregen/pkg/characterCore"
+	"pregen/old_pkg/characterCore"
 )
 
 type charParameters struct {

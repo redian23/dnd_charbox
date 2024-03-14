@@ -1,4 +1,4 @@
-package races
+package rcs
 
 import (
 	"github.com/mazen160/go-random"
