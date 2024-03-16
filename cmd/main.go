@@ -53,10 +53,10 @@ func main() {
 		api.GetAbout(c)
 	})
 	router.GET("/s_map.xml", func(c *gin.Context) {
-		c.File(WebPagesPath + "/charbox/s_map.xml")
+		c.File(WebPagesPath + "/s_map.xml")
 	})
 	router.GET("/robots.txt", func(c *gin.Context) {
-		c.File(WebPagesPath + "/charbox/robots.txt")
+		c.File(WebPagesPath + "/robots.txt")
 	})
 
 	router.Run(":4050")
