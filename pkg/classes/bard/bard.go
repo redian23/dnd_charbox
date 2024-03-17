@@ -2,8 +2,10 @@ package bard
 
 import (
 	"github.com/mazen160/go-random"
+	"pregen/pkg/backrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/core"
+	"pregen/pkg/races"
 )
 
 var musicalInstruments = []string{
@@ -41,17 +43,18 @@ func getBardProficiencies() classes.Proficiencies {
 			break
 		}
 	}
-	//var skill_list = []string{"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight Of Hand", "Stealth", "Survival"}
+
+	raceSkills := races.RaceInfo.RaceSkill
+	backSkills := backrounds.BackgroundInfo.BackgroundSkills
+	classSkills := classes.GetClassSkillsArray(raceSkills, backSkills, 3)
 
 	return classes.Proficiencies{
 		Weapons:       []string{"Лёгкие доспехи"},
 		Armor:         []string{"Простое оружие", "Длинные мечи", "Короткие мечи", "Рапиры", "Ручные арбалеты"},
 		Tools:         instrumentsArray,
 		SavingThrow:   []string{"Dexterity", "Charisma"},
-		SkillsOfClass: []string{},
+		SkillsOfClass: classSkills,
 	}
-	// Навыки: Выберите три любых
-	// прощитываеть не в моменте, а ждать когда будут известны навыки от рассы и предыстории
 }
 
 func getBardEquipment() []classes.Item {
@@ -134,8 +137,16 @@ func getBardEquipment() []classes.Item {
 
 func getBardAbilitiesScore() classes.AbilityScore {
 	var classAbilityPriority = []string{"Charisma", "Dexterity"}
+	var abilitiesScore = core.GetClassAbilitiesScore(classAbilityPriority)
+	return abilitiesScore
+}
 
-	return core.GetClassAbilitiesScore(classAbilityPriority)
+func getBardAbilityModifier() classes.AbilityModifier {
+	return classes.GetModifiersForClass(getBardAbilitiesScore())
+}
+
+func getBardSavingThrows() *classes.SavingThrows {
+	return classes.GetSaveThrowsForClass(getBardAbilityModifier())
 }
 
 func GetBardClass() classes.Class {
@@ -147,8 +158,10 @@ func GetBardClass() classes.Class {
 		SpellCasting: classes.GetClassSpellBasicCharacteristic(
 			"Бард", lvl, classes.AbilityModifier{Strength: 0},
 		),
-		Proficiencies: getBardProficiencies(),
-		Equipment:     getBardEquipment(),
-		AbilityScore:  getBardAbilitiesScore(),
+		Proficiencies:   getBardProficiencies(),
+		Equipment:       getBardEquipment(),
+		AbilityScore:    getBardAbilitiesScore(),
+		AbilityModifier: getBardAbilityModifier(),
+		SavingThrows:    getBardSavingThrows(),
 	}
 }

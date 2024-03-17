@@ -5,7 +5,6 @@ import "pregen/pkg/spells"
 type Class struct {
 	ClassName       string              `json:"class_name"`
 	ClassNameRU     string              `json:"class_name_ru"`
-	Description     string              `json:"description"`
 	ClassAbilities  []string            `json:"class_abilities"`
 	AbilityScore    AbilityScore        `json:"ability"`
 	AbilityModifier AbilityModifier     `json:"modifier"`

@@ -1,7 +1,7 @@
 package core
 
 import (
-	"fmt"
+	"github.com/mazen160/go-random"
 	"pregen/pkg/classes"
 	"pregen/pkg/races"
 	"slices"
@@ -35,7 +35,37 @@ func summa(a []int) int {
 	return sum
 }
 
-func RandomRollPoints() int {
+func getSortedAbilitiesNamesArray(characteristicsMap map[string]int) []string {
+	// Создаем слайс для хранения пар ключ-значение
+	var keyValuePairs []struct {
+		Key   string
+		Value int
+	}
+
+	// Заполняем слайс парами ключ-значение из карты
+	for k, v := range characteristicsMap {
+		keyValuePairs = append(keyValuePairs, struct {
+			Key   string
+			Value int
+		}{k, v})
+	}
+
+	// Сортируем слайс по значению
+	sort.Slice(keyValuePairs, func(i, j int) bool {
+		return keyValuePairs[i].Value < keyValuePairs[j].Value
+	})
+
+	// Создаем слайс только с ключами в отсортированном порядке
+	var sortedKeys []string
+	for _, pair := range keyValuePairs {
+		sortedKeys = append(sortedKeys, pair.Key)
+	}
+
+	slices.Reverse(sortedKeys)
+	return sortedKeys
+}
+
+func randomRollPoints() int {
 	firstTry := D6.RollDice()
 	secondTry := D6.RollDice()
 	thirdTry := D6.RollDice()
@@ -50,7 +80,7 @@ func RandomRollPoints() int {
 func characteristicsDistribution(abilityRequest []string) map[string]int {
 	var abilityScoreArray []int
 	for i := 0; i < 6; i++ {
-		abilityScoreArray = append(abilityScoreArray, RandomRollPoints())
+		abilityScoreArray = append(abilityScoreArray, randomRollPoints())
 	}
 	sort.Ints(abilityScoreArray)
 	slices.Reverse(abilityScoreArray)
@@ -68,7 +98,6 @@ func characteristicsDistribution(abilityRequest []string) map[string]int {
 		found := false
 		for i, charReq := range abilityRequest {
 			if char == charReq {
-				fmt.Println(char, charReq)
 				characteristicsMap[char] = abilityScoreArray[i]
 				found = true
 				break
@@ -84,9 +113,8 @@ func characteristicsDistribution(abilityRequest []string) map[string]int {
 	return characteristicsMap
 }
 
-func addRaceAbilitiesToClassAbilities(charMap map[string]int) classes.AbilityScore {
-
-	var raceAbilities = races.RaceInfo.Type.AbilityScorePlus
+func setClassAbilities(charMap map[string]int) {
+	abs = classes.AbilityScore{} //очистка при создании нового обьекта
 
 	for key, value := range charMap {
 		switch key {
@@ -104,7 +132,10 @@ func addRaceAbilitiesToClassAbilities(charMap map[string]int) classes.AbilitySco
 			abs.Charisma = value
 		}
 	}
+}
 
+func addRaceAbilitiesToClassAbilities() {
+	var raceAbilities = races.RaceInfo.Type.AbilityScorePlus
 	for key, value := range raceAbilities {
 		switch key {
 		case "Strength":
@@ -121,50 +152,159 @@ func addRaceAbilitiesToClassAbilities(charMap map[string]int) classes.AbilitySco
 			abs.Charisma += value
 		}
 	}
-
-	return abs
 }
 
-func abilitiesLevelUp(abilityRequest []string) {
-	var lvl = classes.Level
+func abilityUp(ability string, point int) {
+	switch ability {
+	case "Strength":
+		abs.Strength += point
+	case "Dexterity":
+		abs.Dexterity += point
+	case "BodyDifficulty":
+		abs.BodyDifficulty += point
+	case "Intelligence":
+		abs.Intelligence += point
+	case "Wisdom":
+		abs.Wisdom += point
+	case "Charisma":
+		abs.Charisma += point
+	}
+}
 
+func abilitiesLevelUp(charMap map[string]int) {
+	var lvl = classes.Level
+	var loopCount int
 	if lvl >= 4 && lvl <= 7 {
-		switch abilityRequest[0] {
-		case "Strength":
-			abs.Strength += 2
-		case "Dexterity":
-			abs.Dexterity += 2
-		case "BodyDifficulty":
-			abs.BodyDifficulty += 2
-		case "Intelligence":
-			abs.Intelligence += 2
-		case "Wisdom":
-			abs.Wisdom += 2
-		case "Charisma":
-			abs.Charisma += 2
-		}
-	} else {
-		for _, value := range abilityRequest {
-			switch value {
+		loopCount = 1
+	}
+	if lvl == 8 {
+		loopCount = 2
+	}
+	abilities := getSortedAbilitiesNamesArray(charMap)
+
+	for i := 0; i < loopCount; i++ {
+		randNum, _ := random.IntRange(0, 2)
+		if randNum == 0 {
+			ability := abilities[i]
+			switch ability {
 			case "Strength":
-				abs.Strength += 1
+				if abs.Strength <= 18 {
+					abilityUp(abilities[i], 2)
+					break
+				}
+				if abs.Strength > 18 {
+					abilityUp(abilities[i+1], 2)
+				}
 			case "Dexterity":
-				abs.Dexterity += 1
+				if abs.Dexterity <= 18 {
+					abilityUp(abilities[i], 2)
+					break
+				}
+				if abs.Dexterity > 18 {
+					abilityUp(abilities[i+1], 2)
+				}
 			case "BodyDifficulty":
-				abs.BodyDifficulty += 1
+				if abs.BodyDifficulty <= 18 {
+					abilityUp(abilities[i], 2)
+					break
+				}
+				if abs.BodyDifficulty > 18 {
+					abilityUp(abilities[i+1], 2)
+				}
 			case "Intelligence":
-				abs.Intelligence += 1
+				if abs.Intelligence <= 18 {
+					abilityUp(abilities[i], 2)
+					break
+				}
+				if abs.Intelligence > 18 {
+					abilityUp(abilities[i+1], 2)
+				}
 			case "Wisdom":
-				abs.Wisdom += 1
+				if abs.Wisdom <= 18 {
+					abilityUp(abilities[i], 2)
+					break
+				}
+				if abs.Wisdom > 18 {
+					abilityUp(abilities[i+1], 2)
+				}
 			case "Charisma":
-				abs.Charisma += 1
+				if abs.Charisma <= 18 {
+					abilityUp(abilities[i], 2)
+					break
+				}
+				if abs.Charisma > 18 {
+					abilityUp(abilities[i+1], 2)
+				}
+			}
+		} else {
+			var iter int
+			for abn, ability := range abilities {
+				iter++
+				switch ability {
+				case "Strength":
+					if abs.Strength <= 19 {
+						abilityUp(ability, 1)
+						break
+					}
+					if abs.Strength > 19 {
+						abilityUp(abilities[abn+1], 1)
+					}
+				case "Dexterity":
+					if abs.Dexterity <= 19 {
+						abilityUp(ability, 1)
+						break
+					}
+					if abs.Dexterity > 19 {
+						abilityUp(abilities[abn+1], 1)
+					}
+				case "BodyDifficulty":
+					if abs.BodyDifficulty <= 19 {
+						abilityUp(ability, 1)
+						break
+					}
+					if abs.BodyDifficulty > 19 {
+						abilityUp(abilities[abn+1], 1)
+					}
+				case "Intelligence":
+					if abs.Intelligence <= 19 {
+						abilityUp(ability, 1)
+						break
+					}
+					if abs.Intelligence > 19 {
+						abilityUp(abilities[abn+1], 1)
+					}
+				case "Wisdom":
+					if abs.Wisdom <= 19 {
+						abilityUp(ability, 1)
+						break
+					}
+					if abs.Wisdom > 19 {
+						abilityUp(abilities[abn+1], 1)
+					}
+				case "Charisma":
+					if abs.Charisma <= 19 {
+						abilityUp(ability, 1)
+						break
+					}
+					if abs.Charisma > 19 {
+						abilityUp(abilities[abn+1], 1)
+					}
+				}
+				if iter > 1 {
+					break
+				}
 			}
 		}
+
 	}
 }
 
 func GetClassAbilitiesScore(abilityRequest []string) classes.AbilityScore {
 	var charMap = characteristicsDistribution(abilityRequest)
-	fmt.Println(charMap)
-	return addRaceAbilitiesToClassAbilities(charMap)
+
+	setClassAbilities(charMap)
+	addRaceAbilitiesToClassAbilities()
+	abilitiesLevelUp(charMap)
+
+	return abs
 }
