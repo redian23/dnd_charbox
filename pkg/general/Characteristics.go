@@ -9,7 +9,7 @@ import (
 )
 
 var abs classes.AbilityScore
-var GlobalCharLevel = 8
+var GlobalCharLevel int
 
 func remove(s []int, i int) []int {
 	s[i] = s[len(s)-1]
@@ -174,14 +174,15 @@ func abilityUp(ability string, point int) {
 }
 
 func abilitiesLevelUp(charMap map[string]int) {
-
 	var loopCount int
+
 	if GlobalCharLevel >= 4 && GlobalCharLevel <= 7 {
 		loopCount = 1
 	}
 	if GlobalCharLevel == 8 {
 		loopCount = 2
 	}
+
 	abilities := getSortedAbilitiesNamesArray(charMap)
 
 	for i := 0; i < loopCount; i++ {

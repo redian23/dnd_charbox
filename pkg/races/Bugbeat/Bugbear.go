@@ -1,4 +1,4 @@
-package Bugbeat
+package bugbeat
 
 import (
 	"pregen/pkg/general"

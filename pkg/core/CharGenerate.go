@@ -3,10 +3,10 @@ package core
 import (
 	"encoding/json"
 	"fmt"
-	"pregen/pkg/backgrounds"
+	"pregen/pkg/backgrounds/artist"
 	"pregen/pkg/classes/bard"
 	"pregen/pkg/general"
-	"pregen/pkg/races/Aasimar"
+	"pregen/pkg/races/aasimar"
 	"pregen/pkg/skills"
 )
 
@@ -14,8 +14,10 @@ func GetFullCharacter() {
 	var raceTypeName = "Аасимар–падший"
 	var gender = "male"
 
-	var raceInfo = Aasimar.GetRace(raceTypeName, gender)
-	var backgroundInfo = backgrounds.GetArtistBackground()
+	general.GlobalCharLevel = 1
+
+	var raceInfo = aasimar.GetRace(raceTypeName, gender)
+	var backgroundInfo = artist.GetArtistBackground()
 	var classInfo = bard.GetBardClass(raceInfo)
 
 	var characterBody = Character{

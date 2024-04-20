@@ -1,7 +1,8 @@
-package backgrounds
+package artist
 
 import (
 	"github.com/mazen160/go-random"
+	"pregen/pkg/backgrounds"
 	"pregen/pkg/general"
 )
 
@@ -28,7 +29,7 @@ var artistAbility = map[string]string{
 		"Когда посторонние узнают вас в городе, в котором вы давали представление, они, скорее всего, будут к вам относиться хорошо.",
 }
 
-func getBackgroundItems() []Item {
+func getBackgroundItems() []backgrounds.Item {
 	var musicalInstruments = []string{
 		"Барабан", "Виола", "Волынка", "Лира", "Лютня",
 		"Рожок", "Свирель", "Флейта", "Цимбалы", "Шалмей",
@@ -38,7 +39,7 @@ func getBackgroundItems() []Item {
 	var fanPresent = []string{"любовное письмо", "локон волос", "безделушка"}
 	randomPresent, _ := random.IntRange(0, len(fanPresent))
 
-	return []Item{
+	return []backgrounds.Item{
 		{
 			Name:     "Костюм",
 			ItemType: "Tools",
@@ -86,7 +87,7 @@ func getBackgroundSpecificType() string {
 	return artistTricks
 }
 
-func getArtistPersonality() Personalization {
+func getArtistPersonality() backgrounds.Personalization {
 	characterTrait := map[int]string{
 		1: "Для любой ситуации я найду подходящий рассказ.",
 		2: "Куда бы я ни пришёл, я начинаю собирать местные слухи и распространять сплетни.",
@@ -99,7 +100,7 @@ func getArtistPersonality() Personalization {
 	}
 	randomTrait := general.D8.RollDice()
 
-	ideals := []Ideal{
+	ideals := []backgrounds.Ideal{
 		{
 			Worldview:   "Lawful Good",
 			WorldviewRu: "Законопослушный добрый",
@@ -173,7 +174,7 @@ func getArtistPersonality() Personalization {
 	}
 	randomWeakness := general.D6.RollDice()
 
-	return Personalization{
+	return backgrounds.Personalization{
 		PersonalizationDescription: "Успешные артисты могут овладевать вниманием публики, поэтому у них яркий или напористый характер. " +
 			"Они могут быть романтичными, и в искусстве и красоте часто обращаются к возвышенным идеалам.",
 		Advice:         "",
@@ -185,8 +186,8 @@ func getArtistPersonality() Personalization {
 	}
 }
 
-func GetArtistBackground() *Background {
-	return &Background{
+func GetArtistBackground() *backgrounds.Background {
+	return &backgrounds.Background{
 		BackgroundName:         "Artist",
 		BackgroundNameRu:       "Артист",
 		BackgroundSpecificType: getBackgroundSpecificType(),

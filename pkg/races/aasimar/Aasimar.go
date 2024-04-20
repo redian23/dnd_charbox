@@ -1,4 +1,4 @@
-package Aasimar
+package aasimar
 
 import (
 	"pregen/pkg/general"
