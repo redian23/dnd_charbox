@@ -1,4 +1,4 @@
-package rcs
+package Dragonborn
 
 import (
 	"github.com/mazen160/go-random"

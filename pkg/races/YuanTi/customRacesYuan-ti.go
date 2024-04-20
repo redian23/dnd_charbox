@@ -1,4 +1,4 @@
-package rcs
+package YuanTi
 
 import "github.com/mazen160/go-random"
 

@@ -5,7 +5,7 @@ import "pregen/pkg/spells"
 type Class struct {
 	ClassName       string              `json:"class_name"`
 	ClassNameRU     string              `json:"class_name_ru"`
-	ClassAbilities  []string            `json:"class_abilities"`
+	ClassAbilities  []ClassAbility      `json:"class_abilities"`
 	AbilityScore    AbilityScore        `json:"ability"`
 	AbilityModifier AbilityModifier     `json:"modifier"`
 	SavingThrows    *SavingThrows       `json:"saving_throws"`
@@ -13,9 +13,16 @@ type Class struct {
 	Proficiencies   Proficiencies       `json:"proficiencies"`
 	Hits            Hits                `json:"hits"`
 	Initiative      string              `json:"initiative"`
+	Caster          bool                `json:"caster"`
 	SpellCasting    SpellCasting        `json:"spell_casting"`
 	SpellsList      []spells.SpellsJSON `json:"spells_list"`
 	Equipment       []Item              `json:"equipment"`
+}
+
+type ClassAbility struct {
+	Level       int    `json:"level"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
 }
 
 type SpellCasting struct {
@@ -42,7 +49,6 @@ type Proficiencies struct {
 	Armor         []string `json:"armor"`
 	Weapons       []string `json:"weapons"`
 	Tools         []string `json:"tools"`
-	Instruments   []string `json:"instruments"`
 	SavingThrow   []string `json:"saving_throw"`
 	SkillsOfClass []string `json:"skills_of_class"`
 }

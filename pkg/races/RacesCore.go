@@ -5,11 +5,16 @@ import (
 	"github.com/mazen160/go-random"
 )
 
-var RaceInfo Race
+var RaceInfo *Race
 
-func GetRaceFirstName(gender string, RaceNames map[string][]string) string {
-	randNum, _ := random.IntRange(0, len(RaceNames[gender]))
-	return RaceNames[gender][randNum]
+func GetRaceFirstName(gender string, raceNames map[string][]string) string {
+	randNum, _ := random.IntRange(0, len(raceNames[gender]))
+	return raceNames[gender][randNum]
+}
+
+func GetRaceLastName(raceLastNames []string) string {
+	randNum, _ := random.IntRange(0, len(raceLastNames))
+	return raceLastNames[randNum]
 }
 
 func GetBodyStats(stats BodyStats) *BodyAnswer {

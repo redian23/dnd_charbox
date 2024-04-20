@@ -5,8 +5,7 @@ import (
 	"math"
 )
 
-var ClassInfo Class
-var Level = 8
+var ClassInfo *Class
 
 func GetClassSkillsArray(raceSkills, backSkills []string, count int) []string {
 	// Общий список навыков

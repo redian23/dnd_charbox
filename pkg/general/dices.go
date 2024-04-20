@@ -1,4 +1,4 @@
-package core
+package general
 
 import (
 	"github.com/mazen160/go-random"

@@ -1,8 +1,8 @@
-package backrounds
+package backgrounds
 
 import (
 	"github.com/mazen160/go-random"
-	"pregen/pkg/core"
+	"pregen/pkg/general"
 )
 
 var description = "Вам нравится выступать на публике. Вы знаете, как их развлечь, очаровать и даже воодушевить. " +
@@ -58,8 +58,6 @@ func getBackgroundItems() []Item {
 }
 
 func getBackgroundSpecificType() string {
-	//"Акробат", "Актер", "Жонглер", "Музыкант", "Певец", "Пожиратель огня", "Поэт", "Рассказчик", "Танцор", "Шут"
-
 	var artistsTypes = map[int]string{
 		1:  "Акробат",
 		2:  "Актер",
@@ -99,7 +97,7 @@ func getArtistPersonality() Personalization {
 		7: "Превыше всего я ценю совершенство.",
 		8: "Моё настроение и намерения меняются так же быстро как ноты в музыке.",
 	}
-	randomTrait := core.D8.RollDice()
+	randomTrait := general.D8.RollDice()
 
 	ideals := []Ideal{
 		{
@@ -163,7 +161,7 @@ func getArtistPersonality() Personalization {
 		5: "Я всё сделаю, чтобы доказать превосходство над ненавистным конкурентом.",
 		6: "Я сделаю что угодно для других членов моей старой труппы.",
 	}
-	randomAffection := core.D6.RollDice()
+	randomAffection := general.D6.RollDice()
 
 	weakness := map[int]string{
 		1: "Я пойду на всё ради славы и известности.",
@@ -173,7 +171,7 @@ func getArtistPersonality() Personalization {
 		5: "Я не могу скрывать свои истинные чувства. Острый язык всегда приносит мне неприятности.",
 		6: "Я очень стараюсь исправиться, но друзьям не стоит на меня полагаться.",
 	}
-	randomWeakness := core.D6.RollDice()
+	randomWeakness := general.D6.RollDice()
 
 	return Personalization{
 		PersonalizationDescription: "Успешные артисты могут овладевать вниманием публики, поэтому у них яркий или напористый характер. " +

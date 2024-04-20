@@ -1,4 +1,4 @@
-package core
+package general
 
 import (
 	"github.com/mazen160/go-random"
@@ -9,6 +9,7 @@ import (
 )
 
 var abs classes.AbilityScore
+var GlobalCharLevel = 8
 
 func remove(s []int, i int) []int {
 	s[i] = s[len(s)-1]
@@ -172,12 +173,12 @@ func abilityUp(ability string, point int) {
 }
 
 func abilitiesLevelUp(charMap map[string]int) {
-	var lvl = classes.Level
+
 	var loopCount int
-	if lvl >= 4 && lvl <= 7 {
+	if GlobalCharLevel >= 4 && GlobalCharLevel <= 7 {
 		loopCount = 1
 	}
-	if lvl == 8 {
+	if GlobalCharLevel == 8 {
 		loopCount = 2
 	}
 	abilities := getSortedAbilitiesNamesArray(charMap)

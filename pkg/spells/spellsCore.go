@@ -2,7 +2,6 @@ package spells
 
 import (
 	"encoding/json"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"log"
 	"os"
 	"pregen/pkg/db"
@@ -11,13 +10,12 @@ import (
 var SpellData = GetSpellsFormDB()
 
 type SpellsJSON struct {
-	ID          primitive.ObjectID `json:"_id"`
-	Source      string             `json:"source"`
-	Classes     []string           `json:"classes"`
-	SpellLevel  int                `json:"spellLevel"`
-	SpellName   string             `json:"spellNameEng"`
-	SpellNameRu string             `json:"spellNameRu"`
-	URL         string             `json:"url"`
+	Source      string   `json:"source"`
+	Classes     []string `json:"classes"`
+	SpellLevel  int      `json:"spellLevel"`
+	SpellName   string   `json:"spellNameEng"`
+	SpellNameRu string   `json:"spellNameRu"`
+	URL         string   `json:"url"`
 }
 
 func GetSpellsFormDB() []SpellsJSON {
@@ -42,15 +40,39 @@ func FindSpellInDB(spellName string) SpellsJSON {
 	return SpellsJSON{}
 }
 
-func GetListSpellsFromDB(spellNames ...string) []SpellsJSON {
+func GetAllSpellForClass(className string, spellLevel int) []SpellsJSON {
 	var spellList []SpellsJSON
 
 	for _, spell := range SpellData {
-		for _, spellName := range spellNames {
-			if spell.SpellNameRu == spellName {
+		for _, class := range spell.Classes {
+			if class == className && spell.SpellLevel <= spellLevel {
 				spellList = append(spellList, spell)
 			}
 		}
+	}
+	return spellList
+}
+
+func GetRandomSpellForClass(className string, spellLevel, count int) []SpellsJSON {
+	var spellMap = make(map[int]SpellsJSON)
+
+	for i, spell := range SpellData {
+		for _, class := range spell.Classes {
+			if class == className && spell.SpellLevel == spellLevel {
+				spellMap[i] = spell
+			}
+		}
+	}
+
+	var iter = 0
+	var spellList []SpellsJSON
+
+	for _, spellJSON := range spellMap {
+		if iter >= count {
+			break
+		}
+		iter++
+		spellList = append(spellList, spellJSON)
 	}
 	return spellList
 }

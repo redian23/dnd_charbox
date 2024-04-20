@@ -1,15 +1,15 @@
-package backrounds
+package backgrounds
 
 type Background struct {
 	BackgroundName         string            `json:"background_name"`
 	BackgroundNameRu       string            `json:"background_name_ru"`
+	BackgroundSpecificType string            `json:"background_specific_type"`
 	BackgroundAbility      map[string]string `json:"background_ability"`
 	MasteryOfTools         []string          `json:"mastery_of_tools"`
 	BackgroundItems        []Item            `json:"equipment"`
 	Description            string            `json:"description"`
 	Personalization        Personalization   `json:"personalization"`
 	BackgroundSkills       []string          `json:"background_skills"`
-	BackgroundSpecificType string            `json:"background_specific_type"`
 	Gold                   int               `json:"gold"`
 }
 

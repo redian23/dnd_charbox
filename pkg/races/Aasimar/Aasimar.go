@@ -1,7 +1,7 @@
-package rcs
+package Aasimar
 
 import (
-	"pregen/pkg/core"
+	"pregen/pkg/general"
 	"pregen/pkg/races"
 	"pregen/pkg/spells"
 )
@@ -26,7 +26,7 @@ var bodyStats = races.BodyStats{
 var raceResists = []string{"Урону излучением", "Некротической энергии"}
 
 func getAasimarMentors() string {
-	var D6 = core.D6
+	var D6 = general.D6
 
 	var angelicGuideName = map[int]string{
 		1: "Тадриэль [Tadriel]",
@@ -76,6 +76,8 @@ func aasimarDefenderType() *races.RaceType {
 		RaceSpellsList: []spells.SpellsJSON{
 			spells.FindSpellInDB("Свет"),
 		},
+		Book:     "Volo's guide to monsters",
+		Standard: true,
 	}
 }
 
@@ -99,6 +101,8 @@ func aasimarThePunisherType() *races.RaceType {
 		RaceSpellsList: []spells.SpellsJSON{
 			spells.FindSpellInDB("Свет"),
 		},
+		Book:     "Volo's guide to monsters",
+		Standard: true,
 	}
 }
 
@@ -123,10 +127,12 @@ func aasimarTheFallenType() *races.RaceType {
 		RaceSpellsList: []spells.SpellsJSON{
 			spells.FindSpellInDB("Свет"),
 		},
+		Book:     "Volo's guide to monsters",
+		Standard: true,
 	}
 }
 
-func GetAasimarRace(raceTypeName string, gender string) *races.Race {
+func GetRace(raceTypeName string, gender string) *races.Race {
 	var raceType *races.RaceType
 
 	switch raceTypeName {

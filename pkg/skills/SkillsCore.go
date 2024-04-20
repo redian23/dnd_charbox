@@ -1,9 +1,9 @@
 package skills
 
 import (
-	"fmt"
-	"pregen/pkg/backrounds"
+	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
+	"pregen/pkg/general"
 	"pregen/pkg/races"
 )
 
@@ -49,7 +49,7 @@ func SetSkillsForCharacter() *Skills {
 	setSkillModifierValue()
 
 	raceSkills := races.RaceInfo.RaceSkill
-	backSkills := backrounds.BackgroundInfo.BackgroundSkills
+	backSkills := backgrounds.BackgroundInfo.BackgroundSkills
 	classSkills := classes.ClassInfo.Proficiencies.SkillsOfClass
 
 	skillsArray = append(skillsArray, raceSkills...)
@@ -61,7 +61,7 @@ func SetSkillsForCharacter() *Skills {
 	var doubleSkillProf []string
 	var iter int
 	if classes.ClassInfo.ClassNameRU == "Плут" ||
-		classes.ClassInfo.ClassNameRU == "Бард" && classes.Level >= 3 {
+		classes.ClassInfo.ClassNameRU == "Бард" && general.GlobalCharLevel >= 3 {
 		for _, skl := range skillsArray {
 			iter++
 			doubleSkillProf = append(doubleSkillProf, skl)
@@ -167,7 +167,6 @@ func setSkillModifierValue() {
 }
 
 func setSkillProficiency(skillsArray []string) {
-	fmt.Println(skillsArray)
 	for _, profSkill := range skillsArray {
 		switch profSkill {
 		case sk.Athletics.SkillName:

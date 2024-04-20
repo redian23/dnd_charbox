@@ -3,18 +3,19 @@ package races
 import "pregen/pkg/spells"
 
 type Race struct {
-	RaceName             string      `json:"race_name"`
-	RaceNameRu           string      `json:"race_name_ru"`
-	Gender               string      `json:"gender"`
-	Type                 RaceType    `json:"race_type_name"`
-	Body                 *BodyAnswer `json:"body"`
-	AddictionInformation string      `json:"addiction_information"`
-	RaceSkill            []string    `json:"race_skill"`
-	FirstName            string      `json:"first_name"`
-	LastName             string      `json:"last_name"`
-	Resist               []string    `json:"resist"`
-	Language             []string    `json:"language"`
-	RacePhoto            racePhoto   `json:"race_photo"`
+	RaceName             string              `json:"race_name"`
+	RaceNameRu           string              `json:"race_name_ru"`
+	Gender               string              `json:"gender"`
+	Type                 RaceType            `json:"race_type_name"`
+	Body                 *BodyAnswer         `json:"body"`
+	AddictionInformation string              `json:"addiction_information"`
+	RaceSkill            []string            `json:"race_skill"`
+	FirstName            string              `json:"first_name"`
+	LastName             string              `json:"last_name"`
+	Resist               []string            `json:"resist"`
+	Language             []string            `json:"language"`
+	RacePhoto            RacePhoto           `json:"race_photo"`
+	RacePersonalization  RacePersonalization `json:"race_personalization"`
 }
 
 type BodyStats struct {
@@ -38,7 +39,7 @@ type BodyAnswer struct {
 	Hair     string `json:"hair"`
 }
 
-type racePhoto struct {
+type RacePhoto struct {
 	Path     string `json:"path"`
 	FileName string `json:"file_name"`
 }
@@ -50,4 +51,13 @@ type RaceType struct {
 	RaceAbilities    map[string]string   `json:"raceAbilities"`
 	Speed            int                 `json:"speed"`
 	RaceSpellsList   []spells.SpellsJSON `json:"race_spells_list"`
+	Book             string              `json:"book"`
+	Standard         bool                `json:"standard"`
+}
+
+type RacePersonalization struct {
+	CharacterTrait string `json:"character_trait"`
+	Ideal          string `json:"ideal"`
+	Affection      string `json:"affection"`
+	Weakness       string `json:"weakness"`
 }
