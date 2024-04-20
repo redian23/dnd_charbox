@@ -148,12 +148,14 @@ func GetRace(raceTypeName string, gender string) *races.Race {
 		RaceName:             "Aasimar",
 		RaceNameRu:           "Аасимар",
 		AddictionInformation: getAasimarMentors(),
+		RaceSkill:            []string{},
 		FirstName:            races.GetRaceFirstName(gender, raceNames), //внешняя переменная которая прилетает с фронта
 		LastName:             "",
 		Gender:               gender,
 		Body:                 races.GetBodyStats(bodyStats),
 		Language:             raceLangs,
 		Resist:               raceResists,
+		RacePersonalization:  races.RacePersonalization{},
 		Type:                 *raceType,
 	}
 }

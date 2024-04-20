@@ -135,8 +135,9 @@ func setClassAbilities(charMap map[string]int) {
 	}
 }
 
-func addRaceAbilitiesToClassAbilities() {
-	var raceAbilities = races.RaceInfo.Type.AbilityScorePlus
+func addRaceAbilitiesToClassAbilities(raceInfo *races.Race) {
+	var raceAbilities = raceInfo.Type.AbilityScorePlus
+
 	for key, value := range raceAbilities {
 		switch key {
 		case "Strength":
@@ -300,11 +301,11 @@ func abilitiesLevelUp(charMap map[string]int) {
 	}
 }
 
-func GetClassAbilitiesScore(abilityRequest []string) classes.AbilityScore {
+func GetClassAbilitiesScore(abilityRequest []string, raceInfo *races.Race) classes.AbilityScore {
 	var charMap = characteristicsDistribution(abilityRequest)
 
 	setClassAbilities(charMap)
-	addRaceAbilitiesToClassAbilities()
+	addRaceAbilitiesToClassAbilities(raceInfo)
 	abilitiesLevelUp(charMap)
 
 	return abs

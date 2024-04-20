@@ -40,28 +40,24 @@ type Skill struct {
 	ProfLSS           int    `json:"prof_lss"`
 }
 
-func SetSkillsForCharacter() *Skills {
+func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Background, classInfo *classes.Class) *Skills {
 	sk = Skills{}
 	var skillsArray []string
 
 	// принимает нужный экземпляр обьекта и в себя же записывает новые данные
 	setSkillsNames()
-	setSkillModifierValue()
+	setSkillModifierValue(classInfo)
 
-	raceSkills := races.RaceInfo.RaceSkill
-	backSkills := backgrounds.BackgroundInfo.BackgroundSkills
-	classSkills := classes.ClassInfo.Proficiencies.SkillsOfClass
-
-	skillsArray = append(skillsArray, raceSkills...)
-	skillsArray = append(skillsArray, backSkills...)
-	skillsArray = append(skillsArray, classSkills...)
+	skillsArray = append(skillsArray, raceInfo.RaceSkill...)
+	skillsArray = append(skillsArray, backgInfo.BackgroundSkills...)
+	skillsArray = append(skillsArray, classInfo.Proficiencies.SkillsOfClass...)
 
 	setSkillProficiency(skillsArray)
 
 	var doubleSkillProf []string
 	var iter int
-	if classes.ClassInfo.ClassNameRU == "Плут" ||
-		classes.ClassInfo.ClassNameRU == "Бард" && general.GlobalCharLevel >= 3 {
+	if classInfo.ClassNameRU == "Плут" ||
+		classInfo.ClassNameRU == "Бард" && general.GlobalCharLevel >= 3 {
 		for _, skl := range skillsArray {
 			iter++
 			doubleSkillProf = append(doubleSkillProf, skl)
@@ -143,8 +139,8 @@ func setSkillsNames() {
 
 }
 
-func setSkillModifierValue() {
-	var modifier = classes.ClassInfo.AbilityModifier
+func setSkillModifierValue(classInfo *classes.Class) {
+	var modifier = classInfo.AbilityModifier
 
 	sk.Athletics.ModifierValue = modifier.Strength
 	sk.Acrobatics.ModifierValue = modifier.Dexterity

@@ -1,29 +1,37 @@
 package core
 
 import (
+	"encoding/json"
+	"fmt"
 	"pregen/pkg/backgrounds"
-	"pregen/pkg/classes"
 	"pregen/pkg/classes/bard"
+	"pregen/pkg/general"
+	"pregen/pkg/races/Aasimar"
+	"pregen/pkg/skills"
 )
 
 func GetFullCharacter() {
-	backgrounds.BackgroundInfo = backgrounds.GetArtistBackground()
-	classes.ClassInfo = bard.GetBardClass()
-	//
-	//var characterBody = Character{
-	//	Level:            general.GlobalCharLevel,
-	//	Experience:       getExpCount(general.GlobalCharLevel),
-	//	PassiveWisdom:    skills.PassiveWisdom,
-	//	ProficiencyBonus: 0,
-	//	Background:       backgrounds.BackgroundInfo,
-	//	Race:             general.RaceInfo,
-	//	Class:            classes.ClassInfo,
-	//	Skills:           skills.SetSkillsForCharacter(),
-	//	Langs:            general.RaceInfo.Language,
-	//	SpellsList:       classes.ClassInfo.SpellsList,
-	//}
-	//marshaled, _ := json.MarshalIndent(characterBody, "", "   ")
-	//fmt.Println(string(marshaled))
+	var raceTypeName = "Аасимар–падший"
+	var gender = "male"
+
+	var raceInfo = Aasimar.GetRace(raceTypeName, gender)
+	var backgroundInfo = backgrounds.GetArtistBackground()
+	var classInfo = bard.GetBardClass(raceInfo)
+
+	var characterBody = Character{
+		Level:            general.GlobalCharLevel,
+		Experience:       getExpCount(general.GlobalCharLevel),
+		PassiveWisdom:    skills.PassiveWisdom,
+		ProficiencyBonus: 0,
+		Background:       backgroundInfo,
+		Race:             raceInfo,
+		Class:            classInfo,
+		Skills:           skills.SetSkillsForCharacter(raceInfo, backgroundInfo, classInfo),
+		Langs:            raceInfo.Language,
+		SpellsList:       classInfo.SpellsList,
+	}
+	marshaled, _ := json.MarshalIndent(characterBody, "", "   ")
+	fmt.Println(string(marshaled))
 }
 
 func getExpCount(lvl int) int {

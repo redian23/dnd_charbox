@@ -5,8 +5,6 @@ import (
 	"math"
 )
 
-var ClassInfo *Class
-
 func GetClassSkillsArray(raceSkills, backSkills []string, count int) []string {
 	// Общий список навыков
 	skillList := []string{"Acrobatics", "Animal Handling", "Arcana", "Athletics",
@@ -62,8 +60,7 @@ func GetModifiersForClass(ab AbilityScore) AbilityModifier {
 	return modifier
 }
 
-func GetSaveThrowsForClass(mod AbilityModifier) *SavingThrows {
-
+func GetSaveThrowsForClass(mod AbilityModifier, classSavingThrow []string) *SavingThrows {
 	var modifierMap = map[string]int{
 		"Strength":       mod.Strength,
 		"Dexterity":      mod.Dexterity,
@@ -98,7 +95,7 @@ func GetSaveThrowsForClass(mod AbilityModifier) *SavingThrows {
 		}
 	}
 
-	for _, stat := range ClassInfo.Proficiencies.SavingThrow {
+	for _, stat := range classSavingThrow {
 		switch stat {
 		case saveTh.Strength.Name:
 			saveTh.Strength.Point += 2

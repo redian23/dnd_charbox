@@ -5,8 +5,6 @@ import (
 	"github.com/mazen160/go-random"
 )
 
-var RaceInfo *Race
-
 func GetRaceFirstName(gender string, raceNames map[string][]string) string {
 	randNum, _ := random.IntRange(0, len(raceNames[gender]))
 	return raceNames[gender][randNum]
