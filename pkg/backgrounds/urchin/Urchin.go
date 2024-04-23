@@ -43,6 +43,11 @@ func getBackgroundItems() []backgrounds.Item {
 			ItemType: "Tools",
 			Count:    1,
 		},
+		{
+			Name:     "поясной кошель с 10 зм",
+			ItemType: "Tools",
+			Count:    1,
+		},
 	}
 }
 

@@ -9,7 +9,6 @@ import (
 )
 
 var abs classes.AbilityScore
-var GlobalCharLevel int
 
 func remove(s []int, i int) []int {
 	s[i] = s[len(s)-1]
@@ -135,9 +134,7 @@ func setClassAbilities(charMap map[string]int) {
 	}
 }
 
-func addRaceAbilitiesToClassAbilities(raceInfo *races.Race) {
-	var raceAbilities = raceInfo.Type.AbilityScorePlus
-
+func addRaceAbilitiesToClassAbilities(raceAbilities map[string]int) {
 	for key, value := range raceAbilities {
 		switch key {
 		case "Strength":
@@ -173,13 +170,13 @@ func abilityUp(ability string, point int) {
 	}
 }
 
-func abilitiesLevelUp(charMap map[string]int) {
+func abilitiesLevelUp(charMap map[string]int, lvl int) {
 	var loopCount int
 
-	if GlobalCharLevel >= 4 && GlobalCharLevel <= 7 {
+	if lvl >= 4 && lvl <= 7 {
 		loopCount = 1
 	}
-	if GlobalCharLevel == 8 {
+	if lvl == 8 {
 		loopCount = 2
 	}
 
@@ -302,12 +299,12 @@ func abilitiesLevelUp(charMap map[string]int) {
 	}
 }
 
-func GetClassAbilitiesScore(abilityRequest []string, raceInfo *races.Race) classes.AbilityScore {
+func GetClassAbilitiesScore(abilityRequest []string, raceInfo *races.Race, lvl int) classes.AbilityScore {
 	var charMap = characteristicsDistribution(abilityRequest)
 
 	setClassAbilities(charMap)
-	addRaceAbilitiesToClassAbilities(raceInfo)
-	abilitiesLevelUp(charMap)
+	addRaceAbilitiesToClassAbilities(raceInfo.Type.AbilityScorePlus)
+	abilitiesLevelUp(charMap, lvl)
 
 	return abs
 }

@@ -1,7 +1,9 @@
 package bard
 
 import (
+	"fmt"
 	"github.com/mazen160/go-random"
+	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/general"
 	"pregen/pkg/races"
@@ -14,7 +16,9 @@ var musicalInstruments = []string{
 }
 
 var bardSpellList []spells.SpellsJSON
-var lvl = general.GlobalCharLevel
+
+var bardProf *classes.Proficiencies
+
 var skillCount = 3 //default
 var SavingThrow = []string{"Dexterity", "Charisma"}
 
@@ -36,7 +40,7 @@ func getBardHits(lvl int) classes.Hits {
 	}
 }
 
-func getBardProficiencies() *classes.Proficiencies {
+func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Background) *classes.Proficiencies {
 	var instrumentsArray []string
 	var iter int
 	for _, value := range musicalInstruments {
@@ -48,8 +52,8 @@ func getBardProficiencies() *classes.Proficiencies {
 	}
 
 	classSkills := classes.GetClassSkillsArray(
-		[]string{},
-		[]string{},
+		raceInfo.RaceSkill,
+		backgrInfo.BackgroundSkills,
 		skillCount)
 
 	return &classes.Proficiencies{
@@ -139,22 +143,22 @@ func getBardEquipment() []classes.Item {
 	return equipment
 }
 
-func getBardAbilitiesScore(raceInfo *races.Race) classes.AbilityScore {
+func getBardAbilitiesScore(raceInfo *races.Race, lvl int) classes.AbilityScore {
 	var classAbilityPriority = []string{"Charisma", "Dexterity"}
-	var abilitiesScore = general.GetClassAbilitiesScore(classAbilityPriority, raceInfo)
+	var abilitiesScore = general.GetClassAbilitiesScore(classAbilityPriority, raceInfo, lvl)
 	return abilitiesScore
 }
 
-func getBardAbilityModifier(raceInfo *races.Race) classes.AbilityModifier {
-	return classes.GetModifiersForClass(getBardAbilitiesScore(raceInfo))
+func getBardAbilityModifier(raceInfo *races.Race, lvl int) classes.AbilityModifier {
+	return classes.GetModifiersForClass(getBardAbilitiesScore(raceInfo, lvl))
 }
 
-func getBardSavingThrows(raceInfo *races.Race) *classes.SavingThrows {
-	return classes.GetSaveThrowsForClass(getBardAbilityModifier(raceInfo), []string{"Dexterity", "Charisma"})
+func getBardSavingThrows(raceInfo *races.Race, lvl int) *classes.SavingThrows {
+	return classes.GetSaveThrowsForClass(getBardAbilityModifier(raceInfo, lvl), []string{"Dexterity", "Charisma"})
 }
 
-func getBardClassAbilities() []classes.ClassAbility {
-	var bardProf = getBardProficiencies()
+func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) []classes.ClassAbility {
+	bardProf = getBardProficiencies(raceInfo, backgrInfo)
 	var bardClassAbilities = []classes.ClassAbility{
 		{
 			Level: 1,
@@ -231,11 +235,9 @@ func getBardClassAbilities() []classes.ClassAbility {
 		randNum, _ := random.IntRange(0, len(collegiumsList))
 		collegiumName := collegiumsList[randNum]
 
-		bardProf = getBardProficiencies()
-
 		switch collegiumName {
 		case "Коллегия доблести":
-			bardProf = getBardProficiencies() //новый екзмпляр
+			bardProf = getBardProficiencies(raceInfo, backgrInfo) //новый екзмпляр
 			bardProf.Armor = append(bardProf.Armor,
 				[]string{"Средние доспехи", "Щит", "Воинское оружие"}...)
 
@@ -261,7 +263,7 @@ func getBardClassAbilities() []classes.ClassAbility {
 			}
 		case "Коллегия знаний":
 			skillCount = 3 + 3
-			bardProf = getBardProficiencies()
+			bardProf = getBardProficiencies(raceInfo, backgrInfo)
 
 			var maxSpellLevel int
 			if lvl == 6 {
@@ -312,7 +314,7 @@ func getBardClassAbilities() []classes.ClassAbility {
 				"<strong>Сражение двумя оружиями.</strong> Если вы сражаетесь двумя оружиями, вы можете добавить модификатор характеристики к урону от второй атаки."}
 			randBattleStyleNum, _ := random.IntRange(0, len(battleStyle))
 
-			bardProf = getBardProficiencies() //новый екзмпляр
+			bardProf = getBardProficiencies(raceInfo, backgrInfo) //новый екзмпляр
 			bardProf.Armor = append(bardProf.Armor,
 				[]string{"Средние доспехи", "Скимитар"}...)
 
@@ -449,8 +451,8 @@ func getBardClassAbilities() []classes.ClassAbility {
 	return bardClassAbilities
 }
 
-func getBardClassAbilitiesWithLevel() []classes.ClassAbility {
-	var abilitiesList = getBardClassAbilities()
+func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) []classes.ClassAbility {
+	var abilitiesList = getBardClassAbilities(raceInfo, backgrInfo, lvl)
 	var abilitiesAnswer []classes.ClassAbility
 
 	for _, ability := range abilitiesList {
@@ -461,8 +463,10 @@ func getBardClassAbilitiesWithLevel() []classes.ClassAbility {
 	return abilitiesAnswer
 }
 
-func getBardSpells(raceInfo *races.Race) []spells.SpellsJSON {
-	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo))
+func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
+	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
+	fmt.Println("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
+	fmt.Println(bardSpellCastingInfo)
 	for i := 0; i < 5; i++ {
 		var spellCount int
 		switch i {
@@ -480,26 +484,26 @@ func getBardSpells(raceInfo *races.Race) []spells.SpellsJSON {
 		bardSpellList = append(bardSpellList,
 			spells.GetRandomSpellForClass("Бард", i, spellCount)...)
 	}
+	fmt.Println(bardSpellList)
 	return bardSpellList
 }
 
-func GetBardClass(raceInfo *races.Race) *classes.Class {
-	var bardProf = getBardProficiencies()
+func GetBardClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) *classes.Class {
 
 	return &classes.Class{
 		ClassName:       "Bard",
 		ClassNameRU:     "Бард",
-		ClassAbilities:  getBardClassAbilitiesWithLevel(),
-		AbilityScore:    getBardAbilitiesScore(raceInfo),
-		AbilityModifier: getBardAbilityModifier(raceInfo),
-		SavingThrows:    getBardSavingThrows(raceInfo),
+		ClassAbilities:  getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl),
+		AbilityScore:    getBardAbilitiesScore(raceInfo, lvl),
+		AbilityModifier: getBardAbilityModifier(raceInfo, lvl),
+		SavingThrows:    getBardSavingThrows(raceInfo, lvl),
 		Inspiration:     false,
 		Proficiencies:   *bardProf, //need to fix
 		Hits:            getBardHits(lvl),
 		Initiative:      "",
 		Caster:          true,
-		SpellCasting:    classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo)),
-		SpellsList:      getBardSpells(raceInfo),
+		SpellCasting:    classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl)),
+		SpellsList:      getBardSpells(raceInfo, lvl),
 		Equipment:       getBardEquipment(),
 	}
 }

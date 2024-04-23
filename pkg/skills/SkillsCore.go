@@ -3,7 +3,6 @@ package skills
 import (
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
-	"pregen/pkg/general"
 	"pregen/pkg/races"
 )
 
@@ -40,7 +39,7 @@ type Skill struct {
 	ProfLSS           int    `json:"prof_lss"`
 }
 
-func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Background, classInfo *classes.Class) *Skills {
+func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Background, classInfo *classes.Class, lvl int) *Skills {
 	sk = Skills{}
 	var skillsArray []string
 
@@ -57,7 +56,7 @@ func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Backgrou
 	var doubleSkillProf []string
 	var iter int
 	if classInfo.ClassNameRU == "Плут" ||
-		classInfo.ClassNameRU == "Бард" && general.GlobalCharLevel >= 3 {
+		classInfo.ClassNameRU == "Бард" && lvl >= 3 {
 		for _, skl := range skillsArray {
 			iter++
 			doubleSkillProf = append(doubleSkillProf, skl)

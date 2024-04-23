@@ -5,6 +5,7 @@ type Background struct {
 	BackgroundNameRu       string            `json:"background_name_ru"`
 	BackgroundSpecificType string            `json:"background_specific_type"`
 	BackgroundAbility      map[string]string `json:"background_ability"`
+	Langs                  []string          `json:"langs"`
 	MasteryOfTools         []string          `json:"mastery_of_tools"`
 	BackgroundItems        []Item            `json:"equipment"`
 	Description            string            `json:"description"`

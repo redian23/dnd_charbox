@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"pregen/pkg/backgrounds/artist"
 	"pregen/pkg/classes/bard"
-	"pregen/pkg/general"
 	"pregen/pkg/races/aasimar"
 	"pregen/pkg/skills"
 )
@@ -13,23 +12,26 @@ import (
 func GetFullCharacter() {
 	var raceTypeName = "Аасимар–падший"
 	var gender = "male"
-
-	general.GlobalCharLevel = 1
+	var level = 8
 
 	var raceInfo = aasimar.GetRace(raceTypeName, gender)
 	var backgroundInfo = artist.GetArtistBackground()
-	var classInfo = bard.GetBardClass(raceInfo)
+	var classInfo = bard.GetBardClass(raceInfo, backgroundInfo, level)
+
+	var langs []string
+	langs = append(langs, raceInfo.Language...)
+	langs = append(langs, backgroundInfo.Langs...)
 
 	var characterBody = Character{
-		Level:            general.GlobalCharLevel,
-		Experience:       getExpCount(general.GlobalCharLevel),
+		Level:            level,
+		Experience:       getExpCount(level),
 		PassiveWisdom:    skills.PassiveWisdom,
 		ProficiencyBonus: 0,
 		Background:       backgroundInfo,
 		Race:             raceInfo,
 		Class:            classInfo,
-		Skills:           skills.SetSkillsForCharacter(raceInfo, backgroundInfo, classInfo),
-		Langs:            raceInfo.Language,
+		Skills:           skills.SetSkillsForCharacter(raceInfo, backgroundInfo, classInfo, level),
+		Langs:            langs,
 		SpellsList:       classInfo.SpellsList,
 	}
 	marshaled, _ := json.MarshalIndent(characterBody, "", "   ")

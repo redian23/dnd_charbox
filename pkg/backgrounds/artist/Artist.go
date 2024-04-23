@@ -55,6 +55,11 @@ func getBackgroundItems() []backgrounds.Item {
 			ItemType: "Tools",
 			Count:    1,
 		},
+		{
+			Name:     "поясной кошель с 15 зм",
+			ItemType: "Tools",
+			Count:    1,
+		},
 	}
 }
 
@@ -194,7 +199,7 @@ func GetArtistBackground() *backgrounds.Background {
 		BackgroundAbility:      artistAbility,
 		Description:            description,
 		BackgroundItems:        getBackgroundItems(),
-		BackgroundSkills:       []string{"Acrobatics", "Performance"},
+		BackgroundSkills:       []string{"Persuasion", "Performance"},
 		MasteryOfTools:         getBackgroundMasteryOfTools(),
 		Personalization:        getArtistPersonality(),
 		Gold:                   15,
