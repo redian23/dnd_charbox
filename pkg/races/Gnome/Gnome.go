@@ -1,4 +1,4 @@
-package Gnome
+package gnome
 
 import (
 	"pregen/pkg/general"

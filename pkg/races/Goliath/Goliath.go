@@ -1,4 +1,4 @@
-package Goliath
+package goliath
 
 import (
 	"github.com/mazen160/go-random"

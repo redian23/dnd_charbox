@@ -20,7 +20,7 @@ func getBackgroundMasteryOfTools() []string {
 	return []string{"Набор для грима", "Игра на " + musicalInstruments[randomInstrument]}
 }
 
-var artistAbility = map[string]string{
+var backgroundAbility = map[string]string{
 	"По многочисленным просьбам": "Вы всегда можете найти место для выступления. " +
 		"Обычно это таверна или постоялый двор, но это может быть цирк, театр или даже двор знатного господина. " +
 		"В этом месте вы получаете бесплатный постой и еду по скромным или комфортным стандартам " +
@@ -92,7 +92,7 @@ func getBackgroundSpecificType() string {
 	return artistTricks
 }
 
-func getArtistPersonality() backgrounds.Personalization {
+func getBackgroundPersonality() backgrounds.Personalization {
 	characterTrait := map[int]string{
 		1: "Для любой ситуации я найду подходящий рассказ.",
 		2: "Куда бы я ни пришёл, я начинаю собирать местные слухи и распространять сплетни.",
@@ -191,17 +191,17 @@ func getArtistPersonality() backgrounds.Personalization {
 	}
 }
 
-func GetArtistBackground() *backgrounds.Background {
+func GetBackground() *backgrounds.Background {
 	return &backgrounds.Background{
 		BackgroundName:         "Artist",
 		BackgroundNameRu:       "Артист",
 		BackgroundSpecificType: getBackgroundSpecificType(),
-		BackgroundAbility:      artistAbility,
+		BackgroundAbility:      backgroundAbility,
 		Description:            description,
 		BackgroundItems:        getBackgroundItems(),
 		BackgroundSkills:       []string{"Persuasion", "Performance"},
 		MasteryOfTools:         getBackgroundMasteryOfTools(),
-		Personalization:        getArtistPersonality(),
+		Personalization:        getBackgroundPersonality(),
 		Gold:                   15,
 	}
 }

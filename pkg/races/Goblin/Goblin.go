@@ -1,4 +1,4 @@
-package Goblin
+package goblin
 
 import (
 	"github.com/mazen160/go-random"

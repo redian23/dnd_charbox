@@ -17,7 +17,7 @@ func getBackgroundMasteryOfTools() []string {
 	return []string{"Один игровой набор"}
 }
 
-var nobleAbility = map[string]string{
+var backgroundAbility = map[string]string{
 	"Слуги": "Если у вашего персонажа предыстория благородного, вы можете выбрать это умение вместо Привилегированности. " +
 		"На вас работают трое слуг, преданных вашей семье. Это могут быть помощники и слуги, а один может быть дворецким. " +
 		"Это <strong><a href=\"https://dnd.su/bestiary/18-commoner/\">обыватели [commoner]</a></strong>, " +
@@ -51,7 +51,7 @@ func getBackgroundItems() []backgrounds.Item {
 	}
 }
 
-func getnoblePersonality() backgrounds.Personalization {
+func getBackgroundPersonality() backgrounds.Personalization {
 	characterTrait := map[int]string{
 		1: "Я применяю так много лести, что все, с кем я разговариваю, чувствуют себя самыми чудесными и важными персонами в мире.",
 		2: "Обыватели любят меня за доброту и великодушие.",
@@ -151,17 +151,17 @@ func getnoblePersonality() backgrounds.Personalization {
 	}
 }
 
-func GetNobleBackground() *backgrounds.Background {
+func GetBackground() *backgrounds.Background {
 	return &backgrounds.Background{
 		BackgroundName:         "Knight",
 		BackgroundNameRu:       "Рыцарь",
 		BackgroundSpecificType: "Стандартный",
-		BackgroundAbility:      nobleAbility,
+		BackgroundAbility:      backgroundAbility,
 		Description:            description,
 		BackgroundItems:        getBackgroundItems(),
 		BackgroundSkills:       []string{"Acrobatics", "History"},
 		MasteryOfTools:         getBackgroundMasteryOfTools(),
-		Personalization:        getnoblePersonality(),
+		Personalization:        getBackgroundPersonality(),
 		Langs:                  []string{"Один на ваш выбор"},
 		Gold:                   15,
 	}

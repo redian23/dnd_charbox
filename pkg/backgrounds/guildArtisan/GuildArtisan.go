@@ -38,7 +38,7 @@ func getBackgroundMasteryOfTools() []string {
 	return []string{toolName}
 }
 
-var guildArtisanAbility = map[string]string{
+var backgroundAbility = map[string]string{
 	"Членство в гильдии": "Будучи авторитетным и уважаемым членом гильдии, вы можете пользоваться особыми преимуществами, предоставляемыми этим членством. " +
 		"Ваши товарищи по гильдии при необходимости предоставят вам жилище и питание, и даже оплатят ваши похороны. " +
 		"В некоторых городах у гильдий есть место для сбора, и там можно потенциально встретить покровителей, союзников и наёмников. " +
@@ -105,7 +105,7 @@ func getBackgroundSpecificType() string {
 	return guildArtisanSpecific
 }
 
-func getGuildArtisanPersonality() backgrounds.Personalization {
+func getBackgroundPersonality() backgrounds.Personalization {
 	characterTrait := map[int]string{
 		1: "Я считаю, что всё, что делается, должно делаться правильно. Ничего не могу с этим поделать — я перфекционист.",
 		2: "Я сноб, свысока смотрящий на тех, кто не может оценить изящное искусство.",
@@ -208,17 +208,17 @@ func getGuildArtisanPersonality() backgrounds.Personalization {
 	}
 }
 
-func GetGuildArtisanBackground() *backgrounds.Background {
+func GetBackground() *backgrounds.Background {
 	return &backgrounds.Background{
 		BackgroundName:         "Guild Artisan",
 		BackgroundNameRu:       "Гильдейский ремесленник",
 		BackgroundSpecificType: getBackgroundSpecificType(),
-		BackgroundAbility:      guildArtisanAbility,
+		BackgroundAbility:      backgroundAbility,
 		Description:            description,
 		BackgroundItems:        getBackgroundItems(),
 		BackgroundSkills:       []string{"Acrobatics", "Performance"},
 		MasteryOfTools:         getBackgroundMasteryOfTools(),
-		Personalization:        getGuildArtisanPersonality(),
+		Personalization:        getBackgroundPersonality(),
 		Gold:                   15,
 		Langs:                  []string{"Один на ваш выбор"},
 	}

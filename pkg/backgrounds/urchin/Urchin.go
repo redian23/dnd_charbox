@@ -51,12 +51,12 @@ func getBackgroundItems() []backgrounds.Item {
 	}
 }
 
-var urchinAbility = map[string]string{
+var backgroundAbility = map[string]string{
 	"Городские тайны": "Вы знаете тайные лазы и проходы городских улиц, позволяющие пройти там, где другие не увидят пути. " +
 		"Вне боя вы (и ведомые вами союзники) можете перемещаться по городу вдвое быстрее обычного.",
 }
 
-func geturchinPersonality() backgrounds.Personalization {
+func getBackgroundPersonality() backgrounds.Personalization {
 	characterTrait := map[int]string{
 		1: "В моих карманах полно побрякушек и объедков.",
 		2: "Я задаю очень много вопросов.",
@@ -156,17 +156,17 @@ func geturchinPersonality() backgrounds.Personalization {
 	}
 }
 
-func GetUrchinBackground() *backgrounds.Background {
+func GetBackground() *backgrounds.Background {
 	return &backgrounds.Background{
 		BackgroundName:         "Urchin",
 		BackgroundNameRu:       "Беспризорник",
 		BackgroundSpecificType: "Стандарт",
-		BackgroundAbility:      urchinAbility,
+		BackgroundAbility:      backgroundAbility,
 		Description:            description,
 		BackgroundItems:        getBackgroundItems(),
 		BackgroundSkills:       []string{"Sleight Of Hand", "Stealth"},
 		MasteryOfTools:         getBackgroundMasteryOfTools(),
-		Personalization:        geturchinPersonality(),
+		Personalization:        getBackgroundPersonality(),
 		Gold:                   10,
 	}
 }

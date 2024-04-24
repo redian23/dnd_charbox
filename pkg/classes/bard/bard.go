@@ -1,7 +1,6 @@
 package bard
 
 import (
-	"fmt"
 	"github.com/mazen160/go-random"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
@@ -10,17 +9,16 @@ import (
 	"pregen/pkg/spells"
 )
 
-var musicalInstruments = []string{
-	"Барабан", "Виола", "Волынка", "Лира", "Лютня",
-	"Рожок", "Свирель", "Флейта", "Цимбалы", "Шалмей",
-}
+var (
+	bardSpellList []spells.SpellsJSON
+	bardProf      *classes.Proficiencies
+	skillCount    int
 
-var bardSpellList []spells.SpellsJSON
-
-var bardProf *classes.Proficiencies
-
-var skillCount = 3 //default
-var SavingThrow = []string{"Dexterity", "Charisma"}
+	musicalInstruments = []string{
+		"Барабан", "Виола", "Волынка", "Лира", "Лютня",
+		"Рожок", "Свирель", "Флейта", "Цимбалы", "Шалмей",
+	}
+)
 
 func getBardHits(lvl int) classes.Hits {
 	var hitCount int
@@ -50,7 +48,7 @@ func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgrou
 			break
 		}
 	}
-
+	skillCount = 3
 	classSkills := classes.GetClassSkillsArray(
 		raceInfo.RaceSkill,
 		backgrInfo.BackgroundSkills,
@@ -465,8 +463,6 @@ func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *background
 
 func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
 	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
-	fmt.Println("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
-	fmt.Println(bardSpellCastingInfo)
 	for i := 0; i < 5; i++ {
 		var spellCount int
 		switch i {
@@ -484,7 +480,6 @@ func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
 		bardSpellList = append(bardSpellList,
 			spells.GetRandomSpellForClass("Бард", i, spellCount)...)
 	}
-	fmt.Println(bardSpellList)
 	return bardSpellList
 }
 

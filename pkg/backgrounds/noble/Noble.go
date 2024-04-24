@@ -17,7 +17,7 @@ func getBackgroundMasteryOfTools() []string {
 	return []string{"Один игровой набор"}
 }
 
-var nobleAbility = map[string]string{
+var backgroundAbility = map[string]string{
 	"Привилегированность": "Благодаря знатному происхождению, другие хорошо к вам относятся. " +
 		"Вас принимают в высшем обществе, и считается, что у вас есть право посещать любые места. " +
 		"Обыватели изо всех сил стараются сделать вам приятно и избежать вашего гнева, " +
@@ -49,7 +49,7 @@ func getBackgroundItems() []backgrounds.Item {
 	}
 }
 
-func getnoblePersonality() backgrounds.Personalization {
+func getBackgroundPersonality() backgrounds.Personalization {
 	characterTrait := map[int]string{
 		1: "Я применяю так много лести, что все, с кем я разговариваю, чувствуют себя самыми чудесными и важными персонами в мире.",
 		2: "Обыватели любят меня за доброту и великодушие.",
@@ -149,17 +149,17 @@ func getnoblePersonality() backgrounds.Personalization {
 	}
 }
 
-func GetNobleBackground() *backgrounds.Background {
+func GetBackground() *backgrounds.Background {
 	return &backgrounds.Background{
 		BackgroundName:         "Noble",
 		BackgroundNameRu:       "Благородный",
 		BackgroundSpecificType: "Стандартный",
-		BackgroundAbility:      nobleAbility,
+		BackgroundAbility:      backgroundAbility,
 		Description:            description,
 		BackgroundItems:        getBackgroundItems(),
 		BackgroundSkills:       []string{"Acrobatics", "History"},
 		MasteryOfTools:         getBackgroundMasteryOfTools(),
-		Personalization:        getnoblePersonality(),
+		Personalization:        getBackgroundPersonality(),
 		Gold:                   15,
 		Langs:                  []string{"Один на ваш выбор"},
 	}

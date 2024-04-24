@@ -1,4 +1,4 @@
-package Dwarf
+package dwarf
 
 import (
 	"pregen/pkg/general"
