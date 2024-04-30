@@ -134,7 +134,7 @@ func getRacePersonalization() races.RacePersonalization {
 	}
 }
 
-func GetGnomeRace(raceTypeName string, gender string) *races.Race {
+func GetRace(raceTypeName string, gender string) *races.Race {
 	var raceType *races.RaceType
 
 	switch raceTypeName {

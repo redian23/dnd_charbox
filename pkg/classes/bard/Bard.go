@@ -20,20 +20,20 @@ var (
 	}
 )
 
-func getBardHits(lvl int) classes.Hits {
+func getBardHits(raceInfo *races.Race, lvl int) classes.Hits {
 	var hitCount int
-	var D6 = general.D6
+	var modifier = getBardAbilityModifier(raceInfo, lvl)
 
 	for i := 1; i < lvl; i++ {
 		if i == 1 {
-			hitCount = D6.GetMaxRange()
+			hitCount = general.D6.GetMaxRange() + modifier.BodyDifficulty
 		} else {
-			hitCount += D6.RollDice()
+			hitCount += general.D6.RollDice() + modifier.BodyDifficulty
 		}
 	}
 
 	return classes.Hits{
-		HitDice:  D6.GetDiceName(),
+		HitDice:  general.D6.GetDiceName(),
 		HitCount: hitCount,
 	}
 }
@@ -48,10 +48,16 @@ func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgrou
 			break
 		}
 	}
-	skillCount = 3
+	skillCount = 2
+	var availableSkillList = []string{"Acrobatics", "Animal Handling", "Arcana", "Athletics",
+		"Deception", "History", "Insight", "Intimidation", "Investigation",
+		"Medicine", "Nature", "Perception", "Performance", "Persuasion",
+		"Religion", "Sleight Of Hand", "Stealth", "Survival"}
+
 	classSkills := classes.GetClassSkillsArray(
 		raceInfo.RaceSkill,
 		backgrInfo.BackgroundSkills,
+		availableSkillList,
 		skillCount)
 
 	return &classes.Proficiencies{
@@ -239,7 +245,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 			bardProf.Armor = append(bardProf.Armor,
 				[]string{"Средние доспехи", "Щит", "Воинское оружие"}...)
 
-			bardClassAbilities = []classes.ClassAbility{
+			bardClassAbilities = append(bardClassAbilities, []classes.ClassAbility{
 				{
 					Level:       3,
 					Name:        "Дополнительные Навыки",
@@ -258,7 +264,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 					Name:        "Дополнительная Атака",
 					Description: "Если вы в свой ход совершаете действие Атака, вы можете совершить две атаки вместо одной.",
 				},
-			}
+			}...)
 		case "Коллегия знаний":
 			skillCount = 3 + 3
 			bardProf = getBardProficiencies(raceInfo, backgrInfo)
@@ -282,7 +288,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 				}
 			}
 
-			bardClassAbilities = []classes.ClassAbility{
+			bardClassAbilities = append(bardClassAbilities, []classes.ClassAbility{
 				{
 					Level:       3,
 					Name:        "Дополнительные Навыки",
@@ -305,7 +311,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 						"Они также могут быть заговорами. Выбранные заклинания теперь считаются для вас заклинаниями барда, " +
 						"но они не учитываются в общем количестве известных вам заклинаний барда.",
 				},
-			}
+			}...)
 
 		case "Коллегия мечей":
 			battleStyle := []string{"<strong>Дуэлянт.</strong> Пока вы держите рукопашное оружие в одной руке и не используете другого оружия, вы получаете бонус +2 к броскам урона этим оружием.",
@@ -325,7 +331,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 					"Урон равен числу, выпавшему на кости бардовского вдохновения. Вы также можете оттолкнуть цель на 5 футов от себя, плюс количество футов, выпавшее на кости бардовского вдохновения. После этого вы незамедлительно можете реакцией переместиться на расстояние не большее своей скорости в незанятое место в 5 футах от цели.",
 			}
 			randDaggerLineNum, _ := random.IntRange(0, len(battleStyle))
-			bardClassAbilities = []classes.ClassAbility{
+			bardClassAbilities = append(bardClassAbilities, []classes.ClassAbility{
 				{
 					Level: 3,
 					Name:  "Боевой стиль",
@@ -351,7 +357,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 					Name:        "Дополнительная атака",
 					Description: "Если вы в свой ход совершаете действие Атака, вы можете совершить две атаки вместо одной.",
 				},
-			}
+			}...)
 		case "Коллегия очарования":
 			bardClassAbilities = []classes.ClassAbility{
 				{
@@ -494,7 +500,7 @@ func GetBardClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl 
 		SavingThrows:    getBardSavingThrows(raceInfo, lvl),
 		Inspiration:     false,
 		Proficiencies:   *bardProf, //need to fix
-		Hits:            getBardHits(lvl),
+		Hits:            getBardHits(raceInfo, lvl),
 		Initiative:      "",
 		Caster:          true,
 		SpellCasting:    classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl)),

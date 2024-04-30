@@ -70,7 +70,7 @@ input[type="radio"]:checked {
     margin-bottom: 0;
 }
 
-.tile.is-2 {
+.tile.is-2-fix-size {
     flex: none;
     min-width: 377px;
 }

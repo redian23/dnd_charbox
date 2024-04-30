@@ -8,9 +8,9 @@ COPY . .
 RUN go mod download
 
 WORKDIR /app/cmd/
-RUN CGO_ENABLED=0 go build -o charbox
+RUN CGO_ENABLED=0 go build -o charbox_test
 
-COPY  old_pkg/db/ /opt/charbox/database/
+COPY  pkg/db/ /opt/charbox/database/
 
 EXPOSE 4050
 CMD ["./charbox"]

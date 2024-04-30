@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Character Card</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        .character-card {
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+        .character-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .attribute {
+            font-weight: bold;
+        }
+        .tile.is-child {
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="character-card">
+    <div class="columns is-centered">
+        <div class="column is-4">
+            <img src="https://source.unsplash.com/600x400/?fantasy" alt="Character Image">
+        </div>
+        <div class="column is-4">
+            <div class="character-name">Character Name</div>
+            <div><span class="attribute">Race:</span> Human</div>
+            <div><span class="attribute">Class:</span> Fighter</div>
+            <div><span class="attribute">Level:</span> 5</div>
+            <div><span class="attribute">Alignment:</span> Lawful Good</div>
+        </div>
+    </div>
+    <div class="columns is-centered">
+        <div class="column is-10">
+            <div class="tile is-ancestor">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">STR</p>
+                        <p class="subtitle">16</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">DEX</p>
+                        <p class="subtitle">14</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">CON</p>
+                        <p class="subtitle">15</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">INT</p>
+                        <p class="subtitle">10</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">WIS</p>
+                        <p class="subtitle">12</p>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">CHA</p>
+                        <p class="subtitle">11</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

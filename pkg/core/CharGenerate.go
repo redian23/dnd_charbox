@@ -15,6 +15,7 @@ import (
 	"pregen/pkg/backgrounds/urchin"
 	"pregen/pkg/classes"
 	"pregen/pkg/classes/bard"
+	"pregen/pkg/classes/fighter"
 	"pregen/pkg/races"
 	"pregen/pkg/races/aasimar"
 	"pregen/pkg/races/bugbeat"
@@ -27,11 +28,11 @@ import (
 func GetFullCharacter() {
 	// Будущие аргументы функции GetFullCharacter
 	var level = 8
-	var raceName = "Багбир"
+	var raceName = "Аасимар"
 	var raceTypeName = "Аасимар–падший"
 	var gender = "male"
-	var backgroundName = "Артист"
-	var className = "Бард"
+	var backgroundName = "Рыцарь"
+	var className = "Воин"
 
 	var raceInfo = getRace(raceName, raceTypeName, gender)
 	var backgroundInfo = getBackground(backgroundName)
@@ -60,7 +61,7 @@ func getRace(raceName, raceTypeName, gender string) *races.Race {
 	case "Багбир":
 		return bugbeat.GetRace(gender)
 	case "Гном":
-		return gnome.GetGnomeRace(raceTypeName, gender)
+		return gnome.GetRace(raceTypeName, gender)
 	case "Гоблин":
 		return goblin.GetRace(raceTypeName, gender)
 	case "Голиаф":
@@ -95,10 +96,15 @@ func getClass(className string, raceInfo *races.Race, backgrInfo *backgrounds.Ba
 	if raceInfo == nil {
 		log.Fatalln("[ERROR] - Race Info is Null / or / RaceName have a mistake.")
 	}
+	if backgrInfo == nil {
+		log.Fatalln("[ERROR] - backgrInfo is Null / or / backgrInfo have a mistake.")
+	}
 
 	switch className {
 	case "Бард":
 		return bard.GetBardClass(raceInfo, backgrInfo, lvl)
+	case "Воин":
+		return fighter.GetClass(raceInfo, backgrInfo, lvl)
 	}
 	return nil
 }

@@ -1,8 +1,8 @@
 package main
 
 const (
-	Version      = "1.1 Stable-build-2024-03-11"
-	GlobPattern  = "/opt/charbox/*/*.html"
-	WebPagesPath = "/opt/charbox/web"
-	ImagePath    = "/opt/charbox/web/img"
+	Version      = "2.1 Debug ENV"
+	GlobPattern  = "web/*.html"
+	WebPagesPath = "web/"
+	ImagePath    = "web/img"
 )

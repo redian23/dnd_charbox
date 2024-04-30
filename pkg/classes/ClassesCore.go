@@ -5,12 +5,7 @@ import (
 	"math"
 )
 
-func GetClassSkillsArray(raceSkills, backSkills []string, count int) []string {
-	// Общий список навыков
-	skillList := []string{"Acrobatics", "Animal Handling", "Arcana", "Athletics",
-		"Deception", "History", "Insight", "Intimidation", "Investigation",
-		"Medicine", "Nature", "Perception", "Performance", "Persuasion",
-		"Religion", "Sleight Of Hand", "Stealth", "Survival"}
+func GetClassSkillsArray(raceSkills, backSkills []string, availableSkillList []string, count int) []string {
 
 	// Создаем карту для быстрой проверки навыков от рассы и предыстории
 	raceSkillsMap := make(map[string]bool)
@@ -25,9 +20,9 @@ func GetClassSkillsArray(raceSkills, backSkills []string, count int) []string {
 	// Выбираем 4 навыка из общего списка, которые не совпадают с навыками от рассы и предыстории
 	var chosenSkills []string
 	for len(chosenSkills) < count {
-		randomIndex, _ := random.IntRange(0, len(skillList))
+		randomIndex, _ := random.IntRange(0, len(availableSkillList))
 
-		skill := skillList[randomIndex]
+		skill := availableSkillList[randomIndex]
 		// Проверяем, что навык не входит в навыки от рассы и предыстории
 		if !raceSkillsMap[skill] && !backSkillsMap[skill] {
 			chosenSkills = append(chosenSkills, skill) // Добавляем навык в выбранные, если он подходит
