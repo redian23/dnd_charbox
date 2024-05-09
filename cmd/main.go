@@ -28,21 +28,14 @@ func main() {
 	router.LoadHTMLGlob(GlobPattern)
 	router.StaticFile("favicon.png", WebPagesPath+"/favicon.png")
 	router.StaticFile("charbox.js", WebPagesPath+"/charbox.js")
-	router.StaticFile("charbox.css", WebPagesPath+"/charbox.css")
+	router.StaticFile("charbox-pico.css", WebPagesPath+"/charbox-pico.css")
 	router.StaticFS("/imgs", http.Dir(ImagePath))
 
-	router.GET("/test", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "character_box_test.html", gin.H{
-			"title":   "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
-			"version": Version,
-		})
-	})
 	router.GET("/preview", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "character_box_preview.html", gin.H{
+		c.HTML(http.StatusOK, "character_box_pico.html", gin.H{
 			"title":   "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
 			"version": Version,
 		})
 	})
-
 	router.Run(":4090")
 }

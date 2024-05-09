@@ -1,5 +1,5 @@
 let charData
-window.onload = winOnloadGenerate()
+// window.onload = winOnloadGenerate()
 
 function getSelectClassNameValue() {
     if (document.getElementById("select_class_name").value === "Случайный класс") {
@@ -26,27 +26,29 @@ function getSelectGenderValue() {
 }
 
 async function winOnloadGenerate() {
-    let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"male"}`
-
-    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
-        { method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(JSON.parse(req_json))
-        });
-    const json = await response.json();
-    let data = JSON.stringify(json);
-
-    charData = data
-    WriteAllLabels(data)
-    restartButtonClickCountTimer()
+    // let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"male"}`
+    //
+    // const response = await fetch('https://charbox.swn.by/api/v1/post-current-character',
+    //     { method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(JSON.parse(req_json))
+    //     });
+    // console.log(json)
+    // const json = await response.json();
+    // let data = JSON.stringify(json);
+    // console.log(data)
+    //
+    // charData = data
+    // WriteAllLabels(data)
+    // restartButtonClickCountTimer()
 }
 
 async function getCharacter() {
     let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
-
+console.log(req_json)
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
             headers: {
