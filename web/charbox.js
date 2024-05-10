@@ -47,15 +47,16 @@ async function winOnloadGenerate() {
 }
 
 async function getCharacter() {
-    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
-console.log(req_json)
-    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
-        { method: 'POST',
+//      let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
+//      console.log(req_json)
+
+    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`,
+        { method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(JSON.parse(req_json))
+            body: null,
         });
     const json = await response.json();
     let data = JSON.stringify(json);
@@ -63,10 +64,14 @@ console.log(req_json)
     charData = data
     WriteAllLabels(data)
 
+    console.log(charData)
     genButtonBlock()
 }
 
 async function WriteAllLabels(data) {
+    await writeToCharacterCardInputs(data)
+
+
     await writeRacePhotoLabels(data)
     await writeToAbilitiesLabels(data)
     await writeToSaveThrowsLabels(data)
@@ -84,9 +89,18 @@ async function WriteAllLabels(data) {
     await writeSpellcastingLabels(data)
 }
 
-function writeToAbilitiesLabels(data) {
-    document.getElementById("lbl_className_info").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
+function writeToCharacterCardInputs(data) {
+    document.getElementById("lbl_level_info").innerHTML = JSON.parse(data)["level"]
+    document.getElementById("lbl_exp_info").innerHTML = JSON.parse(data)["experience"]
+    document.getElementById("lbl_class_name").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
+    document.getElementById("lbl_race_name").innerHTML = JSON.parse(data)["race"]["race_name_ru"];
+    document.getElementById("lbl_background_name").innerHTML = JSON.parse(data)["background"]["background_name_ru"];
+    document.getElementById("lbl_background_type").innerHTML = JSON.parse(data)["background"]["background_specific_type"];
+    document.getElementById("lbl_worldview").innerHTML = JSON.parse(data)["background"]["personalization"]["ideal"]["worldview_ru"];
+}
 
+function writeToAbilitiesLabels(data) {
+    
     let abilities = JSON.parse(data)["class"]["ability"];
     document.getElementById("lbl_ability_total_info").innerHTML = abilities["total"];
     document.getElementById("lbl_ability_strength_info").innerHTML = abilities["strength"];
@@ -301,12 +315,9 @@ function writeToSkillsLabels(data) {
 }
 
 function writeOtherLabels(data) {
-
     document.getElementById("lbl_languages").innerHTML = "" //clear line
-
-    document.getElementById("lbl_level").innerHTML =  JSON.parse(data)["level"];
     document.getElementById("lbl_hit_dice_count").innerHTML =  JSON.parse(data)["level"];
-    document.getElementById("lbl_exp_count").innerHTML =  JSON.parse(data)["experience"];
+
     document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
     document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
     let langs =  JSON.parse(data)["langs"];
@@ -335,14 +346,13 @@ function writeBackgroundLabels(data) {
     let backgr = JSON.parse(data)["background"]
     document.getElementById("lbl_list_background_equipment").innerHTML = "";
 
-    document.getElementById("lbl_background_name").innerHTML = backgr["background_name_ru"];
-    document.getElementById("lbl_background_type").innerHTML = backgr["type"];
+
     document.getElementById("lbl_background_description").innerHTML = backgr["description"];
     document.getElementById("lbl_advice").innerHTML = backgr["advice"];
     document.getElementById("lbl_personalization").innerHTML = backgr["personalization"];
     document.getElementById("lbl_characterTrait").innerHTML = backgr["character_trait"];
     document.getElementById("lbl_ideal").innerHTML = backgr["ideal"];
-    document.getElementById("lbl_worldview").innerHTML = backgr["worldview"];
+
     document.getElementById("lbl_affection").innerHTML = backgr["affection"];
     document.getElementById("lbl_weakness").innerHTML = backgr["weakness"];
     document.getElementById("lbl_gold").innerHTML = backgr["gold"];
@@ -430,7 +440,7 @@ function writeClassAbilitiesLabels(data) {
 function writeRaceAbilitiesLabels(data) {
     document.getElementById("lbl_race_abilities").innerHTML = ""
         let race_abil = JSON.parse(data)["race"]["race_abilities"];
-console.log(JSON.parse(data)["race"]["race_abilities"])
+
     if (race_abil === null){
         document.getElementById("lbl_race_abilities").innerHTML = "Нет"
         return
@@ -490,7 +500,7 @@ function writeWeaponLabels(data) {
 function writeRacePhotoLabels(data) {
     document.getElementById("img_Character_Preview").src = "";
 
-    console.log("imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] + JSON.parse(data)["race"]["race_photo"]["file_name"] )
+    //console.log("imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] + JSON.parse(data)["race"]["race_photo"]["file_name"] )
 
     document.getElementById("img_Character_Preview").src = "imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
         JSON.parse(data)["race"]["race_photo"]["file_name"] ;
@@ -611,3 +621,31 @@ function restartButtonClickCountTimer() {
         },
         20000);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeSwitch = document.getElementById('theme-switch');
+
+    // Устанавливаем тему при загрузке страницы
+    setInitialTheme();
+
+    themeSwitch.addEventListener('change', function() {
+        const theme = themeSwitch.checked ? 'light' :'dark';
+        setTheme(theme);
+    });
+
+    function setInitialTheme() {
+        // Проверяем, какая тема выбрана (если выбрана) при загрузке страницы
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            // Проверяем переключатель (checkbox) в соответствии с выбранной темой
+            themeSwitch.checked = savedTheme === 'light';
+        }
+    }
+
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        // Сохраняем выбранную тему в localStorage
+        localStorage.setItem('theme', theme);
+    }
+});

@@ -4,19 +4,18 @@ import (
 	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
-	"pregen/pkg/core"
+	"pregen/api"
 	"strings"
 )
 
 func main() {
-	core.GetFullCharacter()
 
 	router := gin.Default()
 	// api method
 	v1 := router.Group("api/v1/")
 	{
-		v1.POST("/post-current-character", func(c *gin.Context) {
-			//api.GetCurrentCharacter(c)
+		v1.GET("/get-character", func(c *gin.Context) {
+			api.GetCurrentCharacter(c)
 		})
 
 	}

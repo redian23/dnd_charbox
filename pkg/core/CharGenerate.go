@@ -25,7 +25,7 @@ import (
 	"pregen/pkg/skills"
 )
 
-func GetFullCharacter() {
+func GetFullCharacter() Character {
 	// Будущие аргументы функции GetFullCharacter
 	var level = 8
 	var raceName = "Аасимар"
@@ -52,6 +52,8 @@ func GetFullCharacter() {
 	}
 	marshaled, _ := json.MarshalIndent(characterBody, "", "   ")
 	fmt.Println(string(marshaled))
+
+	return characterBody
 }
 
 func getRace(raceName, raceTypeName, gender string) *races.Race {

@@ -1,58 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <title>Preview • Pico CSS</title>
-    <meta name="description" content="A pure HTML example, without dependencies.">
+
+    <title>{{.title}}</title>
+    <meta name="description" content="Генератор персонажей для DnD 5й редакции (DnD 5e). Лучший помощник как начинающему игроку,
+    так и опытному ГМу. Множество классов, рас, предысторий, вариаций персонажей на любой случай в далеком путешествии."/>
 
     <!-- Pico.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.cyan.min.css"/>
 
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+
+    <meta content='true' name='HandheldFriendly'/>
+    <meta content='width' name='MobileOptimized'/>
+    <meta content='yes' name='apple-mobile-web-app-capable'/>
+
+    <meta name="yandex-verification" content="2bbd73e45c453573" />
+    <meta name="google-site-verification" content="UmkWSkfoFNxgbCTCX-nVQMydwsNiDW730S-1fy_sChk" />
+
+    <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
+
     <style> @import url("charbox-pico.css");</style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeSwitch = document.getElementById('theme-switch');
-
-            // Устанавливаем тему при загрузке страницы
-            setInitialTheme();
-
-            themeSwitch.addEventListener('change', function() {
-                const theme = themeSwitch.checked ? 'light' :'dark';
-                setTheme(theme);
-            });
-
-            function setInitialTheme() {
-                // Проверяем, какая тема выбрана (если выбрана) при загрузке страницы
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    document.documentElement.setAttribute('data-theme', savedTheme);
-                    // Проверяем переключатель (checkbox) в соответствии с выбранной темой
-                    themeSwitch.checked = savedTheme === 'light';
-                }
-            }
-
-            function setTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                // Сохраняем выбранную тему в localStorage
-                localStorage.setItem('theme', theme);
-            }
-        });
-    </script>
+    <script src="/charbox.js"></script>
 </head>
 <body>
 <!-- Header -->
 <header class="container">
     <nav>
         <hgroup>
-            <h1>Pico</h1>
-            <p>A pure HTML example, without dependencies.</p>
+            <h1>Шкатулку Персонажей</h1>
+            <p>Быстрый способ получить Вашего идеального DnD персонажа.</p>
         </hgroup>
         <ul>
-            <li><a href="#">Help Page</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="#">Раздел вопросов и ответов</a></li>
+            <li><a href="#">Контакты</a></li>
             <li>
                 <label>
                     <svg xmlns="http://www.w3.org/2000/svg" height="14" width="10.5" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
@@ -62,43 +47,63 @@
             </li>
         </ul>
     </nav>
-    <div class="container-fluid" name="generate_parameter_spoiler">
-        <details>
-            <summary>Parameters for generate</summary>
-            <div class="grid">
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
+    <div name="generate_parameter_spoiler">
+        <details class="container-fluid">
+            <summary role="button">Параметры для генерации: </summary>
+            <div class="grid container-fluid">
+                <select name="favorite-cuisine" aria-label="Расы" required>
+                    <option value="Случайная раса" selected="selected">Случайная раса</option>
+                    <option>Аасимар</option>
+                    <option>Багбир</option>
+                    <option>Гном</option>
+                    <option>Гоблин</option>
+                    <option>Голиаф</option>
+                    <option>Дворф</option>
+                    <option>Драконорожденный</option>
+                    <option>Кенку</option>
+                    <option>Кобольд</option>
+                    <option>Локата</option>
+                    <option>Мурлок</option>
+                    <option>Орк</option>
+                    <option>Полуорк</option>
+                    <option>Полурослик</option>
+                    <option>Полуэльф</option>
+                    <option>Табакси</option>
+                    <option>Тритон</option>
+                    <option>Тифлинг</option>
+                    <option>Темный эльф</option>
+                    <option>Эльф</option>
+                    <option>Фирболг</option>
+                    <option>Человек</option>
+                    <option>Юань-ти</option>
+                </select>
+                <select name="favorite-cuisine" aria-label="Подвид рас" required>
+                    <option value="Случайная раса" selected="selected">Подвид расы (Отображается только при выборе расы)</option>
                     <option>Italian</option>
                     <option>Japanese</option>
                     <option>Indian</option>
                     <option>Thai</option>
                     <option>French</option>
                 </select>
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
+                <select name="favorite-cuisine" aria-label="Классы" required>
+                    <option value="Случайный класс" selected="selected">Случайный класс</option>
+                    <option>Бард</option>
+                    <option>Волшебник</option>
+                    <option>Воин</option>
+                    <option>Варвар</option>
+                    <option>Друид</option>
+                    <option>Жрец</option>
+                    <option>Изобретатель</option>
+                    <option>Колдун</option>
+                    <option>Монах</option>
+                    <option>Паладин</option>
+                    <option>Плут</option>
+                    <option>Следопыт</option>
+                    <option>Чародей</option>
                 </select>
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
+                <select name="favorite-cuisine" aria-label="Архитип класса (открывается тока при 3+ уровне)" required>
                     <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
+                        Архитип класса (открывается тока при 3+ уровне)
                     </option>
                     <option>Italian</option>
                     <option>Japanese</option>
@@ -107,55 +112,31 @@
                     <option>French</option>
                 </select>
             </div>
-            <div class="grid">
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
+            <div class="grid container-fluid">
+                <select name="favorite-cuisine" aria-label="Уровни" required>
+                    <option value=1 selected="selected">1 уровень</option>
+                    <option value=2>2 уровень</option>
+                    <option value=3>3 уровень</option>
+                    <option value=4>4 уровень</option>
+                    <option value=5>5 уровень</option>
+                    <option value=6>6 уровень</option>
+                    <option value=7>7 уровень</option>
+                    <option value=8>8 уровень</option>
                 </select>
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
-                    <option selected disabled value="">
-                        Select your favorite cuisine...
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
+                <select name="favorite-cuisine" aria-label="Пол" required>
+                    <option value="male" selected="selected">Мужской</option>
+                    <option value="female">Женский</option>
                 </select>
             </div>
         </details>
     </div>
-  <div class="container-fluid-custom" name="grid_generate">
+    <div class="container-fluid-custom" name="grid_generate">
         <div class="grid">
-            <button>Generate again</button>
-            <label>OR</label>
-            <button>GTFO</button>
+            <button onclick="getCharacter()">Тыкнуть и опять сгенерировать</button>
+            <label>
+                --------->
+            </label>
+            <button>Экспорт в LongStoryShort</button>
         </div>
     </div>
 </header>
@@ -164,84 +145,58 @@
 <main class="container">
     <div class="grid" name="Character-Card-Info">
         <div class="container-fluid">
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Name:"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Class:"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Disabled"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Disabled"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
+
+            <article >
+                <label>Имя персонажа: </label>
+            </article>
+            <article>
+                <label>Уровень: [ <label id="lbl_level_info"></label> ]</label>
+            </article>
+            <article>
+                <label>Опыт: [ <label id="lbl_exp_info"></label> ]</label>
+            </article>
+            <article>
+                <label>Класс: <label id="lbl_class_name"></label></label>
+            </article>
+            <article>
+                <label>Раса: <label id="lbl_race_name"></label></label>
+            </article>
         </div>
         <article>
                 <p><img id="img_Character_Preview" src="https://source.unsplash.com/500x300/?fantasy" alt="Character Image"></p>
             </article>
         <div class="container-fluid">
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Name:"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Class:"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Disabled"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
-            <input
-                    type="text"
-                    name="text"
-                    placeholder="Disabled"
-                    aria-label="Disabled input"
-                    disabled
-                    style="opacity: unset"
-            />
+            <article>
+                <label>Предыстория: <label id="lbl_background_name"></label></label>
+            </article>
+            <article>
+                <label>Типаж: <label id="lbl_background_type"></label></label>
+            </article>
+            <article>
+                <label>Мировоззрение: <label id="lbl_worldview"></label></label>
+            </article>
         </div>
     </div>
+
     <div class="grid container-fluid-custom" name="Character-Stats-Info">
-        <article>SRT<br>12</article>
-        <article>SRT<br>12</article>
-        <article>SRT<br>12</article>
-        <article>SRT<br>12</article>
-        <article>SRT<br>12</article>
-        <article>SRT<br>12</article>
+        <article class="formatted-stats-box">
+            Сил.<br>[ <label id="lbl_modifier_strength_info"></label> ]<br>( <label id="lbl_ability_strength_info"></label> )</label>
+        </article>
+        <article class="formatted-stats-box">
+            Лов.<br>[ <label id="lbl_modifier_dexterity_info"></label> ]<br>( <label id="lbl_ability_dexterity_info"></label> )</label>
+        </article>
+        <article class="formatted-stats-box">
+            Тел.<br>[ <label id="lbl_modifier_bodyDifficulty_info"></label> ]<br>( <label id="lbl_ability_bodyDifficulty_info"></label>  )</label>
+        </article>
+        <article class="formatted-stats-box">
+            Инт.<br>[ <label id="lbl_modifier_intelligence_info"></label> ]<br>( <label id="lbl_ability_intelligence_info"></label> )</label>
+        </article>
+        <article class="formatted-stats-box">
+            Муд.<br>[ <label id="lbl_modifier_wisdom_info"></label> ]<br>( <label id="lbl_ability_wisdom_info"></label> )</label>
+        </article>
+        <article class="formatted-stats-box">
+            Хар.<br>[ <label id="lbl_modifier_charisma_info"></label> ]<br>( <label id="lbl_ability_charisma_info"></label> )</label>
+        </article>
     </div>
     <div class="grid container-fluid" name="ST and Info">
         <article name="Save Thouts">
@@ -255,29 +210,29 @@
         </article>
         <div>
             <article>
-                <p><strong>Хиты:</strong> [ <label id="lbl_hitsCount"></label> ]</p>
-                <p><strong>Кость Хитов:</strong> [ <label id="lbl_hitsDice"></label> ]</p>
-                <p><strong>Всего Костей Хитов:</strong>[ <label id="lbl_hit_dice_count"></label> ]</p>
+                <p>Хиты: [ <label id="lbl_hitsCount"></label> ]</p>
+                <p>Кость Хитов: [ <label id="lbl_hitsDice"></label> ]</p>
+                <p>Всего Костей Хитов:[ <label id="lbl_hit_dice_count"></label> ]</p>
             </article>
             <article>
-                <p><strong>Вдохновение:</strong> [ <label id="lbl_inspiration"> </label> ]</p>
-                <p><strong>Бонус мастерства:</strong> [ +<label id="lbl_proficiency_bonus"> </label> ]</p>
-                <p><strong>Пассивная мудрость (Восприятие):</strong> [ <label id="lbl_passive_wisdom"> </label> ]</p>
+                <p>Вдохновение: [ <label id="lbl_inspiration"> </label> ]</p>
+                <p>Бонус мастерства: [ +<label id="lbl_proficiency_bonus"> </label> ]</p>
+                <p>Пассивная мудрость (Восприятие): [ <label id="lbl_passive_wisdom"> </label> ]</p>
             </article>
         </div>
         <article>
-            <p><strong>Доспех:</strong> [ <label id="lbl_armor_name"></label> ]</p>
-            <p><strong>Класс Доспеха:</strong> [ <label id="lbl_armor_class"></label> ]</p>
-            <p><strong>Инициатива:</strong> [ <label id="lbl_initiative"></label> ]</p>
-            <p><strong>Скорость:</strong> [ <label id="lbl_speed"></label> ]</p>
+            <p>Доспех: [ <label id="lbl_armor_name"></label> ]</p>
+            <p>Класс Доспеха: [ <label id="lbl_armor_class"></label> ]</p>
+            <p>Инициатива: [ <label id="lbl_initiative"></label> ]</p>
+            <p>Скорость: [ <label id="lbl_speed"></label> ]</p>
         </article>
         <article>
             <p >Монеты: <br> </p>
-            <p><strong>Медные монеты:</strong> [ 0 ]</p>
-            <p><strong>Серебряные монеты:</strong> [ 0 ]</p>
-            <p><strong>Золотые монеты:</strong> [ 0<label id="lbl_gold"></label> ]</p>
-            <p><strong>Электро монеты:</strong> [ 0 ]</p>
-            <p><strong>Платиновые монеты:</strong> [ 0 ]</p>
+            <p>Медные монеты: [ 0 ]</p>
+            <p>Серебряные монеты: [ 0 ]</p>
+            <p>Золотые монеты: [ 0<label id="lbl_gold"></label> ]</p>
+            <p>Электро монеты: [ 0 ]</p>
+            <p>Платиновые монеты: [ 0 ]</p>
         </article>
     </div>
     <div class="grid container-fluid" name="Skills boxes">
@@ -363,77 +318,133 @@
             </p>
         </article>
     </div>
-    <div class="grid container-fluid">
+    <div class="grid container-fluid" name="Background">
         <article>
-            <p>Оружие: <br> </p>
-            <label class="subtitle-text">
-                <label class="subtitle-text" id="lbl_weapon_list"></label>
+            <p>Описание предыстории: 
+                <label id="lbl_background_description"></label></p>
+            <p>Дополнительные способности и умения: 
+                <label id="lbl_background_ability"></label></p>
+        </article>
+    </div>
+    <div class="grid container-fluid" name="Abilities">
+    <article>
+        <p>Умение от класса: <label id="lbl_class_abilities"></label></p>
+        <p>Умение от расы:<label id="lbl_race_abilities"></label></p>
+    </article>
+    </div>
+    <div class="grid container-fluid" name="Equipment">
+        <article>
+            <p>Снаряжение от предыстории:
+                <label>
+                    [ <label id="lbl_list_background_equipment"></label> ]
+                </label>
+            </p>
+            <p>Снаряжение от класса:
+                <label>
+                    [ <label id="lbl_list_class_equipment"></label> ]
+                </label>
+            </p>
+        </article>
+        <article>
+            <p>Оружие:<br></p>
+            <label>
+                <label id="lbl_weapon_list"></label>
             </label>
         </article>
     </div>
-    <div class="grid container-fluid" name="Background">
-        <article>
-            <p><strong>Описание предыстории:</strong> <label class="subtitle-text" id="lbl_background_description"></label></p>
-        </article>
-    </div>
-    <div class="grid container-fluid" name="Equipment and Abilities">
-        <article class="tile is-child box ">
-            <p>Снаряжение: <br></p>
-            <p><strong>Снаряжение от предыстории:</strong>
-                <label class="subtitle-text">
-                    [ <label class="subtitle-text" id="lbl_list_background_equipment"></label> ]
-                </label>
-            </p>
-            <p><strong>Снаряжение от класса:</strong>
-                <label class="subtitle-text">
-                    [ <label class="subtitle-text" id="lbl_list_class_equipment"></label> ]
-                </label>
-            </p>
-        </article>
-        <article>
-            <p >Умения и способности:<br></p>
-            <p><strong>Умение от класса:</strong><br> <label class="subtitle-text" id="lbl_class_abilities"></label></p>
-            <p><strong>Умение от расы:</strong><br> <label class="subtitle-text" id="lbl_race_abilities"></label></p>
-        </article>
-    </div>
 
-    <div class="grid container-fluid" name="Personality">
-        <article>
-            <p><strong>Персонализация:</strong> <label class="subtitle-text" id="lbl_personalization"></label></p>
-            <p><strong>Совет:</strong> <label class="subtitle-text" id="lbl_advice"></label></p>
-        </article>
+    <details class="container-fluid">
+        <summary role="button">Персонализация</summary>
+        <div class="grid container-fluid" name="Personality">
+            <article>
+                <p>Персонализация: <label id="lbl_personalization"></label></p>
+                <p>Совет: <label id="lbl_advice"></label></p>
+            </article>
+            <div>
+                <article>
+                    <p>Черта характера: <label id="lbl_characterTrait"></label></p>
+                </article>
+                <article>
+                    <p>Идеал: <label id="lbl_ideal"></label></p>
+                </article>
+                <article>
+                    <p>Привязанность: <label id="lbl_affection"></label></p>
+                </article>
+                <article>
+                    <p>Слабость: <label id="lbl_weakness"></label></p>
+                </article>
+            </div>
+        </div>
+        <div class="grid container-fluid" name="Look">
+            <article>
+                <p>Имя персонажа: <label id="lbl_charFirstName2"></label> <label id="lbl_charLastName2"></label></p>
+                <p>Пол: <label id="lbl_gender"></label></p>
+                <p>Возраст: <label id="lbl_age"></label></p>
+            </article>
+            <article>
+                <p>Размер тела: <label id="lbl_bodySize"></label></p>
+                <p>Рост: [ <label id="lbl_height"></label> см ; <label id="lbl_height_ft"></label> ft. ]</p>
+                <p>Вес: [ <label id="lbl_weight"></label> кг ; <label id="lbl_weight_lb"></label> lb. ]</p>
+            </article>
+            <article>
+                <p>Цвет глаз: <label id="lbl_eyesColor"></label></p>
+                <p>Цвет волос: <label id="lbl_hairColor"></label></p>
+            </article>
+        </div>
+        <div class="grid container-fluid" name="Look-snake">
+            <article>
+                <p>Форма змеиного тела: <label id="lbl_typeSnakeBody"> </label></p>
+                <p>Форма головы: <label id="lbl_headShape"></label></p>
+            </article>
+            <article>
+                <p>Узор чешуи: <label id="lbl_ScalePattern"></label></p>
+                <p>Особенность чистокровного: <label id="lbl_purebredsSpecialty"></label></p>
+            </article>
+            <article>
+                <p>Цвет чешуи: <label id="lbl_scaleColor"></label></p>
+                <p>Цвета кожи гуманоида: <label id="lbl_humanoidSkinColor"></label> </p>
+                <p>Цвет языка: <label id="lbl_tongueColor"></label></p>
+            </article>
+        </div>
+    </details>
+
+    <div class="grid container-fluid" name="Spell-List">
         <div>
             <article>
-                <p><strong>Черта характера:</strong> <label class="subtitle-text" id="lbl_characterTrait"></label></p>
+                <p>
+                    <label>
+                        Базовая характеристика заклинаний: [ <label id="lbl_basic_spell_characteristics"></label> ]
+                    </label>
+                    <br>
+                    <label>
+                        Сложность спасброска: [ <label id="lbl_saving_throw_difficulty"></label> ]
+                    </label>
+                    <br>
+                    <label>
+                        Модификатор броска атаки заклинанием: [ <label id="lbl_spell_damage_modifier"></label> ]
+                    </label>
+                </p>
+            </article>
+        </div>
+        <div>
+            <article>
+                <label>Заговоры:</label>
             </article>
             <article>
-                <p><strong>Идеал:</strong> <label class="subtitle-text" id="lbl_ideal"></label></p>
+                <label>1 Уровень:</label>
             </article>
             <article>
-                <p><strong>Привязанность:</strong> <label class="subtitle-text" id="lbl_affection"></label></p>
+                <label>2 Уровень:</label>
             </article>
             <article>
-                <p><strong>Слабость:</strong> <label class="subtitle-text" id="lbl_weakness"></label></p>
+                <label>3 Уровень:</label>
+            </article>
+            <article>
+                <label>4 Уровень:</label>
             </article>
         </div>
     </div>
-    <label>Look</label>
-    <div class="grid container-fluid">
-        <article>
-            <p class="title">Имя персонажа: <label id="lbl_charFirstName2"></label> <label id="lbl_charLastName2"></label></p>
-            <p class="title">Пол: <label id="lbl_gender"></label></p>
-            <p class="title">Возраст: <label id="lbl_age"></label></p>
-        </article>
-        <article>
-            <p class="title">Размер тела: <label id="lbl_bodySize"></label></p>
-            <p class="title">Рост: [ <label id="lbl_height"></label> см ; <label id="lbl_height_ft"></label> ft. ]</p>
-            <p class="title">Вес: [ <label id="lbl_weight"></label> кг ; <label id="lbl_weight_lb"></label> lb. ]</p>
-        </article>
-        <article>
-            <p class="title">Цвет глаз: <label id="lbl_eyesColor"></label></p>
-            <p class="title">Цвет волос: <label id="lbl_hairColor"></label></p>
-        </article>
-    </div>
+
 </main>
 <!-- ./ Body -->
 <footer class="container">
