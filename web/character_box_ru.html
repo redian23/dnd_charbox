@@ -54,7 +54,8 @@
             <p class="title">Добро пожаловать в Шкатулку Персонажей.</p>
             <p class="subtitle">Желаю удачи в поисках Вашего идеального DnD персонажа.</p>
             <button class="button is-dark" id="btn_export_lss" onclick="exportToLSS()"> Экспорт в LongStoryShort </button>
-            <button class="button is-danger" id="btm_faq" onclick="gotoFAQ()">Раздел вопросов и ответов</button>
+            <button class="button is-danger" id="btm_faq" onclick="gotoFAQ()"> Раздел вопросов и ответов </button>
+            <button class="button is-link" onclick="location.href='https://t.me/charbox_chat';"> Наш Telegram чат </button>
         </div>
     </section>
 </head>
@@ -66,8 +67,7 @@
         <div class="select is-medium is-info">
             <label>
                 <select id="select_class_name">
-                    <option value="Случайный класс" selected="selected">Случайный класс</option>
-                    <option>Бард</option>
+                    <option value="Бард" selected="selected">Бард</option>
                     <option>Волшебник</option>
                     <option>Воин</option>
                     <option>Варвар</option>
@@ -86,8 +86,7 @@
         <div class="select is-medium is-info">
             <label>
                 <select id="select_race_name">
-                    <option value="Случайная раса" selected="selected">Случайная раса</option>
-                    <option>Аасимар</option>
+                    <option value="Аасимар" selected="selected">Аасимар</option>
                     <option>Багбир</option>
                     <option>Гном</option>
                     <option>Гоблин</option>
@@ -96,7 +95,7 @@
                     <option>Драконорожденный</option>
                     <option>Кенку</option>
                     <option>Кобольд</option>
-                    <option>Локата</option>
+                    <!--<option>Локата</option>-->
                     <option>Мурлок</option>
                     <option>Орк</option>
                     <option>Полуорк</option>
@@ -110,6 +109,12 @@
                     <option>Фирболг</option>
                     <option>Человек</option>
                     <option>Юань-ти</option>
+                </select>
+            </label>
+        </div>
+        <div class="select is-medium is-info">
+            <label>
+                <select id="select_background_name">
                 </select>
             </label>
         </div>

@@ -8,12 +8,15 @@ import (
 	"pregen/pkg/db"
 )
 
+const RacePhotoPath = "/opt/charbox/web/img/race_imgs/"
+
+// const RacePhotoPath = "./web/img/race_imgs/"
+
 var (
 	RaceData         []RacesBSON
 	RaceNameGlobalRu string
 	RaceTypeGlobalRu string
 	RaceSpeedGlobal  int
-	RacePhotoPath    = "/opt/charbox/web/img/race_imgs/"
 )
 
 func readDirectory(path string) ([]string, []string) {

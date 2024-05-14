@@ -5,13 +5,15 @@ import (
 	"github.com/mazen160/go-random"
 	"net/http"
 	"pregen/pkg/characterCore"
+	"pregen/pkg/classes"
 )
 
 type charParameters struct {
-	ClassName string `json:"class"`
-	RaceName  string `json:"race"`
-	Level     int    `json:"level"`
-	Gender    string `json:"gender"`
+	ClassName      string `json:"class"`
+	RaceName       string `json:"race"`
+	BackgroundName string `json:"background"`
+	Level          int    `json:"level"`
+	Gender         string `json:"gender"`
 }
 
 var classArray = []string{"Волшебник", "Воин", "Варвар", "Паладин", "Монах",
@@ -35,9 +37,14 @@ func GetCurrentCharacter(c *gin.Context) {
 		randNum, _ := random.IntRange(0, len(raceArray))
 		chr.RaceName = raceArray[randNum]
 	}
+	if chr.BackgroundName == "random" {
+		chr.BackgroundName = classes.GetRandomBackgroundForClass(chr.ClassName)
+	}
 	if chr.Level > 8 {
 		chr.Level = 8
 	}
 
-	c.JSONP(http.StatusOK, characterCore.GenerateFullCharacter(chr.ClassName, chr.RaceName, chr.Level, chr.Gender))
+	c.JSONP(http.StatusOK, characterCore.GenerateFullCharacter(
+		chr.ClassName, chr.RaceName, chr.BackgroundName, chr.Level, chr.Gender),
+	)
 }

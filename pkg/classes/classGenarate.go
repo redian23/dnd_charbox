@@ -1,11 +1,22 @@
 package classes
 
+import "github.com/mazen160/go-random"
+
 var (
 	HitsCountGlobal   int
 	ClassNameGlobalRu string
 	ArmorInfoGlobal   []ArmorAnswer
 	ClassSpecificInfo ClassSpecific
 )
+
+func GetRandomBackgroundForClass(classNameRU string) string {
+	var classInfo = GetClassCharactsFormDB()
+	for _, class := range classInfo {
+		randNum, _ := random.IntRange(0, len(class.Background))
+		return class.Background[randNum]
+	}
+	return ""
+}
 
 func GenerateClass(classNameRU string) *ClassAnswer {
 	ClassNameGlobalRu = ""

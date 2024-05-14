@@ -2,16 +2,15 @@ let charData
 window.onload = winOnloadGenerate()
 
 function getSelectClassNameValue() {
-    if (document.getElementById("select_class_name").value === "Случайный класс") {
-        return "random"
-    }
     return document.getElementById("select_class_name").value;
 }
+
 function getSelectRaceNameValue() {
-    if (document.getElementById("select_race_name").value === "Случайная раса") {
-        return "random"
-    }
     return document.getElementById("select_race_name").value;
+}
+
+function getSelectBackgroundNameValue() {
+    return document.getElementById("select_background_name").value;
 }
 
 function getSelectLevelValue() {
@@ -25,8 +24,22 @@ function getSelectGenderValue() {
     return document.getElementById("select_gender").value;
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    var selectedValue = document.getElementById("select_class_name").value;
+    console.log(selectedValue);
+    updateBackgroundDropdown();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_class_name").addEventListener(
+        "change", function() {
+            updateBackgroundDropdown();
+        });
+});
+
+
 async function winOnloadGenerate() {
-    let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"male"}`
+    let req_json = `{"class":"random", "race":"random", "background":"random", "level":1 , "gender":"male"}`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
@@ -45,7 +58,8 @@ async function winOnloadGenerate() {
 }
 
 async function getCharacter() {
-    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
+    let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", 
+    "background":"${getSelectBackgroundNameValue()}","level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/post-current-character`,
         { method: 'POST',
@@ -348,6 +362,8 @@ function writeBackgroundLabels(data) {
     document.getElementById("lbl_background_ability").innerHTML = "<strong>"+ backgr["background_ability"]["ability_name"]+"</strong>"
         + " - " + backgr["background_ability"]["description"];
 
+
+    console.log(backgr["equipment"])
     backgrEquip = backgr["equipment"]
     for(let i = 0; i < backgrEquip.length; i++){
         if (i !== backgrEquip.length-1) {
@@ -608,4 +624,67 @@ function restartButtonClickCountTimer() {
             localStorage.setItem('genButtonClickCount', 0)
         },
         20000);
+}
+
+function updateBackgroundDropdown() {
+    var classNameDropdown = document.getElementById("select_class_name");
+    var backgroundDropdown = document.getElementById("select_background_name");
+    var selectedValue = (classNameDropdown.value);
+    backgroundDropdown.innerHTML = "";
+
+    console.log(selectedValue)
+
+    var backgroundsVariants = [];
+    switch (selectedValue) {
+        case "Бард" :
+            backgroundsVariants = ["Артист", "Благородный", "Беспризорник", "Шарлатан"];
+            break;
+        case "Волшебник":
+            backgroundsVariants = ["Гильдейский ремесленник", "Мудрец", "Солдат", "Народный герой"];
+            break;
+        case "Воин":
+            backgroundsVariants = ["Беспризорник", "Благородный", "Солдат", "Рыцарь", "Народный герой", "Моряк", "Чужеземец"];
+            break;
+        case "Варвар":
+            backgroundsVariants = ["Пират", "Солдат",  "Народный герой", "Моряк", "Чужеземец", "Гладиатор"];
+            break;
+        case "Друид":
+            backgroundsVariants = ["Гильдейский ремесленник", "Народный герой", "Отшельник", "Прислужник", "Чужеземец"];
+            break;
+        case "Жрец":
+            backgroundsVariants = ["Мудрец", "Народный герой", "Отшельник", "Прислужник", "Шарлатан"];
+            break;
+        case "Изобретатель":
+            backgroundsVariants = ["Гильдейский ремесленник", "Мудрец", "Народный герой", "Отшельник"];
+            break;
+        case "Колдун":
+            backgroundsVariants = ["Отшельник", "Мудрец", "Шарлатан"];
+            break;
+        case "Монах":
+            backgroundsVariants = ["Отшельник", "Народный герой", "Прислужник","Гильдейский ремесленник"];
+            break;
+        case "Паладин":
+            backgroundsVariants = ["Отшельник", "Благородный", "Солдат", "Рыцарь", "Народный герой"];
+            break;
+        case "Плут":
+            backgroundsVariants = ["Беспризорник", "Пират", "Преступник", "Шарлатан", "Чужеземец"];
+            break;
+        case "Следопыт":
+            backgroundsVariants = ["Гильдейский ремесленник", "Народный герой", "Преступник", "Чужеземец"];
+            break;
+        case "Чародей":
+            backgroundsVariants = ["Гильдейский ремесленник", "Мудрец", "Народный герой", "Отшельник"];
+            break;
+        // Добавьте другие случаи, если нужно
+        default:
+            backgroundsVariants = [];
+    }
+
+    // Добавление слов во второй выпадающий список
+    for (var i = 0; i < backgroundsVariants.length; i++) {
+        var option = document.createElement("option");
+        option.text = backgroundsVariants[i];
+        option.value = backgroundsVariants[i];
+        backgroundDropdown.add(option);
+    }
 }

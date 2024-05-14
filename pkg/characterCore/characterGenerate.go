@@ -7,7 +7,7 @@ import (
 	"pregen/pkg/spells"
 )
 
-func GenerateFullCharacter(className, raceName string, lvl int, gender string) *Character {
+func GenerateFullCharacter(className, raceName string, backgroundName string, lvl int, gender string) *Character {
 	classes.LanguageListGlobal = []string{} //очистка глоб переменной перед генерацией
 	classes.CharacterLevelGlobal = lvl
 	return &Character{
@@ -16,7 +16,7 @@ func GenerateFullCharacter(className, raceName string, lvl int, gender string) *
 		ProficiencyBonus: getProfBonus(lvl),
 		Race:             races.GenerateRaceForCharacter(raceName, gender),
 		Class:            classes.GenerateClass(className),
-		Background:       backgrounds.GenerateBackground(),
+		Background:       backgrounds.GenerateBackground(backgroundName),
 		Skills:           classes.SetSkillsForCharacter(backgrounds.BackgroundSkills),
 		PassiveWisdom:    classes.PassWisdom,
 		Langs:            GetCharLangs(),

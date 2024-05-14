@@ -245,7 +245,7 @@
   },
   {
     "_id": {"$oid": "64ac427ac28416e8d8b652a5"},
-    "background": ["Noble", "Hermit", "Knight", "Soldier"],
+    "background": ["Noble", "Hermit", "Knight", "Soldier", "Folk hero"],
     "caster": false,
     "charReq": [
       ["Strength", "Charisma", "BodyDifficulty"],
