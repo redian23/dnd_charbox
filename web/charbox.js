@@ -10,6 +10,9 @@ function getSelectRaceNameValue() {
 }
 
 function getSelectBackgroundNameValue() {
+    if (document.getElementById("select_background_name").value === "Случайная предыстория") {
+        return "random"
+    }
     return document.getElementById("select_background_name").value;
 }
 
@@ -677,7 +680,7 @@ function updateBackgroundDropdown() {
             break;
         // Добавьте другие случаи, если нужно
         default:
-            backgroundsVariants = [];
+            backgroundsVariants = ["Случайная предыстория"];
     }
 
     // Добавление слов во второй выпадающий список
