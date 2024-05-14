@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
-
 async function winOnloadGenerate() {
     let req_json = `{"class":"random", "race":"random", "background":"random", "level":1 , "gender":"male"}`
 
