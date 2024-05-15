@@ -14,7 +14,6 @@ type Weapon struct {
 	WeaponType string `json:"weaponType"`
 	Damage     string `json:"damage"`
 	Property   string `json:"property"`
-	Count      int    `json:"count"`
 }
 
 func GetWeaponFormDB() []Weapon {

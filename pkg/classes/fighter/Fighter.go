@@ -625,7 +625,6 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int)
 		Inspiration:     false,
 		Proficiencies:   *fighterProf, //need to fix
 		Hits:            getHits(raceInfo, lvl),
-		Initiative:      "",
 		Caster:          false,
 		SpellCasting:    classes.SpellCasting{},
 		SpellsList:      fighterSpellList,

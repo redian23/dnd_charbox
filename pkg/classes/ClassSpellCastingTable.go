@@ -7,8 +7,7 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 
 	if ClassLevel <= 4 {
 		ProficiencyBonus = 2
-	}
-	if ClassLevel > 4 && ClassLevel <= 8 {
+	} else if ClassLevel > 4 && ClassLevel <= 8 {
 		ProficiencyBonus = 3
 	} else {
 		ProficiencyBonus = 4

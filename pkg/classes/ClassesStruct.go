@@ -3,20 +3,22 @@ package classes
 import "pregen/pkg/spells"
 
 type Class struct {
-	ClassName       string              `json:"class_name"`
-	ClassNameRU     string              `json:"class_name_ru"`
-	ClassAbilities  []ClassAbility      `json:"class_abilities"`
-	AbilityScore    AbilityScore        `json:"ability"`
-	AbilityModifier AbilityModifier     `json:"modifier"`
-	SavingThrows    *SavingThrows       `json:"saving_throws"`
-	Inspiration     bool                `json:"inspiration"`
-	Proficiencies   Proficiencies       `json:"proficiencies"`
-	Hits            Hits                `json:"hits"`
-	Initiative      string              `json:"initiative"`
-	Caster          bool                `json:"caster"`
-	SpellCasting    SpellCasting        `json:"spell_casting"`
-	SpellsList      []spells.SpellsJSON `json:"spells_list"`
-	Equipment       []Item              `json:"equipment"`
+	ClassName        string              `json:"class_name"`
+	ClassNameRU      string              `json:"class_name_ru"`
+	ClassAbilities   []ClassAbility      `json:"class_abilities"`
+	AbilityScore     AbilityScore        `json:"ability"`
+	AbilityModifier  AbilityModifier     `json:"modifier"`
+	SavingThrows     *SavingThrows       `json:"saving_throws"`
+	Inspiration      bool                `json:"inspiration"`
+	Proficiencies    Proficiencies       `json:"proficiencies"`
+	ProficiencyBonus int                 `json:"proficiency_bonus"`
+	Hits             Hits                `json:"hits"`
+	Caster           bool                `json:"caster"`
+	SpellCasting     SpellCasting        `json:"spell_casting"`
+	SpellsList       []spells.SpellsJSON `json:"spells_list"`
+	Equipment        []Item              `json:"equipment"`
+	ArmorInfo        Armor               `json:"armor_info"`
+	WeaponInfo       []Weapon            `json:"weapon_info"`
 }
 
 type ClassAbility struct {

@@ -163,7 +163,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 			"Кем были капитан и его первый помощник? " +
 			"Вы расстались с экипажем в хороших отношениях или поссорились с ними?",
 		CharacterTrait: characterTrait[randomTrait],
-		Ideal:          ideals[randomIdeal],
+		Ideal:          ideals[randomIdeal].Text,
 		Affection:      affections[randomAffection],
 		Weakness:       weakness[randomWeakness],
 		Worldview:      ideals[randomIdeal].WorldviewRu,

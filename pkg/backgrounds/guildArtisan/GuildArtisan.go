@@ -201,7 +201,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 			"Они понимают ценность тяжёлого труда и важность общности, но они так же как другие подвержены грехам жадности и алчности.",
 		Advice:         "Определите вместе с Мастером характер вашей гильдии.",
 		CharacterTrait: characterTrait[randomTrait],
-		Ideal:          ideals[randomIdeal],
+		Ideal:          ideals[randomIdeal].Text,
 		Affection:      affections[randomAffection],
 		Weakness:       weakness[randomWeakness],
 		Worldview:      ideals[randomIdeal].WorldviewRu,

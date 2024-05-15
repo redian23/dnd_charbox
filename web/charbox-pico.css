@@ -235,6 +235,10 @@ article {
     border: var(--pico-border-width) solid var(--pico-border-color);
 }
 
+article.card {
+    border: var(--pico-border-width) solid var(--pico-border-color);
+    padding: 15px;
+}
 
 .container-fluid-custom {
     width: 75%;

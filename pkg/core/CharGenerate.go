@@ -1,8 +1,6 @@
 package core
 
 import (
-	"encoding/json"
-	"fmt"
 	"log"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/backgrounds/artist"
@@ -27,31 +25,30 @@ import (
 
 func GetFullCharacter() Character {
 	// Будущие аргументы функции GetFullCharacter
-	var level = 8
+	var level = 3
 	var raceName = "Аасимар"
 	var raceTypeName = "Аасимар–падший"
-	var gender = "male"
-	var backgroundName = "Рыцарь"
-	var className = "Воин"
+	var gender = "Мужской"
+	var backgroundName = "Артист"
+	var className = "Бард"
 
 	var raceInfo = getRace(raceName, raceTypeName, gender)
 	var backgroundInfo = getBackground(backgroundName)
 	var classInfo = getClass(className, raceInfo, backgroundInfo, level)
 
 	var characterBody = Character{
-		Level:            level,
-		Experience:       getExpCount(level),
-		PassiveWisdom:    skills.PassiveWisdom,
-		ProficiencyBonus: 0,
-		Background:       backgroundInfo,
-		Race:             raceInfo,
-		Class:            classInfo,
-		Skills:           skills.SetSkillsForCharacter(raceInfo, backgroundInfo, classInfo, level),
-		Langs:            getFullLanguagesList(raceInfo, backgroundInfo),
-		SpellsList:       classInfo.SpellsList,
+		Level:         level,
+		Experience:    getExpCount(level),
+		PassiveWisdom: skills.GetPassive(),
+		Background:    backgroundInfo,
+		Race:          raceInfo,
+		Class:         classInfo,
+		Skills:        skills.SetSkillsForCharacter(raceInfo, backgroundInfo, classInfo, level),
+		Langs:         getFullLanguagesList(raceInfo, backgroundInfo),
+		SpellsList:    classInfo.SpellsList,
 	}
-	marshaled, _ := json.MarshalIndent(characterBody, "", "   ")
-	fmt.Println(string(marshaled))
+	//marshaled, _ := json.MarshalIndent(characterBody, "", "   ")
+	//fmt.Println(string(marshaled))
 
 	return characterBody
 }

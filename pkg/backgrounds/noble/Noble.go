@@ -142,7 +142,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 			" народом, доверенным вашей семье, и даже перед самим титулом. Все эти обязательства другие могут использовать против вас.",
 		Advice:         "",
 		CharacterTrait: characterTrait[randomTrait],
-		Ideal:          ideals[randomIdeal],
+		Ideal:          ideals[randomIdeal].Text,
 		Affection:      affections[randomAffection],
 		Weakness:       weakness[randomWeakness],
 		Worldview:      ideals[randomIdeal].WorldviewRu,

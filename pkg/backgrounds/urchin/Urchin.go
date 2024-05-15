@@ -149,7 +149,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 			"или они исполнены желанием добиться лучшей доли, и, возможно, расквитаться с богачами, от которых они натерпелись.",
 		Advice:         "",
 		CharacterTrait: characterTrait[randomTrait],
-		Ideal:          ideals[randomIdeal],
+		Ideal:          ideals[randomIdeal].Text,
 		Affection:      affections[randomAffection],
 		Weakness:       weakness[randomWeakness],
 		Worldview:      ideals[randomIdeal].WorldviewRu,

@@ -166,7 +166,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 			"Будучи в постоянном поиске мудрости, они высоко ценят знания — как для себя, так и в стремлении к идеалам.",
 		Advice:         "",
 		CharacterTrait: characterTrait[randomTrait],
-		Ideal:          ideals[randomIdeal],
+		Ideal:          ideals[randomIdeal].Text,
 		Affection:      affections[randomAffection],
 		Weakness:       weakness[randomWeakness],
 		Worldview:      ideals[randomIdeal].WorldviewRu,

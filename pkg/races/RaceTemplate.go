@@ -7,8 +7,8 @@ package races
 //)
 //
 //var raceNames = map[string][]string{
-//	"male":   {},
-//	"female": {},
+//	"Мужской":   {},
+//	"Женский": {},
 //}
 //
 //var raceLangs = []string{}

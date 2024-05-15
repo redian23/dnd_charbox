@@ -1,5 +1,6 @@
 let charData
 // window.onload = winOnloadGenerate()
+window.onload = getCharacter()
 
 function getSelectClassNameValue() {
     if (document.getElementById("select_class_name").value === "Случайный класс") {
@@ -7,6 +8,7 @@ function getSelectClassNameValue() {
     }
     return document.getElementById("select_class_name").value;
 }
+
 function getSelectRaceNameValue() {
     if (document.getElementById("select_race_name").value === "Случайная раса") {
         return "random"
@@ -26,7 +28,7 @@ function getSelectGenderValue() {
 }
 
 async function winOnloadGenerate() {
-    // let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"male"}`
+    // let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"Мужской"}`
     //
     // const response = await fetch('https://charbox.swn.by/api/v1/post-current-character',
     //     { method: 'POST',
@@ -64,32 +66,34 @@ async function getCharacter() {
     charData = data
     WriteAllLabels(data)
 
-    console.log(charData)
+    console.log(JSON.parse(JSON.stringify(json)))
     genButtonBlock()
 }
 
 async function WriteAllLabels(data) {
-    await writeToCharacterCardInputs(data)
-
-
-    await writeRacePhotoLabels(data)
-    await writeToAbilitiesLabels(data)
-    await writeToSaveThrowsLabels(data)
-    await writeToSkillsLabels(data)
-    await writeOtherLabels(data)
+    await writeToCharacterCardInputs(data) //done
+    await writeToAbilitiesLabels(data) //done
+    await writeToSaveThrowsLabels(data) //done
+    await writeToSkillsLabels(data) //done
+    await writeToHitsLabels(data) //done
+    await writeToPassiveInfoLabels(data) //done
+    await writeOtherLabels(data) //done
+    await writeProficienciesLabels(data)//done
+    await writeClassAbilitiesLabels(data)//done
+    await writeRaceAbilitiesLabels(data)//done
+    await writeBackgroundAbilitiesLabels(data) //done
+    await writeClassEquipmentLabels(data) //done
+    await writeBackgroundEquipmentLabels(data) //done
+    await writeWeaponLabels(data)
     await writeBackgroundLabels(data)
     await writeAppearanceLabels(data)
-    await writeProficienciesLabels(data)
-    await writeClassAbilitiesLabels(data)
-    await writeRaceAbilitiesLabels(data)
-    await writeClassEquipmentLabels(data)
-    await writeArmorLabels(data)
-    await writeWeaponLabels(data)
+    await writeSpellCastingLabels(data)
+
     await writeSpellsLabels(data)
-    await writeSpellcastingLabels(data)
 }
 
 function writeToCharacterCardInputs(data) {
+    document.getElementById("lbl_character_full_name").innerHTML = JSON.parse(data)["race"]["first_name"] + " " + JSON.parse(data)["race"]["last_name"] ;
     document.getElementById("lbl_level_info").innerHTML = JSON.parse(data)["level"]
     document.getElementById("lbl_exp_info").innerHTML = JSON.parse(data)["experience"]
     document.getElementById("lbl_class_name").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
@@ -100,9 +104,8 @@ function writeToCharacterCardInputs(data) {
 }
 
 function writeToAbilitiesLabels(data) {
-    
+
     let abilities = JSON.parse(data)["class"]["ability"];
-    document.getElementById("lbl_ability_total_info").innerHTML = abilities["total"];
     document.getElementById("lbl_ability_strength_info").innerHTML = abilities["strength"];
     document.getElementById("lbl_ability_dexterity_info").innerHTML = abilities["dexterity"];
     document.getElementById("lbl_ability_bodyDifficulty_info").innerHTML = abilities["body_difficulty"];
@@ -314,116 +317,40 @@ function writeToSkillsLabels(data) {
     }
 }
 
-function writeOtherLabels(data) {
-    document.getElementById("lbl_languages").innerHTML = "" //clear line
+function writeToHitsLabels(data) {
     document.getElementById("lbl_hit_dice_count").innerHTML =  JSON.parse(data)["level"];
+    document.getElementById("lbl_hitsDice").innerHTML = JSON.parse(data)["class"]["hits"]["hit_dice"];
+    document.getElementById("lbl_hitsCount").innerHTML = JSON.parse(data)["class"]["hits"]["hit_count"];
+}
 
-    document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["proficiency_bonus"];
-    document.getElementById("lbl_passive_wisdom").innerHTML = JSON.parse(data)["passive_wisdom"];
-    let langs =  JSON.parse(data)["langs"];
-    for(let i = 0; i < langs.length; i++){
-        if (i !== langs.length-1){
-            comma = ", "
-        }else {
-            comma = ""
-        }
-        document.getElementById("lbl_languages").innerHTML += JSON.parse(JSON.stringify(langs[i])) + comma;
-    }
+function writeToPassiveInfoLabels(data) {
+    document.getElementById("lbl_passive_wisdom_insight").innerHTML = JSON.parse(data)["passive_info"]["passive_wisdom_insight"];
+    document.getElementById("lbl_passive_wisdom_perception").innerHTML = JSON.parse(data)["passive_info"]["passive_wisdom_perception"];
+    document.getElementById("passive_intellect_investigation").innerHTML = JSON.parse(data)["passive_info"]["passive_intellect_investigation"];
+}
 
-    let clas = JSON.parse(data)["class"]
-    document.getElementById("lbl_initiative").innerHTML = clas["initiative"];
-    document.getElementById("lbl_hitsDice").innerHTML = clas["hits"]["hit_dice"];
-    document.getElementById("lbl_hitsCount").innerHTML = clas["hits"]["hit_count"];
+function writeOtherLabels(data) {
+    document.getElementById("lbl_proficiency_bonus").innerHTML = JSON.parse(data)["class"]["proficiency_bonus"];
 
-    if (clas["inspiration"] === true) {
-        document.getElementById("lbl_inspiration").innerHTML = "*" ;
+    if (JSON.parse(data)["class"]["inspiration"] === true) {
+        document.getElementById("lbl_inspiration").innerHTML = "1" ;
     }else {
         document.getElementById("lbl_inspiration").innerHTML = "Нет" ;
     }
-}
-
-function writeBackgroundLabels(data) {
-    let backgr = JSON.parse(data)["background"]
-    document.getElementById("lbl_list_background_equipment").innerHTML = "";
-
-
-    document.getElementById("lbl_background_description").innerHTML = backgr["description"];
-    document.getElementById("lbl_advice").innerHTML = backgr["advice"];
-    document.getElementById("lbl_personalization").innerHTML = backgr["personalization"];
-    document.getElementById("lbl_characterTrait").innerHTML = backgr["character_trait"];
-    document.getElementById("lbl_ideal").innerHTML = backgr["ideal"];
-
-    document.getElementById("lbl_affection").innerHTML = backgr["affection"];
-    document.getElementById("lbl_weakness").innerHTML = backgr["weakness"];
-    document.getElementById("lbl_gold").innerHTML = backgr["gold"];
-
-    document.getElementById("lbl_background_ability").innerHTML = "<strong>"+ backgr["background_ability"]["ability_name"]+"</strong>"
-        + " - " + backgr["background_ability"]["description"];
-
-    backgrEquip = backgr["equipment"]
-    for(let i = 0; i < backgrEquip.length; i++){
-        if (i !== backgrEquip.length-1) {
-            document.getElementById("lbl_list_background_equipment").innerHTML += backgrEquip[i]+ ", " ;
-        } else {
-            document.getElementById("lbl_list_background_equipment").innerHTML += backgrEquip[i];
-        }
-    }
-    document.getElementById("lbl_background_instruments").innerHTML = backgr["mastery_of_tools"]
-}
-
-function writeAppearanceLabels(data) {
-    let race = JSON.parse(data)["race"];
-    document.getElementById("p_dragon_type").style.display = "none";
-    document.getElementById("div_snake_appearance").style.visibility= "hidden";
-
-
-    document.getElementById("lbl_raceName").innerHTML = race["race_type_name_ru"];
-    document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
-    document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
-
-    document.getElementById("lbl_resist").innerHTML =  race["resist"];
-    document.getElementById("lbl_bodySize").innerHTML =  race["body_size"];
-
-    document.getElementById("lbl_speed").innerHTML =  race["speed"];
-
-    document.getElementById("lbl_gender").innerHTML =  race["gender"];
-    document.getElementById("lbl_age").innerHTML =  race["age"];
-    document.getElementById("lbl_eyesColor").innerHTML =  race["eyes"];
-    document.getElementById("lbl_height").innerHTML =  race["height"];
-    document.getElementById("lbl_weight").innerHTML =  race["weight"];
-
-    document.getElementById("lbl_height_ft").innerHTML =  race["height_ft"];
-    document.getElementById("lbl_weight_lb").innerHTML =  race["weight_lb"];
-
-    document.getElementById("lbl_hairColor").innerHTML =  race["hair"];
-
-    if (race["race_name"] === "Dragonborn"){
-        document.getElementById("p_dragon_type").style.display = "inline";
-        document.getElementById("lbl_dragon_color").innerHTML = race["other"]["dragon_type"]["color"];
-    }
-
-    if (race["race_name"] === "Yuan-ti"){
-        document.getElementById("div_snake_appearance").style.visibility= "visible"
-        document.getElementById("lbl_hairColor").innerHTML = "Нет";
-
-        document.getElementById("lbl_typeSnakeBody").innerHTML =  race["other"]["yuanti_appearance"]["type_snake_body"];
-        document.getElementById("lbl_humanoidSkinColor").innerHTML =  race["other"]["yuanti_appearance"]["humanoid_skin_color"];
-        document.getElementById("lbl_scaleColor").innerHTML =  race["other"]["yuanti_appearance"]["scale_color"];
-        document.getElementById("lbl_ScalePattern").innerHTML =  race["other"]["yuanti_appearance"]["scale_pattern"];
-        document.getElementById("lbl_tongueColor").innerHTML =  race["other"]["yuanti_appearance"]["tongue_color"];
-        document.getElementById("lbl_eyesColor").innerHTML =  race["other"]["yuanti_appearance"]["eye_color"];
-        document.getElementById("lbl_headShape").innerHTML =  race["other"]["yuanti_appearance"]["head_shape"];
-        document.getElementById("lbl_purebredsSpecialty").innerHTML =  race["other"]["yuanti_appearance"]["purebreds_specialty"];
-
-    }
+    document.getElementById("lbl_armor_name").innerHTML = JSON.parse(data)["class"]["armor_info"]["armorName"]
+    document.getElementById("lbl_armor_class").innerHTML = JSON.parse(data)["class"]["armor_info"]["armorClassCount"]
+    document.getElementById("lbl_speed").innerHTML = JSON.parse(data)["race"]["race_type_name"]["speed"];
 }
 
 function writeProficienciesLabels(data) {
-    let prof = JSON.parse(data)["class"]["proficiencies"];
-
-    document.getElementById("lbl_weapon").innerHTML = prof["weapons"];
-    document.getElementById("lbl_class_instruments").innerHTML = prof["instruments"];
-    document.getElementById("lbl_armor").innerHTML = prof["armor"];
+    document.getElementById("lbl_languages").innerHTML = JSON.parse(data)["langs"].join(', ');
+    document.getElementById("lbl_languages").innerHTML = JSON.parse(data)["langs"].join(', ');
+    document.getElementById("lbl_resist").innerHTML =  JSON.parse(data)["race"]["resist"].join(', ');
+    document.getElementById("lbl_armor").innerHTML = JSON.parse(data)["class"]["proficiencies"]["armor"].join("\,\r\n");
+    document.getElementById("lbl_weapon").innerHTML = JSON.parse(data)["class"]["proficiencies"]["weapons"].join(', ');
+    document.getElementById("lbl_class_instruments").innerHTML = JSON.parse(data)["class"]["proficiencies"]["tools"].join(', ');
+    //document.getElementById("lbl_class_skills").innerHTML = JSON.parse(data)["class"]["proficiencies"]["skills_of_class"].join(', ');
+    document.getElementById("lbl_background_instruments").innerHTML = JSON.parse(data)["background"]["mastery_of_tools"].join(', ');
 }
 
 function writeClassAbilitiesLabels(data) {
@@ -432,135 +359,139 @@ function writeClassAbilitiesLabels(data) {
 
     for(let i = 0; i < class_abil.length; i++){
         document.getElementById("lbl_class_abilities").innerHTML +=
-            "<strong>"+ JSON.parse(JSON.stringify(class_abil[i]["name"]))+"</strong>" +": "
-            + JSON.parse(JSON.stringify(class_abil[i]["description"])) + "<br>" ;
+            "<article><strong>"+ JSON.parse(JSON.stringify(class_abil[i]["name"]))+"</strong>" +": "
+            + JSON.parse(JSON.stringify(class_abil[i]["description"])) + "</article>" ;
     }
 }
 
 function writeRaceAbilitiesLabels(data) {
-    document.getElementById("lbl_race_abilities").innerHTML = ""
-        let race_abil = JSON.parse(data)["race"]["race_abilities"];
+    document.getElementById("lbl_race_abilities").innerHTML = "";
 
-    if (race_abil === null){
-        document.getElementById("lbl_race_abilities").innerHTML = "Нет"
-        return
-    }
-    for(let i = 0; i < race_abil.length; i++){
+    race_abilities_json = JSON.parse(data)["race"]["race_type_name"]["race_abilities"]
+    for (var ability in race_abilities_json) {
         document.getElementById("lbl_race_abilities").innerHTML +=
-            "<strong>"+ JSON.parse(JSON.stringify(race_abil[i]["ability_name"]))+"</strong>" +": "
-                + JSON.parse(JSON.stringify(race_abil[i]["description"])) + "<br>" ;
+            "<article><strong>"+ ability +"</strong>" +": "+ race_abilities_json[ability]+ "</article>" ;
+    }
+}
+
+function writeBackgroundAbilitiesLabels(data) {
+    document.getElementById("lbl_background_ability").innerHTML = "";
+
+    background_abilities_json = JSON.parse(data)["background"]["background_ability"]
+
+    for (var ability in background_abilities_json) {
+        document.getElementById("lbl_background_ability").innerHTML +=
+            "<article><strong>"+ ability +"</strong>" +": "+ background_abilities_json[ability] + "</article>" ;
     }
 }
 
 function writeClassEquipmentLabels(data) {
-    document.getElementById("lbl_list_class_equipment").innerHTML = ""
-    let equip = JSON.parse(data)["class"]["class_equipment"];
+    let classEquip = JSON.parse(data)["class"]["equipment"];
 
-    for(let i = 0; i < equip.length; i++){
-        if (i !== equip.length-1){
-            comma = ", "
-        }else {
-            comma = ""
-        }
-        if (JSON.stringify(equip[i]["count"]) > 1){
-            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) +
-                " (" + JSON.parse(JSON.stringify(equip[i]["count"]))+ ")" + comma;
-        } else {
-            document.getElementById("lbl_list_class_equipment").innerHTML += JSON.parse(JSON.stringify(equip[i]["itemName"])) + comma;
-        }
+    var tableBody = document.getElementById("class_equipment_table_body");
+    var row = "<tr>";
+    for (let i in classEquip) {
+        row += "<td>" + classEquip[i].name + "</td>";
+        row += "<td>" + classEquip[i].count + "</td>";
+        row += "</tr>";
     }
+    tableBody.innerHTML = row;
 }
-function writeArmorLabels(data) {
-    let armor = JSON.parse(data)["class"]["armor"];
 
-    for(let i = 0; i < armor.length; i++) {
-        if (armor[i]["armorName"] !== "Щит"){
-            document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i]["armorName"]);
-            document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
-        }
+function writeBackgroundEquipmentLabels(data) {
+    backgrEquip = JSON.parse(data)["background"]["equipment"]
+
+    var tableBody = document.getElementById("background_equipment_table_body");
+    var row = "<tr>";
+    for (let i in backgrEquip) {
+        row += "<td>" + backgrEquip[i].name + "</td>";
+        row += "<td>" + backgrEquip[i].count + "</td>";
+        row += "</tr>";
     }
+    tableBody.innerHTML = row;
 }
 
 function writeWeaponLabels(data) {
-    document.getElementById("lbl_weapon_list").innerHTML = ""
+    weaponData = JSON.parse(data)["class"]["weapon_info"];
 
-    let weapon = JSON.parse(data)["class"]["weapon"];
-    for(let i = 0; i < weapon.length; i++) {
-        if (JSON.stringify(weapon[i]["count"]) > 1){
-            document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"])
-                + " (" + JSON.stringify(weapon[i]["count"]) + "), "
-                + JSON.stringify(weapon[i]["damage"]) +", "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
-        }else{
-            document.getElementById("lbl_weapon_list").innerHTML += "[ "+JSON.stringify(weapon[i]["weaponName"]) + ", "
-                + JSON.stringify(weapon[i]["damage"]) +", "+ JSON.stringify(weapon[i]["property"]) + " ]<br>";
-        }
+    var tableBody = document.getElementById("weapon_table_body");
+    var row = "<tr>";
+    for (let i in weaponData) {
+        row += "<td>" + weaponData[i].weaponName + "</td>";
+        row += "<td>" + weaponData[i].weaponType + "</td>";
+        row += "<td>" + weaponData[i].damage + "</td>";
+        row += "<td>" + weaponData[i].property + "</td>";
+        row += "</tr>";
     }
+    tableBody.innerHTML = row;
 }
 
-function writeRacePhotoLabels(data) {
-    document.getElementById("img_Character_Preview").src = "";
+function writeBackgroundLabels(data) {
+    let backgr = JSON.parse(data)["background"]
 
-    //console.log("imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] + JSON.parse(data)["race"]["race_photo"]["file_name"] )
-
-    document.getElementById("img_Character_Preview").src = "imgs/"+ JSON.parse(data)["race"]["race_photo"]["path"] +
-        JSON.parse(data)["race"]["race_photo"]["file_name"] ;
-    document.getElementById("img_Character_Preview").alt = "Арт является примерным видом персонажа."
+    document.getElementById("lbl_background_description").innerHTML = backgr["description"];
+    document.getElementById("lbl_advice").innerHTML = backgr["personalization"]["advice"];
+    document.getElementById("lbl_personalization").innerHTML = backgr["personalization"]["personalization_description"];
+    document.getElementById("lbl_characterTrait").innerHTML = backgr["personalization"]["character_trait"];
+    document.getElementById("lbl_ideal").innerHTML = backgr["personalization"]["ideal"];
+    document.getElementById("lbl_affection").innerHTML = backgr["personalization"]["affection"];
+    document.getElementById("lbl_weakness").innerHTML = backgr["personalization"]["weakness"];
 }
+
+function writeAppearanceLabels(data) {
+    let race = JSON.parse(data)["race"];
+
+    document.getElementById("lbl_raceName").innerHTML = race["race_name_ru"];
+    document.getElementById("lbl_charFirstName").innerHTML =  race["first_name"];
+    document.getElementById("lbl_charLastName").innerHTML =  race["last_name"];
+    document.getElementById("lbl_gender").innerHTML =  race["gender"];
+
+    document.getElementById("lbl_age").innerHTML =  race["body"]["age"];
+    document.getElementById("lbl_bodySize").innerHTML =  race["body"]["body_size"];
+    document.getElementById("lbl_eyesColor").innerHTML =  race["body"]["eyes"];
+    document.getElementById("lbl_hairColor").innerHTML =  race["body"]["hair"];
+
+    document.getElementById("lbl_height").innerHTML =  race["body"]["height"];
+    document.getElementById("lbl_weight").innerHTML =  race["body"]["weight"];
+    document.getElementById("lbl_height_ft").innerHTML =  ["body"]["height_ft"];
+    document.getElementById("lbl_weight_lb").innerHTML =  race["body"]["weight_lb"];
+}
+
+function writeSpellCastingLabels(data) {
+    let spell_using = JSON.parse(data)["class"]["spell_casting"];
+
+    document.getElementById("lbl_basic_spell_characteristics").innerHTML =spell_using["basic_spell_characteristics"]
+    document.getElementById("lbl_saving_throw_difficulty").innerHTML = spell_using["saving_throw_difficulty"]
+    document.getElementById("lbl_spell_damage_modifier").innerHTML = spell_using["spell_damage_modifier"]
+}
+
 
 function writeSpellsLabels(data) {
-    var labels = ["lbl_spells_zero_lvl","lbl_spells_one_lvl","lbl_spells_two_lvl","lbl_spells_tree_lvl", "lbl_spells_four_lvl"]
+    let spells_list = JSON.parse(data)["spells"];
+    let spellLevels = [0, 1, 2, 3, 4];
+    let spellLevelTables = {
+        0: "zero_lvl_spell_table_body",
+        1: "one_lvl_spell_table_body",
+        2: "two_lvl_spell_table_body",
+        3: "three_lvl_spell_table_body",
+        4: "four_lvl_spell_table_body"
+    };
 
-    for (const labelsKey of labels) {
-        document.getElementById(labelsKey).innerHTML = ""
-    }
+    for (let level of spellLevels) {
+        let spellsOfLevel = spells_list.filter(spell => spell.spellLevel === level);
+        let tableBody = document.getElementById(spellLevelTables[level]);
 
-    let spells_0_lvl = JSON.parse(data)["spells"]["zero_level_spells"];
-    let spells_1_lvl = JSON.parse(data)["spells"]["one_level_spells"];
-    let spells_2_lvl = JSON.parse(data)["spells"]["two_level_spells"];
-    let spells_3_lvl = JSON.parse(data)["spells"]["tree_level_spells"];
-    let spells_4_lvl = JSON.parse(data)["spells"]["four_level_spells"];
-
-    for (const labelsKey of labels) {
-        switch (labelsKey) {
-            case "lbl_spells_zero_lvl":
-                spell_array = spells_0_lvl
-                break;
-            case "lbl_spells_one_lvl":
-                spell_array = spells_1_lvl
-                break;
-            case "lbl_spells_two_lvl":
-                spell_array = spells_2_lvl
-                break;
-            case "lbl_spells_tree_lvl":
-                spell_array = spells_3_lvl
-                break;
-            case "lbl_spells_four_lvl":
-                spell_array = spells_4_lvl
-                break;
-        }
-        if (spell_array === null){
-            document.getElementById(labelsKey).innerHTML = "Не владеет заговорами"
-        }else {
-            for(let i = 0; i < spell_array.length; i++) {
-                document.getElementById(labelsKey).innerHTML += "* " + spell_array[i] + "</br>"
+        if (spellsOfLevel.length === 0) {
+            tableBody.innerHTML = "<tr><td>Нет заклинаний данного уровня</td></tr>";
+        } else {
+            for (let spell of spellsOfLevel) {
+                let row = "<tr>";
+                row += "<td><a href="+spell.url+">" + spell.spellNameRu + " [" + spell.spellNameEng + "]"+ "</a></td>";
+                row += "</tr>";
+                tableBody.innerHTML += row;
             }
         }
     }
-
-}
-
-function writeSpellcastingLabels(data) {
-    let spell_using = JSON.parse(data)["class"]["spell_using"];
-
-    if (spell_using["spell_damage_modifier"] === 0 ){
-        document.getElementById("div_caster_info").style.display = "none"
-    }else {
-        document.getElementById("div_caster_info").style.display = "block"
-        document.getElementById("lbl_basic_spell_characteristics").innerHTML =spell_using["basic_spell_characteristics"]
-        document.getElementById("lbl_spell_damage_modifier").innerHTML = spell_using["spell_damage_modifier"]
-        document.getElementById("lbl_saving_throw_difficulty").innerHTML = spell_using["saving_throw_difficulty"]
-    }
-
 }
 
 function exportToLSS() {

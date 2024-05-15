@@ -48,11 +48,16 @@ type RaceType struct {
 	TypeRaceName     string              `json:"type_race_name"`
 	TypeRaceNameRu   string              `json:"type_race_name_ru"`
 	AbilityScorePlus map[string]int      `json:"stats_up"`
-	RaceAbilities    map[string]string   `json:"raceAbilities"`
+	RaceAbilities    map[string]string   `json:"race_abilities"`
 	Speed            int                 `json:"speed"`
 	RaceSpellsList   []spells.SpellsJSON `json:"race_spells_list"`
 	Book             string              `json:"book"`
 	Standard         bool                `json:"standard"`
+}
+
+type RaceAbilities struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
 }
 
 type RacePersonalization struct {

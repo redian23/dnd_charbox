@@ -7,7 +7,6 @@ import (
 )
 
 var sk Skills
-var PassiveWisdom int
 
 type Skills struct {
 	Acrobatics     Skill `json:"acrobatics"`
@@ -39,6 +38,12 @@ type Skill struct {
 	ProfLSS           int    `json:"prof_lss"`
 }
 
+type Passive struct {
+	PassiveWisdomInsight          int `json:"passive_wisdom_insight"`
+	PassiveWisdomPerception       int `json:"passive_wisdom_perception"`
+	PassiveIntellectInvestigation int `json:"passive_intellect_investigation"`
+}
+
 func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Background, classInfo *classes.Class, lvl int) *Skills {
 	sk = Skills{}
 	var skillsArray []string
@@ -65,7 +70,6 @@ func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Backgrou
 			}
 		}
 	}
-	PassiveWisdom = setPassiveWisdom()
 
 	//if FighterArchetypeName == "Самурай" {
 	//	switch {
@@ -95,6 +99,14 @@ func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Backgrou
 	sk = setDoubleSkillProficiency(doubleSkillProf, sk)
 
 	return &sk
+}
+
+func GetPassive() *Passive {
+	return &Passive{
+		10 + sk.Insight.ModifierValue,
+		10 + sk.Perception.ModifierValue,
+		10 + sk.Investigation.ModifierValue,
+	}
 }
 
 func setSkillsNames() {
@@ -318,9 +330,4 @@ func setDoubleSkillProficiency(dblMap []string, sk Skills) Skills {
 		}
 	}
 	return sk
-}
-
-func setPassiveWisdom() int {
-	var passWisdom = 10 + sk.Perception.ModifierValue
-	return passWisdom
 }

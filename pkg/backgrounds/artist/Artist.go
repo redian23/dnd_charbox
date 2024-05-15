@@ -2,8 +2,10 @@ package artist
 
 import (
 	"github.com/mazen160/go-random"
+	"math/rand"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/general"
+	"time"
 )
 
 var description = "Вам нравится выступать на публике. Вы знаете, как их развлечь, очаровать и даже воодушевить. " +
@@ -51,12 +53,12 @@ func getBackgroundItems() []backgrounds.Item {
 			Count:    1,
 		},
 		{
-			Name:     "Подарок от поклонницы\\поклонника: " + fanPresent[randomPresent],
+			Name:     "Подарок: " + fanPresent[randomPresent],
 			ItemType: "Tools",
 			Count:    1,
 		},
 		{
-			Name:     "поясной кошель с 15 зм",
+			Name:     "Поясной кошель с 15 зм",
 			ItemType: "Tools",
 			Count:    1,
 		},
@@ -64,31 +66,35 @@ func getBackgroundItems() []backgrounds.Item {
 }
 
 func getBackgroundSpecificType() string {
+	source := rand.NewSource(time.Now().UnixNano())
+	numbers := rand.New(source).Perm(10)
+
 	var artistsTypes = map[int]string{
-		1:  "Акробат",
-		2:  "Актер",
-		3:  "Жонглер",
-		4:  "Музыкант",
-		5:  "Певец",
-		6:  "Пожиратель огня",
-		7:  "Поэт",
-		8:  "Рассказчик",
-		9:  "Танцор",
-		10: "Шут",
+		0: "Акробат",
+		1: "Танцор",
+		2: "Актер",
+		3: "Жонглер",
+		4: "Музыкант",
+		5: "Певец",
+		6: "Пожиратель огня",
+		7: "Поэт",
+		8: "Рассказчик",
+		9: "Шут",
 	}
 
 	var artistTricks string
 
-	var iter int
-	tricksCount, _ := random.IntRange(1, 3)
-	for _, truck := range artistsTypes {
-		artistTricks += truck + ", "
-		iter++
-		if iter == tricksCount {
-			break
-		}
-	}
+	tricksCount := rand.New(source).Intn(3) + 1
+	randomNumbersArray := numbers[0:tricksCount]
 
+	for i, num := range randomNumbersArray {
+		if i == len(randomNumbersArray)-1 {
+			artistTricks += artistsTypes[num]
+		} else {
+			artistTricks += artistsTypes[num] + ", "
+		}
+
+	}
 	return artistTricks
 }
 
@@ -153,7 +159,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 		},
 		{
 			Worldview:   "Any",
-			WorldviewRu: "Любой",
+			WorldviewRu: "Любое",
 			Text:        "Честность. Искусство должно отражать душу; оно должно идти изнутри и показывать, чем мы являемся.",
 		},
 	}
@@ -184,7 +190,7 @@ func getBackgroundPersonality() backgrounds.Personalization {
 			"Они могут быть романтичными, и в искусстве и красоте часто обращаются к возвышенным идеалам.",
 		Advice:         "",
 		CharacterTrait: characterTrait[randomTrait],
-		Ideal:          ideals[randomIdeal],
+		Ideal:          ideals[randomIdeal].Text,
 		Affection:      affections[randomAffection],
 		Weakness:       weakness[randomWeakness],
 		Worldview:      ideals[randomIdeal].WorldviewRu,

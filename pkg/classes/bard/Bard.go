@@ -467,7 +467,48 @@ func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *background
 	return abilitiesAnswer
 }
 
+func GetArmorInfo(equip []classes.Item) classes.Armor {
+	var armorData = classes.GetArmorFormDB()
+	var armorName string
+
+	for _, item := range equip {
+		if item.ItemType == "Armor" {
+			armorName = item.Name
+		}
+	}
+
+	for _, armor := range armorData {
+		if armor.Name == armorName {
+			return armor
+		}
+	}
+	return classes.Armor{}
+}
+
+func GetWeaponInfo(equip []classes.Item) []classes.Weapon {
+	var weaponData = classes.GetWeaponFormDB()
+	var weaponNameList []string
+	var weaponAnswer []classes.Weapon
+
+	for _, item := range equip {
+		if item.ItemType == "Weapon" {
+			weaponNameList = append(weaponNameList, item.Name)
+		}
+	}
+
+	for _, weaponInfo := range weaponData {
+		for _, equipWeaponName := range weaponNameList {
+			if weaponInfo.Name == equipWeaponName {
+				weaponAnswer = append(weaponAnswer, weaponInfo)
+			}
+		}
+	}
+	return weaponAnswer
+}
+
 func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
+
+	bardSpellList = []spells.SpellsJSON{}
 	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
 	for i := 0; i < 5; i++ {
 		var spellCount int
@@ -485,26 +526,30 @@ func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
 		}
 		bardSpellList = append(bardSpellList,
 			spells.GetRandomSpellForClass("Бард", i, spellCount)...)
+
 	}
 	return bardSpellList
 }
 
 func GetBardClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) *classes.Class {
+	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
 
 	return &classes.Class{
-		ClassName:       "Bard",
-		ClassNameRU:     "Бард",
-		ClassAbilities:  getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl),
-		AbilityScore:    getBardAbilitiesScore(raceInfo, lvl),
-		AbilityModifier: getBardAbilityModifier(raceInfo, lvl),
-		SavingThrows:    getBardSavingThrows(raceInfo, lvl),
-		Inspiration:     false,
-		Proficiencies:   *bardProf, //need to fix
-		Hits:            getBardHits(raceInfo, lvl),
-		Initiative:      "",
-		Caster:          true,
-		SpellCasting:    classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl)),
-		SpellsList:      getBardSpells(raceInfo, lvl),
-		Equipment:       getBardEquipment(),
+		ClassName:        "Bard",
+		ClassNameRU:      "Бард",
+		ClassAbilities:   getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl),
+		AbilityScore:     getBardAbilitiesScore(raceInfo, lvl),
+		AbilityModifier:  getBardAbilityModifier(raceInfo, lvl),
+		SavingThrows:     getBardSavingThrows(raceInfo, lvl),
+		Inspiration:      false,
+		Proficiencies:    *bardProf, //need to fix
+		ProficiencyBonus: classes.ProficiencyBonus,
+		Hits:             getBardHits(raceInfo, lvl),
+		Caster:           true,
+		SpellCasting:     spellCastingInfo,
+		SpellsList:       getBardSpells(raceInfo, lvl),
+		Equipment:        getBardEquipment(),
+		ArmorInfo:        GetArmorInfo(getBardEquipment()),
+		WeaponInfo:       GetWeaponInfo(getBardEquipment()),
 	}
 }

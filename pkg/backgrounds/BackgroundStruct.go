@@ -29,7 +29,7 @@ type Personalization struct {
 	PersonalizationDescription string `json:"personalization_description"`
 	Advice                     string `json:"advice"`
 	CharacterTrait             string `json:"character_trait"`
-	Ideal                      Ideal  `json:"ideal"`
+	Ideal                      string `json:"ideal"`
 	Affection                  string `json:"affection"`
 	Weakness                   string `json:"weakness"`
 	Worldview                  string `json:"worldview"`
