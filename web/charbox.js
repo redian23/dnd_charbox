@@ -481,6 +481,9 @@ function writeSpellsLabels(data) {
         let spellsOfLevel = spells_list.filter(spell => spell.spellLevel === level);
         let tableBody = document.getElementById(spellLevelTables[level]);
 
+        // Очистка таблицы перед добавлением новых строк
+        tableBody.innerHTML = "";
+
         if (spellsOfLevel.length === 0) {
             tableBody.innerHTML = "<tr><td>Нет заклинаний данного уровня</td></tr>";
         } else {
