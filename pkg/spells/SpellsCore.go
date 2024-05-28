@@ -33,7 +33,7 @@ func GetSpellsFormDB() []SpellsJSON {
 
 func FindSpellInDB(spellName string) SpellsJSON {
 	for _, spell := range SpellData {
-		if spell.SpellNameRu == spellName {
+		if spell.SpellNameRu == spellName || spell.SpellName == spellName {
 			return spell
 		}
 	}

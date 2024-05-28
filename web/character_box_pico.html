@@ -141,7 +141,7 @@
     </div>
     <div class="container-fluid-custom" name="grid_generate">
         <div class="grid">
-            <button onclick="getCharacter()">Тыкнуть и опять сгенерировать</button>
+            <button onclick="getCharacter()" id="btn_get_character  ">Тыкнуть и опять сгенерировать</button>
             <label>
                 --------->
             </label>
@@ -164,7 +164,7 @@
                 <label>Класс: <label id="lbl_class_name"></label></label>
             </article>
             <article class="card">
-                <label>Раса: <label id="lbl_race_name"></label></label>
+                <label>Архитип класса: <label id="lbl_archetype_class_name"></label></label>
             </article>
         </div>
         <div class="container">
@@ -173,6 +173,9 @@
             </article>
         </div>
         <div class="container-fluid">
+            <article class="card">
+                <label>Раса: <label id="lbl_race_name"></label></label>
+            </article>
             <article class="card">
                 <label>Предыстория: <label id="lbl_background_name"></label></label>
             </article>
@@ -185,7 +188,7 @@
         </div>
     </div>
 
-    <div class="grid container-fluid-custom" name="Character-Stats-Info">
+    <div class="grid formatted-stats-grid container-fluid-custom" name="Character-Stats-Info">
         <article class="formatted-stats-box">
             Сил.<br>[ <label id="lbl_modifier_strength_info"></label> ]<br>( <label id="lbl_ability_strength_info"></label> )</label>
         </article>
@@ -193,7 +196,7 @@
             Лов.<br>[ <label id="lbl_modifier_dexterity_info"></label> ]<br>( <label id="lbl_ability_dexterity_info"></label> )</label>
         </article>
         <article class="formatted-stats-box">
-            Тел.<br>[ <label id="lbl_modifier_bodyDifficulty_info"></label> ]<br>( <label id="lbl_ability_bodyDifficulty_info"></label>  )</label>
+            Тел.<br>[ <label id="lbl_modifier_body_difficulty_info"></label> ]<br>( <label id="lbl_ability_body_difficulty_info"></label>  )</label>
         </article>
         <article class="formatted-stats-box">
             Инт.<br>[ <label id="lbl_modifier_intelligence_info"></label> ]<br>( <label id="lbl_ability_intelligence_info"></label> )</label>
@@ -205,7 +208,7 @@
             Хар.<br>[ <label id="lbl_modifier_charisma_info"></label> ]<br>( <label id="lbl_ability_charisma_info"></label> )</label>
         </article>
     </div>
-    <div class="grid container-fluid" name="ST and Info">
+    <div class="grid formatted-basic-info-grid container-fluid" name="ST and Info">
         <article name="Save Thouts">
             <p>Спас-броски:</p>
             <p><label class="radio"><input type="radio" id="rd_modifier_ST_strength_info" disabled> [ <label id="lbl_modifier_ST_strength_info"> </label> ] Сила</label></p>
@@ -226,12 +229,12 @@
             <p>Скорость: [ <label id="lbl_speed"></label> ]</p>
         </article>
         <article>
-            <p>Пассивная мудрость (Восприятие): [ <label id="lbl_passive_wisdom_insight"> </label> ]</p>
-            <p>Пассивная мудрость (Проницательность): [ <label id="lbl_passive_wisdom_perception"> </label> ]</p>
-            <p>Пассивный интеллект (Анализ): [ <label id="passive_intellect_investigation"> </label> ]</p>
+            <p>Пасс. мудрость (Восприятие): [ <label id="lbl_passive_wisdom_insight"> </label> ]</p>
+            <p>Пасс. мудрость (Проницательность): [ <label id="lbl_passive_wisdom_perception"> </label> ]</p>
+            <p>Пасс. интеллект (Анализ): [ <label id="passive_intellect_investigation"> </label> ]</p>
         </article>
     </div>
-    <div class="grid container-fluid" name="Skills boxes">
+    <div class="grid formatted-skills-grid container-fluid" name="Skills boxes">
         <article name="Skills">
             <p>Навыки:</p>
             <p>
@@ -286,7 +289,7 @@
                 <label class="radio"><input type="radio" id="rd_Deception" disabled> [ <label id="lbl_Deception"> </label> ] Обман (Хар)</label>
             </p>
         </article>
-        <article name="Skills">
+        <article class="skills-article" name="Skills">
             <p>Навыки:</p>
             <p>
                 <label class="radio"><input type="radio" id="rd_Nature_dbl_prof" disabled></label>
@@ -313,6 +316,12 @@
                 <label class="radio"><input type="radio" id="rd_Animal_Handling" disabled> [ <label id="lbl_Animal_Handling"> </label> ] Уход за животными (Муд)</label>
             </p>
         </article>
+        <article>
+            <p><em>Отладочная информация о навыках:</em></p>
+            <p>Навыки от расы: [ <label id="lbl_race_skills"></label> ]</p>
+            <p>Навыки от предыстории: [ <label id="lbl_background_skills"></label> ]</p>
+            <p>Навыки от класса: [ <label id="lbl_class_skills"></label> ]</p>
+        </article>
     </div>
     <div class="grid container-fluid" name="Mastery of">
         <article>
@@ -337,11 +346,10 @@
     </details>
     <div class="grid container-fluid" name="Equipment">
         <article>
-            <p>Снаряжение от класса:</p>
             <table class="table striped">
                 <thead>
                 <tr>
-                    <th>Название вещи</th>
+                    <th>Название вещи от класса:</th>
                     <th>Количество</th>
                 </tr>
                 </thead>
@@ -351,11 +359,10 @@
             </table>
         </article>
         <article>
-            <p>Снаряжение от предыстории:</p>
             <table class="table striped">
                 <thead>
                 <tr>
-                    <th>Название вещи</th>
+                    <th>Название вещи от предыстории:</th>
                     <th>Количество</th>
                 </tr>
                 </thead>
@@ -367,7 +374,7 @@
     </div>
     <div class="grid container-fluid" name="Equipment">
         <article>
-            <div class="container">
+            <div class="container overflow-auto">
                 <table class="table striped">
                     <thead>
                     <tr>
@@ -474,8 +481,6 @@
                     </tbody>
                 </table>
             </article>
-        </div>
-        <div>
             <article>
                 <table class="table striped">
                     <thead>
@@ -488,6 +493,8 @@
                     </tbody>
                 </table>
             </article>
+            </div>
+        <div>
             <article>
                 <table class="table striped">
                     <thead>
@@ -500,8 +507,6 @@
                     </tbody>
                 </table>
             </article>
-            </div>
-        <div>
             <article>
                 <table class="table striped">
                     <thead>

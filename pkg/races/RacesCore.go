@@ -3,6 +3,8 @@ package races
 import (
 	"fmt"
 	"github.com/mazen160/go-random"
+	"math/rand"
+	"time"
 )
 
 func GetRaceFirstName(gender string, raceNames map[string][]string) string {
@@ -36,4 +38,30 @@ func GetBodyStats(stats BodyStats) *BodyAnswer {
 		Eyes:     eyesColor,
 		Hair:     hairColor,
 	}
+}
+
+func GenerateRandomAbilityScoreMap(numAttributes int) map[string]int {
+	var attributes = []string{
+		"Strength",
+		"Dexterity",
+		"BodyDifficulty",
+		"Intelligence",
+		"Wisdom",
+		"Charisma",
+	}
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(attributes), func(i, j int) {
+		attributes[i], attributes[j] = attributes[j], attributes[i]
+	})
+
+	abilityScoreMap := make(map[string]int)
+	for i := 0; i < numAttributes; i++ {
+		if numAttributes == 3 {
+			abilityScoreMap[attributes[i]] = 1
+		} else {
+			abilityScoreMap[attributes[i]] = i + 1
+		}
+	}
+
+	return abilityScoreMap
 }

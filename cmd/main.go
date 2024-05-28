@@ -17,7 +17,6 @@ func main() {
 		v1.GET("/get-character", func(c *gin.Context) {
 			api.GetCurrentCharacter(c)
 		})
-
 	}
 	//site pages
 	router.SetFuncMap(template.FuncMap{

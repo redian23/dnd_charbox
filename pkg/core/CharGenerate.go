@@ -12,11 +12,14 @@ import (
 	"pregen/pkg/backgrounds/sailor"
 	"pregen/pkg/backgrounds/urchin"
 	"pregen/pkg/classes"
+	"pregen/pkg/classes/barbarian"
 	"pregen/pkg/classes/bard"
-	"pregen/pkg/classes/fighter"
 	"pregen/pkg/races"
+	kenku "pregen/pkg/races/Kenku"
+	owlin "pregen/pkg/races/Owlin"
 	"pregen/pkg/races/aasimar"
 	"pregen/pkg/races/bugbeat"
+	"pregen/pkg/races/dragonborn"
 	"pregen/pkg/races/gnome"
 	"pregen/pkg/races/goblin"
 	"pregen/pkg/races/goliath"
@@ -25,16 +28,17 @@ import (
 
 func GetFullCharacter() Character {
 	// Будущие аргументы функции GetFullCharacter
-	var level = 3
-	var raceName = "Аасимар"
-	var raceTypeName = "Аасимар–падший"
+	var level = 8
+	var raceName = "Совлин"
+	var raceTypeName = "Стандартный"
 	var gender = "Мужской"
-	var backgroundName = "Артист"
-	var className = "Бард"
+	var backgroundName = "Пират"
+	var className = "Варвар"
+	var classArchetypeName = "Путь тотемного воина"
 
 	var raceInfo = getRace(raceName, raceTypeName, gender)
 	var backgroundInfo = getBackground(backgroundName)
-	var classInfo = getClass(className, raceInfo, backgroundInfo, level)
+	var classInfo = getClass(className, classArchetypeName, raceInfo, backgroundInfo, level)
 
 	var characterBody = Character{
 		Level:         level,
@@ -64,7 +68,13 @@ func getRace(raceName, raceTypeName, gender string) *races.Race {
 	case "Гоблин":
 		return goblin.GetRace(raceTypeName, gender)
 	case "Голиаф":
-		return goliath.GetRace(raceTypeName, gender)
+		return goliath.GetRace(gender)
+	case "Кенку":
+		return kenku.GetRace(gender)
+	case "Совлин":
+		return owlin.GetRace(gender)
+	case "Драконорожденный":
+		return dragonborn.GetRace(raceTypeName, gender)
 	}
 	return nil
 }
@@ -91,7 +101,7 @@ func getBackground(backgroundName string) *backgrounds.Background {
 	return nil
 }
 
-func getClass(className string, raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) *classes.Class {
+func getClass(className, classArchetypeName string, raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) *classes.Class {
 	if raceInfo == nil {
 		log.Fatalln("[ERROR] - Race Info is Null / or / RaceName have a mistake.")
 	}
@@ -101,9 +111,11 @@ func getClass(className string, raceInfo *races.Race, backgrInfo *backgrounds.Ba
 
 	switch className {
 	case "Бард":
-		return bard.GetBardClass(raceInfo, backgrInfo, lvl)
-	case "Воин":
-		return fighter.GetClass(raceInfo, backgrInfo, lvl)
+		return bard.GetClass(raceInfo, backgrInfo, lvl, classArchetypeName)
+	//case "Воин":
+	//	return fighter.GetClass(raceInfo, backgrInfo, lvl, classArchetypeName)
+	case "Варвар":
+		return barbarian.GetClass(raceInfo, backgrInfo, lvl, classArchetypeName)
 	}
 	return nil
 }

@@ -20,9 +20,38 @@ var (
 	}
 )
 
-func getBardHits(raceInfo *races.Race, lvl int) classes.Hits {
+func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) *classes.Class {
+
+	var statsPriority = []string{"Charisma", "Dexterity"}
+	var abilitiesScore = general.GetClassAbilitiesScore(statsPriority, raceInfo, lvl)
+	var modifier = classes.GetModifiersForClass(abilitiesScore)
+	var savingThrows = classes.GetSaveThrowsForClass(modifier, statsPriority)
+	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, modifier)
+	var equip = getBardEquipment()
+
+	return &classes.Class{
+		ClassName:          "Bard",
+		ClassNameRU:        "Бард",
+		ClassArchetypeName: classArchetypeName,
+		ClassAbilities:     getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl, classArchetypeName),
+		AbilityScore:       abilitiesScore,
+		AbilityModifier:    modifier,
+		SavingThrows:       savingThrows,
+		Inspiration:        false,
+		Proficiencies:      *bardProf, //need to fix
+		ProficiencyBonus:   classes.ProficiencyBonus,
+		Hits:               getBardHits(modifier, lvl),
+		Caster:             true,
+		SpellCasting:       spellCastingInfo,
+		SpellsList:         getBardSpells(modifier, lvl),
+		Equipment:          equip,
+		ArmorInfo:          GetArmorInfo(equip),
+		WeaponInfo:         GetWeaponInfo(equip),
+	}
+}
+
+func getBardHits(modifier classes.AbilityModifier, lvl int) classes.Hits {
 	var hitCount int
-	var modifier = getBardAbilityModifier(raceInfo, lvl)
 
 	for i := 1; i < lvl; i++ {
 		if i == 1 {
@@ -48,6 +77,7 @@ func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgrou
 			break
 		}
 	}
+
 	skillCount = 2
 	var availableSkillList = []string{"Acrobatics", "Animal Handling", "Arcana", "Athletics",
 		"Deception", "History", "Insight", "Intimidation", "Investigation",
@@ -58,7 +88,8 @@ func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgrou
 		raceInfo.RaceSkill,
 		backgrInfo.BackgroundSkills,
 		availableSkillList,
-		skillCount)
+		skillCount,
+	)
 
 	return &classes.Proficiencies{
 		Weapons:       []string{"Лёгкие доспехи"},
@@ -147,21 +178,7 @@ func getBardEquipment() []classes.Item {
 	return equipment
 }
 
-func getBardAbilitiesScore(raceInfo *races.Race, lvl int) classes.AbilityScore {
-	var classAbilityPriority = []string{"Charisma", "Dexterity"}
-	var abilitiesScore = general.GetClassAbilitiesScore(classAbilityPriority, raceInfo, lvl)
-	return abilitiesScore
-}
-
-func getBardAbilityModifier(raceInfo *races.Race, lvl int) classes.AbilityModifier {
-	return classes.GetModifiersForClass(getBardAbilitiesScore(raceInfo, lvl))
-}
-
-func getBardSavingThrows(raceInfo *races.Race, lvl int) *classes.SavingThrows {
-	return classes.GetSaveThrowsForClass(getBardAbilityModifier(raceInfo, lvl), []string{"Dexterity", "Charisma"})
-}
-
-func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) []classes.ClassAbility {
+func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) []classes.ClassAbility {
 	bardProf = getBardProficiencies(raceInfo, backgrInfo)
 	var bardClassAbilities = []classes.ClassAbility{
 		{
@@ -226,20 +243,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 		},
 	}
 	if lvl >= 3 {
-		var collegiumsList = []string{
-			"Коллегия доблести",
-			"Коллегия знаний",
-			"Коллегия мечей",
-			"Коллегия очарования",
-			//"Коллегия шёпотов",
-			//"Коллегия красноречия",
-			//"Коллегия созидания",
-			//"Коллегия духов",
-		}
-		randNum, _ := random.IntRange(0, len(collegiumsList))
-		collegiumName := collegiumsList[randNum]
-
-		switch collegiumName {
+		switch classArchetypeName {
 		case "Коллегия доблести":
 			bardProf = getBardProficiencies(raceInfo, backgrInfo) //новый екзмпляр
 			bardProf.Armor = append(bardProf.Armor,
@@ -277,7 +281,7 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 			}
 
 			classArray := []string{"Изобретатель", "Жрец", "Друид", "Паладин", "Следопыт", "Чародей", "Колдун", "Волшебник"}
-			randNum, _ = random.IntRange(0, len(classArray))
+			randNum, _ := random.IntRange(0, len(classArray))
 
 			tempSpellList := spells.GetAllSpellForClass(classArray[randNum], maxSpellLevel)
 
@@ -312,7 +316,6 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 						"но они не учитываются в общем количестве известных вам заклинаний барда.",
 				},
 			}...)
-
 		case "Коллегия мечей":
 			battleStyle := []string{"<strong>Дуэлянт.</strong> Пока вы держите рукопашное оружие в одной руке и не используете другого оружия, вы получаете бонус +2 к броскам урона этим оружием.",
 				"<strong>Сражение двумя оружиями.</strong> Если вы сражаетесь двумя оружиями, вы можете добавить модификатор характеристики к урону от второй атаки."}
@@ -376,87 +379,161 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 					Description: "Вы получаете возможность укутаться в чары фей, заставляющие других хотеть служить вам.\n\nБонусным действием вы можете сотворить заклинание <strong>приказ [command]</strong> без траты ячейки заклинания и принимаете облик неземной красоты на 1 минуту или до тех пор, пока не завершится ваша концентрация (как если бы вы концентрировались на заклинании). В течение этого времени вы можете накладывать заклинание <strong>приказ [command]</strong> бонусным действием в каждый свой ход, не тратя ячейку заклинания.\n\nЛюбое существо, очарованное вами, автоматически проваливает спасбросок против заклинания <strong>приказ [command]</strong>, которое вы накладываете с помощью этого умения.\nИспользовав это умение, вы не можете использовать его повторно до окончания продолжительного отдыха.",
 				},
 			}
-			//case "Коллегия шёпотов":
-			//	bardClassAbilities = []classes.ClassAbility{
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//	}
-			//case "Коллегия красноречия":
-			//	bardClassAbilities = []classes.ClassAbility{
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//	}
-			//case "Коллегия созидания":
-			//	bardClassAbilities = []classes.ClassAbility{
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//	}
-			//case "Коллегия духов":
-			//	bardClassAbilities = []classes.ClassAbility{
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//		{
-			//			Level:       3,
-			//			Name:        "",
-			//			Description: "",
-			//		},
-			//	}
+		case "Коллегия шёпотов":
+			bardClassAbilities = []classes.ClassAbility{
+				{
+					Level: 3,
+					Name:  "Психические клинки",
+					Description: "При вступлении в коллегию шёпотов вы получаете возможность сделать свою атаку оружием магически токсичной для разума существа. " +
+						"Когда вы попадаете по существу атакой оружием, вы можете потратить одно «Вдохновение барда» и нанести цели дополнительные 2к6 урона психической энергией. " +
+						"Вы можете использовать это умение один раз за раунд в свой ход.<br>" +
+						"Урон психической энергией увеличивается, когда вы получаете определенный уровень в этом классе, " +
+						"увеличиваясь до 3к6 на 5-м уровне, 5к6 на 10-м уровне.",
+				},
+				{
+					Level: 3,
+					Name:  "Слова ужаса",
+					Description: "Вы учитесь наполнять кажущиеся безобидными слова коварной магией, которая вызывает ужас. " +
+						"Если вы разговариваете с Гуманоидом наедине, в течение по крайней мере 1 минуты, то можете попытаться посеять семя паранойи в его разуме.<br>" +
+						"В конце беседы цель должна преуспеть в спасброске Мудрости против вашей Сл спасброска от ваших заклинаний, " +
+						"иначе будет напугана вами или другим существом по вашему выбору. Цель напугана на 1 час таким образом, " +
+						"пока не будет атакована или не получит урон, или пока она не заметит, что её союзники атакованы или получили урон. " +
+						"Если цель преуспевает в спасброске, то она не замечает никаких признаков того, что вы пытались ее испугать.<br>" +
+						"Использовав это умение, вы не можете использовать его повторно до окончания короткого или продолжительного отдыха.",
+				},
+				{
+					Level: 6,
+					Name:  "Мантия шёпотов",
+					Description: "Вы получаете возможность принимать личность Гуманоида. " +
+						"Когда Гуманоид умирает в пределах 30 футов от вас, вы можете реакцией магическим образом поймать его тень. " +
+						"Вы удерживаете эту тень, пока не используете её, или до окончания короткого или продолжительного отдыха.<br>" +
+						"Действием вы можете использовать тень. " +
+						"Когда вы это делаете, она исчезает, магически превращаясь в маскировку, которая появляется на вас. " +
+						"Теперь вы выглядите как этот мёртвый Гуманоид, но кажетесь живым и здоровым. " +
+						"Маскировка длится 1 час или пока вы не закончите её бонусным действием. " +
+						"Находясь под этой маскировкой, вы получаете доступ ко всей информации, " +
+						"которой это существо могло бы свободно поделиться со случайным знакомым. " +
+						"Эта информация включает в себя общие данные о его биографии и личной жизни, но не его секреты. " +
+						"Этой информации достаточно для того, чтобы вы смогли выдать себя за эту личность, используя его воспоминания. " +
+						"Другие существа могут обнаружить вашу истинную сущность, в состязании их Мудрости (Проницательность) " +
+						"против вашей Харизмы (Обман), при этом вы получаете бонус +5 к своей проверке.<br>" +
+						"Когда вы ловите тень этим умением, вы не можете поймать другую тень, до окончания короткого или продолжительного отдыха.",
+				},
+			}
+		case "Коллегия красноречия":
+			bardClassAbilities = []classes.ClassAbility{
+				{
+					Level: 3,
+					Name:  "Златоуст",
+					Description: "Вы мастер говорить нужные вещи в нужное время. " +
+						"Когда вы совершаете проверку харизмы (убеждение или обман), вы можете при выпадении на к20 результата «1–9» считать, что выпало «10».",
+				},
+				{
+					Level: 3,
+					Name:  "Тревожащие слова",
+					Description: "Вместе с магией вы можете сплетать слова, которые выбивают существо из колеи и заставляют его сомневаться в себе. " +
+						"Бонусным действием вы можете потратить одно использование «вдохновения барда» и выбрать существо, которое вы можете видеть в пределах 60 футов от вас. " +
+						"Совершите бросок кости бардовского вдохновения. " +
+						"Существо должно вычесть выпавший результат из следующего спасброска, который оно совершит до начала вашего следующего хода.",
+				},
+				{
+					Level: 6,
+					Name:  "Неисчерпаемое вдохновение",
+					Description: "Ваши вдохновляющие слова настолько убедительны, что другие чувствуют стремление к успеху. " +
+						"Когда существо добавляет вашу кость бардовского вдохновения к проверке характеристики, " +
+						"броску атаки или спасброску, но бросок оказывается провален, то существо не теряет кость бардовского вдохновения.",
+				},
+				{
+					Level: 6,
+					Name:  "Неисчерпаемое вдохновение",
+					Description: "Вы приобретаете способность сделать свою речь понятной любому существу. " +
+						"Действием выберите одно или несколько существ в радиусе 60 футов от вас, количество которых не превышает ваш модификатор харизмы (минимум одно существо). " +
+						"Выбранные существа могут в течение 1 часа магическим образом понимать вас независимо от языка, на котором вы говорите." +
+						"Как только вы воспользуетесь этим умением, вы не можете использовать его снова, " +
+						"пока не закончите продолжительный отдых или не израсходуете ячейку заклинания любого уровня, чтобы использовать его снова.",
+				},
+			}
+		case "Коллегия созидания":
+			bardClassAbilities = []classes.ClassAbility{
+				{
+					Level:       3,
+					Name:        "Частица потенциала",
+					Description: "",
+				},
+				{
+					Level: 3,
+					Name:  "Созидательное выступление",
+					Description: "Действием вы можете направить магию Песни Созидания для создания одного немагического предмета по вашему выбору в свободном пространстве в пределах 10 футов от вас. " +
+						"Предмет должен находиться на поверхности или в жидкости, которая может поддерживать его на плаву. Стоимость предмета в зм не может быть более чем в 20 раз больше вашего уровня барда, а размер должен быть Средним или меньше. " +
+						"Предмет слегка мерцает, а коснувшись его, можно услышать слабую музыку. Созданный предмет исчезает через количество часов, равное вашему бонусу мастерства. " +
+						"Примеры предметов, которые вы можете создать, смотрите в главе «Снаряжение» «Книги игрока».<br>" +
+						"После того, как вы создадите предмет этим умением, вы не сможете сделать это снова, пока не закончите продолжительный отдых или не израсходуете ячейку заклинания 2-го уровня или выше, чтобы применить это умение снова. " +
+						"У вас может быть только один предмет, созданный этим умением, одновременно: если вы используете это действие снова, то предыдущий предмет немедленно исчезает. " +
+						"Максимально возможный размер предмета, который вы можете создать с помощью этого умения, увеличивается на одну категорию, когда вы достигаете 6-го уровня (Большой) и 14-го уровня (Огромный).",
+				},
+				{
+					Level: 6,
+					Name:  "Оживляющее выступление",
+					Description: "Действием вы можете нацелиться на немагический предмет не больше Большого размера, который вы можете видеть в пределах 30 футов от вас, который никто не держит и не несёт, и оживить его. " +
+						"Пробуждённый предмет использует блок статистики танцующий предмет [dancing Item], зависящий от вашего бонуса мастерства (БМ). Этот предмет дружелюбен к вам и вашим спутникам и подчиняется вашим командам. " +
+						"Он оживает либо на 1 час, либо до тех пор, пока его хиты не упадут до 0, либо пока вы не умрете.<br>" +
+						"В бою предмет получает вашу инициативу и ходит сразу же после вас. Он может перемещаться и использовать свою реакцию самостоятельно, но единственное действие, " +
+						"которое он может совершать в свой ход — это Уклонение, если только вы не используете своё бонусное действие, чтобы приказать ему сделать что-то другое. " +
+						"Это действие может быть одним из действий из его блока статистики или любым другим действием. Если вы недееспособны, то предмет может использовать любое действие по своему выбору, а не только Уклонение.<br>" +
+						"Когда вы используете умение «Вдохновение барда», частью того же бонусного действия вы можете отдавать приказы этому оживленному предмету.<br>" +
+						"После того, как вы оживляете предмет с помощью этого умения, вы не можете сделать это снова, пока не закончите продолжительный отдых или не израсходуете ячейку заклинания 3-го уровня или выше, " +
+						"чтобы снова воспользоваться этим умением. Вы можете одновременно иметь только один предмет, пробуждённый этим умением. Если вы используете это действие и уже имеете танцующий предмет от этого умения, то первый из них мгновенно становится неодушевленным.",
+				},
+			}
+		case "Коллегия духов":
+			bardClassAbilities = []classes.ClassAbility{
+				{
+					Level:       3,
+					Name:        "Направляющий шёпот",
+					Description: "Вы можете обратиться к духам, чтобы они направили вас и других. Вы изучаете заговор указание [guidance], который не учитывается при подсчёте известных вам заговоров барда. Для вас он имеет дистанцию 60 футов.",
+				},
+				{
+					Level: 3,
+					Name:  "Спиритическая фокусировка",
+					Description: "Вы используете инструменты, которые помогают вам обращаться к духам, будь то исторические личности или вымышленные архетипы. " +
+						"Вы можете использовать следующие предметы в качестве фокусировки для заклинаний барда: свечу, хрустальный шар, череп, спиритическую доску или колоду Тарокка.<br>" +
+						"Начиная с 6-го уровня, когда вы с помощью спиритической фокусировки накладываете заклинание барда, " +
+						"которое наносит урон или восстанавливает хиты, бросьте к6, и вы получите бонус к одному броску урона или исцеления этого заклинания, равный выпавшему результату.",
+				},
+				{
+					Level: 3,
+					Name:  "Истории с того света",
+					Description: "Вы обращаетесь к духам, которые рассказывают свои истории через вас. " +
+						"Пока вы держите свою спиритическую фокусировку, вы можете бонусным действием потратить одно использование вашего «Вдохновения барда» " +
+						"и совершить бросок по таблице <a href=\"https://dnd.su/class/88-bard\">«Истории духов»</a>, используя кость «Вдохновения барда», чтобы узнать историю, которую духи поведают вам. " +
+						"Вы сохраняете историю в памяти до тех пор, пока не используете её эффект или не закончите короткий или продолжительный отдых. <br>" +
+						"Действием вы можете выбрать одно существо, которое вы видите в пределах 30 футов от себя (вы можете выбрать себя), которое станет целью эффекта истории. " +
+						"Сделав это, вы не можете использовать этот же эффект, пока не совершите повторный бросок. <br>" +
+						"Одновременно вы можете держать в голове только одну из этих историй, повторный бросок по таблице «Истории духов» " +
+						"немедленно прекращает действие эффекта предыдущего броска. ",
+				},
+				{
+					Level: 6,
+					Name:  "Спиритический сеанс",
+					Description: "Духи дарят вам сверхъестественные озарения. " +
+						"Вы можете провести часовой ритуал обращения к духам (который может быть выполнен во время короткого или продолжительного отдыха), " +
+						"используя свою спиритическую фокусировку. " +
+						"Вы можете провести ритуал вместе с несколькими согласными существами, количество которых равно вашему бонусу мастерства (включая вас). " +
+						"В конце ритуала вы временно изучаете одно заклинание по вашему выбору из списка заклинаний любого класса. <br>" +
+						"Выбранное заклинание должно иметь уровень не выше количества существ, проводивших ритуал, должно быть того уровня, который вы способны накладывать, " +
+						"и должно принадлежать к школе Прорицания или Некромантии. Выбранное заклинание считается для вас заклинанием барда, " +
+						"но не учитываются при подсчёте известных вам заклинаний барда. <br>После проведения ритуала вы не можете провести его снова, " +
+						"пока не начнёте продолжительный отдых, и вы помните выбранное заклинание, пока не начнёте продолжительный отдых.",
+				},
+			}
 		}
-
 	}
 
 	return bardClassAbilities
 }
 
-func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) []classes.ClassAbility {
-	var abilitiesList = getBardClassAbilities(raceInfo, backgrInfo, lvl)
+func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) []classes.ClassAbility {
+	var abilitiesList = getBardClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName)
 	var abilitiesAnswer []classes.ClassAbility
 
 	for _, ability := range abilitiesList {
@@ -506,10 +583,10 @@ func GetWeaponInfo(equip []classes.Item) []classes.Weapon {
 	return weaponAnswer
 }
 
-func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
+func getBardSpells(mod classes.AbilityModifier, lvl int) []spells.SpellsJSON {
 
 	bardSpellList = []spells.SpellsJSON{}
-	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
+	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, mod)
 	for i := 0; i < 5; i++ {
 		var spellCount int
 		switch i {
@@ -529,27 +606,4 @@ func getBardSpells(raceInfo *races.Race, lvl int) []spells.SpellsJSON {
 
 	}
 	return bardSpellList
-}
-
-func GetBardClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) *classes.Class {
-	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, getBardAbilityModifier(raceInfo, lvl))
-
-	return &classes.Class{
-		ClassName:        "Bard",
-		ClassNameRU:      "Бард",
-		ClassAbilities:   getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl),
-		AbilityScore:     getBardAbilitiesScore(raceInfo, lvl),
-		AbilityModifier:  getBardAbilityModifier(raceInfo, lvl),
-		SavingThrows:     getBardSavingThrows(raceInfo, lvl),
-		Inspiration:      false,
-		Proficiencies:    *bardProf, //need to fix
-		ProficiencyBonus: classes.ProficiencyBonus,
-		Hits:             getBardHits(raceInfo, lvl),
-		Caster:           true,
-		SpellCasting:     spellCastingInfo,
-		SpellsList:       getBardSpells(raceInfo, lvl),
-		Equipment:        getBardEquipment(),
-		ArmorInfo:        GetArmorInfo(getBardEquipment()),
-		WeaponInfo:       GetWeaponInfo(getBardEquipment()),
-	}
 }

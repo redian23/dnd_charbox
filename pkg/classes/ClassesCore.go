@@ -1,15 +1,17 @@
 package classes
 
 import (
-	"github.com/mazen160/go-random"
 	"math"
+	"math/rand"
+	"time"
 )
 
 func GetClassSkillsArray(raceSkills, backSkills []string, availableSkillList []string, count int) []string {
-
-	// Создаем карту для быстрой проверки навыков от рассы и предыстории
+	// Создаем карты для быстрой проверки навыков от расы и предыстории
 	raceSkillsMap := make(map[string]bool)
 	backSkillsMap := make(map[string]bool)
+	chosenSkillsMap := make(map[string]bool)
+
 	for _, skill := range raceSkills {
 		raceSkillsMap[skill] = true
 	}
@@ -17,16 +19,27 @@ func GetClassSkillsArray(raceSkills, backSkills []string, availableSkillList []s
 		backSkillsMap[skill] = true
 	}
 
-	// Выбираем 4 навыка из общего списка, которые не совпадают с навыками от рассы и предыстории
+	// Инициализируем генератор случайных чисел
+	rand.Seed(time.Now().UnixNano())
+
+	// Выбираем навыки из общего списка, которые не совпадают с навыками от расы и предыстории
 	var chosenSkills []string
 	for len(chosenSkills) < count {
-		randomIndex, _ := random.IntRange(0, len(availableSkillList))
-
-		skill := availableSkillList[randomIndex]
-		// Проверяем, что навык не входит в навыки от рассы и предыстории
-		if !raceSkillsMap[skill] && !backSkillsMap[skill] {
-			chosenSkills = append(chosenSkills, skill) // Добавляем навык в выбранные, если он подходит
+		if len(availableSkillList) == 0 {
+			break // Прерываем, если в availableSkillList нет доступных навыков
 		}
+
+		randomIndex := rand.Intn(len(availableSkillList))
+		skill := availableSkillList[randomIndex]
+
+		// Проверяем, что навык не входит в навыки от расы, предыстории и не был уже выбран
+		if !raceSkillsMap[skill] && !backSkillsMap[skill] && !chosenSkillsMap[skill] {
+			chosenSkills = append(chosenSkills, skill) // Добавляем навык в выбранные, если он подходит
+			chosenSkillsMap[skill] = true              // Обновляем карту выбранных навыков
+		}
+
+		// Удаляем выбранный навык из availableSkillList
+		availableSkillList = append(availableSkillList[:randomIndex], availableSkillList[randomIndex+1:]...)
 	}
 	return chosenSkills
 }
@@ -113,4 +126,31 @@ func GetSaveThrowsForClass(mod AbilityModifier, classSavingThrow []string) *Savi
 		}
 	}
 	return &saveTh
+}
+
+func AddUniqueRandomElements(base []string, toAdd []string, n int) []string {
+	// Создаем карту для быстрого поиска элементов в base
+	baseMap := make(map[string]struct{})
+	for _, item := range base {
+		baseMap[item] = struct{}{}
+	}
+
+	// Создаем список элементов для добавления, исключая те, которые уже есть в base
+	var uniqueToAdd = make(map[string]string)
+	for _, item := range toAdd {
+		if _, exists := baseMap[item]; !exists {
+			uniqueToAdd[item] = item
+		}
+	}
+	var uniqueToAddArray []string
+	var iter int
+	for _, uniqItem := range uniqueToAdd {
+		if iter >= n {
+			break
+		}
+		uniqueToAddArray = append(uniqueToAddArray, uniqItem)
+		iter++
+	}
+
+	return uniqueToAddArray
 }

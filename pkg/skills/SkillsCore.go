@@ -1,6 +1,7 @@
 package skills
 
 import (
+	"fmt"
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/races"
@@ -56,6 +57,9 @@ func SetSkillsForCharacter(raceInfo *races.Race, backgInfo *backgrounds.Backgrou
 	skillsArray = append(skillsArray, backgInfo.BackgroundSkills...)
 	skillsArray = append(skillsArray, classInfo.Proficiencies.SkillsOfClass...)
 
+	fmt.Println(raceInfo.RaceSkill)
+	fmt.Println(backgInfo.BackgroundSkills)
+	fmt.Println(classInfo.Proficiencies.SkillsOfClass)
 	setSkillProficiency(skillsArray)
 
 	var doubleSkillProf []string

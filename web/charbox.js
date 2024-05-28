@@ -75,6 +75,9 @@ async function WriteAllLabels(data) {
     await writeToAbilitiesLabels(data) //done
     await writeToSaveThrowsLabels(data) //done
     await writeToSkillsLabels(data) //done
+
+    await writeDebugSkillLabels(data)
+
     await writeToHitsLabels(data) //done
     await writeToPassiveInfoLabels(data) //done
     await writeOtherLabels(data) //done
@@ -88,7 +91,6 @@ async function WriteAllLabels(data) {
     await writeBackgroundLabels(data)
     await writeAppearanceLabels(data)
     await writeSpellCastingLabels(data)
-
     await writeSpellsLabels(data)
 }
 
@@ -97,10 +99,11 @@ function writeToCharacterCardInputs(data) {
     document.getElementById("lbl_level_info").innerHTML = JSON.parse(data)["level"]
     document.getElementById("lbl_exp_info").innerHTML = JSON.parse(data)["experience"]
     document.getElementById("lbl_class_name").innerHTML = JSON.parse(data)["class"]["class_name_ru"];
+    document.getElementById("lbl_archetype_class_name").innerHTML = JSON.parse(data)["class"]["class_archetype_name"];
     document.getElementById("lbl_race_name").innerHTML = JSON.parse(data)["race"]["race_name_ru"];
     document.getElementById("lbl_background_name").innerHTML = JSON.parse(data)["background"]["background_name_ru"];
     document.getElementById("lbl_background_type").innerHTML = JSON.parse(data)["background"]["background_specific_type"];
-    document.getElementById("lbl_worldview").innerHTML = JSON.parse(data)["background"]["personalization"]["ideal"]["worldview_ru"];
+    document.getElementById("lbl_worldview").innerHTML = JSON.parse(data)["background"]["personalization"]["worldview"];
 }
 
 function writeToAbilitiesLabels(data) {
@@ -108,18 +111,18 @@ function writeToAbilitiesLabels(data) {
     let abilities = JSON.parse(data)["class"]["ability"];
     document.getElementById("lbl_ability_strength_info").innerHTML = abilities["strength"];
     document.getElementById("lbl_ability_dexterity_info").innerHTML = abilities["dexterity"];
-    document.getElementById("lbl_ability_bodyDifficulty_info").innerHTML = abilities["body_difficulty"];
+    document.getElementById("lbl_ability_body_difficulty_info").innerHTML = abilities["body_difficulty"];
     document.getElementById("lbl_ability_intelligence_info").innerHTML = abilities["intelligence"];
     document.getElementById("lbl_ability_wisdom_info").innerHTML = abilities["wisdom"];
     document.getElementById("lbl_ability_charisma_info").innerHTML = abilities["charisma"];
 
     let modifier = JSON.parse(data)["class"]["modifier"];
-    document.getElementById("lbl_modifier_strength_info").innerHTML = modifier["strength"];
-    document.getElementById("lbl_modifier_dexterity_info").innerHTML =  modifier["dexterity"];
-    document.getElementById("lbl_modifier_bodyDifficulty_info").innerHTML = modifier["body_difficulty"];
-    document.getElementById("lbl_modifier_intelligence_info").innerHTML =  modifier["intelligence"];
-    document.getElementById("lbl_modifier_wisdom_info").innerHTML = modifier["wisdom"];
-    document.getElementById("lbl_modifier_charisma_info").innerHTML = modifier["charisma"];
+    document.getElementById("lbl_modifier_strength_info").innerHTML = modifier["strength"] > 0 ? `+${modifier["strength"]}` : modifier["strength"];
+    document.getElementById("lbl_modifier_dexterity_info").innerHTML = modifier["dexterity"] > 0 ? `+${modifier["dexterity"]}` : modifier["dexterity"];
+    document.getElementById("lbl_modifier_body_difficulty_info").innerHTML = modifier["body_difficulty"] > 0 ? `+${modifier["body_difficulty"]}` : modifier["body_difficulty"];
+    document.getElementById("lbl_modifier_intelligence_info").innerHTML = modifier["intelligence"] > 0 ? `+${modifier["intelligence"]}` : modifier["intelligence"];
+    document.getElementById("lbl_modifier_wisdom_info").innerHTML = modifier["wisdom"] > 0 ? `+${modifier["wisdom"]}` : modifier["wisdom"];
+    document.getElementById("lbl_modifier_charisma_info").innerHTML = modifier["charisma"] > 0 ? `+${modifier["charisma"]}` : modifier["charisma"];
 }
 
 function writeToSaveThrowsLabels(data) {
@@ -166,13 +169,13 @@ function writeToSkillsLabels(data) {
     let skills =  JSON.parse(data)["skills"];
 
     //обнуление радио
-    var radios = ["rd_Acrobatics", "rd_Animal_Handling","rd_Arcana","rd_Athletics",
+    const radios = ["rd_Acrobatics", "rd_Animal_Handling","rd_Arcana","rd_Athletics",
         "rd_Deception","rd_History","rd_Insight","rd_Intimidation",
         "rd_Investigation","rd_Medicine","rd_Nature","rd_Perception",
         "rd_Performance","rd_Persuasion", "rd_Religion",
         "rd_SleightofHand", "rd_Stealth", "rd_Survival"];
 
-    for (var i = 0; i < radios.length; i++) {
+    for (let i = 0; i < radios.length; i++) {
         document.getElementById(radios[i]).checked=false;
     }
 
@@ -251,14 +254,14 @@ function writeToSkillsLabels(data) {
         document.getElementById("rd_Survival").checked=true;
     }
 
-    var radios = ["rd_Acrobatics_dbl_prof", "rd_Animal_Handling_dbl_prof","rd_Arcana_dbl_prof","rd_Athletics_dbl_prof",
+    const dbl_radios = ["rd_Acrobatics_dbl_prof", "rd_Animal_Handling_dbl_prof","rd_Arcana_dbl_prof","rd_Athletics_dbl_prof",
         "rd_Deception_dbl_prof","rd_History_dbl_prof","rd_Insight_dbl_prof","rd_Intimidation_dbl_prof",
         "rd_Investigation_dbl_prof","rd_Medicine_dbl_prof","rd_Nature_dbl_prof","rd_Perception_dbl_prof",
         "rd_Performance_dbl_prof","rd_Persuasion_dbl_prof", "rd_Religion_dbl_prof",
         "rd_SleightofHand_dbl_prof", "rd_Stealth_dbl_prof", "rd_Survival_dbl_prof"];
 
-    for (var i = 0; i < radios.length; i++) {
-        document.getElementById(radios[i]).checked=false;
+    for (let i = 0; i < dbl_radios.length; i++) {
+        document.getElementById(dbl_radios[i]).checked=false;
     }
 
     if (skills["acrobatics"]["double_proficiency"] === true){
@@ -315,6 +318,12 @@ function writeToSkillsLabels(data) {
     if (skills["survival"]["double_proficiency"] === true){
         document.getElementById("rd_Survival_dbl_prof").checked=true;
     }
+}
+
+function writeDebugSkillLabels(data) {
+    document.getElementById("lbl_race_skills").innerHTML = JSON.parse(data)["race"]["race_skill"].join(', ');
+    document.getElementById("lbl_background_skills").innerHTML = JSON.parse(data)["background"]["background_skills"].join(', ');
+    document.getElementById("lbl_class_skills").innerHTML = JSON.parse(data)["class"]["proficiencies"]["skills_of_class"].join(', ');
 }
 
 function writeToHitsLabels(data) {
@@ -465,7 +474,6 @@ function writeSpellCastingLabels(data) {
     document.getElementById("lbl_spell_damage_modifier").innerHTML = spell_using["spell_damage_modifier"]
 }
 
-
 function writeSpellsLabels(data) {
     let spells_list = JSON.parse(data)["spells"];
     let spellLevels = [0, 1, 2, 3, 4];
@@ -496,6 +504,8 @@ function writeSpellsLabels(data) {
         }
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function exportToLSS() {
     (async () => {
@@ -530,12 +540,12 @@ function genButtonBlock() {
     let count = parseInt(localStorage.getItem('genButtonClickCount'))
 
     if ( count >= 20 ){
-        document.getElementById("btn_get_class").disabled = true;
+        document.getElementById("btn_get_character").a = true;
         document.getElementById("lbl_wait_plz").style.display = "block"
         setTimeout(
             function(){
+                document.getElementById("btn_get_character").removeAttribute('disabled');
                 document.getElementById("lbl_wait_plz").style.display = "none"
-                document.getElementById("btn_get_class").removeAttribute('disabled');
                 count = 0
                 localStorage.setItem('genButtonClickCount', count)
             },

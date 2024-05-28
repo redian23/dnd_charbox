@@ -72,27 +72,29 @@ func getRacePersonalization() races.RacePersonalization {
 	return races.RacePersonalization{}
 }
 
-func GetRace(raceTypeName string, gender string) *races.Race {
-	var raceType *races.RaceType
-
-	switch raceTypeName {
-	case "Голиаф":
-		raceType = raceDefaultType()
+func getFirstName(gender string) string {
+	var numd, _ = random.IntRange(0, 2)
+	if numd == 0 {
+		return races.GetRaceFirstName(gender, raceNames)
+	} else {
+		return races.GetRaceFirstName(gender, nickNames)
 	}
+}
+
+func GetRace(gender string) *races.Race {
 
 	randNum, _ := random.IntRange(0, len(lastNames))
 	return &races.Race{
 		RaceName:             "Goliath",
 		RaceNameRu:           "Голиаф",
 		AddictionInformation: "",
-		FirstName: races.GetRaceFirstName(gender, raceNames) +
-			" (" + races.GetRaceFirstName(gender, nickNames) + ")", //внешняя переменная которая прилетает с фронта
-		LastName:  "Из клана " + lastNames[randNum],
-		Gender:    gender,
-		Body:      races.GetBodyStats(bodyStats),
-		Language:  raceLangs,
-		Resist:    raceResists,
-		Type:      *raceType,
-		RaceSkill: []string{"Athletics"},
+		FirstName:            getFirstName(gender),
+		LastName:             "из клана " + lastNames[randNum],
+		Gender:               gender,
+		Body:                 races.GetBodyStats(bodyStats),
+		Language:             raceLangs,
+		Resist:               raceResists,
+		Type:                 *raceDefaultType(),
+		RaceSkill:            []string{"Athletics"},
 	}
 }

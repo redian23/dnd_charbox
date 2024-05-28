@@ -1,6 +1,6 @@
 @media screen {
     body {
-        zoom: 80%;
+        zoom: 75%;
     }
 }
 
@@ -241,7 +241,7 @@ article.card {
 }
 
 .container-fluid-custom {
-    width: 75%;
+    min-width: 75%;
     margin-right: auto;
     margin-left: auto;
     padding-right: var(--pico-spacing);
@@ -265,8 +265,8 @@ details summary::after {
 
 input[type="radio"]:disabled {
     -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     padding: 0px;
     background-clip: content-box;
     border: 2px solid #bbbbbb;
@@ -283,6 +283,47 @@ fieldset legend, label {
     color: var(--pico-color);
     font-weight: var(--pico-form-label-font-weight, var(--pico-font-weight));
 }
+
 p {
     margin-bottom: 0;
 }
+.grid {
+    grid-row-gap: 0;
+}
+
+.formatted-stats-box {
+    border: 1px solid var(--pico-border-color);
+    padding: 10px;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .formatted-stats-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+    .formatted-basic-info-grid{
+        grid-row-gap: 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .formatted-skills-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media  (min-width: 768px) and (max-width:1023px) {
+    .formatted-basic-info-grid{
+        grid-row-gap: 0;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .formatted-skills-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
