@@ -10,8 +10,7 @@
     так и опытному ГМу. Множество классов, рас, предысторий, вариаций персонажей на любой случай в далеком путешествии."/>
 
     <!-- Pico.css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.cyan.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.png">
 
     <meta content='true' name='HandheldFriendly'/>
@@ -40,89 +39,33 @@
             <li>
                 <label>
                     <svg xmlns="http://www.w3.org/2000/svg" height="14" width="10.5" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
-                    <input type="checkbox" id="theme-switch" role="switch" checked>
+                    <input type="checkbox" id="theme-switch" role="switch" checked style="margin-right: 0px">
                     <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
                 </label>
             </li>
         </ul>
     </nav>
+
+    <article class="color-picker component" aria-label="Custom theme example">
+        <div>
+            <button class="pico-background-pink" aria-label="Pink"  onclick="changeColor('pink')"></button>
+            <button class="pico-background-purple" aria-label="Purple"  onclick="changeColor('purple')"></button>
+            <button class="pico-background-violet" aria-label="Violet"  onclick="changeColor('violet')"></button>
+            <button class="pico-background-blue" aria-label="Blue"  onclick="changeColor('blue')"></button>
+        </div>
+        <div>
+            <button class="pico-background-cyan" aria-label="Cyan"  onclick="changeColor('cyan')"></button>
+            <button class="pico-background-jade" aria-label="Jade"  onclick="changeColor('jade')"></button>
+            <button class="pico-background-amber" aria-label="Amber"  onclick="changeColor('amber')"></button>
+            <button class="pico-background-zinc" aria-label="Zinc"  onclick="changeColor('zinc')"></button>
+        </div>
+    </article>
+
     <div name="generate_parameter_spoiler">
         <details class="container-fluid">
             <summary role="button">Параметры для генерации: </summary>
             <div class="grid container-fluid">
-                <select name="favorite-cuisine" aria-label="Расы" required>
-                    <option value="Случайная раса" selected="selected">Случайная раса</option>
-                    <option>Аасимар</option>
-                    <option>Багбир</option>
-                    <option>Гном</option>
-                    <option>Гоблин</option>
-                    <option>Голиаф</option>
-                    <option>Дворф</option>
-                    <option>Драконорожденный</option>
-                    <option>Кенку</option>
-                    <option>Кобольд</option>
-                    <option>Локата</option>
-                    <option>Мурлок</option>
-                    <option>Орк</option>
-                    <option>Полуорк</option>
-                    <option>Полурослик</option>
-                    <option>Полуэльф</option>
-                    <option>Табакси</option>
-                    <option>Тритон</option>
-                    <option>Тифлинг</option>
-                    <option>Темный эльф</option>
-                    <option>Эльф</option>
-                    <option>Фирболг</option>
-                    <option>Человек</option>
-                    <option>Юань-ти</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Подвид рас" required>
-                    <option value="Случайная раса" selected="selected">Подвид расы (Отображается только при выборе расы)</option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Классы" required>
-                    <option value="Случайный класс" selected="selected">Случайный класс</option>
-                    <option>Бард</option>
-                    <option>Волшебник</option>
-                    <option>Воин</option>
-                    <option>Варвар</option>
-                    <option>Друид</option>
-                    <option>Жрец</option>
-                    <option>Изобретатель</option>
-                    <option>Колдун</option>
-                    <option>Монах</option>
-                    <option>Паладин</option>
-                    <option>Плут</option>
-                    <option>Следопыт</option>
-                    <option>Чародей</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Архитип класса (открывается тока при 3+ уровне)" required>
-                    <option selected disabled value="">
-                        Архитип класса (открывается тока при 3+ уровне)
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
-                </select>
-                <select name="favorite-cuisine" aria-label="Предыстория" required>
-                    <option selected disabled value="">
-                       Предыстория
-                    </option>
-                    <option>Italian</option>
-                    <option>Japanese</option>
-                    <option>Indian</option>
-                    <option>Thai</option>
-                    <option>French</option>
-                </select>
-            </div>
-            <div class="grid container-fluid">
-                <select name="favorite-cuisine" aria-label="Уровни" required>
+                <select name="favorite-cuisine" id="select_char_level" aria-label="Уровни" required>
                     <option value=1 selected="selected">1 уровень</option>
                     <option value=2>2 уровень</option>
                     <option value=3>3 уровень</option>
@@ -132,7 +75,66 @@
                     <option value=7>7 уровень</option>
                     <option value=8>8 уровень</option>
                 </select>
-                <select name="favorite-cuisine" aria-label="Пол" required>
+                <select name="favorite-cuisine" id="select_race_name" aria-label="Расы" required>
+                    <option value="Случайная раса" selected="selected">Случайная раса</option>
+                    <option>Аасимар</option>
+                    <option>Багбир</option>
+                    <option>Гном</option>
+                    <option>Гоблин</option>
+                    <option>Голиаф</option>
+<!--                    <option>Дворф</option>-->
+                    <option>Драконорожденный</option>
+                    <option>Кенку</option>
+                    <option>Совлин</option>
+<!--                    <option>Кобольд</option>-->
+<!--                    <option>Локата</option>-->
+<!--                    <option>Мурлок</option>-->
+<!--                    <option>Орк</option>-->
+<!--                    <option>Полуорк</option>-->
+<!--                    <option>Полурослик</option>-->
+<!--                    <option>Полуэльф</option>-->
+<!--                    <option>Табакси</option>-->
+<!--                    <option>Тритон</option>-->
+<!--                    <option>Тифлинг</option>-->
+<!--                    <option>Темный эльф</option>-->
+<!--                    <option>Эльф</option>-->
+<!--                    <option>Фирболг</option>-->
+<!--                    <option>Человек</option>-->
+<!--                    <option>Юань-ти</option>-->
+                </select>
+                <select name="favorite-cuisine" id="select_race_archetype" aria-label="Подвид рас" required></select>
+            </div>
+            <div class="grid container-fluid">
+                <select name="favorite-cuisine" id="select_class_name" aria-label="Классы" required>
+                    <option value="Случайный класс" selected="selected">Случайный класс</option>
+                    <option>Бард</option>
+                    <!--                    <option>Волшебник</option>-->
+                    <!--                    <option>Воин</option>-->
+                    <option>Варвар</option>
+                    <!--                    <option>Друид</option>-->
+                    <!--                    <option>Жрец</option>-->
+                    <!--                    <option>Изобретатель</option>-->
+                    <!--                    <option>Колдун</option>-->
+                    <!--                    <option>Монах</option>-->
+                    <!--                    <option>Паладин</option>-->
+                    <!--                    <option>Плут</option>-->
+                    <!--                    <option>Следопыт</option>-->
+                    <!--                    <option>Чародей</option>-->
+                </select>
+                <select name="favorite-cuisine" id="select_class_archetype" aria-label="Архитип класса" required></select>
+                <select name="favorite-cuisine" id="select_background_name" aria-label="Предыстория" required>
+                    <option value="Случайная предыстория" selected="selected">Случайная предыстория</option>
+                    <option>Артист</option>
+                    <option>Беспризорник</option>
+                    <option>Благородный</option>
+                    <option>Гильдейский ремесленник</option>
+                    <option>Моряк</option>
+                    <option>Мудрец</option>
+                    <option>Пират</option>
+                    <option>Рыцарь</option>
+                    <option>And other ...</option>
+                </select>
+                <select name="favorite-cuisine" id="select_gender" aria-label="Пол" required>
                     <option value="Мужской" selected="selected">Мужской</option>
                     <option value="Женский">Женский</option>
                 </select>

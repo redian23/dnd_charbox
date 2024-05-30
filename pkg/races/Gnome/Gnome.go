@@ -140,7 +140,7 @@ func GetRace(raceTypeName string, gender string) *races.Race {
 	switch raceTypeName {
 	case "Лесной гном":
 		raceType = raceForestType()
-	case "Rock gnome":
+	case "Скальный гном":
 		raceType = raceRockType()
 	}
 

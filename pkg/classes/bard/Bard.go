@@ -12,7 +12,7 @@ import (
 var (
 	bardSpellList []spells.SpellsJSON
 	bardProf      *classes.Proficiencies
-	skillCount    int
+	skillCount    = 3
 
 	musicalInstruments = []string{
 		"Барабан", "Виола", "Волынка", "Лира", "Лютня",
@@ -78,7 +78,6 @@ func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgrou
 		}
 	}
 
-	skillCount = 2
 	var availableSkillList = []string{"Acrobatics", "Animal Handling", "Arcana", "Athletics",
 		"Deception", "History", "Insight", "Intimidation", "Investigation",
 		"Medicine", "Nature", "Perception", "Performance", "Persuasion",
@@ -92,8 +91,8 @@ func getBardProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgrou
 	)
 
 	return &classes.Proficiencies{
-		Weapons:       []string{"Лёгкие доспехи"},
-		Armor:         []string{"Простое оружие", "Длинные мечи", "Короткие мечи", "Рапиры", "Ручные арбалеты"},
+		Armor:         []string{"Лёгкие доспехи"},
+		Weapons:       []string{"Простое оружие", "Длинные мечи", "Короткие мечи", "Рапиры", "Ручные арбалеты"},
 		Tools:         instrumentsArray,
 		SavingThrow:   []string{"Dexterity", "Charisma"},
 		SkillsOfClass: classSkills,

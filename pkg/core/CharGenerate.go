@@ -32,9 +32,9 @@ func GetFullCharacter() Character {
 	var raceName = "Совлин"
 	var raceTypeName = "Стандартный"
 	var gender = "Мужской"
-	var backgroundName = "Пират"
-	var className = "Варвар"
-	var classArchetypeName = "Путь тотемного воина"
+	var backgroundName = "Беспризорник"
+	var className = "Бард"
+	var classArchetypeName = "Коллегия доблести"
 
 	var raceInfo = getRace(raceName, raceTypeName, gender)
 	var backgroundInfo = getBackground(backgroundName)

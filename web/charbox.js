@@ -1,19 +1,37 @@
 let charData
-// window.onload = winOnloadGenerate()
-window.onload = getCharacter()
+document.addEventListener('DOMContentLoaded', (event) => {
+    getCharacter();
+});
 
 function getSelectClassNameValue() {
     if (document.getElementById("select_class_name").value === "Случайный класс") {
-        return "random"
+        return "random";
     }
     return document.getElementById("select_class_name").value;
 }
 
+function getSelectClassArchetypeNameValue() {
+    return document.getElementById("select_class_archetype").value;
+}
+
+////////////////////////////////////////////////////////////////////
 function getSelectRaceNameValue() {
     if (document.getElementById("select_race_name").value === "Случайная раса") {
         return "random"
     }
     return document.getElementById("select_race_name").value;
+}
+
+function getSelectRaceArchetypeNameValue() {
+    return document.getElementById("select_race_archetype").value;
+}
+
+///////////////////////////////////////////////////////////////////
+function getSelectBackgroundNameValue() {
+    if (document.getElementById("select_background_name").value === "Случайная предыстория") {
+        return "random"
+    }
+    return document.getElementById("select_background_name").value;
 }
 
 function getSelectLevelValue() {
@@ -26,6 +44,8 @@ function getSelectLevelValue() {
 function getSelectGenderValue() {
     return document.getElementById("select_gender").value;
 }
+
+document.addEventListener('DOMContentLoaded', applySavedColor);
 
 async function winOnloadGenerate() {
     // let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"Мужской"}`
@@ -49,8 +69,15 @@ async function winOnloadGenerate() {
 }
 
 async function getCharacter() {
-//      let req_json = `{"class":"${getSelectClassNameValue()}", "race":"${getSelectRaceNameValue()}", "level":${getSelectLevelValue()}, "gender":"${getSelectGenderValue()}" }`
-//      console.log(req_json)
+     let req_json = `{
+         "class":"${getSelectClassNameValue()}", 
+         "class_archetype":"${getSelectClassArchetypeNameValue()}",
+         "race":"${getSelectRaceNameValue()}",
+         "race_type":"${getSelectRaceArchetypeNameValue()}",
+         "level":${getSelectLevelValue()}, 
+         "gender":"${getSelectGenderValue()}" 
+     }`
+     console.log(JSON.parse(JSON.stringify(req_json)))
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`,
         { method: 'GET',
@@ -67,9 +94,9 @@ async function getCharacter() {
     WriteAllLabels(data)
 
     console.log(JSON.parse(JSON.stringify(json)))
-    genButtonBlock()
 }
 
+//////////////////////////////////////////////////////////////////////////////////
 async function WriteAllLabels(data) {
     await writeToCharacterCardInputs(data) //done
     await writeToAbilitiesLabels(data) //done
@@ -534,37 +561,23 @@ function gotoFAQ(){
     window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/faq`;
 }
 
-localStorage.setItem('genButtonClickCount',0)
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_class_name").addEventListener("change", updateClassArchetypeSelect);
+    // Initial update to populate archetypes on page load if necessary
+    updateClassArchetypeSelect();
+});
 
-function genButtonBlock() {
-    let count = parseInt(localStorage.getItem('genButtonClickCount'))
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_char_level").addEventListener("change", updateClassArchetypeSelect);
+    // Initial update to populate archetypes on page load if necessary
+    updateClassArchetypeSelect();
+});
 
-    if ( count >= 20 ){
-        document.getElementById("btn_get_character").a = true;
-        document.getElementById("lbl_wait_plz").style.display = "block"
-        setTimeout(
-            function(){
-                document.getElementById("btn_get_character").removeAttribute('disabled');
-                document.getElementById("lbl_wait_plz").style.display = "none"
-                count = 0
-                localStorage.setItem('genButtonClickCount', count)
-            },
-            30000);
-    }else {
-        count += 1
-        localStorage.setItem('genButtonClickCount', count)
-    }
-
-    console.log(count)
-}
-
-function restartButtonClickCountTimer() {
-    setTimeout(
-        function(){
-            localStorage.setItem('genButtonClickCount', 0)
-        },
-        20000);
-}
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_race_name").addEventListener("change", updateRaceArchetypeSelect);
+    // Initial update to populate archetypes on page load if necessary
+    updateRaceArchetypeSelect();
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     const themeSwitch = document.getElementById('theme-switch');
@@ -593,3 +606,106 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('theme', theme);
     }
 });
+
+
+function changeColor(color) {
+    const link = document.querySelector('link[rel*="stylesheet"]');
+    link.href = `https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.${color}.min.css`;
+    localStorage.setItem('color', color);
+}
+
+function applySavedColor() {
+    const savedColor = localStorage.getItem('color');
+    if (savedColor) {
+        const link = document.querySelector('link[rel*="stylesheet"]');
+        link.href = `https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.${savedColor}.min.css`;
+    }
+}
+
+function addOptions(select, optionsArray) {
+    optionsArray.forEach(optionText => {
+        const option = document.createElement('option');
+        option.value = optionText;
+        option.textContent = optionText;
+        select.appendChild(option);
+    });
+}
+
+function updateClassArchetypeSelect() {
+    let className = getSelectClassNameValue();
+    let level = getSelectLevelValue()
+
+    let classArchetype = document.getElementById('select_class_archetype');
+    classArchetype.innerHTML = '';
+
+    if (level < 3 || className === 'random'){
+        classArchetype.style.display = "none";
+    }else {
+        classArchetype.style.display = "block";
+    }
+
+    switch (className) {
+        case "Бард":
+            addOptions(classArchetype, [ 'Случайная коллегия',
+                'Коллегия доблести', 'Коллегия знаний', 'Коллегия мечей', 'Коллегия очарования',
+                'Коллегия шёпотов', 'Коллегия красноречия', 'Коллегия созидания', 'Коллегия духов'
+            ]);
+            break;
+        case "Варвар":
+            addOptions(classArchetype, ['Случайный путь',
+                'Путь берсерка', 'Путь тотемного воина', 'Путь буревестника', 'Путь предка-хранителя',
+                'Путь фанатика', 'Путь дикой магии', 'Путь зверя', 'Путь великана', 'Путь бушующего в бою'
+            ]);
+            break;
+        default:
+            break;
+    }
+}
+
+
+function updateRaceArchetypeSelect() {
+    let raceName = getSelectRaceNameValue();
+
+    let raceArchetype = document.getElementById('select_race_archetype');
+    raceArchetype.innerHTML = '';
+
+    if (raceName === 'random'){
+        raceArchetype.style.display = "none";
+    }else {
+        raceArchetype.style.display = "block";
+    }
+
+    switch (raceName) {
+        case "random":
+            raceArchetype.style.display = "none";
+            break;
+        case "Аасимар":
+            addOptions(raceArchetype, ["Аасимар-защитник","Аасимар–каратель","Аасимар–падший"]);
+            break;
+        case "Багбир":
+            addOptions(raceArchetype, ["Стандартный"]);
+            break;
+        case "Гном":
+            addOptions(raceArchetype, ["Лесной гном","Скальный гном"]);
+            break;
+        case "Гоблин":
+            addOptions(raceArchetype, ["Стандартный","Гоблин (RLW)","Гоблин (GGR)","Гоблин Данквуда"]);
+            break;
+        case "Голиаф":
+            addOptions(raceArchetype, ["Стандартный"]);
+            break;
+        case "Кенку":
+            addOptions(raceArchetype, ["Стандартный"]);
+            break;
+        case "Совлин":
+            addOptions(raceArchetype, ["Стандартный"]);
+            break;
+        case "Драконорожденный":
+            addOptions(raceArchetype, ["Стандартный","Драконокровный","Равенит",
+                "Металлический","Самоцветный","Цветной"]);
+            break;
+        default:
+            break;
+    }
+}
+
