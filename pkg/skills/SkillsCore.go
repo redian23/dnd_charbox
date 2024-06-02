@@ -3,6 +3,7 @@ package skills
 import (
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
+	"pregen/pkg/races"
 )
 
 var sk Skills

@@ -14,14 +14,15 @@ import (
 	"pregen/pkg/classes"
 	"pregen/pkg/classes/barbarian"
 	"pregen/pkg/classes/bard"
-	"pregen/pkg/race/aasimar"
-	"pregen/pkg/race/bugbear"
-	"pregen/pkg/race/dragonborn"
-	"pregen/pkg/race/gnome"
-	"pregen/pkg/race/goblin"
-	"pregen/pkg/race/goliath"
+	"pregen/pkg/races"
 	kenku "pregen/pkg/races/Kenku"
 	owlin "pregen/pkg/races/Owlin"
+	"pregen/pkg/races/aasimar"
+	"pregen/pkg/races/bugbear"
+	"pregen/pkg/races/dragonborn"
+	"pregen/pkg/races/gnome"
+	"pregen/pkg/races/goblin"
+	"pregen/pkg/races/goliath"
 	"pregen/pkg/skills"
 )
 
@@ -92,10 +93,10 @@ func getBackground(backgroundName string) *backgrounds.Background {
 
 func getClass(className, classArchetypeName string, raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) *classes.Class {
 	if raceInfo == nil {
-		log.Fatalln("[ERROR] - Race Info is Null / or / RaceName have a mistake.")
+		log.Println("[ERROR] - Race Info is Null / or / RaceName have a mistake.")
 	}
 	if backgrInfo == nil {
-		log.Fatalln("[ERROR] - backgrInfo is Null / or / backgrInfo have a mistake.")
+		log.Println("[ERROR] - backgrInfo is Null / or / backgrInfo have a mistake.")
 	}
 
 	switch className {

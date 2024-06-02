@@ -3,6 +3,7 @@ package general
 import (
 	"github.com/mazen160/go-random"
 	"pregen/pkg/classes"
+	"pregen/pkg/races"
 	"slices"
 	"sort"
 )
