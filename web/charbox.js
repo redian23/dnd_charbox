@@ -47,53 +47,34 @@ function getSelectGenderValue() {
 
 document.addEventListener('DOMContentLoaded', applySavedColor);
 
-async function winOnloadGenerate() {
-    // let req_json = `{"class":"random", "race":"random", "level":1 , "gender":"Мужской"}`
-    //
-    // const response = await fetch('https://charbox.swn.by/api/v1/post-current-character',
-    //     { method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(JSON.parse(req_json))
-    //     });
-    // console.log(json)
-    // const json = await response.json();
-    // let data = JSON.stringify(json);
-    // console.log(data)
-    //
-    // charData = data
-    // WriteAllLabels(data)
-    // restartButtonClickCountTimer()
-}
-
 async function getCharacter() {
-     let req_json = `{
-         "class":"${getSelectClassNameValue()}", 
-         "class_archetype":"${getSelectClassArchetypeNameValue()}",
-         "race":"${getSelectRaceNameValue()}",
-         "race_type":"${getSelectRaceArchetypeNameValue()}",
-         "level":${getSelectLevelValue()}, 
-         "gender":"${getSelectGenderValue()}" 
-     }`
+    let req_json = {
+        "class": getSelectClassNameValue(),
+        "class_archetype": getSelectClassArchetypeNameValue(),
+        "race": getSelectRaceNameValue(),
+        "race_type": getSelectRaceArchetypeNameValue(),
+        "background": getSelectBackgroundNameValue(),
+        "level": parseInt(getSelectLevelValue(), 10),
+        "gender": getSelectGenderValue()
+    };
      console.log(JSON.parse(JSON.stringify(req_json)))
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`,
-        { method: 'GET',
+        {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: null,
+            body: JSON.stringify(req_json)
         });
     const json = await response.json();
     let data = JSON.stringify(json);
 
-    charData = data
-    WriteAllLabels(data)
+    charData = data;
+    WriteAllLabels(data);
 
-    console.log(JSON.parse(JSON.stringify(json)))
+    console.log(json);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +84,7 @@ async function WriteAllLabels(data) {
     await writeToSaveThrowsLabels(data) //done
     await writeToSkillsLabels(data) //done
 
-    await writeDebugSkillLabels(data)
+    await writeDebugSkillLabels(data) //TODO
 
     await writeToHitsLabels(data) //done
     await writeToPassiveInfoLabels(data) //done

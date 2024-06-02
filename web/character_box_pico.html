@@ -21,7 +21,15 @@
     <meta name="google-site-verification" content="UmkWSkfoFNxgbCTCX-nVQMydwsNiDW730S-1fy_sChk" />
 
     <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EHJTC3DQE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-4EHJTC3DQE');
+    </script>
     <style> @import url("charbox-pico.css");</style>
     <script src="/charbox.js"></script>
 </head>
@@ -45,22 +53,23 @@
             </li>
         </ul>
     </nav>
-
-    <article class="color-picker component" aria-label="Custom theme example">
-        <div>
-            <button class="pico-background-pink" aria-label="Pink"  onclick="changeColor('pink')"></button>
-            <button class="pico-background-purple" aria-label="Purple"  onclick="changeColor('purple')"></button>
-            <button class="pico-background-violet" aria-label="Violet"  onclick="changeColor('violet')"></button>
-            <button class="pico-background-blue" aria-label="Blue"  onclick="changeColor('blue')"></button>
-        </div>
-        <div>
-            <button class="pico-background-cyan" aria-label="Cyan"  onclick="changeColor('cyan')"></button>
-            <button class="pico-background-jade" aria-label="Jade"  onclick="changeColor('jade')"></button>
-            <button class="pico-background-amber" aria-label="Amber"  onclick="changeColor('amber')"></button>
-            <button class="pico-background-zinc" aria-label="Zinc"  onclick="changeColor('zinc')"></button>
-        </div>
-    </article>
-
+    <details class="container-fluid">
+        <summary role="button" class="outline">Выбор цвета (Ждем редизайна): </summary>
+        <article class="color-picker component" aria-label="Custom theme example">
+            <div>
+                <button class="pico-background-pink" aria-label="Pink"  onclick="changeColor('pink')"></button>
+                <button class="pico-background-purple" aria-label="Purple"  onclick="changeColor('purple')"></button>
+                <button class="pico-background-violet" aria-label="Violet"  onclick="changeColor('violet')"></button>
+                <button class="pico-background-blue" aria-label="Blue"  onclick="changeColor('blue')"></button>
+            </div>
+            <div>
+                <button class="pico-background-cyan" aria-label="Cyan"  onclick="changeColor('cyan')"></button>
+                <button class="pico-background-jade" aria-label="Jade"  onclick="changeColor('jade')"></button>
+                <button class="pico-background-amber" aria-label="Amber"  onclick="changeColor('amber')"></button>
+                <button class="pico-background-zinc" aria-label="Zinc"  onclick="changeColor('zinc')"></button>
+            </div>
+        </article>
+    </details>
     <div name="generate_parameter_spoiler">
         <details class="container-fluid">
             <summary role="button">Параметры для генерации: </summary>
@@ -132,7 +141,6 @@
                     <option>Мудрец</option>
                     <option>Пират</option>
                     <option>Рыцарь</option>
-                    <option>And other ...</option>
                 </select>
                 <select name="favorite-cuisine" id="select_gender" aria-label="Пол" required>
                     <option value="Мужской" selected="selected">Мужской</option>
@@ -141,14 +149,11 @@
             </div>
         </details>
     </div>
-    <div class="container-fluid-custom" name="grid_generate">
-        <div class="grid">
-            <button onclick="getCharacter()" id="btn_get_character  ">Тыкнуть и опять сгенерировать</button>
-            <label>
-                --------->
-            </label>
-            <button>Экспорт в LongStoryShort</button>
-        </div>
+    <div class="container-fluid grid">
+        <button style="visibility: hidden"></button>
+        <button onclick="getCharacter()" id="btn_get_character" >Тыкнуть и опять сгенерировать</button>
+        <button>Экспорт в LongStoryShort</button>
+        <button style="visibility: hidden"></button>
     </div>
 </header>
 <!-- ./ Header -->
@@ -318,6 +323,8 @@
                 <label class="radio"><input type="radio" id="rd_Animal_Handling" disabled> [ <label id="lbl_Animal_Handling"> </label> ] Уход за животными (Муд)</label>
             </p>
         </article>
+    </div>
+    <div class="container-fluid-custom">
         <article>
             <p><em>Отладочная информация о навыках:</em></p>
             <p>Навыки от расы: [ <label id="lbl_race_skills"></label> ]</p>
@@ -539,15 +546,6 @@
 </main>
 <!-- ./ Body -->
 <footer class="container">
-    <aside>
-        <nav>
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Products</a></li>
-            </ul>
-        </nav>
-    </aside>
 </footer>
 </body>
 </html>

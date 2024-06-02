@@ -26,21 +26,13 @@ import (
 	"pregen/pkg/skills"
 )
 
-func GetFullCharacter() Character {
-	// Будущие аргументы функции GetFullCharacter
-	var level = 8
-	var raceName = "Совлин"
-	var raceTypeName = "Стандартный"
-	var gender = "Мужской"
-	var backgroundName = "Беспризорник"
-	var className = "Бард"
-	var classArchetypeName = "Коллегия доблести"
+func GetFullCharacter(className, classArchetypeName, raceName, raceTypeName, backgroundName, gender string, level int) *Character {
 
 	var raceInfo = getRace(raceName, raceTypeName, gender)
 	var backgroundInfo = getBackground(backgroundName)
 	var classInfo = getClass(className, classArchetypeName, raceInfo, backgroundInfo, level)
 
-	var characterBody = Character{
+	return &Character{
 		Level:         level,
 		Experience:    getExpCount(level),
 		PassiveWisdom: skills.GetPassive(),
@@ -53,8 +45,6 @@ func GetFullCharacter() Character {
 	}
 	//marshaled, _ := json.MarshalIndent(characterBody, "", "   ")
 	//fmt.Println(string(marshaled))
-
-	return characterBody
 }
 
 func getRace(raceName, raceTypeName, gender string) *races.Race {

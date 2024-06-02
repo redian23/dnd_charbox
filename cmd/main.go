@@ -14,7 +14,7 @@ func main() {
 	// api method
 	v1 := router.Group("api/v1/")
 	{
-		v1.GET("/get-character", func(c *gin.Context) {
+		v1.POST("/get-character", func(c *gin.Context) {
 			api.GetCurrentCharacter(c)
 		})
 	}

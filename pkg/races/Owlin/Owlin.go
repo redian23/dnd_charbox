@@ -52,8 +52,8 @@ func getRacePersonalization() races.RacePersonalization {
 
 func GetRace(gender string) *races.Race {
 	return &races.Race{
-		RaceName:             "Kenku",
-		RaceNameRu:           "Кенку",
+		RaceName:             "Owlin",
+		RaceNameRu:           "Совлин",
 		AddictionInformation: "",
 		FirstName:            races.GetRaceFirstName(gender, raceNames),
 		LastName:             "",

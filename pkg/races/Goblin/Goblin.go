@@ -177,7 +177,7 @@ func GetRace(raceTypeName string, gender string) *races.Race {
 	var yourName string
 
 	switch raceTypeName {
-	case "Гоблин":
+	case "Стандартный":
 		raceType = raceDefaultType()
 		yourName = races.GetRaceFirstName(gender, raceNames)
 	case "Гоблин (RLW)":
