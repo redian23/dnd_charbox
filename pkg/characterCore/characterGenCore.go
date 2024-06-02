@@ -24,7 +24,8 @@ func getExpCount(lvl int) int {
 func getProfBonus(lvl int) int {
 	if lvl <= 4 {
 		classes.ProficiencyBonus = 2
-	} else {
+	}
+	if lvl > 4 {
 		classes.ProficiencyBonus = 3
 	}
 	return classes.ProficiencyBonus

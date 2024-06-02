@@ -363,22 +363,22 @@ func setSaveThrowsForClass(mod Modifier) *SavingThrows {
 	for _, stat := range saveThrArray {
 		switch stat {
 		case saveTh.Strength.Name:
-			saveTh.Strength.Point += 2
+			saveTh.Strength.Point += ProficiencyBonus
 			saveTh.Strength.Mastery = true
 		case saveTh.Dexterity.Name:
-			saveTh.Dexterity.Point += 2
+			saveTh.Dexterity.Point += ProficiencyBonus
 			saveTh.Dexterity.Mastery = true
 		case saveTh.BodyDifficulty.Name:
-			saveTh.BodyDifficulty.Point += 2
+			saveTh.BodyDifficulty.Point += ProficiencyBonus
 			saveTh.BodyDifficulty.Mastery = true
 		case saveTh.Intelligence.Name:
-			saveTh.Intelligence.Point += 2
+			saveTh.Intelligence.Point += ProficiencyBonus
 			saveTh.Intelligence.Mastery = true
 		case saveTh.Wisdom.Name:
-			saveTh.Wisdom.Point += 2
+			saveTh.Wisdom.Point += ProficiencyBonus
 			saveTh.Wisdom.Mastery = true
 		case saveTh.Charisma.Name:
-			saveTh.Charisma.Point += 2
+			saveTh.Charisma.Point += ProficiencyBonus
 			saveTh.Charisma.Mastery = true
 		}
 	}

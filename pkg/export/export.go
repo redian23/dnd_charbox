@@ -107,8 +107,9 @@ func RunExportToLSS(lc characterCore.Character) *ExportToLss {
 			Ideals:      Ideals{Value: Value{Data: lc.Background.Ideal}},
 			Bonds:       Bonds{Value: Value{Data: lc.Background.Affection}},
 			Flaws:       Flaws{Value: Value{Data: lc.Background.Weakness}},
-			Background: Background{Value: Value{Data: lc.Background.Personalization + " <p>" +
-				lc.Background.Description + "</p>" +
+			Background: Background{Value: Value{Data: "<p>" + "Типаж: " + lc.Background.Type + "</p>" +
+				"<p>" + lc.Background.Personalization + "</p>" +
+				"<p>" + lc.Background.Description + "</p>" +
 				"<strong>Совет:</strong> " + lc.Background.Advice}},
 			Features: Features{Value: Value{Data: "<p><strong>" + lc.Background.BackgroundAbility.AbilityName + "</strong>: " +
 				lc.Background.BackgroundAbility.Description}},

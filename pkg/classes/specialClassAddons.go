@@ -320,10 +320,7 @@ func choiceFighterArchetype() (string, string, []ClassAbility) {
 	var fighterArchetypeAbilitiesList []ClassAbility
 
 	for _, ability := range fighterArchetypeData[FighterArchetypeName] {
-		if CharacterLevelGlobal > 2 && ability.Level == 3 {
-			fighterArchetypeAbilitiesList = append(fighterArchetypeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 7 {
+		if ability.Level <= CharacterLevelGlobal {
 			fighterArchetypeAbilitiesList = append(fighterArchetypeAbilitiesList, ability)
 		}
 	}
@@ -474,10 +471,7 @@ func choicePaladinArchetype() (string, string, []ClassAbility) {
 	var paladinArchetypeAbilitiesList []ClassAbility
 
 	for _, ability := range paladinArchetypeData[PaladinArchetypeName] {
-		if CharacterLevelGlobal > 2 && ability.Level == 3 {
-			paladinArchetypeAbilitiesList = append(paladinArchetypeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 7 {
+		if ability.Level <= CharacterLevelGlobal {
 			paladinArchetypeAbilitiesList = append(paladinArchetypeAbilitiesList, ability)
 		}
 	}
@@ -560,10 +554,7 @@ func choiceMonkWay() (string, string, []ClassAbility) {
 	var wayAbilitiesList []ClassAbility
 
 	for _, ability := range waysData[wayName] {
-		if CharacterLevelGlobal > 2 && ability.Level == 3 {
-			wayAbilitiesList = append(wayAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 6 {
+		if ability.Level <= CharacterLevelGlobal {
 			wayAbilitiesList = append(wayAbilitiesList, ability)
 		}
 	}
@@ -640,10 +631,7 @@ func choiceRogueArchetype() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 2 && ability.Level == 3 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 6 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
@@ -723,10 +711,7 @@ func choiceRangerArchetype() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 2 && ability.Level == 3 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 8 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
@@ -904,10 +889,7 @@ func choiceMagicalTraditions() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 1 && ability.Level == 2 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 6 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
@@ -1008,10 +990,7 @@ func choiceDruidCircles() (string, string, []ClassAbility) {
 	var circlesAbilitiesList []ClassAbility
 
 	for _, ability := range circlesData[circleName] {
-		if CharacterLevelGlobal > 1 && ability.Level == 3 {
-			circlesAbilitiesList = append(circlesAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 6 {
+		if ability.Level <= CharacterLevelGlobal {
 			circlesAbilitiesList = append(circlesAbilitiesList, ability)
 		}
 	}
@@ -1263,10 +1242,7 @@ func choiceDivineDomain() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 0 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 8 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
@@ -1351,10 +1327,7 @@ func choiceSorcererOrigin() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 0 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 8 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
@@ -1435,10 +1408,7 @@ func choiceOtherWorldlyPatrons() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 0 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 8 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
@@ -1569,10 +1539,7 @@ func choiceInventorSpecialization() (string, string, []ClassAbility) {
 	var typeAbilitiesList []ClassAbility
 
 	for _, ability := range typeData[typeName] {
-		if CharacterLevelGlobal > 0 {
-			typeAbilitiesList = append(typeAbilitiesList, ability)
-		}
-		if CharacterLevelGlobal > 5 && ability.Level == 8 {
+		if ability.Level <= CharacterLevelGlobal {
 			typeAbilitiesList = append(typeAbilitiesList, ability)
 		}
 	}
