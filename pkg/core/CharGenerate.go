@@ -15,14 +15,14 @@ import (
 	"pregen/pkg/classes/barbarian"
 	"pregen/pkg/classes/bard"
 	"pregen/pkg/races"
-	kenku "pregen/pkg/races/Kenku"
-	owlin "pregen/pkg/races/Owlin"
 	"pregen/pkg/races/aasimar"
 	"pregen/pkg/races/bugbear"
 	"pregen/pkg/races/dragonborn"
 	"pregen/pkg/races/gnome"
 	"pregen/pkg/races/goblin"
 	"pregen/pkg/races/goliath"
+	"pregen/pkg/races/kenku"
+	"pregen/pkg/races/owlin"
 	"pregen/pkg/skills"
 )
 
