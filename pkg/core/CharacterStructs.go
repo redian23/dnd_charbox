@@ -3,7 +3,6 @@ package core
 import (
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
-	"pregen/pkg/races"
 	"pregen/pkg/skills"
 	"pregen/pkg/spells"
 )

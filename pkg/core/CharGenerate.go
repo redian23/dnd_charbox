@@ -14,15 +14,14 @@ import (
 	"pregen/pkg/classes"
 	"pregen/pkg/classes/barbarian"
 	"pregen/pkg/classes/bard"
-	"pregen/pkg/races"
+	"pregen/pkg/race/aasimar"
+	"pregen/pkg/race/bugbear"
+	"pregen/pkg/race/dragonborn"
+	"pregen/pkg/race/gnome"
+	"pregen/pkg/race/goblin"
+	"pregen/pkg/race/goliath"
 	kenku "pregen/pkg/races/Kenku"
 	owlin "pregen/pkg/races/Owlin"
-	"pregen/pkg/races/aasimar"
-	"pregen/pkg/races/bugbeat"
-	"pregen/pkg/races/dragonborn"
-	"pregen/pkg/races/gnome"
-	"pregen/pkg/races/goblin"
-	"pregen/pkg/races/goliath"
 	"pregen/pkg/skills"
 )
 
@@ -52,7 +51,7 @@ func getRace(raceName, raceTypeName, gender string) *races.Race {
 	case "Аасимар":
 		return aasimar.GetRace(raceTypeName, gender)
 	case "Багбир":
-		return bugbeat.GetRace(gender)
+		return bugbear.GetRace(gender)
 	case "Гном":
 		return gnome.GetRace(raceTypeName, gender)
 	case "Гоблин":

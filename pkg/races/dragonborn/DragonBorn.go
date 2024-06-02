@@ -2,7 +2,6 @@ package dragonborn
 
 import (
 	"github.com/mazen160/go-random"
-	"pregen/pkg/races"
 	"pregen/pkg/spells"
 )
 

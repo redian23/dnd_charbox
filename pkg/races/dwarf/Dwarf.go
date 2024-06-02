@@ -2,7 +2,6 @@ package dwarf
 
 import (
 	"pregen/pkg/general"
-	"pregen/pkg/races"
 	"pregen/pkg/spells"
 )
 

@@ -1,4 +1,4 @@
-package YuanTi
+package yuanTi
 
 import "github.com/mazen160/go-random"
 

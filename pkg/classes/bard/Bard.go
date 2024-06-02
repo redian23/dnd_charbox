@@ -5,7 +5,6 @@ import (
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/general"
-	"pregen/pkg/races"
 	"pregen/pkg/spells"
 )
 
