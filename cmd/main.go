@@ -12,7 +12,7 @@ func main() {
 
 	router := gin.Default()
 	// api method
-	v1 := router.Group("api/v1/")
+	v1 := router.Group("api/v2/")
 	{
 		v1.POST("/get-character", func(c *gin.Context) {
 			api.GetCurrentCharacter(c)
@@ -29,7 +29,7 @@ func main() {
 	router.StaticFile("charbox-pico.css", WebPagesPath+"/charbox-pico.css")
 	router.StaticFS("/imgs", http.Dir(ImagePath))
 
-	router.GET("/preview", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_pico.html", gin.H{
 			"title":   "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
 			"version": Version,

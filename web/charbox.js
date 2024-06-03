@@ -59,7 +59,7 @@ async function getCharacter() {
     };
      console.log(JSON.parse(JSON.stringify(req_json)))
 
-    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v1/get-character`,
+    const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v2/get-character`,
         {
             method: 'POST',
             headers: {
