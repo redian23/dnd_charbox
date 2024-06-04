@@ -2,112 +2,170 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <meta name="description" content="Генератор персонажей для DnD 5й редакции (5e)." />
-    
-    <meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+
+    <title>{{.title}}</title>
+    <meta name="description" content="О нашей команде и контактная информация."/>
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.cyan.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+
     <meta content='true' name='HandheldFriendly'/>
     <meta content='width' name='MobileOptimized'/>
     <meta content='yes' name='apple-mobile-web-app-capable'/>
-
-    <meta name="yandex-verification" content="2bbd73e45c453573" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <title>{{.title}}</title>
-    <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
-    <style> @import url("/charbox.css");</style>
-    <section class="hero is-small is-info">
-        <div class="hero-body">
-            <p class="title">Добро пожаловать в Шкатулку Персонажей.</p>
-            <p class="subtitle">Желаю удачи в поисках Вашего идеального DnD персонажа.</p>
-            <button class="button is-primary" id="btn_gotoHome" onclick="gotoHome()">Обратно на главную страницу</button>
-        </div>
-    </section>
+    <style> @import url("charbox-pico.css");</style>
     <script>
-        function gotoHome(){
-            window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/`;
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeSwitch = document.getElementById('theme-switch');
+
+            // Устанавливаем тему при загрузке страницы
+            setInitialTheme();
+
+            themeSwitch.addEventListener('change', function() {
+                const theme = themeSwitch.checked ? 'light' :'dark';
+                setTheme(theme);
+            });
+
+            function setInitialTheme() {
+                // Проверяем, какая тема выбрана (если выбрана) при загрузке страницы
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                    // Проверяем переключатель (checkbox) в соответствии с выбранной темой
+                    themeSwitch.checked = savedTheme === 'light';
+                }
+            }
+
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                // Сохраняем выбранную тему в localStorage
+                localStorage.setItem('theme', theme);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', applySavedColor);
+
+        function changeColor(color) {
+            const link = document.querySelector('link[rel*="stylesheet"]');
+            link.href = `https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.${color}.min.css`;
+            localStorage.setItem('color', color);
         }
+
+        function applySavedColor() {
+            const savedColor = localStorage.getItem('color');
+            if (savedColor) {
+                const link = document.querySelector('link[rel*="stylesheet"]');
+                link.href = `https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.${savedColor}.min.css`;
+            }
+        }
+
     </script>
 </head>
 <body>
-    <div name="Character_list_header" class="tile  is-parent is-vertical box select_form">
-        <div>
-            <div style="text-align: center"><label class="title">Раздел вопросов и ответов</label></div>
+    <!-- Header -->
+    <header class="container">
+        <nav>
+            <hgroup>
+                <h1><a href="/">Шкатулка Персонажей</a></h1>
+                <p>Желаю удачи в поисках Вашего идеального DnD персонажа.</p>
+            </hgroup>
+            <ul>
+                <li><a href="/faq">Раздел вопросов и ответов</a></li>
+                <li><a href="/about">Контакты</a></li>
+                <li>
+                    <label>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="10.5" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+                        <input type="checkbox" id="theme-switch" role="switch" checked style="margin-right: 0px">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+                    </label>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Header -->
+    <!-- Body -->
+    <main>
+        <div class="container">
+            <h1 style="text-align: center"><label>Раздел вопросов и ответов:</label></h1>
+            <div>
+                <article>
+                    <hgroup>
+                        <h3>Как экспортировать полученного персонажа на сайт <a href="https://longstoryshort.app">Long Story Short</a>?</h3></hgroup>
+                    </hgroup>
+                    <footer>
+                        <p>
+                            1. Нажмите на кнопку "Экспорт в LSS"<br>
+                            2. Скачайте полученный .json файл.<br>
+                            3. Зайдите в раздел <a href="https://longstoryshort.app/characters/list/">"Мои персонажи" на сайт Long Story Short.</a>  <br>
+                            4. Нажмите кнопку "Загрузить .json"<br>
+                            5. Готово.<br>
+                        </p>
+                    </footer>
+                </article>
+                <article>
+                    <hgroup><h3>Как экспортировать полученного персонажа на сайт <a href="https://longstoryshort.app">Long Story Short</a>?</h3></hgroup>
+                    <footer>
+                        <p>
+                            1. Нажмите на кнопку "Экспорт в LSS"<br>
+                            2. Скачайте полученный .json файл.<br>
+                            3. Зайдите в раздел <a href="https://longstoryshort.app/characters/list/">"Мои персонажи" на сайт Long Story Short.</a>  <br>
+                            4. Нажмите кнопку "Загрузить .json"<br>
+                            5. Готово.<br>
+                        </p>
+                    </footer>
+                </article>
+                <article>
+                    <hgroup><h3>Как распечатать лист персонажа ?</h3></hgroup>
+                    <footer><p>
+                        1. Загрузить персонажа на Long Story Short (по инструкции выше).<br>
+                        2. При выборе персонажа, в выпадающем меню есть пункт "Распечатать".<br>
+                    </p></footer>
+                </article>
+                <article>
+                    <hgroup><h3>Куда написать, чтобы связаться с разработчиком по вопросам сотрудничества ?</h3></hgroup>
+                    <footer><p>
+                        Есть группа поддержки в Telegram, где можно обратится к админам с предложениями.
+                        <a href="https://t.me/charbox_chat">Ссылка на группу в Telegram</a>
+                    </p></footer>
+                </article>
+                <article>
+                    <hgroup><h3>Почему раньше сайт был по адресу charbox.swn.by, а теперь charbox.org</a>?</h3></hgroup>
+                    <footer><p>
+                        На это есть много причин:<br>
+                        1. Мы переехали на более мощный DNS хостинг - CloudFlare.<br>
+                        2. Использование более удобного адреса, чтобы пользователям было проще запомнить и найти наш сайт.<br>
+                        3. Переезд в другой дата-центр тоже одна из причин.<br>
+                    </p></footer>
+                </article>
+                <article>
+                    <hgroup><h3>Какие источники задействованы при генерации персонажа ?</h3></hgroup>
+                    <footer><p>
+                        Все материалы взяты с сайта <a href="https://dnd.su">dnd.su</a>.
+                    </p></footer>
+                </article>
+                <article>
+                    <hgroup><h3>Куда написать, чтобы сообщить об ошибке на сайте ?</h3></hgroup>
+                    <footer><p>
+                        Есть группа поддержки в Telegram. <a href="https://t.me/charbox_chat">Ссылка на группу в Telegram</a><br>
+                        При обращении с ошибкой, просьба, пишите конструктивное сообщение с приложенным скриншотом проблемы. <br>
+                        (Сообщения в роде "У вас на сайте что-то не работает" будут игнорироваться при обработке запроса).
+                    </p></footer>
+                </article>
+                <article>
+                    <hgroup><h3>Куда написать с предложением по улучшению сайта ?</h3></hgroup>
+                    <footer><p>
+                        Есть группа поддержки в Telegram. <a href="https://t.me/charbox_chat">Ссылка на группу в Telegram</a> <br>
+                        При обращении с предложением будьте объективны и конструктивны.
+                        Предложение должно отражать не только ваше желание, но и полезность для всего DnD комьюнити. <br>
+                        Предложения в роде: "Мне не нравится стиль вашего сайта, переделайте!",
+                        "Я хочу чтобы добавили {Любая очень кастомная и редкая механика, которую придумали вчера во сне}" - будут игнорироваться.
+                    </p></footer>
+                </article>
+            </div>
         </div>
-        <section class="section is-large faq_section">
-            <div class="box">
-                <h1 class="title">Q: Как экспортировать полученного персонажа на сайт <a href="https://longstoryshort.app">Long Story Short</a>?</h1>
-                <h2 class="subtitle">
-                    A: <br>
-                    1. Нажмите на кнопку "Экспорт в LSS"<br>
-                    2. Скачайте полученный .json файл.<br>
-                    3. Зайдите в раздел <a href="https://longstoryshort.app/characters/list/">"Мои персонажи" на сайт Long Story Short.</a>  <br>
-                    4. Нажмите кнопку "Загрузить .json"<br>
-                    5. Готово.<br>
-                </h2>
-            </div>
-            <div class="box">
-                <h1 class="title">Q: Как распечатать лист персонажа ?</h1>
-                <h2 class="subtitle">
-                    А:<br>
-                    1. Загрузить персонажа на Long Story Short (по инструкции выше).<br>
-                    2. При выборе персонажа, в выпадающем меню есть пункт "Распечатать".<br>
-                </h2>
-            </div>
-            <div class="box">
-                <h1 class="title">Q: Какие источники задействованы при генерации персонажа ?</h1>
-                <h2 class="subtitle">
-                    A: В данный момент (на момент сентября 2023го года) используется только книга игрока, как основной источник.
-                </h2>
-            </div>
-            <div class="box">
-                <h1 class="title">Q: Как добавить новые расы или классы ?</h1>
-                <h2 class="subtitle">
-                    A: Это может только разработчик. По мере развития проекта будут добавляться новые книги (источники),
-                    а уже с ними и новые расы и классы.
-                </h2>
-            </div>
-            <div class="box">
-                <h1 class="title">Q: Куда написать, чтобы сообщить об ошибке на сайте ?</h1>
-                <h2 class="subtitle">
-                    A: Есть группа поддержки в Telegram. <a href="https://t.me/charbox_chat">Ссылка на группу в Telegram</a><br>
-                    При обращении с ошибкой, просьба, пишите конструктивное сообщение с приложенным скриншотом проблемы. <br>
-                    (Сообщения в роде "У вас на сайте что-то не работает" будут игнорироваться при обработке запроса).
-                </h2>
-            </div>
-            <div class="box">
-                <h1 class="title">Q: Куда написать с предложением по улучшению сайта ?</h1>
-                <h2 class="subtitle">
-                    A: Есть группа поддержки в Telegram. <a href="https://t.me/charbox_chat">Ссылка на группу в Telegram</a> <br>
-                    При обращении с предложением будьте объективны и конструктивны.
-                    Предложение должно отражать не только ваше желание, но и полезность для всего DnD комьюнити. <br>
-                    Предложения в роде: "Мне не нравится стиль вашего сайта, переделайте!",
-                    "Я хочу чтобы добавили {Любая очень кастомная и редкая механика, которую придумали вчера во сне}" - будут игнорироваться.
-                </h2>
-            </div>
-            <div class="box">
-                <h1 class="title">Q: Куда написать, чтобы связаться с разработчиком по вопросам сотрудничества ?</h1>
-                <h2 class="subtitle">
-                    A: Есть группа поддержки в Telegram, где можно обратится к админам с предложениями. <br>
-                    <a href="https://t.me/charbox_chat">Ссылка на группу в Telegram</a>
-                </h2>
-            </div>
-        </section>
-    </div>
+    </main>
+    <!-- Body -->
 </body>
-<footer class="footer-distributed">
-<!--    <div class="footer-right">-->
-<!--        <a href="#"><i class="fa fa-telegram"></i></a>-->
-<!--        <a href="#"><i class="fa fa-linkedin"></i></a>-->
-<!--        <a href="#"><i class="fa fa-github"></i></a>-->
-<!--    </div>-->
-    <div class="footer-left">
-        <p class="footer-links">
-            <a class="/" href="#">Home</a>
-            <a href="/about">About</a>
-            <a href="#">Contact</a>
-        </p>
-        <p>CharBox &copy; 2023</p>
-    </div>
-</footer>
 </html>

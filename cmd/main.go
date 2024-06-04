@@ -51,10 +51,17 @@ func main() {
 		})
 	})
 
+	router.GET("/faq", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "charbox_faq.html", gin.H{
+			"title": "Раздел вопросов и ответов | Q&A Page",
+		})
+	})
+
 	router.GET("/about", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "charbox_about.html", gin.H{
 			"title": "Наша команда | Our Team",
 		})
 	})
+
 	router.Run(port)
 }
