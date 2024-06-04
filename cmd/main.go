@@ -23,7 +23,7 @@ func setStage(stage string) {
 }
 
 func main() {
-	setStage("prod")
+	setStage("test")
 
 	router := gin.Default()
 	// api method
