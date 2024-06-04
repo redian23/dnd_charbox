@@ -4,12 +4,70 @@
     }
 }
 
+@media (min-width: 1577px) and (max-width: 1980px) {
+    :root {
+        --pico-font-size: 135%;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1576px) {
+    .container {
+        max-width: 70%;
+    }
+    .formatted-skills-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    :root {
+        --pico-font-size: 135%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+    .formatted-basic-info-grid{
+        grid-row-gap: 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .formatted-skills-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    :root {
+        --pico-font-size: 130%;
+    }
+    .container {
+        max-width: 75%;
+    }
+}
+
+@media (min-width: 250px) and (max-width: 767px) {
+    .formatted-basic-info-grid{
+        grid-row-gap: 0;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .formatted-stats-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .formatted-skills-grid {
+        grid-row-gap: 0;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    :root {
+        --pico-font-size: 130%;
+    }
+    .container {
+        max-width: 85%;
+    }
+}
+
 :root:not([data-theme=dark]),[data-theme=light] {
     background-color: aliceblue;
     --pico-border-color: #d1dce8; /* Черный цвет границы */
     --pico-border-width: 1px; /* Ширина границы */
     --pico-background-color: #fff;
-    --pico-border-color-reverce: #c4c4c4; /* Черный цвет границы */
+    --pico-border-color-second: #c4c4c4;
+    --pico-border-color-reverce: #464646;
 
     color-scheme: light
 }
@@ -22,13 +80,14 @@
     --pico-border-color: #202632; /* Черный цвет границы */
     --pico-border-width: 1px; /* Ширина границы */
     --pico-background-color: #13171f;
-    --pico-border-color-reverce: #464646; /* Черный цвет границы */
+    --pico-border-color-second: #464646;
+    --pico-border-color-reverce: #c4c4c4;
 
     color-scheme: dark;
 }
 
 .formatted-stats-box {
-    font-size: 25px;
+    font-size: 120%;
     font-weight: bold;
     text-align: center;
     padding: 10px;
@@ -90,6 +149,11 @@ fieldset legend, label {
 p {
     margin-bottom: 0;
 }
+
+.grid.custom {
+    grid-row-gap: 15px;
+}
+
 .grid {
     grid-row-gap: 0;
 }
@@ -100,43 +164,13 @@ p {
     text-align: center;
 }
 
-@media (max-width: 767px) {
-    .formatted-stats-grid {
-        grid-row-gap: 0;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto;
-    }
-}
-
-@media (min-width: 1024px) and (max-width: 1280px) {
-    .formatted-basic-info-grid{
-        grid-row-gap: 0;
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .formatted-skills-grid {
-        grid-row-gap: 0;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media  (min-width: 768px) and (max-width:1023px) {
-    .formatted-basic-info-grid{
-        grid-row-gap: 0;
-        grid-template-columns: repeat(1, 1fr);
-    }
-    .formatted-skills-grid {
-        grid-row-gap: 0;
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
 .color-picker button {
     display: inline-block;
     width: 50px;
     height: 50px;
     margin: 2px;
     border-radius: 50%;
-    border: 1px solid var(--pico-border-color-reverce);
+    border: 1px solid var(--pico-border-color-second);
 }
 
 .pico-background-pink { background-color: #c72259; }
@@ -154,3 +188,4 @@ p {
 .color-picker a.active .icon-check {
     visibility: visible;
 }
+

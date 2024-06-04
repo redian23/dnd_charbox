@@ -45,7 +45,7 @@ function getSelectGenderValue() {
     return document.getElementById("select_gender").value;
 }
 
-document.addEventListener('DOMContentLoaded', applySavedColor);
+
 
 async function getCharacter() {
     let req_json = {
@@ -329,9 +329,17 @@ function writeToSkillsLabels(data) {
 }
 
 function writeDebugSkillLabels(data) {
-    document.getElementById("lbl_race_skills").innerHTML = JSON.parse(data)["race"]["race_skill"].join(', ');
-    document.getElementById("lbl_background_skills").innerHTML = JSON.parse(data)["background"]["background_skills"].join(', ');
-    document.getElementById("lbl_class_skills").innerHTML = JSON.parse(data)["class"]["proficiencies"]["skills_of_class"].join(', ');
+    document.getElementById("lbl_race_skills").innerHTML =
+        JSON.parse(data)["race"]["race_skill"].length > 0 ?
+            JSON.parse(data)["race"]["race_skill"].join(', ') : "Нет";
+
+    document.getElementById("lbl_background_skills").innerHTML =
+        JSON.parse(data)["background"]["background_skills"].length > 0
+            ? JSON.parse(data)["background"]["background_skills"].join(', ') : "Нет";
+
+    document.getElementById("lbl_class_skills").innerHTML =
+        JSON.parse(data)["class"]["proficiencies"]["skills_of_class"].length > 0
+            ? JSON.parse(data)["class"]["proficiencies"]["skills_of_class"].join(', ') : "Нет";
 }
 
 function writeToHitsLabels(data) {
@@ -366,7 +374,6 @@ function writeProficienciesLabels(data) {
     document.getElementById("lbl_armor").innerHTML = JSON.parse(data)["class"]["proficiencies"]["armor"].join("\,\r\n");
     document.getElementById("lbl_weapon").innerHTML = JSON.parse(data)["class"]["proficiencies"]["weapons"].join(', ');
     document.getElementById("lbl_class_instruments").innerHTML = JSON.parse(data)["class"]["proficiencies"]["tools"].join(', ');
-    //document.getElementById("lbl_class_skills").innerHTML = JSON.parse(data)["class"]["proficiencies"]["skills_of_class"].join(', ');
     document.getElementById("lbl_background_instruments").innerHTML = JSON.parse(data)["background"]["mastery_of_tools"].join(', ');
 }
 
@@ -588,6 +595,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', applySavedColor);
 
 function changeColor(color) {
     const link = document.querySelector('link[rel*="stylesheet"]');

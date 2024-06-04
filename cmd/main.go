@@ -8,7 +8,22 @@ import (
 	"strings"
 )
 
+var port string
+var titleText string
+
+func setStage(stage string) {
+	switch stage {
+	case "prod":
+		port = ":4050"
+		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
+	case "test":
+		port = ":4090"
+		titleText = "Шкатулка Персонажей Тест | Character Box Beta"
+	}
+}
+
 func main() {
+	setStage("prod")
 
 	router := gin.Default()
 	// api method
@@ -27,13 +42,19 @@ func main() {
 	router.StaticFile("favicon.png", WebPagesPath+"/favicon.png")
 	router.StaticFile("charbox.js", WebPagesPath+"/charbox.js")
 	router.StaticFile("charbox-pico.css", WebPagesPath+"/charbox-pico.css")
-	router.StaticFS("/imgs", http.Dir(ImagePath))
+	router.StaticFS("/img", http.Dir(ImagePath))
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_pico.html", gin.H{
-			"title":   "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e",
+			"title":   titleText,
 			"version": Version,
 		})
 	})
-	router.Run(":4090")
+
+	router.GET("/about", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "charbox_about.html", gin.H{
+			"title": "Наша команда | Our Team",
+		})
+	})
+	router.Run(port)
 }
