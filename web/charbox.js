@@ -479,9 +479,14 @@ function writeClassEquipmentLabels(data) {
 function writeArmorLabels(data) {
     let armor = JSON.parse(data)["class"]["armor"];
 
+    console.log(JSON.stringify(armor))
     for(let i = 0; i < armor.length; i++) {
         if (armor[i]["armorName"] !== "Щит"){
             document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i]["armorName"]);
+            document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
+        }
+        if (armor[i]["armorName"] === "Щит"){
+            document.getElementById("lbl_armor_name").innerHTML = JSON.stringify(armor[i-1]["armorName"] + " и Щит");
             document.getElementById("lbl_armor_class").innerHTML = JSON.stringify(armor[i]["armorClassCount"]);
         }
     }
@@ -566,7 +571,6 @@ function writeSpellcastingLabels(data) {
         document.getElementById("lbl_spell_damage_modifier").innerHTML = spell_using["spell_damage_modifier"]
         document.getElementById("lbl_saving_throw_difficulty").innerHTML = spell_using["saving_throw_difficulty"]
     }
-
 }
 
 function exportToLSS() {
