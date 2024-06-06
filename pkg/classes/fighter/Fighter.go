@@ -5,6 +5,7 @@ import (
 	"pregen/pkg/backgrounds"
 	"pregen/pkg/classes"
 	"pregen/pkg/general"
+	"pregen/pkg/races"
 	"pregen/pkg/spells"
 )
 
@@ -601,7 +602,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 	return fighterClassAbilities
 }
 
-func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) []classes.ClassAbility {
+func getClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int) []classes.ClassAbility {
 	var abilitiesList = getClassAbilities(raceInfo, backgrInfo, lvl)
 	var abilitiesAnswer []classes.ClassAbility
 
@@ -617,7 +618,7 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int)
 	return &classes.Class{
 		ClassName:       "Fighter",
 		ClassNameRU:     "Воин",
-		ClassAbilities:  getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl),
+		ClassAbilities:  getClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl),
 		AbilityScore:    getAbilitiesScore(raceInfo, lvl),
 		AbilityModifier: getAbilityModifier(raceInfo, lvl),
 		SavingThrows:    getSavingThrows(raceInfo, lvl),

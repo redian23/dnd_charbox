@@ -47,9 +47,9 @@ func GetCurrentCharacter(c *gin.Context) {
 		chr.RaceName = raceArray[randNum]
 	}
 
-	if chr.RaceTypeName == "random" || chr.RaceTypeName == "" {
-		chr.RaceTypeName = "Стандартный"
-	}
+	//if chr.RaceTypeName == "random" || chr.RaceTypeName == "" {
+	//	chr.RaceTypeName = "Стандартный"
+	//}
 
 	if chr.BackgroundName == "random" {
 		randNum, _ := random.IntRange(0, len(backgroundArray))

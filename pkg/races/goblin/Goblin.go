@@ -192,12 +192,13 @@ func GetRace(raceTypeName string, gender string) *races.Race {
 	}
 
 	return &races.Race{
-		RaceName:             "Race",
-		RaceNameRu:           "Раса",
+		RaceName:             "Goblin",
+		RaceNameRu:           "Гоблин",
 		AddictionInformation: getAddictionInfoInterface(),
 		FirstName:            yourName,
 		LastName:             "",
 		Gender:               gender,
+		RaceSkill:            []string{},
 		Body:                 races.GetBodyStats(bodyStats),
 		Language:             raceLangs,
 		Resist:               raceResists,

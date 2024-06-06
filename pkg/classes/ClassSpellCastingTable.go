@@ -1,23 +1,13 @@
 package classes
 
-var ProficiencyBonus int
-
-func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier AbilityModifier) SpellCasting {
+func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier AbilityModifier, profBonus int) SpellCasting {
 	var cast SpellCasting
-
-	if ClassLevel <= 4 {
-		ProficiencyBonus = 2
-	} else if ClassLevel > 4 && ClassLevel <= 8 {
-		ProficiencyBonus = 3
-	} else {
-		ProficiencyBonus = 4
-	}
 
 	switch ClassName {
 	case "Бард":
 		cast.BasicSpellCharacteristics = "Харизма"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Charisma
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Charisma
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Charisma
+		cast.SpellDamageModifier = profBonus + modifier.Charisma
 		switch ClassLevel {
 		case 1:
 			cast.SpellsSlots = SpellsSlots{OneLevel: 2, TwoLevel: 0}
@@ -74,8 +64,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 		}
 	case "Волшебник":
 		cast.BasicSpellCharacteristics = "Интеллект"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Intelligence
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Intelligence
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Intelligence
+		cast.SpellDamageModifier = profBonus + modifier.Intelligence
 
 		switch ClassLevel {
 		case 1:
@@ -133,8 +123,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 		}
 	case "Друид":
 		cast.BasicSpellCharacteristics = "Мудрость"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Wisdom
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Wisdom
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Wisdom
+		cast.SpellDamageModifier = profBonus + modifier.Wisdom
 
 		switch ClassLevel {
 		case 1:
@@ -192,8 +182,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 		}
 	case "Жрец":
 		cast.BasicSpellCharacteristics = "Мудрость"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Wisdom
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Wisdom
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Wisdom
+		cast.SpellDamageModifier = profBonus + modifier.Wisdom
 
 		switch ClassLevel {
 		case 1:
@@ -251,8 +241,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 		}
 	case "Изобретатель":
 		cast.BasicSpellCharacteristics = "Интеллект"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Intelligence
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Intelligence
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Intelligence
+		cast.SpellDamageModifier = profBonus + modifier.Intelligence
 
 		switch ClassLevel {
 		case 1:
@@ -302,8 +292,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 		}
 	case "Колдун":
 		cast.BasicSpellCharacteristics = "Харизма"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Charisma
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Charisma
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Charisma
+		cast.SpellDamageModifier = profBonus + modifier.Charisma
 
 		switch ClassLevel {
 		case 1:
@@ -364,8 +354,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 	case "Паладин":
 		if ClassLevel > 1 {
 			cast.BasicSpellCharacteristics = "Харизма"
-			cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Charisma
-			cast.SpellDamageModifier = ProficiencyBonus + modifier.Charisma
+			cast.SavingThrowDifficulty = 8 + profBonus + modifier.Charisma
+			cast.SpellDamageModifier = profBonus + modifier.Charisma
 		}
 		switch ClassLevel {
 		case 1:
@@ -411,8 +401,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 	case "Следопыт":
 		if ClassLevel > 1 {
 			cast.BasicSpellCharacteristics = "Мудрость"
-			cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Wisdom
-			cast.SpellDamageModifier = ProficiencyBonus + modifier.Wisdom
+			cast.SavingThrowDifficulty = 8 + profBonus + modifier.Wisdom
+			cast.SpellDamageModifier = profBonus + modifier.Wisdom
 		}
 		switch ClassLevel {
 		case 1:
@@ -454,8 +444,8 @@ func GetClassSpellBasicCharacteristic(ClassName string, ClassLevel int, modifier
 		}
 	case "Чародей":
 		cast.BasicSpellCharacteristics = "Харизма"
-		cast.SavingThrowDifficulty = 8 + ProficiencyBonus + modifier.Charisma
-		cast.SpellDamageModifier = ProficiencyBonus + modifier.Charisma
+		cast.SavingThrowDifficulty = 8 + profBonus + modifier.Charisma
+		cast.SpellDamageModifier = profBonus + modifier.Charisma
 		switch ClassLevel {
 		case 1:
 			cast.SpellsSlots = SpellsSlots{OneLevel: 2, TwoLevel: 0}

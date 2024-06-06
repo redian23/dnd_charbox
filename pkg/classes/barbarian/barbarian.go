@@ -17,7 +17,7 @@ var (
 var statsPriority = []string{"Strength", "BodyDifficulty"}
 
 func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) *classes.Class {
-
+	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
 	var abilitiesScore = general.GetClassAbilitiesScore(statsPriority, raceInfo, lvl)
 	var modifier = classes.GetModifiersForClass(abilitiesScore)
 	var savingThrows = classes.GetSaveThrowsForClass(modifier, statsPriority)
@@ -33,7 +33,7 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 		SavingThrows:       savingThrows,
 		Inspiration:        false,
 		Proficiencies:      *barbarianProf, //need to fix
-		ProficiencyBonus:   classes.ProficiencyBonus,
+		ProficiencyBonus:   proficiencyBonus,
 		Hits:               getHits(modifier, lvl),
 		Caster:             true,
 		SpellCasting:       classes.SpellCasting{},

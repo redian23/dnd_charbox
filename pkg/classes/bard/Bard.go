@@ -21,12 +21,12 @@ var (
 )
 
 func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) *classes.Class {
-
+	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
 	var statsPriority = []string{"Charisma", "Dexterity"}
 	var abilitiesScore = general.GetClassAbilitiesScore(statsPriority, raceInfo, lvl)
 	var modifier = classes.GetModifiersForClass(abilitiesScore)
 	var savingThrows = classes.GetSaveThrowsForClass(modifier, statsPriority)
-	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, modifier)
+	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, modifier, proficiencyBonus)
 	var equip = getBardEquipment()
 
 	return &classes.Class{
@@ -39,7 +39,7 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 		SavingThrows:       savingThrows,
 		Inspiration:        false,
 		Proficiencies:      *bardProf, //need to fix
-		ProficiencyBonus:   classes.ProficiencyBonus,
+		ProficiencyBonus:   proficiencyBonus,
 		Hits:               getBardHits(modifier, lvl),
 		Caster:             true,
 		SpellCasting:       spellCastingInfo,
@@ -583,9 +583,9 @@ func GetWeaponInfo(equip []classes.Item) []classes.Weapon {
 }
 
 func getBardSpells(mod classes.AbilityModifier, lvl int) []spells.SpellsJSON {
-
+	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
 	bardSpellList = []spells.SpellsJSON{}
-	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, mod)
+	var bardSpellCastingInfo = classes.GetClassSpellBasicCharacteristic("Бард", lvl, mod, proficiencyBonus)
 	for i := 0; i < 5; i++ {
 		var spellCount int
 		switch i {

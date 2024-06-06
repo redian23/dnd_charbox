@@ -1,7 +1,35 @@
 let charData
+
+/////////////------------ DOM -------------//////////////////
+document.addEventListener('DOMContentLoaded', (event) => {
+    updateRaceArchetypeSelect();
+    //получение архетипа при загрузке старицы
+    //bug-0001 Все прогружается в начале страницы кроме RaceArchetype TODO
+});
+
 document.addEventListener('DOMContentLoaded', (event) => {
     getCharacter();
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_class_name").addEventListener("change", updateClassArchetypeSelect);
+    // Initial update to populate archetypes on page load if necessary
+    updateClassArchetypeSelect();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_char_level").addEventListener("change", updateClassArchetypeSelect);
+    // Initial update to populate archetypes on page load if necessary
+    updateClassArchetypeSelect();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("select_race_name").addEventListener("change", updateRaceArchetypeSelect);
+    // Initial update to populate archetypes on page load if necessary
+    updateRaceArchetypeSelect();
+});
+
+////////////////////////////////////////////////////////////////////////////////////////
 
 function getSelectClassNameValue() {
     if (document.getElementById("select_class_name").value === "Случайный класс") {
@@ -45,8 +73,6 @@ function getSelectGenderValue() {
     return document.getElementById("select_gender").value;
 }
 
-
-
 async function getCharacter() {
     let req_json = {
         "class": getSelectClassNameValue(),
@@ -57,7 +83,7 @@ async function getCharacter() {
         "level": parseInt(getSelectLevelValue(), 10),
         "gender": getSelectGenderValue()
     };
-     console.log(JSON.parse(JSON.stringify(req_json)))
+     console.log("Улетело: ", JSON.parse(JSON.stringify(req_json)))
 
     const response = await fetch(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/api/v2/get-character`,
         {
@@ -74,7 +100,7 @@ async function getCharacter() {
     charData = data;
     WriteAllLabels(data);
 
-    console.log(json);
+    console.log("Прилетело: ",json);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -549,23 +575,6 @@ function gotoFAQ(){
     window.location = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/faq`;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("select_class_name").addEventListener("change", updateClassArchetypeSelect);
-    // Initial update to populate archetypes on page load if necessary
-    updateClassArchetypeSelect();
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("select_char_level").addEventListener("change", updateClassArchetypeSelect);
-    // Initial update to populate archetypes on page load if necessary
-    updateClassArchetypeSelect();
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("select_race_name").addEventListener("change", updateRaceArchetypeSelect);
-    // Initial update to populate archetypes on page load if necessary
-    updateRaceArchetypeSelect();
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const themeSwitch = document.getElementById('theme-switch');
@@ -635,13 +644,13 @@ function updateClassArchetypeSelect() {
 
     switch (className) {
         case "Бард":
-            addOptions(classArchetype, [ 'Случайная коллегия',
+            addOptions(classArchetype, [
                 'Коллегия доблести', 'Коллегия знаний', 'Коллегия мечей', 'Коллегия очарования',
                 'Коллегия шёпотов', 'Коллегия красноречия', 'Коллегия созидания', 'Коллегия духов'
             ]);
             break;
         case "Варвар":
-            addOptions(classArchetype, ['Случайный путь',
+            addOptions(classArchetype, [
                 'Путь берсерка', 'Путь тотемного воина', 'Путь буревестника', 'Путь предка-хранителя',
                 'Путь фанатика', 'Путь дикой магии', 'Путь зверя', 'Путь великана', 'Путь бушующего в бою'
             ]);
@@ -654,7 +663,6 @@ function updateClassArchetypeSelect() {
 
 function updateRaceArchetypeSelect() {
     let raceName = getSelectRaceNameValue();
-
     let raceArchetype = document.getElementById('select_race_archetype');
     raceArchetype.innerHTML = '';
 

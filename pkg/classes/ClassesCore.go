@@ -6,6 +6,15 @@ import (
 	"time"
 )
 
+func GetProficiencyBonus(level int) int {
+	if level >= 1 && level <= 4 {
+		return 2
+	} else if level >= 5 && level <= 8 {
+		return 3
+	}
+	return 0
+}
+
 func GetClassSkillsArray(raceSkills, backSkills []string, availableSkillList []string, count int) []string {
 	// Создаем карты для быстрой проверки навыков от расы и предыстории
 	raceSkillsMap := make(map[string]bool)

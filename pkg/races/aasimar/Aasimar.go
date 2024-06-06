@@ -1,6 +1,7 @@
 package aasimar
 
 import (
+	"fmt"
 	"pregen/pkg/general"
 	"pregen/pkg/races"
 	"pregen/pkg/spells"
@@ -133,6 +134,7 @@ func aasimarTheFallenType() *races.RaceType {
 }
 
 func GetRace(raceTypeName string, gender string) *races.Race {
+	fmt.Println("INT: ", raceTypeName)
 	var raceType *races.RaceType
 
 	switch raceTypeName {
