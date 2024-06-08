@@ -11,23 +11,9 @@
     <meta content='true' name='HandheldFriendly'/>
     <meta content='width' name='MobileOptimized'/>
     <meta content='yes' name='apple-mobile-web-app-capable'/>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-        ym(97474376, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/97474376" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+    <meta name="yandex-verification" content="2bbd73e45c453573" />
+
     <title>{{.title}}</title>
     <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
     <style> @import url("/charbox.css");</style>
@@ -38,6 +24,23 @@
             <button class="button is-dark" id="btn_export_lss" onclick="exportToLSS()"> Экспорт в LongStoryShort </button>
             <button class="button is-danger" id="btm_faq" onclick="gotoFAQ()"> Раздел вопросов и ответов </button>
             <button class="button is-link" onclick="location.href='https://t.me/charbox_chat';"> Наш Telegram чат </button>
+            <button class="js-modal-trigger button is-warning" data-target="modal-js-example">
+                Важная информация!
+            </button>
+        </div>
+        <div id="modal-js-example" class="modal">
+            <div class="modal-background"></div>
+
+            <div class="modal-content">
+                <div class="box">
+                    <p class="subtitle" style="color: #292c2f" >
+                        Cайт переехал на новый адрес charbox.org ! <br>
+                        Если у вас сохранен старый адрес (charbox.swn.by) рекомендуем его обновить.
+                    </p>
+                </div>
+            </div>
+
+            <button class="modal-close is-large" aria-label="close"></button>
         </div>
     </section>
 </head>
