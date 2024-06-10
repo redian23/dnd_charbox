@@ -1,6 +1,7 @@
 package cleric
 
 import (
+	"fmt"
 	"github.com/mazen160/go-random"
 	"math/rand"
 	"pregen/pkg/backgrounds"
@@ -11,11 +12,6 @@ import (
 	"time"
 )
 
-var (
-	spellList  []spells.SpellsJSON
-	skillCount = 2
-)
-
 func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) *classes.Class {
 	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
 	var statsPriority = []string{"Wisdom", "Charisma"}
@@ -23,7 +19,7 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 	var modifier = classes.GetModifiersForClass(abilitiesScore)
 	var savingThrows = classes.GetSaveThrowsForClass(modifier, statsPriority)
 
-	var classAbilities, proficiencies = getClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName)
+	var classAbilities, proficiencies, addictionClassSpells = getClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName)
 	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Жрец", lvl, modifier, proficiencyBonus)
 
 	var equip = getEquipment(proficiencies)
@@ -42,7 +38,7 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 		Hits:               general.GetHits("d8", modifier, lvl),
 		Caster:             true,
 		SpellCasting:       spellCastingInfo,
-		SpellsList:         getSpells(modifier, lvl),
+		SpellsList:         getSpells(modifier, lvl, addictionClassSpells),
 		Equipment:          equip,
 		ArmorInfo:          GetArmorInfo(equip, classArchetypeName, lvl),
 		WeaponInfo:         GetWeaponInfo(equip),
@@ -55,7 +51,7 @@ func getBasicProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 		raceInfo.RaceSkill,
 		backgrInfo.BackgroundSkills,
 		availableSkillList,
-		skillCount,
+		2,
 	)
 
 	return &classes.Proficiencies{
@@ -195,8 +191,9 @@ func getEquipment(prof *classes.Proficiencies) []classes.Item {
 	return equipment
 }
 
-func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) ([]classes.ClassAbility, *classes.Proficiencies) {
+func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) ([]classes.ClassAbility, *classes.Proficiencies, []spells.SpellsJSON) {
 	var proficiencies = getBasicProficiencies(raceInfo, backgrInfo)
+	var addClassSpells = []spells.SpellsJSON{}
 
 	var dangerousPoint string
 	if lvl >= 5 && lvl <= 7 {
@@ -262,7 +259,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -319,7 +316,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -374,7 +371,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -435,7 +432,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			raceInfo.RaceSkill,
 			backgrInfo.BackgroundSkills,
 			randomSkills,
-			skillCount,
+			2,
 		)
 		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
 
@@ -455,7 +452,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -504,7 +501,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -556,7 +553,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		})
 
 		for _, druidSpell := range druidZeroLevelSpells {
-			spellList = append(spellList, druidSpell)
+			addClassSpells = append(addClassSpells, druidSpell)
 			break
 		}
 
@@ -576,7 +573,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			raceInfo.RaceSkill,
 			backgrInfo.BackgroundSkills,
 			randomSkills,
-			skillCount,
+			2,
 		)
 		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
 
@@ -591,7 +588,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -634,7 +631,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			},
 		}...)
 	case "Домен света":
-		spellList = append(spellList, spells.FindSpellInDB("Cвет"))
+		addClassSpells = append(addClassSpells, spells.FindSpellInDB("Cвет"))
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Огненные ладони", "Огонь фей"},
@@ -647,7 +644,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -705,7 +702,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -756,7 +753,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			wizardZeroLevelSpells[i], wizardZeroLevelSpells[j] = wizardZeroLevelSpells[j], wizardZeroLevelSpells[i]
 		})
 		for _, wizardSpell := range wizardZeroLevelSpells {
-			spellList = append(spellList, wizardSpell)
+			addClassSpells = append(addClassSpells, wizardSpell)
 			break
 		}
 
@@ -771,7 +768,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -837,7 +834,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -887,7 +884,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			},
 		}...)
 	case "Домен упокоения":
-		spellList = append(spellList, spells.FindSpellInDB("Уход за умирающим"))
+		addClassSpells = append(addClassSpells, spells.FindSpellInDB("Уход за умирающим"))
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Порча", "Псевдожизнь"},
@@ -900,7 +897,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -969,7 +966,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			raceInfo.RaceSkill,
 			backgrInfo.BackgroundSkills,
 			randomSkills,
-			skillCount,
+			2,
 		)
 		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
 
@@ -984,7 +981,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -1051,7 +1048,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			raceInfo.RaceSkill,
 			backgrInfo.BackgroundSkills,
 			randomSkills,
-			skillCount,
+			2,
 		)
 		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
 
@@ -1066,7 +1063,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
 				}
 			}
 		}
@@ -1128,7 +1125,8 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		for i, spellsStormDomain := range addSpellMap {
 			if i <= lvl {
 				for _, spell := range spellsStormDomain {
-					spellList = append(spellList, spells.FindSpellInDB(spell))
+					addClassSpells = append(addClassSpells, spells.FindSpellInDB(spell))
+					fmt.Println(addClassSpells)
 				}
 			}
 		}
@@ -1193,7 +1191,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		}
 	}
 
-	return clericClassAbilities, proficiencies
+	return clericClassAbilities, proficiencies, addClassSpells
 }
 
 func GetArmorInfo(equip []classes.Item, classArchetypeName string, lvl int) classes.Armor {
@@ -1251,10 +1249,11 @@ func GetWeaponInfo(equip []classes.Item) []classes.Weapon {
 	return weaponAnswer
 }
 
-func getSpells(mod classes.AbilityModifier, lvl int) []spells.SpellsJSON {
+func getSpells(mod classes.AbilityModifier, lvl int, classSpell []spells.SpellsJSON) []spells.SpellsJSON {
 	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
-	spellList = []spells.SpellsJSON{}
+	var spellList = []spells.SpellsJSON{}
 	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Жрец", lvl, mod, proficiencyBonus)
+
 	for i := 0; i < 5; i++ {
 		var spellCount int
 		switch i {
@@ -1270,8 +1269,10 @@ func getSpells(mod classes.AbilityModifier, lvl int) []spells.SpellsJSON {
 			spellCount = spellCastingInfo.FourLevelSpellsKnownCount
 		}
 		spellList = append(spellList,
-			spells.GetRandomSpellForClass("Бард", i, spellCount)...)
-
+			spells.GetRandomSpellForClass("Жрец", i, spellCount)...)
 	}
+
+	spellList = append(spellList, classSpell...)
+
 	return spellList
 }
