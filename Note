@@ -16,3 +16,10 @@
 	sk.Intimidation.SkillNameRu = "Запугивание"
 	sk.Performance.SkillNameRu = "Выступление"
 	sk.Persuasion.SkillNameRu = "Убеждение"
+
+    "Strength":       0,
+    "Dexterity":      0,
+    "BodyDifficulty": 0,
+    "Intelligence":   0,
+    "Wisdom":         0,
+    "Charisma":       0,

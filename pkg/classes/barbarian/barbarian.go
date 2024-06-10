@@ -10,7 +10,6 @@ import (
 )
 
 var (
-	barbarianProf   *classes.Proficiencies
 	skillCount      int
 	barbarianSpells []spells.SpellsJSON
 )
@@ -18,6 +17,7 @@ var statsPriority = []string{"Strength", "BodyDifficulty"}
 
 func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) *classes.Class {
 	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
+	var classAbilities, barbarianProf = getClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName)
 	var abilitiesScore = general.GetClassAbilitiesScore(statsPriority, raceInfo, lvl)
 	var modifier = classes.GetModifiersForClass(abilitiesScore)
 	var savingThrows = classes.GetSaveThrowsForClass(modifier, statsPriority)
@@ -27,14 +27,14 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 		ClassName:          "Barbarian",
 		ClassNameRU:        "Варвар",
 		ClassArchetypeName: classArchetypeName,
-		ClassAbilities:     getClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl, classArchetypeName),
+		ClassAbilities:     classAbilities,
 		AbilityScore:       abilitiesScore,
 		AbilityModifier:    modifier,
 		SavingThrows:       savingThrows,
 		Inspiration:        false,
 		Proficiencies:      *barbarianProf, //need to fix
 		ProficiencyBonus:   proficiencyBonus,
-		Hits:               getHits(modifier, lvl),
+		Hits:               general.GetHits("d12", modifier, lvl),
 		Caster:             true,
 		SpellCasting:       classes.SpellCasting{},
 		SpellsList:         barbarianSpells,
@@ -43,23 +43,6 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 		WeaponInfo:         GetWeaponInfo(equip),
 	}
 }
-
-func getHits(modifier classes.AbilityModifier, lvl int) classes.Hits {
-	var hitCount int
-
-	for i := 1; i < lvl; i++ {
-		if i == 1 {
-			hitCount = general.D12.GetMaxRange() + modifier.BodyDifficulty
-		} else {
-			hitCount += general.D12.RollDice() + modifier.BodyDifficulty
-		}
-	}
-
-	return classes.Hits{
-		HitDice:  general.D12.GetDiceName(),
-		HitCount: hitCount,
-	}
-} // done
 
 func getProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Background) *classes.Proficiencies {
 
@@ -203,11 +186,11 @@ func GetWeaponInfo(equip []classes.Item) []classes.Weapon {
 	return weaponAnswer
 } //done
 
-func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) []classes.ClassAbility {
-	barbarianProf = getProficiencies(raceInfo, backgrInfo)
+func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) ([]classes.ClassAbility, *classes.Proficiencies) {
+	var barbarianProf = getProficiencies(raceInfo, backgrInfo)
 	barbarianSpells = []spells.SpellsJSON{}
 	if lvl >= 5 {
-		//добавить пункт что не добавляетсяпри тяжелой броне
+		//добавить пункт, что не добавляется при тяжелой броне
 		raceInfo.Type.Speed += 10
 	}
 
@@ -533,17 +516,11 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		}
 	}
 
-	return barbarianClassAbilities
-}
-
-func getClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) []classes.ClassAbility {
-	var abilitiesList = getClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName)
-	var abilitiesAnswer []classes.ClassAbility
-
-	for _, ability := range abilitiesList {
+	for _, ability := range barbarianClassAbilities {
 		if lvl >= ability.Level {
-			abilitiesAnswer = append(abilitiesAnswer, ability)
+			barbarianClassAbilities = append(barbarianClassAbilities, ability)
 		}
 	}
-	return abilitiesAnswer
+
+	return barbarianClassAbilities, barbarianProf
 }

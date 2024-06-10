@@ -14,6 +14,7 @@ import (
 	"pregen/pkg/classes"
 	"pregen/pkg/classes/barbarian"
 	"pregen/pkg/classes/bard"
+	"pregen/pkg/classes/cleric"
 	"pregen/pkg/races"
 	"pregen/pkg/races/aasimar"
 	"pregen/pkg/races/bugbear"
@@ -106,6 +107,8 @@ func getClass(className, classArchetypeName string, raceInfo *races.Race, backgr
 	//	return fighter.GetClass(raceInfo, backgrInfo, lvl, classArchetypeName)
 	case "Варвар":
 		return barbarian.GetClass(raceInfo, backgrInfo, lvl, classArchetypeName)
+	case "Жрец":
+		return cleric.GetClass(raceInfo, backgrInfo, lvl, classArchetypeName)
 	}
 	return nil
 }

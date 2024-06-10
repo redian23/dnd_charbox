@@ -636,7 +636,7 @@ function updateClassArchetypeSelect() {
     let classArchetype = document.getElementById('select_class_archetype');
     classArchetype.innerHTML = '';
 
-    if (level < 3 || className === 'random'){
+    if (level < 3 && className != 'Жрец' ){
         classArchetype.style.display = "none";
     }else {
         classArchetype.style.display = "block";
@@ -653,6 +653,14 @@ function updateClassArchetypeSelect() {
             addOptions(classArchetype, [
                 'Путь берсерка', 'Путь тотемного воина', 'Путь буревестника', 'Путь предка-хранителя',
                 'Путь фанатика', 'Путь дикой магии', 'Путь зверя', 'Путь великана', 'Путь бушующего в бою'
+            ]);
+            break;
+        case "Жрец":
+            addOptions(classArchetype, [
+                "Домен бури", "Домен войны", "Домен жизни", "Домен знаний",
+                "Домен обмана", "Домен природы", "Домен света", "Домен смерти",
+                "Домен магии", "Домен кузни", "Домен упокоения", "Домен мира",
+                "Домен порядка", "Домен сумерек",
             ]);
             break;
         default:

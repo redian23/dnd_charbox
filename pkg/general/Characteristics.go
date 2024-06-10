@@ -308,3 +308,34 @@ func GetClassAbilitiesScore(abilityRequest []string, raceInfo *races.Race, lvl i
 
 	return abs
 }
+
+func GetHits(diceName string, modifier classes.AbilityModifier, lvl int) classes.Hits {
+	var hitCount int
+	var dice Dice
+
+	switch diceName {
+	case "d4":
+		dice = D4
+	case "d6":
+		dice = D6
+	case "d8":
+		dice = D8
+	case "d10":
+		dice = D10
+	case "d12":
+		dice = D12
+	}
+
+	for i := 1; i < lvl; i++ {
+		if i == 1 {
+			hitCount = dice.GetMaxRange() + modifier.BodyDifficulty
+		} else {
+			hitCount += dice.RollDice() + modifier.BodyDifficulty
+		}
+	}
+
+	return classes.Hits{
+		HitDice:  dice.GetDiceName(),
+		HitCount: hitCount,
+	}
+}

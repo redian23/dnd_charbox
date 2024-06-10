@@ -33,37 +33,20 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 		ClassName:          "Bard",
 		ClassNameRU:        "Бард",
 		ClassArchetypeName: classArchetypeName,
-		ClassAbilities:     getBardClassAbilitiesWithLevel(raceInfo, backgrInfo, lvl, classArchetypeName),
+		ClassAbilities:     getBardClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName),
 		AbilityScore:       abilitiesScore,
 		AbilityModifier:    modifier,
 		SavingThrows:       savingThrows,
 		Inspiration:        false,
 		Proficiencies:      *bardProf, //need to fix
 		ProficiencyBonus:   proficiencyBonus,
-		Hits:               getBardHits(modifier, lvl),
+		Hits:               general.GetHits("d8", modifier, lvl),
 		Caster:             true,
 		SpellCasting:       spellCastingInfo,
 		SpellsList:         getBardSpells(modifier, lvl),
 		Equipment:          equip,
 		ArmorInfo:          GetArmorInfo(equip),
 		WeaponInfo:         GetWeaponInfo(equip),
-	}
-}
-
-func getBardHits(modifier classes.AbilityModifier, lvl int) classes.Hits {
-	var hitCount int
-
-	for i := 1; i < lvl; i++ {
-		if i == 1 {
-			hitCount = general.D6.GetMaxRange() + modifier.BodyDifficulty
-		} else {
-			hitCount += general.D6.RollDice() + modifier.BodyDifficulty
-		}
-	}
-
-	return classes.Hits{
-		HitDice:  general.D6.GetDiceName(),
-		HitCount: hitCount,
 	}
 }
 
@@ -528,19 +511,13 @@ func getBardClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 		}
 	}
 
-	return bardClassAbilities
-}
-
-func getBardClassAbilitiesWithLevel(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int, classArchetypeName string) []classes.ClassAbility {
-	var abilitiesList = getBardClassAbilities(raceInfo, backgrInfo, lvl, classArchetypeName)
-	var abilitiesAnswer []classes.ClassAbility
-
-	for _, ability := range abilitiesList {
+	for _, ability := range bardClassAbilities {
 		if lvl >= ability.Level {
-			abilitiesAnswer = append(abilitiesAnswer, ability)
+			bardClassAbilities = append(bardClassAbilities, ability)
 		}
 	}
-	return abilitiesAnswer
+
+	return bardClassAbilities
 }
 
 func GetArmorInfo(equip []classes.Item) classes.Armor {
