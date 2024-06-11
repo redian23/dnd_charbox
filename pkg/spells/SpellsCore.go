@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"pregen/pkg/db"
+	"reflect"
 )
 
 var SpellData = GetSpellsFormDB()
@@ -66,12 +67,21 @@ func GetAllSpellForClass(className string, spellLevel int) []SpellsJSON {
 	return spellList
 }
 
-func GetRandomSpellForClass(className string, spellLevel, count int) []SpellsJSON {
+func contains(spellList []SpellsJSON, spell SpellsJSON) bool {
+	for _, s := range spellList {
+		if reflect.DeepEqual(s, spell) {
+			return true
+		}
+	}
+	return false
+}
+
+func GetRandomSpellForClass(className string, spellLevel, count int, basicSpells []SpellsJSON) []SpellsJSON {
 	var spellMap = make(map[int]SpellsJSON)
 
 	for i, spell := range SpellData {
 		for _, class := range spell.Classes {
-			if class == className && spell.SpellLevel == spellLevel {
+			if class == className && spell.SpellLevel == spellLevel && !contains(basicSpells, spell) {
 				spellMap[i] = spell
 			}
 		}

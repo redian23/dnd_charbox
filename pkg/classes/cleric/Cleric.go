@@ -55,7 +55,7 @@ func getBasicProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 	)
 
 	return &classes.Proficiencies{
-		Armor:         []string{"Лёгкие доспехи, средние доспехи, щиты"},
+		Armor:         []string{"Лёгкие доспехи, Средние доспехи, Щиты"},
 		Weapons:       []string{"Простое оружие"},
 		Tools:         []string{"Нет"},
 		SavingThrow:   []string{"Wisdom", "Charisma"},
@@ -202,7 +202,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 	if lvl == 8 {
 		dangerousPoint = "1 или ниже."
 	}
-	var clericClassAbilities = []classes.ClassAbility{
+	var clericBasicClassAbilities = []classes.ClassAbility{
 		{
 			Level: 1,
 			Name:  "Использование заклинаний",
@@ -226,7 +226,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		},
 		{
 			Level: 2,
-			Name:  "Божественный канал: ИЗГНАНИЕ НЕЖИТИ",
+			Name:  "Божественный канал: Изгнание нежити",
 			Description: "Вы действием демонстрируете свой священный символ и читаете молитву, изгоняющую Нежить. " +
 				"Вся Нежить, которая может видеть или слышать вас в пределах 30 футов, должна совершить спасбросок Мудрости. " +
 				"Если существо провалило спасбросок, оно изгоняется на 1 минуту, или пока не получит урон. " +
@@ -243,6 +243,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				"существо мгновенно уничтожается, если его показатель опасности не превышает значения " + dangerousPoint,
 		},
 	}
+	var clericClassAbilities = []classes.ClassAbility{}
 	switch classArchetypeName {
 	case "Домен бури":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжелый доспех")
@@ -252,7 +253,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			1: []string{"Волна грома", "Туманное облако"},
 			3: []string{"Дребезги", "Порыв ветра"},
 			5: []string{"Метель", "Призыв молнии"},
-			7: []string{"Пласть над водами", "Град"},
+			7: []string{"Власть над водами", "Град"},
 			9: []string{"Нашествие насекомых", "Разрушительная волна"},
 		}
 
@@ -264,7 +265,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -300,7 +301,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"Один раз в каждый свой ход, когда вы попадаете по существу атакой оружием, вы можете причинить цели дополнительный урон звуком 1к8. " +
 					"Когда вы достигаете 14-го уровня, дополнительный урон возрастает до 2к8.",
 			},
-		}...)
+		}
 	case "Домен войны":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжелый доспех")
 		proficiencies.Weapons = append(proficiencies.Weapons, "Воинское рукопашное оружие")
@@ -321,7 +322,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -344,9 +345,12 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"но до того как Мастер скажет, попала атака или промахнулась.",
 			},
 			{
-				Level:       6,
-				Name:        "Божественный канал: БЛАГОСЛОВЕНИЕ БОГА ВОЙНЫ",
-				Description: "Когда вы наносите урон электричеством существу с размером Большое или меньше, вы также можете оттолкнуть его на 10 футов от себя.",
+				Level: 6,
+				Name:  "Божественный канал: Благословение бога войны",
+				Description: "Если существо в пределах 30 футов от вас совершает бросок атаки, " +
+					"вы можете реакцией предоставить этому существу бонус +10 к броску, использовав «Божественный канал». " +
+					"Вы можете решить, применять ли это умение, после того как увидели результат броска, " +
+					"но до того как Мастер скажет, попала атака или промахнулась.",
 			},
 			{
 				Level: 8,
@@ -356,7 +360,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"вы можете причинить цели дополнительный урон 1к8 того же вида, что и у оружия. " +
 					"Когда вы достигаете 14 уровня, дополнительный урон увеличивается до 2к8.",
 			},
-		}...)
+		}
 	case "Домен жизни":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжелый доспех")
 
@@ -376,7 +380,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -392,10 +396,12 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			{
 				Level: 2,
 				Name:  "Божественный канал: Сохранение жизни",
-				Description: "Вы можете использовать «Божественный канал», чтобы нанести удар со сверхъестественной точностью. " +
-					"Когда вы совершаете бросок атаки, вы можете использовать «Божественный канал», чтобы получить бонус +10 к броску. " +
-					"Вы можете решить, применять ли это умение, после того как увидите результат броска, " +
-					"но до того как Мастер скажет, попала атака или промахнулась.",
+				Description: "Вы можете использовать «Божественный канал», чтобы лечить тяжёлые ранения. " +
+					"Вы действием демонстрируете свой священный символ и призываете целительную энергию, " +
+					"которая может восстановить число хитов, равное вашему уровню жреца, умноженному на пять. " +
+					"Выберите любых существ в пределах 30 футов от себя и распределите эти хиты между ними. " +
+					"Это умение не может восстановить существу хиты выше половины от его максимума. " +
+					"Вы не можете использовать это умение на Нежити и Конструктах.",
 			},
 			{
 				Level: 6,
@@ -412,32 +418,15 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"вы можете причинить цели дополнительный урон излучением 1к8. " +
 					"Когда вы достигаете 14-го уровня, дополнительный урон возрастает до 2к8.",
 			},
-		}...)
+		}
 	case "Домен знаний":
 		raceInfo.Language = append(raceInfo.Language, "Два языка на свой выбор")
 
 		var availableSkillList = []string{"History", "Nature", "Arcana", "Religion"}
-		// Seed the random number generator to produce different results each time
-		rand.Seed(time.Now().UnixNano())
-
-		// Shuffle the slice
-		rand.Shuffle(len(availableSkillList), func(i, j int) {
-			availableSkillList[i], availableSkillList[j] = availableSkillList[j], availableSkillList[i]
-		})
-
-		// Get the first two elements from the shuffled slice
-		randomSkills := availableSkillList[:2]
-
-		newClassSkills := classes.GetClassSkillsArray(
-			raceInfo.RaceSkill,
-			backgrInfo.BackgroundSkills,
-			randomSkills,
-			2,
-		)
-		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
+		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, classes.AddUniqueSkills(proficiencies.SkillsOfClass, availableSkillList, 2)...)
 
 		// TODO
-		//bag-0002 Нужно как-то добавить +2 к выбранным скиллам из randomSkills
+		//bug-0002 Нужно как-то добавить +2 к выбранным скиллам из randomSkills
 		//слишком далеко лесть в код скиллов, чтобы пробрасывать ради одного домена
 		//и менять обработчик скиллов
 
@@ -457,7 +446,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -488,7 +477,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				Name:        "Могущественное колдовство",
 				Description: "Вы добавляете модификатор Мудрости к урону, который причиняете заговорами жреца.",
 			},
-		}...)
+		}
 	case "Домен обмана":
 		var addSpellMap = map[int][]string{
 			1: []string{"Маскировка", "Очарование личности"},
@@ -506,7 +495,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level: 1,
 				Name:  "Благословение обманщика",
@@ -541,7 +530,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"Один раз в каждый свой ход, когда вы попадаете по существу атакой оружием, вы можете причинить цели дополнительный урон ядом 1к8. " +
 					"Когда вы достигаете 14-го уровня, дополнительный урон возрастает до 2к8.",
 			},
-		}...)
+		}
 	case "Домен природы":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжелый доспех")
 
@@ -558,24 +547,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		}
 
 		var availableSkillList = []string{"Survival", "Nature", "AnimalHandling"}
-		// Seed the random number generator to produce different results each time
-		rand.Seed(time.Now().UnixNano())
-
-		// Shuffle the slice
-		rand.Shuffle(len(availableSkillList), func(i, j int) {
-			availableSkillList[i], availableSkillList[j] = availableSkillList[j], availableSkillList[i]
-		})
-
-		// Get the first two elements from the shuffled slice
-		randomSkills := availableSkillList[:2]
-
-		newClassSkills := classes.GetClassSkillsArray(
-			raceInfo.RaceSkill,
-			backgrInfo.BackgroundSkills,
-			randomSkills,
-			2,
-		)
-		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
+		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, classes.AddUniqueSkills(proficiencies.SkillsOfClass, availableSkillList, 1)...)
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Дружба с животными", "Разговор с животными"},
@@ -593,7 +565,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level: 1,
 				Name:  "Послушник природы",
@@ -629,7 +601,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"вы можете причинить цели дополнительный урон огнём, холодом или электричеством (на ваш выбор) 1к8. " +
 					"Когда вы достигаете 14-го уровня, дополнительный урон возрастает до 2к8.",
 			},
-		}...)
+		}
 	case "Домен света":
 		addClassSpells = append(addClassSpells, spells.FindSpellInDB("Cвет"))
 
@@ -649,7 +621,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level: 1,
 				Name:  "Дополнительный заговор",
@@ -687,7 +659,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				Name:        "Могущественное колдовство",
 				Description: "Вы добавляете модификатор Мудрости к урону, который причиняете заговорами жреца.",
 			},
-		}...)
+		}
 	case "Домен смерти":
 		proficiencies.Weapons = append(proficiencies.Weapons, "Воинское рукопашное оружие")
 
@@ -707,7 +679,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -742,7 +714,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"вы можете причинить цели дополнительный урон некротической энергией 1к8. " +
 					"Когда вы достигаете 14-го уровня, дополнительный урон возрастает до 2к8.",
 			},
-		}...)
+		}
 	case "Домен магии":
 		wizardZeroLevelSpells := spells.GetAllSpellForClass("Волшебник", 0)
 		// Seed the random number generator to produce different results each time
@@ -779,7 +751,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		if lvl == 8 {
 			dangerousPoint = "1 или ниже."
 		}
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level: 1,
 				Name:  "Начинающий маг",
@@ -814,7 +786,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				Name:        "Могущественное колдовство",
 				Description: "Вы добавляете модификатор Мудрости к урону, который причиняете заговорами жреца.",
 			},
-		}...)
+		}
 	case "Домен кузни":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжёлые доспехи")
 		proficiencies.Tools = append(proficiencies.Tools, "Инструментами кузнеца")
@@ -839,7 +811,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -882,7 +854,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"Один раз в каждый свой ход, когда вы попадаете по существу атакой оружием, вы можете причинить цели дополнительный урон огнём 1к8. " +
 					"Когда вы достигаете 14-го уровня, дополнительный урон увеличивается до 2к8.",
 			},
-		}...)
+		}
 	case "Домен упокоения":
 		addClassSpells = append(addClassSpells, spells.FindSpellInDB("Уход за умирающим"))
 
@@ -902,7 +874,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level: 1,
 				Name:  "Круг смерти",
@@ -948,27 +920,10 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				Name:        "Могущественное колдовство",
 				Description: "Вы добавляете модификатор Мудрости к урону, который вы наносите любым заговором жреца.",
 			},
-		}...)
+		}
 	case "Домен мира":
 		var availableSkillList = []string{"Perception", "Performance", "Persuasion"}
-		// Seed the random number generator to produce different results each time
-		rand.Seed(time.Now().UnixNano())
-
-		// Shuffle the slice
-		rand.Shuffle(len(availableSkillList), func(i, j int) {
-			availableSkillList[i], availableSkillList[j] = availableSkillList[j], availableSkillList[i]
-		})
-
-		// Get the first two elements from the shuffled slice
-		randomSkills := availableSkillList[:1]
-
-		newClassSkills := classes.GetClassSkillsArray(
-			raceInfo.RaceSkill,
-			backgrInfo.BackgroundSkills,
-			randomSkills,
-			2,
-		)
-		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
+		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, classes.AddUniqueSkills(proficiencies.SkillsOfClass, availableSkillList, 1)...)
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Героизм", "Убежище"},
@@ -986,7 +941,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Установление мира",
@@ -1028,29 +983,12 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				Name:        "Могущественное колдовство",
 				Description: "Вы добавляете свой модификатор Мудрости к урону, который наносите любыми заговорами жреца.",
 			},
-		}...)
+		}
 	case "Домен порядка":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжёлые доспехи")
 
 		var availableSkillList = []string{"Intimidation", "Persuasion"}
-		// Seed the random number generator to produce different results each time
-		rand.Seed(time.Now().UnixNano())
-
-		// Shuffle the slice
-		rand.Shuffle(len(availableSkillList), func(i, j int) {
-			availableSkillList[i], availableSkillList[j] = availableSkillList[j], availableSkillList[i]
-		})
-
-		// Get the first two elements from the shuffled slice
-		randomSkills := availableSkillList[:1]
-
-		newClassSkills := classes.GetClassSkillsArray(
-			raceInfo.RaceSkill,
-			backgrInfo.BackgroundSkills,
-			randomSkills,
-			2,
-		)
-		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, newClassSkills...)
+		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, classes.AddUniqueSkills(proficiencies.SkillsOfClass, availableSkillList, 1)...)
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Героизм", "Приказ"},
@@ -1068,7 +1006,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусные владения",
@@ -1109,7 +1047,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"вы можете дополнительно нанести цели 1к8 урона психической энергией. " +
 					"Когда вы достигаете 14-го уровня, этот урон увеличивается до 2к8.",
 			},
-		}...)
+		}
 	case "Домен сумерек":
 		proficiencies.Armor = append(proficiencies.Armor, "Тяжелый доспех")
 		proficiencies.Weapons = append(proficiencies.Weapons, "Воинское рукопашное оружие")
@@ -1131,7 +1069,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			}
 		}
 
-		clericClassAbilities = append(clericClassAbilities, []classes.ClassAbility{
+		clericClassAbilities = []classes.ClassAbility{
 			{
 				Level:       1,
 				Name:        "Бонусное владение",
@@ -1182,16 +1120,16 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"вы можете нанести цели дополнительно 1к8 урона излучением. " +
 					"Когда вы достигаете 14-го уровня, этот урон увеличивается до 2к8.",
 			},
-		}...)
+		}
 	}
 
 	for _, ability := range clericClassAbilities {
 		if lvl >= ability.Level {
-			clericClassAbilities = append(clericClassAbilities, ability)
+			clericBasicClassAbilities = append(clericBasicClassAbilities, ability)
 		}
 	}
 
-	return clericClassAbilities, proficiencies, addClassSpells
+	return clericBasicClassAbilities, proficiencies, addClassSpells
 }
 
 func GetArmorInfo(equip []classes.Item, classArchetypeName string, lvl int) classes.Armor {
@@ -1249,7 +1187,7 @@ func GetWeaponInfo(equip []classes.Item) []classes.Weapon {
 	return weaponAnswer
 }
 
-func getSpells(mod classes.AbilityModifier, lvl int, classSpell []spells.SpellsJSON) []spells.SpellsJSON {
+func getSpells(mod classes.AbilityModifier, lvl int, classAbilitySpell []spells.SpellsJSON) []spells.SpellsJSON {
 	var proficiencyBonus = classes.GetProficiencyBonus(lvl)
 	var spellList = []spells.SpellsJSON{}
 	var spellCastingInfo = classes.GetClassSpellBasicCharacteristic("Жрец", lvl, mod, proficiencyBonus)
@@ -1269,10 +1207,10 @@ func getSpells(mod classes.AbilityModifier, lvl int, classSpell []spells.SpellsJ
 			spellCount = spellCastingInfo.FourLevelSpellsKnownCount
 		}
 		spellList = append(spellList,
-			spells.GetRandomSpellForClass("Жрец", i, spellCount)...)
+			spells.GetRandomSpellForClass("Жрец", i, spellCount, classAbilitySpell)...)
 	}
 
-	spellList = append(spellList, classSpell...)
+	spellList = append(spellList, classAbilitySpell...)
 
 	return spellList
 }

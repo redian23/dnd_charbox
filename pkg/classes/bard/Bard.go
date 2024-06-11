@@ -578,7 +578,7 @@ func getBardSpells(mod classes.AbilityModifier, lvl int) []spells.SpellsJSON {
 			spellCount = bardSpellCastingInfo.FourLevelSpellsKnownCount
 		}
 		bardSpellList = append(bardSpellList,
-			spells.GetRandomSpellForClass("Бард", i, spellCount)...)
+			spells.GetRandomSpellForClass("Бард", i, spellCount, []spells.SpellsJSON{})...)
 
 	}
 	return bardSpellList

@@ -31,24 +31,32 @@ func GetClassSkillsArray(raceSkills, backSkills []string, availableSkillList []s
 	// Инициализируем генератор случайных чисел
 	rand.Seed(time.Now().UnixNano())
 
-	// Выбираем навыки из общего списка, которые не совпадают с навыками от расы и предыстории
+	// Создаем новый список, исключая навыки, которые уже есть в raceSkills и backSkills
+	filteredSkills := []string{}
+	for _, skill := range availableSkillList {
+		if !raceSkillsMap[skill] && !backSkillsMap[skill] {
+			filteredSkills = append(filteredSkills, skill)
+		}
+	}
+
+	// Выбираем навыки из отфильтрованного списка
 	var chosenSkills []string
 	for len(chosenSkills) < count {
-		if len(availableSkillList) == 0 {
-			break // Прерываем, если в availableSkillList нет доступных навыков
+		if len(filteredSkills) == 0 {
+			break // Прерываем, если в filteredSkills нет доступных навыков
 		}
 
-		randomIndex := rand.Intn(len(availableSkillList))
-		skill := availableSkillList[randomIndex]
+		randomIndex := rand.Intn(len(filteredSkills))
+		skill := filteredSkills[randomIndex]
 
-		// Проверяем, что навык не входит в навыки от расы, предыстории и не был уже выбран
-		if !raceSkillsMap[skill] && !backSkillsMap[skill] && !chosenSkillsMap[skill] {
+		// Проверяем, что навык не был уже выбран
+		if !chosenSkillsMap[skill] {
 			chosenSkills = append(chosenSkills, skill) // Добавляем навык в выбранные, если он подходит
 			chosenSkillsMap[skill] = true              // Обновляем карту выбранных навыков
 		}
 
-		// Удаляем выбранный навык из availableSkillList
-		availableSkillList = append(availableSkillList[:randomIndex], availableSkillList[randomIndex+1:]...)
+		// Удаляем выбранный навык из filteredSkills
+		filteredSkills = append(filteredSkills[:randomIndex], filteredSkills[randomIndex+1:]...)
 	}
 	return chosenSkills
 }
@@ -137,7 +145,7 @@ func GetSaveThrowsForClass(mod AbilityModifier, classSavingThrow []string) *Savi
 	return &saveTh
 }
 
-func AddUniqueRandomElements(base []string, toAdd []string, n int) []string {
+func AddUniqueSkills(base []string, toAdd []string, n int) []string {
 	// Создаем карту для быстрого поиска элементов в base
 	baseMap := make(map[string]struct{})
 	for _, item := range base {
