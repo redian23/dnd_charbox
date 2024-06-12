@@ -17,7 +17,7 @@ func setStage(stage string) {
 		port = ":4050"
 		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
 	case "test":
-		port = ":4090"
+		port = ":4091"
 		titleText = "Шкатулка Персонажей Тест | Character Box Beta"
 	}
 }

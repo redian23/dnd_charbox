@@ -23,7 +23,7 @@ func getBackgroundSpecificType() string {
 	}
 
 	var sageSpecific string
-	sageSpecific = sageTypes[general.D20.RollDice()]
+	sageSpecific = sageTypes[general.D8.RollDice()]
 
 	return sageSpecific
 }
