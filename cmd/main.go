@@ -11,7 +11,6 @@ import (
 var port string
 var titleText string
 var siteMap string
-var robots string
 
 func setStage(stage string) {
 	switch stage {
@@ -19,12 +18,10 @@ func setStage(stage string) {
 		port = ":4050"
 		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
 		siteMap = "s_map.xml"
-		robots = "robots.txt"
 	case "test":
-		port = ":4091"
-		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
-		siteMap = "s_map_swn.xml"
-		robots = "robots_swn.txt"
+		port = ":4090"
+		titleText = "Шкатулка Персонажей Тест | Character Box Beta"
+		siteMap = "s_map_test.xml"
 	}
 }
 
@@ -77,7 +74,7 @@ func main() {
 		c.File(WebPagesPath + siteMap)
 	})
 	router.GET("/robots.txt", func(c *gin.Context) {
-		c.File(WebPagesPath + robots)
+		c.File(WebPagesPath + "robots.txt")
 	})
 
 	router.Run(port)
