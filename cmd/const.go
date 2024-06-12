@@ -3,7 +3,7 @@ package main
 const (
 	Version      = "1.2 Stable-build-2024-06-02"
 	GlobPattern  = "/opt/charbox/*/*.html"
-	WebPagesPath = "/opt/charbox/web"
+	WebPagesPath = "/opt/charbox/web/"
 	ImagePath    = "/opt/charbox/web/img"
 )
 

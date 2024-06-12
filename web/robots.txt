@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://charbox.swn.by/s_map.xml
-Host: charbox.swn.by
+Sitemap: https://charbox.org/s_map.xml
