@@ -17,6 +17,9 @@
     <title>{{.title}}</title>
     <script src="https://use.fontawesome.com/releases/v5.15.0/js/all.js"></script>
     <style> @import url("/charbox.css");</style>
+    <div class="hero" style="background-color: #f1f0a4; text-align: center; padding: 1rem">
+        <p class="title">Сайт переехал на новый адрес <a href="https:/charbox.org">charbox.org</a> ! Если у вас сохранен старый адрес (charbox.swn.by) рекомендуем его обновить.</p>
+    </div>
     <section class="hero is-small is-info">
         <div class="hero-body">
             <p class="title">Добро пожаловать в Шкатулку Персонажей.</p>
@@ -24,23 +27,6 @@
             <button class="button is-dark" id="btn_export_lss" onclick="exportToLSS()"> Экспорт в LongStoryShort </button>
             <button class="button is-danger" id="btm_faq" onclick="gotoFAQ()"> Раздел вопросов и ответов </button>
             <button class="button is-link" onclick="location.href='https://t.me/charbox_chat';"> Наш Telegram чат </button>
-            <button class="js-modal-trigger button is-warning" data-target="modal-js-example">
-                Важная информация!
-            </button>
-        </div>
-        <div id="modal-js-example" class="modal">
-            <div class="modal-background"></div>
-
-            <div class="modal-content">
-                <div class="box">
-                    <p class="subtitle" style="color: #292c2f" >
-                        Cайт переехал на новый адрес charbox.org ! <br>
-                        Если у вас сохранен старый адрес (charbox.swn.by) рекомендуем его обновить.
-                    </p>
-                </div>
-            </div>
-
-            <button class="modal-close is-large" aria-label="close"></button>
         </div>
     </section>
 </head>
