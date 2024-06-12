@@ -8,9 +8,9 @@ import (
 	"pregen/pkg/db"
 )
 
-//const RacePhotoPath = "/opt/charbox/web/img/race_imgs/"
+const RacePhotoPath = "/opt/charbox/web/img/race_imgs/"
 
-const RacePhotoPath = "./web/img/race_imgs/"
+//const RacePhotoPath = "./web/img/race_imgs/"
 
 var (
 	RaceData         []RacesBSON
