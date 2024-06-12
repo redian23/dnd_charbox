@@ -12,7 +12,7 @@ var port string
 var titleText string
 var siteMap string
 
-func setStage(stage string) {
+func setENV(stage string) {
 	switch stage {
 	case "prod":
 		port = ":4050"
@@ -26,7 +26,7 @@ func setStage(stage string) {
 }
 
 func main() {
-	setStage("test")
+	setENV("test")
 
 	router := gin.Default()
 	// api method
