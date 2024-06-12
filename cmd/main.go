@@ -10,15 +10,21 @@ import (
 
 var port string
 var titleText string
+var siteMap string
+var robots string
 
 func setStage(stage string) {
 	switch stage {
 	case "prod":
 		port = ":4050"
 		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
+		siteMap = "s_map.xml"
+		robots = "robots.txt"
 	case "test":
 		port = ":4091"
-		titleText = "Шкатулка Персонажей Тест | Character Box Beta"
+		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
+		siteMap = "s_map_swn.xml"
+		robots = "robots_swn.txt"
 	}
 }
 
@@ -61,6 +67,17 @@ func main() {
 		c.HTML(http.StatusOK, "charbox_about.html", gin.H{
 			"title": "Наша команда | Our Team",
 		})
+	})
+
+	router.NoRoute(func(c *gin.Context) {
+		c.HTML(404, "404.html", gin.H{})
+	})
+
+	router.GET("/s_map.xml", func(c *gin.Context) {
+		c.File(WebPagesPath + siteMap)
+	})
+	router.GET("/robots.txt", func(c *gin.Context) {
+		c.File(WebPagesPath + robots)
 	})
 
 	router.Run(port)
