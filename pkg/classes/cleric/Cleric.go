@@ -46,7 +46,7 @@ func GetClass(raceInfo *races.Race, backgrInfo *backgrounds.Background, lvl int,
 }
 
 func getBasicProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Background) *classes.Proficiencies {
-	var availableSkillList = []string{"History", "Medicine", "Perception", "Religion", "Persuasion"}
+	var availableSkillList = []string{"History", "Medicine", "Insight", "Religion", "Persuasion"}
 	classSkills := classes.GetClassSkillsArray(
 		raceInfo.RaceSkill,
 		backgrInfo.BackgroundSkills,
@@ -925,7 +925,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			},
 		}
 	case "Домен мира":
-		var availableSkillList = []string{"Perception", "Performance", "Persuasion"}
+		var availableSkillList = []string{"Insight", "Performance", "Persuasion"}
 		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, classes.AddUniqueSkills(proficiencies.SkillsOfClass, availableSkillList, 1)...)
 
 		var addSpellMap = map[int][]string{
