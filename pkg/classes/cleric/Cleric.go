@@ -57,7 +57,7 @@ func getBasicProficiencies(raceInfo *races.Race, backgrInfo *backgrounds.Backgro
 	return &classes.Proficiencies{
 		Armor:         []string{"Лёгкие доспехи, Средние доспехи, Щиты"},
 		Weapons:       []string{"Простое оружие"},
-		Tools:         []string{"Нет"},
+		Tools:         []string{""},
 		SavingThrow:   []string{"Wisdom", "Charisma"},
 		SkillsOfClass: classSkills,
 	}
@@ -603,7 +603,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			},
 		}
 	case "Домен света":
-		addClassSpells = append(addClassSpells, spells.FindSpellInDB("Cвет"))
+		addClassSpells = append(addClassSpells, spells.FindSpellInDB("Свет"))
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Огненные ладони", "Огонь фей"},
@@ -716,6 +716,9 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 			},
 		}
 	case "Домен магии":
+		var availableSkillList = []string{"Arcana"}
+		proficiencies.SkillsOfClass = append(proficiencies.SkillsOfClass, classes.AddUniqueSkills(proficiencies.SkillsOfClass, availableSkillList, 1)...)
+
 		wizardZeroLevelSpells := spells.GetAllSpellForClass("Волшебник", 0)
 		// Seed the random number generator to produce different results each time
 		rand.Seed(time.Now().UnixNano())
@@ -731,7 +734,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 
 		var addSpellMap = map[int][]string{
 			1: []string{"Обнаружение магии", "Волшебная стрела"},
-			3: []string{"Магическое оружие", "Нистулова ложная магия"},
+			3: []string{"Магическое оружие", "Нистулова ложная аура"},
 			5: []string{"Рассеивание магии", "Магический круг"},
 			7: []string{"Магический глаз", "Леомундов потайной сундук"},
 			9: []string{"Планарные узы", "Круг телепортации"},
@@ -825,7 +828,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 					"который является доспехом, простым или воинским оружием. " +
 					"До конца вашего следующего продолжительного отдыха или до тех пор пока вы не умрёте, " +
 					"этот объект считается магическим предметом, дающей бонус +1 к КД, если это доспех, " +
-					"или бонус +1 к броскам атаки и урона, если это оружие." +
+					"или бонус +1 к броскам атаки и урона, если это оружие. " +
 					"Использовав это умение, вы не можете использовать его повторно до окончания продолжительного отдыха.",
 			},
 			{
@@ -900,7 +903,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 				Level: 2,
 				Name:  "Божественный канал: Путь к могиле",
 				Description: "Вы можете использовать свой «Божественный канал», " +
-					"чтобы пометить жизненную силу другого существа как подлежащую уничтожению." +
+					"чтобы пометить жизненную силу другого существа как подлежащую уничтожению. " +
 					"Действием вы выбираете одно существо, которое вы можете видеть, в пределах 30 футов от вас, " +
 					"проклиная его до конца вашего следующего хода. " +
 					"Когда вы или союзник попадете по проклятому существу атакой, " +
@@ -1055,7 +1058,7 @@ func getClassAbilities(raceInfo *races.Race, backgrInfo *backgrounds.Background,
 		var addSpellMap = map[int][]string{
 			1: []string{"Огонь фей", "Усыпление"},
 			3: []string{"Видение невидимого", "Лунный луч"},
-			5: []string{"Фура живучести", "Леомундова хижина"},
+			5: []string{"Аура живучести", "Леомундова хижина"},
 			7: []string{"Аура жизни", "Высшая невидимость"},
 			9: []string{"Круг силы", "Фальшивый двойник"},
 		}
