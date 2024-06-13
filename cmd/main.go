@@ -11,6 +11,7 @@ import (
 var port string
 var titleText string
 var siteMap string
+var description string
 
 func setENV(stage string) {
 	switch stage {
@@ -18,9 +19,14 @@ func setENV(stage string) {
 		port = ":4050"
 		titleText = "Шкатулка Персонажей | Character Box | Генератор персонажей для DnD 5e"
 		siteMap = "s_map.xml"
+		description = "Генератор персонажей для DnD 5й редакции (DnD 5e). " +
+			"Лучший помощник как начинающему игроку,так и опытному ГМу. " +
+			"Множество классов, рас, предысторий, вариаций персонажей на любой случай в далеком путешествии."
 	case "test":
 		port = ":4090"
 		titleText = "Шкатулка Персонажей Тест | Character Box Beta"
+		description = "Генератор персонажей для DnD 5й редакции (DnD 5e). " +
+			"Если вам не терпится опробовать новые функции, которых нет на основном сайте charbox.org."
 		siteMap = "s_map_test.xml"
 	}
 }
@@ -49,8 +55,9 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "character_box_pico.html", gin.H{
-			"title":   titleText,
-			"version": Version,
+			"title":       titleText,
+			"description": description,
+			"version":     Version,
 		})
 	})
 

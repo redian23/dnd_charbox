@@ -714,3 +714,20 @@ function updateRaceArchetypeSelect() {
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
+
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+z
+// Close the menu if the user clicks outside of it
+window.onclick = function(event) {
+    const menu = document.getElementById('menu');
+    if (!event.target.matches('.menu-button') && !menu.contains(event.target)) {
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        }
+    }
+}
+
