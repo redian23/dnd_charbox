@@ -326,7 +326,7 @@ func GetHits(diceName string, modifier classes.AbilityModifier, lvl int) classes
 		dice = D12
 	}
 
-	for i := 1; i < lvl; i++ {
+	for i := 1; i <= lvl; i++ {
 		if i == 1 {
 			hitCount = dice.GetMaxRange() + modifier.BodyDifficulty
 		} else {
