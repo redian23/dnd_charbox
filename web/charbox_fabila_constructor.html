@@ -316,7 +316,10 @@
         </div>
     </details>
 
-    <textarea id="txt_full_background" name="read-only" readonly placeholder="Тут будет ваша предыстория..."></textarea>
+    <div>
+        <textarea class="custom" id="txt_full_background" name="read-only" readonly placeholder="Тут будет ваша предыстория..."></textarea>
+        <button class="button" id="copyButton">Скопировать в буфер обмена</button>
+    </div>
 
     <style>
         table.custom td, table.custom th {
@@ -344,6 +347,10 @@
         /* Стили для наведения */
         table.custom tr:hover td:hover  {
             background-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        textarea.custom {
+            min-height: 250px;
         }
     </style>
     <script>
@@ -418,7 +425,19 @@
                 });
             }
         });
+        const textarea = document.getElementById('txt_full_background');
+        const copyButton = document.getElementById('copyButton');
 
+        copyButton.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(textarea.value);
+                console.log('Text copied to clipboard');
+                alert('Text copied to clipboard');
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy text.');
+            }
+        });
     </script>
 </main>
 
