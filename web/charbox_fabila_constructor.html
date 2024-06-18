@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+
+    <title>{{.title}}</title>
+    <meta name="description" content="{{.description}}"/>
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.cyan.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+
+    <meta content='true' name='HandheldFriendly'/>
+    <meta content='width' name='MobileOptimized'/>
+    <meta content='yes' name='apple-mobile-web-app-capable'/>
+
+    <style> @import url("charbox-pico.css");</style>
+    <script src="/charbox.js"></script>
+</head>
+<body>
+<!-- Header -->
+<header class="container">
+    <nav class="header-nav">
+        <hgroup>
+            <h1><a href="/">Шкатулка Персонажей</a></h1>
+            <p>Желаю удачи в поисках Вашего идеального DnD персонажа.</p>
+        </hgroup>
+        <div>
+            <ul>
+                <li><a href="/faq">Раздел вопросов и ответов</a></li>
+                <li><a href="/about">Контакты</a></li></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="top-right-theme">
+        <label>
+            🌙︎<input type="checkbox" id="theme-switch" role="switch" checked style="margin-right: 1px">☀︎
+        </label>
+    </div>
+
+    <div class="top-right-color">
+        <button class="menu-button" onclick="toggleMenu()">🎨</button>
+        <div class="menu" id="menu">
+            <article class="color-picker component" aria-label="Custom theme example">
+                <button class="pico-background-pink" aria-label="Pink"  onclick="changeColor('pink')"></button>
+                <button class="pico-background-purple" aria-label="Purple"  onclick="changeColor('purple')"></button>
+                <button class="pico-background-violet" aria-label="Violet"  onclick="changeColor('violet')"></button>
+                <button class="pico-background-blue" aria-label="Blue"  onclick="changeColor('blue')"></button>
+                <button class="pico-background-cyan" aria-label="Cyan"  onclick="changeColor('cyan')"></button>
+                <button class="pico-background-jade" aria-label="Jade"  onclick="changeColor('jade')"></button>
+                <button class="pico-background-amber" aria-label="Amber"  onclick="changeColor('amber')"></button>
+                <button class="pico-background-zinc" aria-label="Zinc"  onclick="changeColor('zinc')"></button>
+            </article>
+        </div>
+    </div>
+</header>
+<!-- ./ Header -->
+<main class="container">
+    <article>
+        <h3>ПРОИСХОЖДЕНИЕ</h3>
+        <h5>Обычно первый шаг в создании истории жизни вашего персонажа — это определение ранних обстоятельств.
+            Кем были ваши родители? Где вы родились? У вас были братья и сёстры?
+            Кто вас воспитывал? Вы можете разрешить эти вопросы, используя следующие таблицы.
+        </h5>
+    </article>
+
+    <details>
+        <summary role="button">Родители</summary>
+        <div class="container-fluid">
+            <article>
+                <label>Родители</label>
+                <blockquote>
+                    Конечно же у вас были родители, даже если они вас не растили.
+                    Для определения того, что вы знаете о них, используйте таблицу «Родители».
+                    По желанию вы можете совершить отдельные броски для матери и для отца.
+                    Используйте дополнительные таблицы по желанию (в частности «Класс», «Предыстория» и «Мировоззрение»), чтобы узнать больше о своих родителях.
+                </blockquote>
+                <button onclick="getRandomInt('lbl_parents_dice_result',1,100)">
+                    D100
+                </button>
+                <label style="font-size: larger">Result -> [ <label id="lbl_parents_dice_result"></label> ] </label>
+                <table class="custom" id="menuTable1">
+                    <thead>
+                    <tr>
+                        <th scope="col">к100</th>
+                        <th scope="col">Родители</th>
+                    </tr>
+                    </thead>
+                    <tbody class="custom">
+                    <tr>
+                        <th scope="row">01-95</th>
+                        <td>Вы знаете или знали своих родителей.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">96-00</th>
+                        <td>Вы не знаете своих родителей.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="reset-button" data-table-id="menuTable1">Изменить решение</button>
+            </article>
+            <article>
+                <label>Нечеловеческие родители</label>
+                <blockquote>
+                    Если ваш персонаж — полуорк, полуэльф или тифлинг, то вы можете использовать таблицу для определения расы каждого из ваших родителей.
+                    Когда получите результат, то определите, какой относится к отцу, а какой к матери.
+                </blockquote>
+                <button onclick="getRandomInt('lbl_unhuman_parents_dice_result',1,8)">
+                    D8
+                </button>
+                <label style="font-size: larger">Result -> [ <label id="lbl_unhuman_parents_dice_result"></label> ] </label>
+                <table class="custom" id="menuTable2">
+                    <thead>
+                    <tr>
+                        <th scope="col">к8</th>
+                        <th scope="col">Родители</th>
+                    </tr>
+                    </thead>
+                    <tbody class="custom">
+                    <tr>
+                        <th scope="row"></th>
+                        <td>РОДИТЕЛИ ПОЛУЭЛЬФОВ</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1-5</th>
+                        <td>Один родитель был человеком, а другой — эльфом.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Один родитель был эльфом, а другой — полуэльфом.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Один родитель был полуэльфом, а другой — человеком.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Оба родителя — полуэльфы.</td>
+                    </tr>
+
+                    <thead>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>РОДИТЕЛИ ПОЛУОРКОВ</td>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <th scope="row">1-3</th>
+                        <td>Один родитель был орком, а другой — человеком.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4-5</th>
+                        <td>Один родитель был орком, а другой — полуорком.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6-7</th>
+                        <td>Один родитель был полуорком, а другой — человеком.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Оба родителя — полуорки.</td>
+                    </tr>
+
+                    <thead>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>РОДИТЕЛИ ТИФЛИНГОВ</td>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <th scope="row">1-4</th>
+                        <td>Оба родителя были людьми, инфернальное наследие которых не проявлялось до вашего рождения.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5-6</th>
+                        <td>Один родитель был тифлингом, а другой — дьяволом.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Один родитель был полуорком, а другой — человеком.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Один родитель был человеком, а другой — дьяволом.</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <button class="reset-button" data-table-id="menuTable2">Изменить решение</button>
+            </article>
+        </div>
+    </details>
+    <details>
+        <summary role="button">МЕСТО РОЖДЕНИЯ</summary>
+        <div class="container-fluid">
+            <article>
+                <label>МЕСТО РОЖДЕНИЯ</label>
+                <blockquote>
+                    После определения ваших родителей вы можете определить место рождения, используя таблицу. Измените результат или повторите попытку, если вы получите результат, не соответствующий тому, что вы знаете о своих родителях. После получения результата бросьте процентные кости.
+
+                    При результате 100 имели место быть странные события: луна окрасилась кровью, все молоко на милю пути скисло, вода в этом районе замёрзла посреди лета, всё железо в доме проржавело или стало серебром, или же произошли иные странные события по вашему выбору.
+                </blockquote>
+                <button onclick="getRandomInt('lbl_birth_dice_result',1,100)">
+                    D100
+                </button>
+                <label style="font-size: larger">Result -> [ <label id="lbl_birth_dice_result"></label> ] </label>
+                <table class="custom" id="menuTable3">
+                    <thead>
+                    <tr>
+                        <th scope="col">к100</th>
+                        <th scope="col">Родители</th>
+                    </tr>
+                    </thead>
+                    <tbody class="custom">
+                    <tr>
+                        <th scope="row">01-50</th>
+                        <td>Дом</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">51-55</th>
+                        <td>Дом друга семьи</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">56-63</th>
+                        <td>Дом знахаря или повивальной бабки</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">64-65</th>
+                        <td>Повозка, тележка или фургон</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">66-68</th>
+                        <td>Хлев, сарай или другая пристройка</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">69-70</th>
+                        <td>Пещера</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">71-72</th>
+                        <td>Поле</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">73-74</th>
+                        <td>Лес</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">75-77</th>
+                        <td>Храм</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">78</th>
+                        <td>Поле боя</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">79-80</th>
+                        <td>Аллея или улица</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">81-82</th>
+                        <td>Бордель, таверна или трактир</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">83-84</th>
+                        <td>Замок, крепость, башня или дворец</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">85</th>
+                        <td>Канализация или помойка</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">86-88</th>
+                        <td>Среди представителей другой расы</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">89-91</th>
+                        <td>На борту корабля</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">92-93</th>
+                        <td>В тюрьме или штаб-квартире секретной организации</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">94-95</th>
+                        <td>В лаборатории мага</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">96</th>
+                        <td>В Стране Фей</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">97</th>
+                        <td>В Царстве Теней</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">98</th>
+                        <td>На Астральном или Эфирном Плане</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">99</th>
+                        <td>На Внутреннем Плане по вашему выбору</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">100</th>
+                        <td>На Внешнем Плане по вашему выбору</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <button class="reset-button" data-table-id="menuTable3">Изменить решение</button>
+            </article>
+
+        </div>
+    </details>
+
+    <textarea id="txt_full_background" name="read-only" readonly placeholder="Тут будет ваша предыстория..."></textarea>
+
+    <style>
+        table.custom td, table.custom th {
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: transparent;
+            padding: calc(var(--pico-spacing) / 2) var(--pico-spacing);
+            border-bottom: var(--pico-border-width) solid var(--pico-table-border-color);
+            color: var(--pico-color); /* Основной цвет текста */
+            font-weight: var(--pico-font-weight);
+            text-align: left;
+        }
+
+        /* Стили для выбранной строки */
+        table.custom tr.selected {
+            background-color: var(--pico-primary-background) !important;
+            color: var(--pico-background-color) !important;
+        }
+
+        /* Применение цвета текста внутри выбранной строки */
+        table.custom tr.selected td, table.custom tr.selected th {
+            color: var(--pico-background-color) !important; /* Цвет текста для выбранной строки */
+        }
+
+        /* Стили для наведения */
+        table.custom tr:hover td:hover  {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+        }
+    </style>
+    <script>
+        function getRandomInt(id, count, size) {
+            document.getElementById(id).innerHTML = Math.floor(Math.random() * count * size) + 1;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tables = document.querySelectorAll('table.custom');
+            const textarea = document.getElementById('txt_full_background');
+            let selectedCount = 0;
+            const selectedRows = new Map();
+
+            tables.forEach(table => {
+                const rows = table.querySelectorAll('tbody tr');
+                const tableId = table.id;
+
+                rows.forEach(row => {
+                    row.addEventListener('click', () => {
+                        if (!row.classList.contains('selected') && (!selectedRows.has(tableId) || selectedRows.get(tableId) === null)) {
+                            // Снимаем выделение со всех строк этой таблицы
+                            rows.forEach(r => r.classList.remove('selected'));
+
+                            // Добавляем выделение к текущей строке
+                            row.classList.add('selected');
+
+                            // Увеличиваем счетчик при первом выборе в таблице
+                            if (!selectedRows.has(tableId) || selectedRows.get(tableId) === null) {
+                                selectedCount++;
+                            }
+
+                            // Обновляем карту выбранных строк
+                            selectedRows.set(tableId, row);
+
+                            // Получаем содержимое первой ячейки (td) текущей строки
+                            const tdContent = row.querySelector('td').textContent;
+
+                            if (tableId === 'menuTable3'){
+                                const tdContent = "Место рождения: " + row.querySelector('td').textContent + ".";
+                                textarea.value += tdContent + '\n';
+                            }else {
+                                const tdContent = row.querySelector('td').textContent;
+                                textarea.value += tdContent + '\n';
+                            }
+                        }
+                    });
+                });
+
+                // Добавляем обработчик для кнопки "Изменить решение"
+                const resetButton = document.querySelector(`button[data-table-id="${tableId}"]`);
+                resetButton.addEventListener('click', () => {
+                    // Убираем выделение с текущей выбранной строки этой таблицы
+                    const selectedRow = selectedRows.get(tableId);
+                    if (selectedRow) {
+                        selectedRow.classList.remove('selected');
+                        selectedRows.set(tableId, null);
+                        selectedCount--;
+
+                        // Обновляем содержимое textarea
+                        updateTextarea();
+                    }
+                });
+            });
+
+            function updateTextarea() {
+                textarea.value = '';
+                selectedRows.forEach((row, tableId) => {
+                    if (row) {
+                        const tdContent = row.querySelector('td').textContent;
+                        textarea.value += tdContent + '\n';
+                    }
+                });
+            }
+        });
+
+    </script>
+</main>
+
+</body>
+</html>

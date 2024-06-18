@@ -72,6 +72,11 @@ func main() {
 			"title": "Наша команда | Our Team",
 		})
 	})
+	router.GET("/fabula", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "charbox_fabila_constructor.html", gin.H{
+			"title": "Конструктор предыстории | Background constructor",
+		})
+	})
 
 	router.NoRoute(func(c *gin.Context) {
 		c.HTML(404, "404.html", gin.H{})

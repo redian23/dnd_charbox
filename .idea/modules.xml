@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pregen.iml" filepath="$PROJECT_DIR$/.idea/pregen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/charbox.iml" filepath="$PROJECT_DIR$/.idea/charbox.iml" />
     </modules>
   </component>
 </project>
