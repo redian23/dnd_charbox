@@ -52,8 +52,8 @@ func main() {
 	router.GET("/about", func(c *gin.Context) {
 		api.GetAbout(c)
 	})
-	router.GET("/s_map.xml", func(c *gin.Context) {
-		c.File(WebPagesPath + "s_map.xml")
+	router.GET("/site_map.xml", func(c *gin.Context) {
+		c.File(WebPagesPath + "site_map.xml")
 	})
 	router.GET("/robots.txt", func(c *gin.Context) {
 		c.File(WebPagesPath + "robots.txt")
