@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://charbox.org/site_map.xml
+Sitemap: https://dnd.charbox.org/site_map.xml
